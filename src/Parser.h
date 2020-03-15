@@ -203,7 +203,7 @@ class Utility::StringGroupParser : public Utility::AbstractParser
 {
 private:
 	const char** m_accept_strs;
-	const unsigned char m_size;
+	unsigned char m_size;
 
 public:
 	/*!
