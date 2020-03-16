@@ -51,4 +51,7 @@ libraries/Ticker \
 libraries/Wire \
 libraries/gdb \
 src \
+src/bean \
+src/controller \
+src/hardware/pin \
 

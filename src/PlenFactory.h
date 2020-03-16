@@ -8,17 +8,14 @@
 #ifndef SRC_PLENFACTORY_H_
 #define SRC_PLENFACTORY_H_
 
-#include "Plen.h"
+#include "bean/Plen.h"
+#include "JointController.h"
+#include "MotionController.h"
+#include "Interpreter.h"
 
 class PlenFactory {
 public:
 	static Plen* getPlen();
-
-private:
-	static JointController*  	jointController;
-	static MotionController* 	motionController;
-	static Interpreter*      	interpreter;
-
 };
 
 #endif /* SRC_PLENFACTORY_H_ */

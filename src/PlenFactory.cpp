@@ -8,9 +8,10 @@
 #include <PlenFactory.h>
 
 Plen* PlenFactory::getPlen() {
-	jointController = new JointController();
-	motionController= new MotionController(*jointController);
-	interpreter 	= new Interpreter(*motionController);
+	JointController* jointController = new JointController();
+	MotionController* motionController= new MotionController(*jointController);
+	Interpreter* interpreter 	= new Interpreter(*motionController);
+
 	return new Plen(jointController, motionController, interpreter);
 }
 

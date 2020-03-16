@@ -1,6 +1,4 @@
-src/Plen.cpp.o: ../src/Plen.cpp \
- /home/ziash/workspaceEsp8266/MiniPlen/src/Plen.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/JointController.h \
+src/Plen.cpp.o: ../src/Plen.cpp ../src/Plen.h ../src/JointController.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/Arduino.h \
  /home/ziash/eclipse/eclipse//arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/tools/sdk/libc/xtensa-lx106-elf/include/stdlib.h \
  /home/ziash/eclipse/eclipse//arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/tools/sdk/libc/xtensa-lx106-elf/include/machine/ieeefp.h \
@@ -130,20 +128,14 @@ src/Plen.cpp.o: ../src/Plen.cpp \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/WiFiClientSecureAxTLS.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/include/ssl.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WebServer/src/detail/RequestHandler.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/Pin.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/Profiler.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/System.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/ExternalFs.h \
+ ../src/Pin.h ../src/Profiler.h ../src/System.h ../src/ExternalFs.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/FS.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/Motion.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/MotionController.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/Interpreter.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/Parser.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/Protocol.h
+ ../src/Motion.h ../src/MotionController.h ../src/Interpreter.h \
+ ../src/Parser.h ../src/Protocol.h
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/Plen.h:
+../src/Plen.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/JointController.h:
+../src/JointController.h:
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/Arduino.h:
 
@@ -403,22 +395,22 @@ src/Plen.cpp.o: ../src/Plen.cpp \
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WebServer/src/detail/RequestHandler.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/Pin.h:
+../src/Pin.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/Profiler.h:
+../src/Profiler.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/System.h:
+../src/System.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/ExternalFs.h:
+../src/ExternalFs.h:
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/FS.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/Motion.h:
+../src/Motion.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/MotionController.h:
+../src/MotionController.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/Interpreter.h:
+../src/Interpreter.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/Parser.h:
+../src/Parser.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/Protocol.h:
+../src/Protocol.h:

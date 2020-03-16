@@ -7,8 +7,7 @@
 	(See also : http://opensource.org/licenses/mit-license.php)
 */
 
-#include <PlenController.h>
-#include "Plen.h"
+#include "controller/PlenController.h"
 #include "PlenFactory.h"
 
 #if ENSOUL_PLEN2
