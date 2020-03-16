@@ -2,28 +2,14 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2020-03-15 12:26:35
+//This file has been generated on 2020-03-16 16:27:32
 
 #include "Arduino.h"
-#include <string.h>
-#include <gdb.h>
-#include <Wire.h>
-#include <Servo.h>
-#include "JointController.h"
-#include "Motion.h"
-#include "MotionController.h"
-#include "Interpreter.h"
-#include "Pin.h"
-#include "Parser.h"
-#include "Protocol.h"
-#include "System.h"
-#include "Profiler.h"
-#include "ExternalFs.h"
+#include <PlenController.h>
+#include "Plen.h"
+#include "PlenFactory.h"
 
 void setup();
-void motionControl();
-void systemSerial();
-void tcp();
 void loop();
 
 

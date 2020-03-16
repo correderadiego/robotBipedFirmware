@@ -57,6 +57,7 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/debug.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/variants/d1/pins_arduino.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/variants/d1/../generic/common.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/PlenController.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/libraries/gdb/1.0.0/gdb.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Wire/Wire.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Servo/src/Servo.h \
@@ -136,11 +137,12 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
  /home/ziash/workspaceEsp8266/MiniPlen/src/ExternalFs.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/FS.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/Motion.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/JointController.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/MotionController.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/Interpreter.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/Parser.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/Protocol.h ../firmware.ino
+ /home/ziash/workspaceEsp8266/MiniPlen/src/Protocol.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/Plen.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/Plen.h ../firmware.ino
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/Arduino.h:
 
@@ -257,6 +259,8 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/variants/d1/pins_arduino.h:
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/variants/d1/../generic/common.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/PlenController.h:
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/libraries/gdb/1.0.0/gdb.h:
 
@@ -416,8 +420,6 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/Motion.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/JointController.h:
-
 /home/ziash/workspaceEsp8266/MiniPlen/src/MotionController.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/Interpreter.h:
@@ -425,5 +427,9 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 /home/ziash/workspaceEsp8266/MiniPlen/src/Parser.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/Protocol.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/Plen.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/Plen.h:
 
 ../firmware.ino:
