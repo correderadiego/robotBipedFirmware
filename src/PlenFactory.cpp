@@ -7,7 +7,7 @@
 
 #include <PlenFactory.h>
 
-Plen PlenFactory::getPlen() {
+Plen* PlenFactory::getPlen() {
 	jointController = new JointController();
 	motionController= new MotionController(*jointController);
 	interpreter 	= new Interpreter(*motionController);

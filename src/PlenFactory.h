@@ -12,12 +12,12 @@
 
 class PlenFactory {
 public:
-	static Plen getPlen();
+	static Plen* getPlen();
 
 private:
-	JointController*  	jointController;
-	MotionController* 	motionController;
-	Interpreter*      	interpreter;
+	static JointController*  	jointController;
+	static MotionController* 	motionController;
+	static Interpreter*      	interpreter;
 
 };
 
