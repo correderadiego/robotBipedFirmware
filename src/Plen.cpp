@@ -8,13 +8,13 @@
 #include <Plen.h>
 
 JointController*  Plen::joint_ctrl  = new JointController();
-MotionController* Plen::motion_ctrl = new MotionController(*joint_ctrl);
-Interpreter*      Plen::interpreter = new Interpreter(*motion_ctrl);
+MotionController* Plen::motionController = new MotionController(*joint_ctrl);
+Interpreter*      Plen::interpreter = new Interpreter(*motionController);
 Plen*			  Plen::plen		= new Plen();
 
 #if ENSOUL_PLEN2
 	static AccelerationGyroSensor* sensor= new AccelerationGyroSensor();
-	static Soul*                   soul  = new Soul(sensor, motion_ctrl);
+	static Soul*                   soul  = new Soul(sensor, motionController);
 #endif
 
 void (Plen::*Plen::CONTROLLER_EVENT_HANDLER[])() = {
@@ -57,7 +57,75 @@ void (Plen::**Plen::EVENT_HANDLER[])() = {
 };
 
 
-Plen::Plen() {}
+Plen::Plen() {
+	PLEN2::ExternalFs::init();
+	Plen::joint_ctrl->init();
+	System::setupWifiConnection();
+}
+
+/*
+ *Controllers
+ */
+
+void Plen::plenController(){
+	motionControl();
+	systemSerial();
+	tcpController();
+}
+
+void Plen::motionControl(){
+	if (!Plen::motionController->playing()){
+		return;
+	}
+
+	if (Plen::motionController->frameUpdatable()){
+		Plen::motionController->updateFrame();
+	}
+
+	if (!Plen::motionController->updatingFinished()){
+		return;
+	}
+
+	if (Plen::motionController->nextFrameLoadable()){
+		Plen::motionController->loadNextFrame();
+		return;
+	}
+
+	Plen::motionController->stop();
+	if(Plen::interpreter->ready()){
+		Plen::interpreter->popCode();
+	}
+}
+
+void Plen::systemSerial(){
+	if (!PLEN2::System::SystemSerial().available()){
+		return;
+	}
+
+	Plen::plen->readByte(PLEN2::System::SystemSerial().read());
+
+	if (Plen::plen->accept()){
+		Plen::plen->transitState();
+	}
+}
+
+void Plen::tcpController(){
+	PLEN2::System::handleClient();
+
+	if (!PLEN2::System::tcp_available()){
+		return;
+	}
+	#if DEBUG_LESS
+		uint8_t c = PLEN2::System::tcp_read();
+		PLEN2::System::outputSerial().write(c);
+		app.readByte(c);
+	#else
+		Plen::plen->readByte(PLEN2::System::tcp_read());
+	#endif
+	if (Plen::plen->accept()){
+		Plen::plen->transitState();
+	}
+}
 
 void Plen::applyDiff(){
 	#if DEBUG_LESS
@@ -109,7 +177,7 @@ void Plen::playMotion(){
 		System::debugSerial().println(Utility::hexbytes2uint(m_buffer.data, 2));
 	#endif
 
-	this->motion_ctrl->play(
+	this->motionController->play(
 		Utility::hexbytes2uint(m_buffer.data, 2)
 	);
 }
@@ -119,7 +187,7 @@ void Plen::stopMotion(){
 		volatile Utility::Profiler p(F("Application::stopMotion()"));
 	#endif
 
-	this->motion_ctrl->willStop();
+	this->motionController->willStop();
 }
 
 void Plen::popCode(){
@@ -375,7 +443,7 @@ void Plen::getMotion(){
 		System::debugSerial().println(Utility::hexbytes2uint(m_buffer.data, 2));
 	#endif
 
-	motion_ctrl->dump(
+	motionController->dump(
 		Utility::hexbytes2uint(m_buffer.data, 2)
 	);
 }

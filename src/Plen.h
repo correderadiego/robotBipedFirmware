@@ -29,9 +29,10 @@ using namespace PLEN2;
 class Plen : public Protocol {
 public:
 	Plen();
+	void plenController();
 	virtual void afterHook();
 	static JointController*  joint_ctrl;
-	static MotionController* motion_ctrl;
+	static MotionController* motionController;
 	static Interpreter*      interpreter;
 	static Plen*			 plen;
 
@@ -53,6 +54,13 @@ private:
 	Motion::Header    m_header_tmp;
 	Motion::Frame     m_frame_tmp;
 	Interpreter::Code m_code_tmp;
+
+	/**
+	 * Controllers
+	 */
+	void motionControl();
+	void systemSerial();
+	void tcpController();
 
 	void applyDiff();
 	void apply();

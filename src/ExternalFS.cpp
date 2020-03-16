@@ -19,7 +19,7 @@
 
 File fp_motion;
 File fp_config;
-File fp_syscfg;
+File fileSystemConfiguration;
 
 void PLEN2::ExternalFs::init(){
 	File fp;

@@ -31,8 +31,7 @@ namespace PLEN2
 /*!
 	@brief Management class of a motion
 */
-class PLEN2::MotionController
-{
+class PLEN2::MotionController{
 #ifdef PLEN2_INTERPRETER_H
 	friend class Interpreter;
 #endif

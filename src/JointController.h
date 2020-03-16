@@ -165,6 +165,7 @@ public:
 	void init();
 	void configurePins();
 	void configureEyeController();
+	void loadJointInitialSettings();
 
 	/*!
 		@brief Load the joint settings

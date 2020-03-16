@@ -94,7 +94,6 @@ void PLEN2::JointController::configurePins(){
 
 	pwmServoDriver.begin();
 	pwmServoDriver.setPWMFreq(PWM_FREQ());   // servos run at 300Hz updates
-
 }
 
 void PLEN2::JointController::configureEyeController(){
@@ -102,12 +101,7 @@ void PLEN2::JointController::configureEyeController(){
     _eye_count = 3;
 }
 
-void PLEN2::JointController::init(){
-	configurePins();
-	configureEyeController();
-
-    delay(500);
-    
+void PLEN2::JointController::loadJointInitialSettings(){
 	for (char joint_id = 0; joint_id < SUM; joint_id++){
 		m_SETTINGS[joint_id].MIN  = Shared::m_SETTINGS_INITIAL[joint_id * 3];
 		m_SETTINGS[joint_id].MAX  = Shared::m_SETTINGS_INITIAL[joint_id * 3 + 1];
@@ -115,8 +109,16 @@ void PLEN2::JointController::init(){
 		setAngle(joint_id, m_SETTINGS[joint_id].HOME);
 	}
 }
-PLEN2::JointController::JointController(){}
 
+void PLEN2::JointController::init(){
+	configurePins();
+	configureEyeController();
+    delay(500);
+    loadJointInitialSettings();
+    loadSettings();
+}
+
+PLEN2::JointController::JointController(){}
 
 void PLEN2::JointController::loadSettings(){
 	#if DEBUG
@@ -125,25 +127,20 @@ void PLEN2::JointController::loadSettings(){
 
 	unsigned char* filler = reinterpret_cast<unsigned char*>(m_SETTINGS);
 	
-	if (ExternalFs::readByte(INIT_FLAG_ADDRESS(), fp_config) != INIT_FLAG_VALUE())
-	{
+	if (ExternalFs::readByte(INIT_FLAG_ADDRESS(), fp_config) != INIT_FLAG_VALUE()){
 		ExternalFs::writeByte(INIT_FLAG_ADDRESS(), INIT_FLAG_VALUE(), fp_config);
         ExternalFs::write(SETTINGS_HEAD_ADDRESS(), sizeof(m_SETTINGS), filler, fp_config);
 		System::debugSerial().println(F("reset config\n"));
-	}
-	else
-	{
+	}else{
 		ExternalFs::read(SETTINGS_HEAD_ADDRESS(), sizeof(m_SETTINGS), filler, fp_config);
 		System::debugSerial().println(F("read config"));
 	}
 
-	for (char joint_id = 0; joint_id < SUM; joint_id++)
-	{
+	for (char joint_id = 0; joint_id < SUM; joint_id++){
 		setAngle(joint_id, m_SETTINGS[joint_id].HOME);
 	}
 
 	PLEN2::JointController::updateAngle(200);
-	delay(100);
     updateServoThread.attach_ms	(UPDATE_SERVO_EXECUTION, PLEN2::JointController::updateAngle,0);
     updateEyesThread.attach		(UPDATE_EYES_EXECUTION , PLEN2::JointController::updateEyes);
 }

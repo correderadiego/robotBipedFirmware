@@ -42,7 +42,7 @@ volatile bool update_cfg;
 
 extern File fp_motion;
 extern File fp_config;
-extern File fp_syscfg;
+extern File fileSystemConfiguration;
 File fsUploadFile;
 //启动ao模式
 void PLEN2::System::StartAp()
@@ -62,63 +62,67 @@ void PLEN2::System::StartAp()
     outputSerial().println(wifi_psd);
 }
 //启用sta模式
-PLEN2::System::System()
-{
-	PLEN2_SYSTEM_SERIAL.begin(SERIAL_BAUDRATE());
-//	WiFi.mode(WIFI_STA);
-}
+PLEN2::System::System(){}
 
-//配置wiif信息和存储
-void PLEN2::System::setup_smartconfig()
-{
+void PLEN2::System::setupWifiConnection(){
+	#define END_OF_LINE '\n'
+
 	unsigned char cnt;
 	update_cfg = true;
-	if( fp_syscfg && fp_syscfg.available()){
-		fp_syscfg.seek(0, SeekSet);
-		String ext_apname = fp_syscfg.readStringUntil('\n');
-		String ext_appsw;
-		if(ext_apname.length() > 1)
-		{
-			outputSerial().print("ap:");
-			outputSerial().println(ext_apname);
-			if(fp_syscfg.available())
-			{
-				ext_appsw = fp_syscfg.readStringUntil('\n');
-				outputSerial().print("psw:");
-				outputSerial().println(ext_appsw);
-				if (ext_appsw.length() > 1)
-				{
-					char extap_name_char[ext_apname.length()];
-					char extap_psw_char[ext_appsw.length()];
-    				memset(extap_name_char, '\0', ext_apname.length());
-					for (int i = 0; i < ext_apname.length() - 1; i++)
-					{
-	       				extap_name_char[i] = ext_apname.charAt(i);
-	    			}
-					memset(extap_psw_char, '\0', ext_appsw.length());
-					for (int i = 0; i < ext_appsw.length() - 1; i++)
-					{
-			    		extap_psw_char[i] = ext_appsw.charAt(i);
-					}
-	  			    outputSerial().println(extap_name_char);
-					outputSerial().println(extap_psw_char);
-					WiFi.begin(extap_name_char, extap_psw_char);
-					cnt = 0;
-		   		    while (WiFi.status() != WL_CONNECTED){
-	                    delay(100);
-	    				outputSerial().print(".");
-						cnt++;
-						break;
-						if(cnt >= CONNECT_TIMEOUT_CNT){
-							break;
-						}
-	 				}
-					if(cnt < CONNECT_TIMEOUT_CNT){
-						update_cfg = false;
-					}
-				}
-			}
+	if( !(fileSystemConfiguration && fileSystemConfiguration.available())){
+		smartconfig_tricker.attach_ms(1024, PLEN2::System::smart_config);
+		return;
+	}
+
+	fileSystemConfiguration.seek(0, SeekSet);
+	String apName = fileSystemConfiguration.readStringUntil(END_OF_LINE);
+	String apPassword;
+	if(apName.length() <= 1){
+		smartconfig_tricker.attach_ms(1024, PLEN2::System::smart_config);
+		return;
+	}
+	outputSerial().print("ap:");
+	outputSerial().println(apName);
+	if(!fileSystemConfiguration.available()){
+		smartconfig_tricker.attach_ms(1024, PLEN2::System::smart_config);
+		return;
+	}
+
+	apPassword = fileSystemConfiguration.readStringUntil(END_OF_LINE);
+	outputSerial().print("psw:");
+	outputSerial().println(apPassword);
+	if (apPassword.length() <= 1){
+		smartconfig_tricker.attach_ms(1024, PLEN2::System::smart_config);
+		return;
+	}
+
+	char apNameChar[apName.length()];
+	char apPasswordChar[apPassword.length()];
+
+	memset(apNameChar, '\0', apName.length());
+	for (int i = 0; i < apName.length() - 1; i++){
+		apNameChar[i] = apName.charAt(i);
+	}
+	memset(apPasswordChar, '\0', apPassword.length());
+	for (int i = 0; i < apPassword.length() - 1; i++){
+		apPasswordChar[i] = apPassword.charAt(i);
+	}
+	outputSerial().println(apNameChar);
+	outputSerial().println(apPasswordChar);
+
+	WiFi.begin(apNameChar, apPasswordChar);
+	cnt = 0;
+	while (WiFi.status() != WL_CONNECTED){
+		delay(100);
+		outputSerial().print(".");
+		cnt++;
+		break;
+		if(cnt >= CONNECT_TIMEOUT_CNT){
+			break;
 		}
+	}
+	if(cnt < CONNECT_TIMEOUT_CNT){
+		update_cfg = false;
 	}
 
 	smartconfig_tricker.attach_ms(1024, PLEN2::System::smart_config);
@@ -306,14 +310,14 @@ void PLEN2::System::smart_config()
         outputSerial().printf("SSID:%s\r\n", WiFi.SSID().c_str());
         outputSerial().printf("PSW:%s\r\n", WiFi.psk().c_str());
 
-		if(fp_syscfg)
+		if(fileSystemConfiguration)
 		{
-			fp_syscfg.close();	
-			fp_syscfg = SPIFFS.open(SYSCFG_FILE, "w");
-			fp_syscfg.println(WiFi.SSID().c_str());
-			fp_syscfg.println(WiFi.psk().c_str());
-			fp_syscfg.close();
-			fp_syscfg = SPIFFS.open(SYSCFG_FILE, "r");
+			fileSystemConfiguration.close();	
+			fileSystemConfiguration = SPIFFS.open(SYSCFG_FILE, "w");
+			fileSystemConfiguration.println(WiFi.SSID().c_str());
+			fileSystemConfiguration.println(WiFi.psk().c_str());
+			fileSystemConfiguration.close();
+			fileSystemConfiguration = SPIFFS.open(SYSCFG_FILE, "r");
 		}
 		update_cfg = false;
 	}

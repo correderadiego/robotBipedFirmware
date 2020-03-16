@@ -35,12 +35,7 @@ namespace PLEN2
 /*!
 	@brief Management class of basis about AVR MCU 关于AVR单片机基础管理类
 */
-class PLEN2::System
-{
-private:
-	
-	//! @brief Communication speed of USB serial  USB串行通信速度
-	inline static const long SERIAL_BAUDRATE() { return 115200L; }
+class PLEN2::System{
 
 public:
 	/*!
@@ -93,7 +88,7 @@ public:
 
     static bool tcp_connected();
 
-	static void setup_smartconfig();
+	static void setupWifiConnection();
 
 	static void smart_config();
 
