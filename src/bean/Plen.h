@@ -9,30 +9,30 @@
 #define SRC_PLEN_H_
 
 #include "JointController.h"
-#include "Motion.h"
 #include "MotionController.h"
 #include "Interpreter.h"
-#include "Pin.h"
-#include "Parser.h"
-#include "Protocol.h"
-#include "System.h"
-#include "Profiler.h"
-#include "ExternalFs.h"
+#include "bean/Joint.h"
 
 using namespace PLEN2;
+
+#define NUMBER_OF_JOINTS 24
 
 class Plen {
 public:
 	Plen(
 			JointController*  jointController,
 			MotionController* motionController,
-			Interpreter*      interpreter
+			Interpreter*      interpreter,
+			Joint* joint[],
+			int jointSize
 			);
 	JointController*  getJointController();
 	MotionController* getMotioncontroller();
 	Interpreter*      getInterpreter();
 
 private:
+	Joint** joint;
+	int jointSize;
 	JointController*  jointController;
 	MotionController* motionController;
 	Interpreter*      interpreter;

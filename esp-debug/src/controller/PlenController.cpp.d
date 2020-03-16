@@ -143,7 +143,8 @@ src/controller/PlenController.cpp.o: ../src/controller/PlenController.cpp \
  /home/ziash/workspaceEsp8266/MiniPlen/src/Interpreter.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/Parser.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/Protocol.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Plen.h
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Plen.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Joint.h
 
 ../src/controller/PlenController.h:
 
@@ -434,3 +435,5 @@ src/controller/PlenController.cpp.o: ../src/controller/PlenController.cpp \
 /home/ziash/workspaceEsp8266/MiniPlen/src/Protocol.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Plen.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/Joint.h:

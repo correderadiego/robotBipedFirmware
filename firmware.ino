@@ -8,7 +8,7 @@
 */
 
 #include "controller/PlenController.h"
-#include "PlenFactory.h"
+#include "bean/PlenFactory.h"
 
 #if ENSOUL_PLEN2
 	#include "AccelerationGyroSensor.h"

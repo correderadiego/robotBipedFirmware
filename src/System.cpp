@@ -41,7 +41,7 @@ const char *wifi_psd = "12345678xyz";
 volatile bool update_cfg;
 
 extern File fp_motion;
-extern File fp_config;
+extern File fileConfiguration;
 extern File fileSystemConfiguration;
 File fsUploadFile;
 //启动ao模式

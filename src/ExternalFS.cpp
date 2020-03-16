@@ -18,7 +18,7 @@
 #define FILE_MODE_WRITE			"w+"
 
 File fp_motion;
-File fp_config;
+File fileConfiguration;
 File fileSystemConfiguration;
 
 void PLEN2::ExternalFs::init(){
@@ -41,7 +41,7 @@ void PLEN2::ExternalFs::init(){
         System::outputSerial().println("fs formated\n");
     }
     fp_motion = SPIFFS.open(MOTION_FILE, FILE_MODE_READ);
-    fp_config = SPIFFS.open(CONFIG_FILE, FILE_MODE_READ);
+    fileConfiguration = SPIFFS.open(CONFIG_FILE, FILE_MODE_READ);
 //  fp_syscfg = SPIFFS.open(SYSCFG_FILE, FILE_MODE_READ_APPEND);
 }
 

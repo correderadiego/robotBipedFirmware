@@ -134,12 +134,11 @@ src/bean/Plen.cpp.o: ../src/bean/Plen.cpp ../src/bean/Plen.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/System.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/ExternalFs.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/FS.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/Motion.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/JointController.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/MotionController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/JointController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/Motion.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/Interpreter.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/Parser.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/Protocol.h
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Joint.h
 
 ../src/bean/Plen.h:
 
@@ -413,14 +412,12 @@ src/bean/Plen.cpp.o: ../src/bean/Plen.cpp ../src/bean/Plen.h \
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/FS.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/Motion.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/MotionController.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/JointController.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/MotionController.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/Motion.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/Interpreter.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/Parser.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/Protocol.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/Joint.h:

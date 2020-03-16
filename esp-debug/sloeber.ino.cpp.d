@@ -143,8 +143,9 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
  /home/ziash/workspaceEsp8266/MiniPlen/src/Parser.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/Protocol.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Plen.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/PlenFactory.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Plen.h ../firmware.ino
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Joint.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/PlenFactory.h \
+ ../firmware.ino
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/Arduino.h:
 
@@ -434,8 +435,8 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Plen.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/PlenFactory.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/Joint.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/bean/Plen.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/PlenFactory.h:
 
 ../firmware.ino:

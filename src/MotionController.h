@@ -11,7 +11,7 @@
 #define PLEN2_MOTION_CONTROLLER_H
 
 #include "JointController.h"
-
+#include "Motion.h"
 
 namespace PLEN2
 {

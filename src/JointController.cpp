@@ -9,22 +9,19 @@
 
 #include "JointController.h"
 
+//Hardware definition
 Adafruit_PWMServoDriver pwmServoDriver;
 Servo GPIO12SERVO;
 Servo GPIO14SERVO;
+
+//Thread definition
 Ticker updateServoThread;
-#define UPDATE_SERVO_EXECUTION 100 //ms
 Ticker updateEyesThread;
-#define UPDATE_EYES_EXECUTION 1 //s
-//WiFiServer wifi_tcp_server(23);
-extern File fp_config;
-/*!
-	@note
-	If you want to apply the firmware to PLEN1.4, set the macro to false.
-*/
-#define PLEN2_JOINTCONTROLLER_PWM_OUT_00_07_REGISTER OCR1C
-#define PLEN2_JOINTCONTROLLER_PWM_OUT_08_15_REGISTER OCR1B
-#define PLEN2_JOINTCONTROLLER_PWM_OUT_16_23_REGISTER OCR1A
+#define UPDATE_SERVO_EXECUTION 100 	//ms
+#define UPDATE_EYES_EXECUTION 	1 	//s
+
+//File configuration
+extern File fileConfiguration;
 
 volatile bool PLEN2::JointController::m_1cycle_finished = false;
 int PLEN2::JointController::m_pwms[PLEN2::JointController::SUM];
@@ -42,30 +39,30 @@ namespace
 
 		PROGMEM const int m_SETTINGS_INITIAL[] =
 		{
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX,  -40, // [01] Left : Shoulder Pitch
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX,  245, // [02] Left : Thigh Yaw
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX,  470, // [03] Left : Shoulder Roll
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX, -100, // [04] Left : Elbow Roll
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX, -205, // [05] Left : Thigh Roll
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX,   50, // [06] Left : Thigh Pitch
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX,  445, // [07] Left : Knee Pitch
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX,  245, // [08] Left : Foot Pitch
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX,  -75, // [09] Left : Foot Roll
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX, JointController::ANGLE_NEUTRAL,
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX, JointController::ANGLE_NEUTRAL,
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX, JointController::ANGLE_NEUTRAL,
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX,   15, // [10] Right : Shoulder Pitch
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX,  -70, // [11] Right : Thigh Yaw
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX, -390, // [12] Right : Shoulder Roll
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX,  250, // [13] Right : Elbow Roll
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX,  195, // [14] Right : Thigh Roll
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX, -105, // [15] Right : Thigh Pitch
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX, -510, // [16] Right : Knee Pitch
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX, -305, // [17] Right : Foot Pitch
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX,   60, // [18] Right : Foot Roll
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX, JointController::ANGLE_NEUTRAL,
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX, JointController::ANGLE_NEUTRAL,
-			JointController::ANGLE_MIN, JointController::ANGLE_MAX, JointController::ANGLE_NEUTRAL
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2,  -40, // [01] Left : Shoulder Pitch
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2,  245, // [02] Left : Thigh Yaw
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2,  470, // [03] Left : Shoulder Roll
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2, -100, // [04] Left : Elbow Roll
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2, -205, // [05] Left : Thigh Roll
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2,   50, // [06] Left : Thigh Pitch
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2,  445, // [07] Left : Knee Pitch
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2,  245, // [08] Left : Foot Pitch
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2,  -75, // [09] Left : Foot Roll
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2, JointController::ANGLE_NEUTRAL_2,
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2, JointController::ANGLE_NEUTRAL_2,
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2, JointController::ANGLE_NEUTRAL_2,
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2,   15, // [10] Right : Shoulder Pitch
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2,  -70, // [11] Right : Thigh Yaw
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2, -390, // [12] Right : Shoulder Roll
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2,  250, // [13] Right : Elbow Roll
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2,  195, // [14] Right : Thigh Roll
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2, -105, // [15] Right : Thigh Pitch
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2, -510, // [16] Right : Knee Pitch
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2, -305, // [17] Right : Foot Pitch
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2,   60, // [18] Right : Foot Roll
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2, JointController::ANGLE_NEUTRAL_2,
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2, JointController::ANGLE_NEUTRAL_2,
+			JointController::ANGLE_MIN_2, JointController::ANGLE_MAX_2, JointController::ANGLE_NEUTRAL_2
 		};
 
 		const int ERROR_LVALUE = -32768;
@@ -90,7 +87,7 @@ void PLEN2::JointController::configurePins(){
     GPIO12SERVO.attach(Pin::PWM_OUT_12());
     GPIO14SERVO.attach(Pin::PWM_OUT_14());
 
-	Wire.begin(WIRE_SDA_PIN, WIRE_SCL_PIN	);
+	Wire.begin(WIRE_SDA_PIN, WIRE_SCL_PIN);
 
 	pwmServoDriver.begin();
 	pwmServoDriver.setPWMFreq(PWM_FREQ());   // servos run at 300Hz updates
@@ -127,12 +124,12 @@ void PLEN2::JointController::loadSettings(){
 
 	unsigned char* filler = reinterpret_cast<unsigned char*>(m_SETTINGS);
 	
-	if (ExternalFs::readByte(INIT_FLAG_ADDRESS(), fp_config) != INIT_FLAG_VALUE()){
-		ExternalFs::writeByte(INIT_FLAG_ADDRESS(), INIT_FLAG_VALUE(), fp_config);
-        ExternalFs::write(SETTINGS_HEAD_ADDRESS(), sizeof(m_SETTINGS), filler, fp_config);
+	if (ExternalFs::readByte(INIT_FLAG_ADDRESS(), fileConfiguration) != INIT_FLAG_VALUE()){
+		ExternalFs::writeByte(INIT_FLAG_ADDRESS(), INIT_FLAG_VALUE(), fileConfiguration);
+        ExternalFs::write(SETTINGS_HEAD_ADDRESS(), sizeof(m_SETTINGS), filler, fileConfiguration);
 		System::debugSerial().println(F("reset config\n"));
 	}else{
-		ExternalFs::read(SETTINGS_HEAD_ADDRESS(), sizeof(m_SETTINGS), filler, fp_config);
+		ExternalFs::read(SETTINGS_HEAD_ADDRESS(), sizeof(m_SETTINGS), filler, fileConfiguration);
 		System::debugSerial().println(F("read config"));
 	}
 
@@ -152,7 +149,7 @@ void PLEN2::JointController::resetSettings()
 		volatile Utility::Profiler p(F("JointController::resetSettings()"));
 	#endif
 	
-    ExternalFs::writeByte(INIT_FLAG_ADDRESS(), INIT_FLAG_VALUE(), fp_config);
+    ExternalFs::writeByte(INIT_FLAG_ADDRESS(), INIT_FLAG_VALUE(), fileConfiguration);
 
 	for (char joint_id = 0; joint_id < SUM; joint_id++)
 	{
@@ -164,7 +161,7 @@ void PLEN2::JointController::resetSettings()
 	}
 	
     ExternalFs::write(SETTINGS_HEAD_ADDRESS(), sizeof(m_SETTINGS), 
-                    reinterpret_cast<const unsigned char*>(m_SETTINGS), fp_config);
+                    reinterpret_cast<const unsigned char*>(m_SETTINGS), fileConfiguration);
 }
 
 
@@ -245,7 +242,7 @@ bool PLEN2::JointController::setMinAngle(unsigned char joint_id, int angle)
 	}
 
 	if (   (angle >= m_SETTINGS[joint_id].MAX)
-		|| (angle <  ANGLE_MIN) )
+		|| (angle <  ANGLE_MIN_2) )
 	{
 		#if DEBUG
 			System::debugSerial().print(F(">>> bad argment! : angle = "));
@@ -266,7 +263,7 @@ bool PLEN2::JointController::setMinAngle(unsigned char joint_id, int angle)
 		System::debugSerial().println(address_offset);
 	#endif
 
-	ExternalFs::write(SETTINGS_HEAD_ADDRESS() + address_offset, sizeof(m_SETTINGS[joint_id].MIN), filler, fp_config);
+	ExternalFs::write(SETTINGS_HEAD_ADDRESS() + address_offset, sizeof(m_SETTINGS[joint_id].MIN), filler, fileConfiguration);
 
 	return true;
 }
@@ -289,7 +286,7 @@ bool PLEN2::JointController::setMaxAngle(unsigned char joint_id, int angle)
 	}
 
 	if (   (angle <= m_SETTINGS[joint_id].MIN)
-		|| (angle >  ANGLE_MAX) )
+		|| (angle >  ANGLE_MAX_2) )
 	{
 		#if DEBUG
 			System::debugSerial().print(F(">>> bad argment! : angle = "));
@@ -310,7 +307,7 @@ bool PLEN2::JointController::setMaxAngle(unsigned char joint_id, int angle)
 		System::debugSerial().println(address_offset);
 	#endif
 
-	ExternalFs::write(SETTINGS_HEAD_ADDRESS() + address_offset, sizeof(m_SETTINGS[joint_id].MAX), filler, fp_config);
+	ExternalFs::write(SETTINGS_HEAD_ADDRESS() + address_offset, sizeof(m_SETTINGS[joint_id].MAX), filler, fileConfiguration);
 
 	return true;
 }
@@ -354,7 +351,7 @@ bool PLEN2::JointController::setHomeAngle(unsigned char joint_id, int angle)
 		System::debugSerial().println(address_offset);
 	#endif
 
-	ExternalFs::write(SETTINGS_HEAD_ADDRESS() + address_offset, sizeof(m_SETTINGS[joint_id].HOME), filler, fp_config);
+	ExternalFs::write(SETTINGS_HEAD_ADDRESS() + address_offset, sizeof(m_SETTINGS[joint_id].HOME), filler, fileConfiguration);
 
 	return true;
 }
@@ -387,7 +384,7 @@ bool PLEN2::JointController::setAngle(unsigned char joint_id, int angle){
 	{
 		m_pwms[joint_id] = map(
 			angle,
-			PLEN2::JointController::ANGLE_MIN, PLEN2::JointController::ANGLE_MAX,
+			PLEN2::JointController::ANGLE_MIN_2, PLEN2::JointController::ANGLE_MAX_2,
 
 			#if CLOCK_WISE
 				PLEN2::JointController::PWM_MIN(), PLEN2::JointController::PWM_MAX()
@@ -442,7 +439,7 @@ bool PLEN2::JointController::setAngleDiff(unsigned char joint_id, int angle_diff
 	{
 		m_pwms[joint_id] = map(
 			angle,
-			PLEN2::JointController::ANGLE_MIN, PLEN2::JointController::ANGLE_MAX,
+			PLEN2::JointController::ANGLE_MIN_2, PLEN2::JointController::ANGLE_MAX_2,
 
 			#if CLOCK_WISE
 				PLEN2::JointController::PWM_MIN(), PLEN2::JointController::PWM_MAX()

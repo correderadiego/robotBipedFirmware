@@ -31,16 +31,14 @@ namespace
 }
 
 
-PLEN2::MotionController::MotionController(JointController& joint_ctrl)
-{
+PLEN2::MotionController::MotionController(JointController& joint_ctrl){
 	m_joint_ctrl_ptr = &joint_ctrl;
 
 	m_playing = false;
 	m_frame_current_ptr = m_buffer;
 	m_frame_next_ptr    = m_buffer + 1;
 
-	for (char joint_id = 0; joint_id < JointController::SUM; joint_id++)
-	{
+	for (char joint_id = 0; joint_id < JointController::SUM; joint_id++){
 		m_frame_current_ptr->joint_angle[joint_id] = 0;
 	}
 }

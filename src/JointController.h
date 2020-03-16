@@ -59,9 +59,9 @@ public:
 	enum {
 		SUM = 24, //!< Summation of the servos controllable.
 
-		ANGLE_MIN     = -800, //!< Min angle of the servos.
-		ANGLE_MAX     =  800, //!< Max angle of the servos.
-		ANGLE_NEUTRAL =    0  //!< Neutral angle of the servos.
+		ANGLE_MIN_2     = -800, //!< Min angle of the servos.
+		ANGLE_MAX_2     =  800, //!< Max angle of the servos.
+		ANGLE_NEUTRAL_2 =    0  //!< Neutral angle of the servos.
 	};
 
 private:
@@ -88,15 +88,15 @@ private:
 			@brief Constructor
 		*/
 		JointSetting()
-			: MIN(ANGLE_MIN)
-			, MAX(ANGLE_MAX)
-			, HOME(ANGLE_NEUTRAL)
+			: MIN(ANGLE_MIN_2)
+			, MAX(ANGLE_MAX_2)
+			, HOME(ANGLE_NEUTRAL_2)
 		{
 			// noop.
 		}
 	};
 
-	JointSetting m_SETTINGS[SUM];
+	JointSetting m_SETTINGS[24];
 public:
 	/*!
 		@brief Management class (as namespace) of multiplexer

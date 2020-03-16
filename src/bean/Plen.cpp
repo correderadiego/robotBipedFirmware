@@ -10,11 +10,15 @@
 Plen::Plen(
 			JointController*  jointController,
 			MotionController* motionController,
-			Interpreter*      interpreter
+			Interpreter*      interpreter,
+			Joint* joint[],
+			int jointSize
 		  ) {
 	this->jointController 	= jointController;
 	this->motionController 	= motionController;
 	this->interpreter 		= interpreter;
+	this->joint 			= joint;
+	this->jointSize 		= jointSize;
 }
 
 JointController* Plen::getJointController(){
