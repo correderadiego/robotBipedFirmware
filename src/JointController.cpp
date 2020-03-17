@@ -71,9 +71,6 @@ namespace
 
 
 void PLEN2::JointController::configurePins(){
-	#define WIRE_SDA_PIN 4
-	#define WIRE_SCL_PIN 5
-
 	pwmServoDriver = Adafruit_PWMServoDriver();
     pinMode		(Pin::PCA9685_ENABLE(), OUTPUT);
     delay(200);
@@ -87,7 +84,7 @@ void PLEN2::JointController::configurePins(){
     GPIO12SERVO.attach(Pin::PWM_OUT_12());
     GPIO14SERVO.attach(Pin::PWM_OUT_14());
 
-	Wire.begin(WIRE_SDA_PIN, WIRE_SCL_PIN);
+
 
 	pwmServoDriver.begin();
 	pwmServoDriver.setPWMFreq(PWM_FREQ());   // servos run at 300Hz updates

@@ -30,7 +30,7 @@ using namespace PLEN2;
 class PlenController : public Protocol {
 public:
 	PlenController(Plen* plen);
-	void plenController();
+	void executeThreadTasks();
 	virtual void afterHook();
 
 

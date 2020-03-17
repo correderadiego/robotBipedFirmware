@@ -8,6 +8,18 @@
 #include "PlenFactory.h"
 
 Plen* PlenFactory::getPlen() {
+
+	/**
+	 * Controllers
+	 */
+	JointController* jointController 	= new JointController();
+	MotionController* motionController	= new MotionController(*jointController);
+	Interpreter* interpreter 			= new Interpreter(*motionController);
+	LedController* ledController		= new LedController();
+	EyeController* eyeController		= new EyeController(ledController);
+	/**
+	 * Joint
+	 */
 	Joint* joint[] = {
 						new Joint(-40), // [01] Left : Shoulder Pitch
 						new Joint(245), // [02] Left : Thigh Yaw
@@ -35,11 +47,14 @@ Plen* PlenFactory::getPlen() {
 						new Joint(),
 	};
 
-	JointController* jointController 	= new JointController();
-	MotionController* motionController	= new MotionController(*jointController);
-	Interpreter* interpreter 			= new Interpreter(*motionController);
+	/**
+	 * Eyes
+	 */
+	GPIOPin* gpioPinLed = new GPIOPin(PIN_LED, OUTPUT);
+	Led* led 			= new Led(gpioPinLed);
+	Eyes* eyes 			= new Eyes(led);
 
-	return new Plen(jointController, motionController, interpreter, joint, NUMBER_OF_JOINTS);
+	return new Plen(jointController, motionController, interpreter, eyeController, joint, NUMBER_OF_JOINTS, eyes);
 }
 
 

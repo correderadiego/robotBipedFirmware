@@ -35,7 +35,7 @@ void setup(){
 }
 
 void loop(){
-	plenController->plenController();
+	plenController->executeThreadTasks();
 	#if ENSOUL_PLEN2
 		soul.log();
 		soul.action();

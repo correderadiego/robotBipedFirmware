@@ -7,12 +7,10 @@
 
 #include <controller/EyeController.h>
 
-EyeController::EyeController() {
-	// TODO Auto-generated constructor stub
-
+EyeController::EyeController(LedController* ledController) {
+	this->ledController = ledController;
 }
 
-EyeController::~EyeController() {
-	// TODO Auto-generated destructor stub
+void EyeController::executeThreadTasks(Eyes* eyes){
+	this->ledController->executeThreadTasks(eyes->getLed());
 }
-

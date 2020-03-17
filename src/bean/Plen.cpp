@@ -11,14 +11,22 @@ Plen::Plen(
 			JointController*  jointController,
 			MotionController* motionController,
 			Interpreter*      interpreter,
-			Joint* joint[],
-			int jointSize
+			EyeController*	  eyeController,
+			Joint* 	joint[],
+			int 	jointSize,
+			Eyes* 	eyes
 		  ) {
 	this->jointController 	= jointController;
 	this->motionController 	= motionController;
 	this->interpreter 		= interpreter;
+	this->eyeController		= eyeController;
 	this->joint 			= joint;
 	this->jointSize 		= jointSize;
+	this->eyes				= eyes;
+}
+
+Eyes* Plen::getEyes(){
+	return this->eyes;
 }
 
 JointController* Plen::getJointController(){
@@ -31,4 +39,8 @@ MotionController* Plen::getMotioncontroller(){
 
 Interpreter* Plen::getInterpreter(){
 	return this->interpreter;
+}
+
+EyeController*	Plen::getEyeController(){
+	return this->eyeController;
 }

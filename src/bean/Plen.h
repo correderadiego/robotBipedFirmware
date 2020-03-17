@@ -8,6 +8,8 @@
 #ifndef SRC_PLEN_H_
 #define SRC_PLEN_H_
 
+#include "Eyes.h"
+#include "controller/EyeController.h"
 #include "JointController.h"
 #include "MotionController.h"
 #include "Interpreter.h"
@@ -23,20 +25,26 @@ public:
 			JointController*  jointController,
 			MotionController* motionController,
 			Interpreter*      interpreter,
+			EyeController*	  eyeController,
 			Joint* joint[],
-			int jointSize
+			int jointSize,
+			Eyes* eyes
 			);
+
+	Eyes* getEyes();
 	JointController*  getJointController();
 	MotionController* getMotioncontroller();
 	Interpreter*      getInterpreter();
+	EyeController*	  getEyeController();
 
 private:
 	Joint** joint;
 	int jointSize;
+	Eyes* eyes;
 	JointController*  jointController;
 	MotionController* motionController;
 	Interpreter*      interpreter;
-
+	EyeController*	  eyeController;
 };
 
 #endif /* SRC_PLEN_H_ */

@@ -63,10 +63,11 @@ PlenController::PlenController(Plen* plen) {
  *Controllers
  */
 
-void PlenController::plenController(){
+void PlenController::executeThreadTasks(){
 	motionControl();
 	systemSerial();
 	tcpController();
+	plen->getEyeController()->executeThreadTasks(plen->getEyes());
 }
 
 void PlenController::motionControl(){

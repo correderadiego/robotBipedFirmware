@@ -12,7 +12,10 @@
 #include "bean/Plen.h"
 #include "JointController.h"
 #include "MotionController.h"
+#include "controller/LedController.h"
 #include "Interpreter.h"
+#include "hardware/pin/GPIOPin.h"
+#include "hardware/pin/PinDefinition.h"
 
 class PlenFactory {
 public:
