@@ -12,5 +12,5 @@ PWMPin::PWMPin(uint8_t pinNumber) {
 }
 
 void PWMPin::setValue(uint8_t duty){
-	PwmController::getInstance()->setPWM(this->pinNumber, duty);
+	PwmController::getInstance()->setAngle(this->pinNumber, duty);
 }

@@ -17,8 +17,6 @@
 
 using namespace PLEN2;
 
-#define NUMBER_OF_JOINTS 24
-
 class Plen {
 public:
 	Plen(
@@ -32,6 +30,7 @@ public:
 			);
 
 	Eyes* getEyes();
+	uint8_t getJointSize();
 	JointController*  getJointController();
 	MotionController* getMotioncontroller();
 	Interpreter*      getInterpreter();
@@ -39,6 +38,9 @@ public:
 
 private:
 	Joint** joint;
+	File* fileMotion;
+	File* fileConfiguration;
+	File* fileSystemConfiguration;
 	int jointSize;
 	Eyes* eyes;
 	JointController*  jointController;

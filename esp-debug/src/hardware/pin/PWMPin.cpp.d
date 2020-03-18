@@ -60,7 +60,11 @@ src/hardware/pin/PWMPin.cpp.o: ../src/hardware/pin/PWMPin.cpp \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/variants/d1/../generic/common.h \
  ../src/hardware/pin/PwmController.h \
  /home/ziash/Arduino/libraries/Adafruit_PWM_Servo_Driver_Library/Adafruit_PWMServoDriver.h \
- /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Wire/Wire.h
+ /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Wire/Wire.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PinDefinition.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PWMPin.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/GPIOPin.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/Pin.h
 
 ../src/hardware/pin/PWMPin.h:
 
@@ -187,3 +191,11 @@ src/hardware/pin/PWMPin.cpp.o: ../src/hardware/pin/PWMPin.cpp \
 /home/ziash/Arduino/libraries/Adafruit_PWM_Servo_Driver_Library/Adafruit_PWMServoDriver.h:
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Wire/Wire.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PinDefinition.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PWMPin.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/GPIOPin.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/Pin.h:

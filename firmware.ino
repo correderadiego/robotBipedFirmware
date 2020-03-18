@@ -31,7 +31,7 @@ void setup(){
 		);
 	#endif
 
-	plenController  = new PlenController(PlenFactory::getPlen());
+	plenController  = new PlenController((new PlenFactory())->getPlen());
 }
 
 void loop(){

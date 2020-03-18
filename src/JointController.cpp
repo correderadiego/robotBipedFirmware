@@ -26,11 +26,6 @@ extern File fileConfiguration;
 volatile bool PLEN2::JointController::m_1cycle_finished = false;
 int PLEN2::JointController::m_pwms[PLEN2::JointController::SUM];
 
-//eyes control
-int _enable;
-int _eye_count_step;
-uint8_t _eye_count;
-
 namespace
 {
 	namespace Shared
@@ -71,44 +66,16 @@ namespace
 
 
 void PLEN2::JointController::configurePins(){
-	pwmServoDriver = Adafruit_PWMServoDriver();
-    pinMode		(Pin::PCA9685_ENABLE(), OUTPUT);
-    delay(200);
-    digitalWrite(Pin::PCA9685_ENABLE(), HIGH);
-    delay(200);
-    digitalWrite(Pin::PCA9685_ENABLE(), LOW);
-    delay(200);
-    pinMode		(Pin::LED(),OUTPUT);
-    digitalWrite(Pin::LED(),HIGH);
-
     GPIO12SERVO.attach(Pin::PWM_OUT_12());
     GPIO14SERVO.attach(Pin::PWM_OUT_14());
-
-
-
-	pwmServoDriver.begin();
-	pwmServoDriver.setPWMFreq(PWM_FREQ());   // servos run at 300Hz updates
 }
 
-void PLEN2::JointController::configureEyeController(){
-	_enable = true;
-    _eye_count = 3;
-}
 
 void PLEN2::JointController::loadJointInitialSettings(){
-	for (char joint_id = 0; joint_id < SUM; joint_id++){
-		m_SETTINGS[joint_id].MIN  = Shared::m_SETTINGS_INITIAL[joint_id * 3];
-		m_SETTINGS[joint_id].MAX  = Shared::m_SETTINGS_INITIAL[joint_id * 3 + 1];
-		m_SETTINGS[joint_id].HOME = Shared::m_SETTINGS_INITIAL[joint_id * 3 + 2];
-		setAngle(joint_id, m_SETTINGS[joint_id].HOME);
-	}
 }
 
 void PLEN2::JointController::init(){
 	configurePins();
-	configureEyeController();
-    delay(500);
-    loadJointInitialSettings();
     loadSettings();
 }
 
@@ -136,7 +103,7 @@ void PLEN2::JointController::loadSettings(){
 
 	PLEN2::JointController::updateAngle(200);
     updateServoThread.attach_ms	(UPDATE_SERVO_EXECUTION, PLEN2::JointController::updateAngle,0);
-    updateEyesThread.attach		(UPDATE_EYES_EXECUTION , PLEN2::JointController::updateEyes);
+    //updateEyesThread.attach		(UPDATE_EYES_EXECUTION , PLEN2::JointController::updateEyes);
 }
 
 
@@ -159,66 +126,6 @@ void PLEN2::JointController::resetSettings()
 	
     ExternalFs::write(SETTINGS_HEAD_ADDRESS(), sizeof(m_SETTINGS), 
                     reinterpret_cast<const unsigned char*>(m_SETTINGS), fileConfiguration);
-}
-
-
-const int& PLEN2::JointController::getMinAngle(unsigned char joint_id)
-{
-	#if DEBUG
-		volatile Utility::Profiler p(F("JointController::getMinAngle()"));
-	#endif
-
-	if (joint_id >= SUM)
-	{
-		#if DEBUG
-			System::debugSerial().print(F(">>> bad argment! : joint_id = "));
-			System::debugSerial().println(static_cast<int>(joint_id));
-		#endif
-
-		return Shared::ERROR_LVALUE;
-	}
-
-	return m_SETTINGS[joint_id].MIN;
-}
-
-
-const int& PLEN2::JointController::getMaxAngle(unsigned char joint_id)
-{
-	#if DEBUG
-		volatile Utility::Profiler p(F("JointController::getMaxAngle()"));
-	#endif
-
-	if (joint_id >= SUM)
-	{
-		#if DEBUG
-			System::debugSerial().print(F(">>> bad argment! : joint_id = "));
-			System::debugSerial().println(static_cast<int>(joint_id));
-		#endif
-
-		return Shared::ERROR_LVALUE;
-	}
-
-	return m_SETTINGS[joint_id].MAX;
-}
-
-
-const int& PLEN2::JointController::getHomeAngle(unsigned char joint_id)
-{
-	#if DEBUG
-		volatile Utility::Profiler p(F("JointController::getHomeAngle()"));
-	#endif
-
-	if (joint_id >= SUM)
-	{
-		#if DEBUG
-			System::debugSerial().print(F(">>> bad argment! : joint_id = "));
-			System::debugSerial().println(static_cast<int>(joint_id));
-		#endif
-
-		return Shared::ERROR_LVALUE;
-	}
-
-	return m_SETTINGS[joint_id].HOME;
 }
 
 
@@ -457,8 +364,7 @@ void PLEN2::JointController::dump()
 	#endif
 	System::outputSerial().println(F("["));
 
-	for (char joint_id = 0; joint_id < SUM; joint_id++)
-	{
+	for (char joint_id = 0; joint_id < SUM; joint_id++){
 		System::outputSerial().println(F("\t{"));
 
 		System::outputSerial().print(F("\t\t\"max\": "));
@@ -531,20 +437,3 @@ void PLEN2::JointController::updateAngle(int delayBetweenUpdates){
     }
 	PLEN2::JointController::m_1cycle_finished = true;
 }
-
-void PLEN2::JointController::updateEyes(){
-	if (PLEN2::System::tcp_connected()||PLEN2::System::SystemSerial().available()){
-		if (_enable&&_eye_count>0){
-			digitalWrite(Pin::LED(),LOW);
-			_eye_count--;
-			_enable=false;
-		}else if(_eye_count>0){
-			digitalWrite(Pin::LED(),HIGH);
-			_enable=true;
-		}
-		return;
-	}
-	_eye_count=3;
-	_enable=true;
-}
-

@@ -164,7 +164,6 @@ public:
 
 	void init();
 	void configurePins();
-	void configureEyeController();
 	void loadJointInitialSettings();
 
 	/*!
@@ -189,36 +188,6 @@ public:
 		Write default settings to internal EEPROM.
 	*/
 	void resetSettings();
-
-	/*!
-		@brief Get min angle of the joint given
-
-		@param [in] joint_id Please set joint id you want to get min angle.
-
-		@return Reference of min angle a joint expressed by **joint_id** has.
-		@retval -32768 Argument error. (**joint_id** is invalid.)
-	*/
-	const int& getMinAngle(unsigned char joint_id);
-
-	/*!
-		@brief Get max angle of the joint given
-
-		@param [in] joint_id Please set joint id you want to get max angle.
-
-		@return Reference of max angle a joint expressed by **joint_id** has.
-		@retval -32768 Argument error. (**joint_id** is invalid.)
-	*/
-	const int& getMaxAngle(unsigned char joint_id);
-
-	/*!
-		@brief Get home angle of the joint given
-
-		@param [in] joint_id Please set joint id you want to get home angle.
-
-		@return Reference of home angle a joint expressed by **joint_id** has.
-		@retval -32768 Argument error. (**joint_id** is invalid.)
-	*/
-	const int& getHomeAngle(unsigned char joint_id);
 
 	/*!
 		@brief Set min angle of the joint given
@@ -298,8 +267,6 @@ public:
 	void dump();
 
     static void updateAngle(int delayBetweenUpdates = 0);
-
-    static void updateEyes();
 };
 
 #endif // PLEN2_JOINT_CONTROLLER_H

@@ -29,6 +29,10 @@ Eyes* Plen::getEyes(){
 	return this->eyes;
 }
 
+uint8_t Plen::getJointSize(){
+	return this->jointSize;
+}
+
 JointController* Plen::getJointController(){
 	return this->jointController;
 }

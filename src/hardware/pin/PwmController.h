@@ -14,24 +14,31 @@
 #define HALF_PWM_VALUE	2047
 #define MIN_PWM_VALUE	0
 
-#define PWM_FREQUENCY	1000
-#define CLOCK_FREQUENCY	400000
+#define PWM_FREQUENCY	60
 
 #define MAX_PWM_PERCENTAJE_VALUE		100
 #define MIN_PWM_PERCENTAJE_VALUE		0
 
 
 #include <Adafruit_PWMServoDriver.h>
+#include "hardware/pin/PinDefinition.h"
+#include "hardware/pin/PWMPin.h"
+#include "hardware/pin/GPIOPin.h"
+
+
+#define PWM_CONTROLLER_RESET_TIME 200
 
 class PwmController {
 public:
 	PwmController();
 	static PwmController* getInstance();
-	void setPWM(uint8_t num, uint16_t duty);
+	void resetPWMController();
+	void setAngle(uint8_t num, uint16_t duty);
 	void setPWMColor(uint8_t num, uint16_t duty);
 
 private:
 	static PwmController* pwmController;
+	GPIOPin* gpioPinEnable;
 	Adafruit_PWMServoDriver pwmServoDriver;
 	byte pwmAddress;
 	uint16_t obtainPWMValue(uint16_t duty);

@@ -11,10 +11,7 @@
 #include "Pin.h"
 #include "PwmController.h"
 
-#define PWM_HIGH 100
-#define PWM_LOW 0
-
-class PWMPin :public Pin{
+class PWMPin : public Pin{
 public:
 	PWMPin(uint8_t pinNumber);
 	void setPinValue(uint8_t duty);

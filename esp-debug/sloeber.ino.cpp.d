@@ -154,6 +154,7 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Joint.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/PlenFactory.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PinDefinition.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/ExternalFsController.h \
  ../firmware.ino
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/Arduino.h:
@@ -465,5 +466,7 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 /home/ziash/workspaceEsp8266/MiniPlen/src/bean/PlenFactory.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PinDefinition.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/ExternalFsController.h:
 
 ../firmware.ino:

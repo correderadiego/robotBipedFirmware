@@ -60,7 +60,12 @@ src/hardware/pin/PwmController.cpp.o: \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/debug.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/variants/d1/pins_arduino.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/variants/d1/../generic/common.h \
- /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Wire/Wire.h
+ /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Wire/Wire.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PinDefinition.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PWMPin.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/Pin.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PwmController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/GPIOPin.h
 
 ../src/hardware/pin/PwmController.h:
 
@@ -183,3 +188,13 @@ src/hardware/pin/PwmController.cpp.o: \
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/variants/d1/../generic/common.h:
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Wire/Wire.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PinDefinition.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PWMPin.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/Pin.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PwmController.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/GPIOPin.h:

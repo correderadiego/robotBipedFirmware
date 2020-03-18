@@ -9,6 +9,7 @@
 #define SRC_HARDWARE_PIN_PINDEFINITION_H_
 
 #define PIN_LED	 16
+#define PIN_EXPANSOR_ENABLE 13
 
 
 

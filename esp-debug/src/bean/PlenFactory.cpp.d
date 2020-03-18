@@ -149,7 +149,8 @@ src/bean/PlenFactory.cpp.o: ../src/bean/PlenFactory.cpp \
  /home/ziash/workspaceEsp8266/MiniPlen/src/JointController.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/Motion.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/Interpreter.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PinDefinition.h
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PinDefinition.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/ExternalFsController.h
 
 ../src/bean/PlenFactory.h:
 
@@ -452,3 +453,5 @@ src/bean/PlenFactory.cpp.o: ../src/bean/PlenFactory.cpp \
 /home/ziash/workspaceEsp8266/MiniPlen/src/Interpreter.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PinDefinition.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/ExternalFsController.h:
