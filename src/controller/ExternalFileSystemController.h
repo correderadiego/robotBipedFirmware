@@ -26,6 +26,11 @@
 #define SLOT_BEGIN				0
 #define SLOT_END				0x200000L/EEPROM_CHUNK_SIZE
 
+#define INIT_FLAG_ADDRESS     	0
+#define	INIT_FLAG_VALUE  		2
+#define SETTINGS_HEAD_ADDRESS 	1
+
+
 class ExternalFileSystemController {
 public:
 	enum FileSystemErrors{
@@ -38,6 +43,10 @@ public:
 	};
 
 	ExternalFileSystemController();
+	bool isFileConfigurationInitiated(Plen* plen);
+	void initFileConfiguration(Plen* plen);
+	void loadFileConfiguration(Plen* plen);
+
 	void createFile(
 					File file,
 					const char* filePath,

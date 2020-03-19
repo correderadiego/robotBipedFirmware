@@ -52,45 +52,65 @@ void (PlenController::**PlenController::EVENT_HANDLER[])() = {
 };
 
 
-PlenController::PlenController(Plen* plen) {
-	this->plen = plen;
-	PLEN2::ExternalFs::init();
-	this->plen->getJointController()->init();
+PlenController::PlenController(
+		JointController*  jointController,
+		MotionController* motionController,
+		Interpreter*      interpreter,
+		EyeController*	  eyeController,
+		ExternalFileSystemController* externalFileSystemController) {
+		this->jointController = jointController;
+		this->motionController= motionController;
+		this->interpreter	  = interpreter;
+		this->eyeController	  = eyeController;
+		this->externalFileSystemController = externalFileSystemController;
+}
+
+void PlenController::initPlenController(Plen* plen){
+	loadFileConfiguration(plen);
+	jointController->init();
 	System::setupWifiConnection();
+}
+
+void PlenController::loadFileConfiguration(Plen* plen){
+	if(externalFileSystemController->isFileConfigurationInitiated(plen)){
+		externalFileSystemController->loadFileConfiguration(plen);
+		return;
+	}
+	externalFileSystemController->initFileConfiguration(plen);
 }
 
 /*
  *Controllers
  */
 
-void PlenController::executeThreadTasks(){
+void PlenController::executeThreadTasks(Plen* plen){
 	motionControl();
 	systemSerial();
 	tcpController();
-	plen->getEyeController()->executeThreadTasks(plen->getEyes());
+	eyeController->executeThreadTasks(plen->getEyes());
 }
 
 void PlenController::motionControl(){
-	if (!plen->getMotioncontroller()->playing()){
+	if (!motionController->playing()){
 		return;
 	}
 
-	if (plen->getMotioncontroller()->frameUpdatable()){
-		plen->getMotioncontroller()->updateFrame();
+	if (motionController->frameUpdatable()){
+		motionController->updateFrame();
 	}
 
-	if (!plen->getMotioncontroller()->updatingFinished()){
+	if (!motionController->updatingFinished()){
 		return;
 	}
 
-	if (plen->getMotioncontroller()->nextFrameLoadable()){
-		plen->getMotioncontroller()->loadNextFrame();
+	if (motionController->nextFrameLoadable()){
+		motionController->loadNextFrame();
 		return;
 	}
 
-	plen->getMotioncontroller()->stop();
-	if(plen->getInterpreter()->ready()){
-		plen->getInterpreter()->popCode();
+	motionController->stop();
+	if(interpreter->ready()){
+		interpreter->popCode();
 	}
 }
 
@@ -135,7 +155,7 @@ void PlenController::applyDiff(){
 		System::debugSerial().println(Utility::hexbytes2int(m_buffer.data + 2, 3));
 	#endif
 
-	plen->getJointController()->setAngleDiff(
+	jointController->setAngleDiff(
 		Utility::hexbytes2uint(m_buffer.data, 2),
 		Utility::hexbytes2int(m_buffer.data + 2, 3)
 	);
@@ -152,7 +172,7 @@ void PlenController::apply(){
 		System::debugSerial().println(Utility::hexbytes2int(m_buffer.data + 2, 3));
 	#endif
 
-	plen->getJointController()->setAngle(
+	jointController->setAngle(
 		Utility::hexbytes2uint(m_buffer.data, 2),
 		Utility::hexbytes2int(m_buffer.data + 2, 3)
 	);
@@ -163,7 +183,7 @@ void PlenController::homePosition(){
 		volatile Utility::Profiler p(F("Application::homePosition()"));
 	#endif
 
-	plen->getJointController()->loadSettings();
+	jointController->loadSettings();
 }
 
 void PlenController::playMotion(){
@@ -174,7 +194,7 @@ void PlenController::playMotion(){
 		System::debugSerial().println(Utility::hexbytes2uint(m_buffer.data, 2));
 	#endif
 
-	plen->getMotioncontroller()->play(
+	motionController->play(
 		Utility::hexbytes2uint(m_buffer.data, 2)
 	);
 }
@@ -184,7 +204,7 @@ void PlenController::stopMotion(){
 		volatile Utility::Profiler p(F("Application::stopMotion()"));
 	#endif
 
-	plen->getMotioncontroller()->willStop();
+	motionController->willStop();
 }
 
 void PlenController::popCode(){
@@ -192,7 +212,7 @@ void PlenController::popCode(){
 		volatile Utility::Profiler p(F("Application::popCode()"));
 	#endif
 
-	plen->getInterpreter()->popCode();
+	interpreter->popCode();
 }
 
 void PlenController::pushCode(){
@@ -209,7 +229,7 @@ void PlenController::pushCode(){
 	m_code_tmp.slot       = Utility::hexbytes2uint(m_buffer.data, 2);
 	m_code_tmp.loop_count = Utility::hexbytes2uint(m_buffer.data + 2, 2) - 1;
 
-	plen->getInterpreter()->pushCode(m_code_tmp);
+	interpreter->pushCode(m_code_tmp);
 }
 
 void PlenController::resetInterpreter(){
@@ -217,7 +237,7 @@ void PlenController::resetInterpreter(){
 		volatile Utility::Profiler p(F("Application::resetInterpreter()"));
 	#endif
 
-	plen->getInterpreter()->reset();
+	interpreter->reset();
 }
 
 void PlenController::setHome(){
@@ -231,7 +251,7 @@ void PlenController::setHome(){
 		System::debugSerial().println(Utility::hexbytes2int(m_buffer.data + 2, 3));
 	#endif
 
-	plen->getJointController()->setHomeAngle(
+	jointController->setHomeAngle(
 		Utility::hexbytes2uint(m_buffer.data, 2),
 		Utility::hexbytes2int(m_buffer.data + 2, 3)
 	);
@@ -242,7 +262,7 @@ void PlenController::setJointSettings(){
 		volatile Utility::Profiler p(F("Application::setJointSettings()"));
 	#endif
 
-	plen->getJointController()->resetSettings();
+	jointController->resetSettings();
 }
 
 void PlenController::setMax(){
@@ -256,7 +276,7 @@ void PlenController::setMax(){
 		System::debugSerial().println(Utility::hexbytes2int(m_buffer.data + 2, 3));
 	#endif
 
-		plen->getJointController()->setMaxAngle(
+		jointController->setMaxAngle(
 		Utility::hexbytes2uint(m_buffer.data, 2),
 		Utility::hexbytes2int(m_buffer.data + 2, 3)
 	);
@@ -418,7 +438,7 @@ void PlenController::setMin(){
 		System::debugSerial().println(Utility::hexbytes2int(m_buffer.data + 2, 3));
 	#endif
 
-	plen->getJointController()->setMinAngle(
+	jointController->setMinAngle(
 		Utility::hexbytes2uint(m_buffer.data, 2),
 		Utility::hexbytes2int(m_buffer.data + 2, 3)
 	);
@@ -429,7 +449,7 @@ void PlenController::getJointSettings(){
 		volatile Utility::Profiler p(F("Application::getJointSettings()"));
 	#endif
 
-	plen->getJointController()->dump();
+	jointController->dump();
 }
 
 void PlenController::getMotion(){
@@ -440,7 +460,7 @@ void PlenController::getMotion(){
 		System::debugSerial().println(Utility::hexbytes2uint(m_buffer.data, 2));
 	#endif
 
-	plen->getMotioncontroller()->dump(
+	motionController->dump(
 		Utility::hexbytes2uint(m_buffer.data, 2)
 	);
 }

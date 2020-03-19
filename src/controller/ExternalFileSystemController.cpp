@@ -26,6 +26,27 @@ void ExternalFileSystemController::createFile(
 	file.close();
 }
 
+bool ExternalFileSystemController::isFileConfigurationInitiated(Plen* plen){
+	unsigned char data = 0;
+	this->readByte(INIT_FLAG_ADDRESS, data, *plen->getFileConfiguration());
+	if ( data == INIT_FLAG_VALUE){
+		return true;
+	}
+	return false;
+}
+
+void ExternalFileSystemController::initFileConfiguration(Plen* plen){
+	unsigned int sizeWrite = 0;
+	unsigned char* filler = reinterpret_cast<unsigned char*>(plen->getJointVector());
+	writeByte(INIT_FLAG_ADDRESS, (unsigned char)INIT_FLAG_VALUE, sizeWrite, *plen->getFileConfiguration());
+	write(SETTINGS_HEAD_ADDRESS, sizeof(plen->getJointVector()), filler, sizeWrite, *plen->getFileConfiguration());
+}
+
+void ExternalFileSystemController::loadFileConfiguration(Plen* plen){
+	unsigned char* filler = reinterpret_cast<unsigned char*>(plen->getJointVector());
+	ExternalFs::read(SETTINGS_HEAD_ADDRESS, sizeof(plen->getJointVector()), filler, *plen->getFileConfiguration());
+}
+
 ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::read(
 								unsigned int startAddress,
 								unsigned int size,

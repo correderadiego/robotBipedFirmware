@@ -49,5 +49,10 @@ libraries/SPI \
 libraries/Servo/src \
 libraries/Ticker \
 libraries/Wire \
+libraries/gdb \
 src \
+src/bean \
+src/controller \
+src/hardware/led \
+src/hardware/pin \
 

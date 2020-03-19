@@ -9,7 +9,6 @@
 #define SRC_PLENCONTROLLER_H_
 
 #include <string.h>
-#include <gdb.h>
 #include <Wire.h>
 #include <Servo.h>
 
@@ -22,25 +21,36 @@
 #include "Protocol.h"
 #include "System.h"
 #include "Profiler.h"
-#include "ExternalFs.h"
+#include "ExternalFileSystemController.h"
 #include "bean/Plen.h"
 
 using namespace PLEN2;
 
 class PlenController : public Protocol {
 public:
-	PlenController(Plen* plen);
-	void executeThreadTasks();
+	PlenController(
+			JointController*  jointController,
+			MotionController* motionController,
+			Interpreter*      interpreter,
+			EyeController*	  eyeController,
+			ExternalFileSystemController* externalFileSystemController);
+	void executeThreadTasks(Plen* plen);
 	virtual void afterHook();
 
 
 private:
 	#define ENSOUL_PLEN2 false
-	 Plen*	 plen;
+
 	#if ENSOUL_PLEN2
 		static AccelerationGyroSensor* sensor;
 		static Soul*                  soul;
 	#endif
+
+	JointController*  jointController;
+	MotionController* motionController;
+	Interpreter*      interpreter;
+	EyeController*	  eyeController;
+	ExternalFileSystemController* externalFileSystemController;
 
 	static void (PlenController::*CONTROLLER_EVENT_HANDLER[])();
 	static void (PlenController::*INTERPRETER_EVENT_HANDLER[])();
@@ -53,6 +63,8 @@ private:
 	Motion::Frame     m_frame_tmp;
 	Interpreter::Code m_code_tmp;
 
+	void initPlenController(Plen* plen);
+
 	/**
 	 * Controllers
 	 */
@@ -60,6 +72,7 @@ private:
 	void systemSerial();
 	void tcpController();
 
+	void loadFileConfiguration(Plen* plen);
 	void applyDiff();
 	void apply();
 	void homePosition();

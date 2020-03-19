@@ -12,11 +12,7 @@ Plen* PlenFactory::getPlen() {
 	/**
 	 * Controllers
 	 */
-	JointController* jointController 	= new JointController();
-	MotionController* motionController	= new MotionController(*jointController);
-	Interpreter* interpreter 			= new Interpreter(*motionController);
-	LedController* ledController		= new LedController();
-	EyeController* eyeController		= new EyeController(ledController);
+
 	/**
 	 * Joint
 	 */
@@ -59,7 +55,7 @@ Plen* PlenFactory::getPlen() {
 	File* fileConfiguration = new File();
 	this->openFiles(*fileMotion, *fileConfiguration);
 
-	return new Plen(jointController, motionController, interpreter, eyeController, joint, NUMBER_OF_JOINTS, eyes);
+	return new Plen(joint, NUMBER_OF_JOINTS, eyes, fileMotion, fileConfiguration);
 }
 
 void PlenFactory::openFiles(File fileMotion, File fileConfiguration){

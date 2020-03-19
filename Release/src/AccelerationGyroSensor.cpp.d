@@ -57,8 +57,7 @@ src/AccelerationGyroSensor.cpp.o: ../src/AccelerationGyroSensor.cpp \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/debug.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/variants/d1/pins_arduino.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/variants/d1/../generic/common.h \
- ../src/Pin.h ../src/System.h ../src/AccelerationGyroSensor.h \
- ../src/Profiler.h
+ ../src/Pin.h ../src/System.h ../src/AccelerationGyroSensor.h
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/Arduino.h:
 
@@ -181,5 +180,3 @@ src/AccelerationGyroSensor.cpp.o: ../src/AccelerationGyroSensor.cpp \
 ../src/System.h:
 
 ../src/AccelerationGyroSensor.h:
-
-../src/Profiler.h:

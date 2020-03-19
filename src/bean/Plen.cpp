@@ -8,21 +8,17 @@
 #include "Plen.h"
 
 Plen::Plen(
-			JointController*  jointController,
-			MotionController* motionController,
-			Interpreter*      interpreter,
-			EyeController*	  eyeController,
 			Joint* 	joint[],
 			int 	jointSize,
-			Eyes* 	eyes
+			Eyes* 	eyes,
+			File* fileMotion,
+			File* fileConfiguration
 		  ) {
-	this->jointController 	= jointController;
-	this->motionController 	= motionController;
-	this->interpreter 		= interpreter;
-	this->eyeController		= eyeController;
 	this->joint 			= joint;
 	this->jointSize 		= jointSize;
 	this->eyes				= eyes;
+	this->fileMotion		= fileMotion;
+	this->fileConfiguration	= fileConfiguration;
 }
 
 Eyes* Plen::getEyes(){
@@ -33,18 +29,10 @@ uint8_t Plen::getJointSize(){
 	return this->jointSize;
 }
 
-JointController* Plen::getJointController(){
-	return this->jointController;
+Joint** Plen::getJointVector(){
+	return this->joint;
 }
 
-MotionController* Plen::getMotioncontroller(){
-	return this->motionController;
-}
-
-Interpreter* Plen::getInterpreter(){
-	return this->interpreter;
-}
-
-EyeController*	Plen::getEyeController(){
-	return this->eyeController;
+File* Plen::getFileConfiguration(){
+	return fileConfiguration;
 }
