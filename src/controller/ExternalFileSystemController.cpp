@@ -26,6 +26,36 @@ void ExternalFileSystemController::createFile(
 	file.close();
 }
 
+void ExternalFileSystemController::writeMinAngle(File* fileConfiguration, Joint* joint){
+	unsigned char* filler = reinterpret_cast<unsigned char*>(joint->getAngleMin());
+	//TODO check write min angle
+//	int address_offset    = reinterpret_cast<int>(filler) - reinterpret_cast<int>(m_SETTINGS);
+//	ExternalFs::write(SETTINGS_HEAD_ADDRESS() + address_offset, sizeof(m_SETTINGS[joint_id].MIN), filler, fileConfiguration);
+}
+
+void ExternalFileSystemController::writeMaxAngle(File* fileConfiguration, Joint* joint){
+	unsigned char* filler = reinterpret_cast<unsigned char*>(joint->getAngleMin());
+//	int address_offset    = reinterpret_cast<int>(filler) - reinterpret_cast<int>(m_SETTINGS);
+//	ExternalFs::write(SETTINGS_HEAD_ADDRESS() + address_offset, sizeof(m_SETTINGS[joint_id].MAX), filler, fileConfiguration);
+}
+
+void ExternalFileSystemController::writeHomeAngle(File* fileConfiguration, Joint* joint){
+	unsigned char* filler = reinterpret_cast<unsigned char*>(joint->getAngleMin());
+//	int address_offset    = reinterpret_cast<int>(filler) - reinterpret_cast<int>(m_SETTINGS);
+//	ExternalFs::write(SETTINGS_HEAD_ADDRESS() + address_offset, sizeof(m_SETTINGS[joint_id].HOME), filler, fileConfiguration);
+}
+
+ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::readAccesPointNamePassword(
+		File* fileConfiguration, String apName, String password){
+		fileConfiguration->seek(0, SeekSet);
+		apName 		= fileConfiguration->readStringUntil(END_OF_LINE);
+		password 	= fileConfiguration->readStringUntil(END_OF_LINE);
+		if(apName.length() <= 1){
+			return UNKNOWN_FILE_FORMAT;
+		}
+		return NO_ERROR;
+}
+
 bool ExternalFileSystemController::isFileConfigurationInitiated(Plen* plen){
 	unsigned char data = 0;
 	this->readByte(INIT_FLAG_ADDRESS, data, *plen->getFileConfiguration());

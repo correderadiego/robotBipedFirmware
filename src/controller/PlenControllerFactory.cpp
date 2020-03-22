@@ -8,11 +8,15 @@
 #include <controller/PlenControllerFactory.h>
 
 PlenController* PlenControllerFactory::getPlenController(){
-	JointController* jointController 	= new JointController();
-	MotionController* motionController	= new MotionController(*jointController);
+	JointController2* jointController 	= new JointController2();
+	///MotionController* motionController	= new MotionController(*jointController);
+	//TODO
+	MotionController* motionController;
 	Interpreter* interpreter 			= new Interpreter(*motionController);
 	LedController* ledController		= new LedController();
 	EyeController* eyeController		= new EyeController(ledController);
+	WifiController* wifiController		= new WifiController();
+	HttpServerController* httpServerController = new HttpServerController();
 	ExternalFileSystemController* externalFileSystemController = new ExternalFileSystemController();
 
 	return new PlenController(
@@ -20,5 +24,7 @@ PlenController* PlenControllerFactory::getPlenController(){
 			motionController,
 			interpreter,
 			eyeController,
+			wifiController,
+			httpServerController,
 			externalFileSystemController);
 }

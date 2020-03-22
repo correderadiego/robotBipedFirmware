@@ -86,16 +86,16 @@ void PLEN2::JointController::loadSettings(){
 		volatile Utility::Profiler p(F("JointController::loadSettings()"));
 	#endif
 
-	unsigned char* filler = reinterpret_cast<unsigned char*>(m_SETTINGS);
-	
-	if (ExternalFs::readByte(INIT_FLAG_ADDRESS(), fileConfiguration) != INIT_FLAG_VALUE()){
-		ExternalFs::writeByte(INIT_FLAG_ADDRESS(), INIT_FLAG_VALUE(), fileConfiguration);
-        ExternalFs::write(SETTINGS_HEAD_ADDRESS(), sizeof(m_SETTINGS), filler, fileConfiguration);
-		System::debugSerial().println(F("reset config\n"));
-	}else{
-		ExternalFs::read(SETTINGS_HEAD_ADDRESS(), sizeof(m_SETTINGS), filler, fileConfiguration);
-		System::debugSerial().println(F("read config"));
-	}
+//	unsigned char* filler = reinterpret_cast<unsigned char*>(m_SETTINGS);
+//
+//	if (ExternalFs::readByte(INIT_FLAG_ADDRESS(), fileConfiguration) != INIT_FLAG_VALUE()){
+//		ExternalFs::writeByte(INIT_FLAG_ADDRESS(), INIT_FLAG_VALUE(), fileConfiguration);
+//        ExternalFs::write(SETTINGS_HEAD_ADDRESS(), sizeof(m_SETTINGS), filler, fileConfiguration);
+//		System::debugSerial().println(F("reset config\n"));
+//	}else{
+//		ExternalFs::read(SETTINGS_HEAD_ADDRESS(), sizeof(m_SETTINGS), filler, fileConfiguration);
+//		System::debugSerial().println(F("read config"));
+//	}
 
 	for (char joint_id = 0; joint_id < SUM; joint_id++){
 		setAngle(joint_id, m_SETTINGS[joint_id].HOME);
@@ -109,65 +109,65 @@ void PLEN2::JointController::loadSettings(){
 
 void PLEN2::JointController::resetSettings()
 {
-	#if DEBUG
-		volatile Utility::Profiler p(F("JointController::resetSettings()"));
-	#endif
+//	#if DEBUG
+//		volatile Utility::Profiler p(F("JointController::resetSettings()"));
+//	#endif
+//
+//	for (char joint_id = 0; joint_id < SUM; joint_id++)
+//	{
+//		m_SETTINGS[joint_id].MIN  = Shared::m_SETTINGS_INITIAL[joint_id * 3];
+//		m_SETTINGS[joint_id].MAX  = Shared::m_SETTINGS_INITIAL[joint_id * 3 + 1];
+//		m_SETTINGS[joint_id].HOME = Shared::m_SETTINGS_INITIAL[joint_id * 3 + 2];
+//
+//		setAngle(joint_id, m_SETTINGS[joint_id].HOME);
+//	}
 	
-    ExternalFs::writeByte(INIT_FLAG_ADDRESS(), INIT_FLAG_VALUE(), fileConfiguration);
-
-	for (char joint_id = 0; joint_id < SUM; joint_id++)
-	{
-		m_SETTINGS[joint_id].MIN  = Shared::m_SETTINGS_INITIAL[joint_id * 3];
-		m_SETTINGS[joint_id].MAX  = Shared::m_SETTINGS_INITIAL[joint_id * 3 + 1];
-		m_SETTINGS[joint_id].HOME = Shared::m_SETTINGS_INITIAL[joint_id * 3 + 2];
-
-		setAngle(joint_id, m_SETTINGS[joint_id].HOME);
-	}
-	
-    ExternalFs::write(SETTINGS_HEAD_ADDRESS(), sizeof(m_SETTINGS), 
-                    reinterpret_cast<const unsigned char*>(m_SETTINGS), fileConfiguration);
+//	ExternalFs::writeByte(INIT_FLAG_ADDRESS(), INIT_FLAG_VALUE(), fileConfiguration);
+//
+//    ExternalFs::write(SETTINGS_HEAD_ADDRESS(), sizeof(m_SETTINGS),
+//                    reinterpret_cast<const unsigned char*>(m_SETTINGS), fileConfiguration);
 }
 
 
 bool PLEN2::JointController::setMinAngle(unsigned char joint_id, int angle)
 {
-	#if DEBUG
-		volatile Utility::Profiler p(F("JointController::setMinAngle()"));
-	#endif
+//	#if DEBUG
+//		volatile Utility::Profiler p(F("JointController::setMinAngle()"));
+//	#endif
+//
+//	if (joint_id >= SUM)
+//	{
+//		#if DEBUG
+//			System::debugSerial().print(F(">>> bad argment! : joint_id = "));
+//			System::debugSerial().println(static_cast<int>(joint_id));
+//		#endif
+//
+//		return false;
+//	}
+//
+//	if (   (angle >= m_SETTINGS[joint_id].MAX)
+//		|| (angle <  ANGLE_MIN_2) )
+//	{
+//		#if DEBUG
+//			System::debugSerial().print(F(">>> bad argment! : angle = "));
+//			System::debugSerial().println(angle);
+//		#endif
+//
+//		return false;
+//	}
+//
+//
+//	m_SETTINGS[joint_id].MIN = angle;
 
-	if (joint_id >= SUM)
-	{
-		#if DEBUG
-			System::debugSerial().print(F(">>> bad argment! : joint_id = "));
-			System::debugSerial().println(static_cast<int>(joint_id));
-		#endif
-
-		return false;
-	}
-
-	if (   (angle >= m_SETTINGS[joint_id].MAX)
-		|| (angle <  ANGLE_MIN_2) )
-	{
-		#if DEBUG
-			System::debugSerial().print(F(">>> bad argment! : angle = "));
-			System::debugSerial().println(angle);
-		#endif
-
-		return false;
-	}
-
-
-	m_SETTINGS[joint_id].MIN = angle;
-
-	unsigned char* filler = reinterpret_cast<unsigned char*>(&(m_SETTINGS[joint_id].MIN));
-	int address_offset    = reinterpret_cast<int>(filler) - reinterpret_cast<int>(m_SETTINGS);
-
-	#if DEBUG
-		System::debugSerial().print(F(">>> address_offset : "));
-		System::debugSerial().println(address_offset);
-	#endif
-
-	ExternalFs::write(SETTINGS_HEAD_ADDRESS() + address_offset, sizeof(m_SETTINGS[joint_id].MIN), filler, fileConfiguration);
+//	unsigned char* filler = reinterpret_cast<unsigned char*>(&(m_SETTINGS[joint_id].MIN));
+//	int address_offset    = reinterpret_cast<int>(filler) - reinterpret_cast<int>(m_SETTINGS);
+//
+//	#if DEBUG
+//		System::debugSerial().print(F(">>> address_offset : "));
+//		System::debugSerial().println(address_offset);
+//	#endif
+//
+//	ExternalFs::write(SETTINGS_HEAD_ADDRESS() + address_offset, sizeof(m_SETTINGS[joint_id].MIN), filler, fileConfiguration);
 
 	return true;
 }
@@ -175,43 +175,43 @@ bool PLEN2::JointController::setMinAngle(unsigned char joint_id, int angle)
 
 bool PLEN2::JointController::setMaxAngle(unsigned char joint_id, int angle)
 {
-	#if DEBUG
-		volatile Utility::Profiler p(F("JointController::setMaxAngle()"));
-	#endif
-
-	if (joint_id >= SUM)
-	{
-		#if DEBUG
-			System::debugSerial().print(F(">>> bad argment! : joint_id = "));
-			System::debugSerial().println(static_cast<int>(joint_id));
-		#endif
-
-		return false;
-	}
-
-	if (   (angle <= m_SETTINGS[joint_id].MIN)
-		|| (angle >  ANGLE_MAX_2) )
-	{
-		#if DEBUG
-			System::debugSerial().print(F(">>> bad argment! : angle = "));
-			System::debugSerial().println(angle);
-		#endif
-
-		return false;
-	}
-
-
-	m_SETTINGS[joint_id].MAX = angle;
-
-	unsigned char* filler = reinterpret_cast<unsigned char*>(&(m_SETTINGS[joint_id].MAX));
-	int address_offset    = reinterpret_cast<int>(filler) - reinterpret_cast<int>(m_SETTINGS);
-
-	#if DEBUG
-		System::debugSerial().print(F(">>> address_offset : "));
-		System::debugSerial().println(address_offset);
-	#endif
-
-	ExternalFs::write(SETTINGS_HEAD_ADDRESS() + address_offset, sizeof(m_SETTINGS[joint_id].MAX), filler, fileConfiguration);
+//	#if DEBUG
+//		volatile Utility::Profiler p(F("JointController::setMaxAngle()"));
+//	#endif
+//
+//	if (joint_id >= SUM)
+//	{
+//		#if DEBUG
+//			System::debugSerial().print(F(">>> bad argment! : joint_id = "));
+//			System::debugSerial().println(static_cast<int>(joint_id));
+//		#endif
+//
+//		return false;
+//	}
+//
+//	if (   (angle <= m_SETTINGS[joint_id].MIN)
+//		|| (angle >  ANGLE_MAX_2) )
+//	{
+//		#if DEBUG
+//			System::debugSerial().print(F(">>> bad argment! : angle = "));
+//			System::debugSerial().println(angle);
+//		#endif
+//
+//		return false;
+//	}
+//
+//
+//	m_SETTINGS[joint_id].MAX = angle;
+//
+//	unsigned char* filler = reinterpret_cast<unsigned char*>(&(m_SETTINGS[joint_id].MAX));
+//	int address_offset    = reinterpret_cast<int>(filler) - reinterpret_cast<int>(m_SETTINGS);
+//
+//	#if DEBUG
+//		System::debugSerial().print(F(">>> address_offset : "));
+//		System::debugSerial().println(address_offset);
+//	#endif
+//
+//	ExternalFs::write(SETTINGS_HEAD_ADDRESS() + address_offset, sizeof(m_SETTINGS[joint_id].MAX), filler, fileConfiguration);
 
 	return true;
 }
@@ -219,139 +219,139 @@ bool PLEN2::JointController::setMaxAngle(unsigned char joint_id, int angle)
 
 bool PLEN2::JointController::setHomeAngle(unsigned char joint_id, int angle)
 {
-	#if DEBUG
-		volatile Utility::Profiler p(F("JointController::setHomeAngle()"));
-	#endif
-
-	if (joint_id >= SUM)
-	{
-		#if DEBUG
-			System::debugSerial().print(F(">>> bad argment! : joint_id = "));
-			System::debugSerial().println(static_cast<int>(joint_id));
-		#endif
-
-		return false;
-	}
-
-	if (   (angle < m_SETTINGS[joint_id].MIN)
-		|| (angle > m_SETTINGS[joint_id].MAX) )
-	{
-		#if DEBUG
-			System::debugSerial().print(F(">>> bad argment! : angle = "));
-			System::debugSerial().println(angle);
-		#endif
-
-		return false;
-	}
-
-
-	m_SETTINGS[joint_id].HOME = angle;
-
-	unsigned char* filler = reinterpret_cast<unsigned char*>(&(m_SETTINGS[joint_id].HOME));
-	int address_offset    = reinterpret_cast<int>(filler) - reinterpret_cast<int>(m_SETTINGS);
-
-	#if DEBUG
-		System::debugSerial().print(F(">>> address_offset : "));
-		System::debugSerial().println(address_offset);
-	#endif
-
-	ExternalFs::write(SETTINGS_HEAD_ADDRESS() + address_offset, sizeof(m_SETTINGS[joint_id].HOME), filler, fileConfiguration);
+//	#if DEBUG
+//		volatile Utility::Profiler p(F("JointController::setHomeAngle()"));
+//	#endif
+//
+//	if (joint_id >= SUM)
+//	{
+//		#if DEBUG
+//			System::debugSerial().print(F(">>> bad argment! : joint_id = "));
+//			System::debugSerial().println(static_cast<int>(joint_id));
+//		#endif
+//
+//		return false;
+//	}
+//
+//	if (   (angle < m_SETTINGS[joint_id].MIN)
+//		|| (angle > m_SETTINGS[joint_id].MAX) )
+//	{
+//		#if DEBUG
+//			System::debugSerial().print(F(">>> bad argment! : angle = "));
+//			System::debugSerial().println(angle);
+//		#endif
+//
+//		return false;
+//	}
+//
+//
+//	m_SETTINGS[joint_id].HOME = angle;
+//
+//	unsigned char* filler = reinterpret_cast<unsigned char*>(&(m_SETTINGS[joint_id].HOME));
+//	int address_offset    = reinterpret_cast<int>(filler) - reinterpret_cast<int>(m_SETTINGS);
+//
+//	#if DEBUG
+//		System::debugSerial().print(F(">>> address_offset : "));
+//		System::debugSerial().println(address_offset);
+//	#endif
+//
+//	ExternalFs::write(SETTINGS_HEAD_ADDRESS() + address_offset, sizeof(m_SETTINGS[joint_id].HOME), filler, fileConfiguration);
 
 	return true;
 }
 
 //设置角度
 bool PLEN2::JointController::setAngle(unsigned char joint_id, int angle){
-	#if DEBUG_HARD
-		volatile Utility::Profiler p(F("JointController::setAngle()"));
-	#endif
-
-	if (joint_id >= SUM)
-	{
-		#if DEBUG_HARD
-			System::debugSerial().print(F(">>> bad argment! : joint_id = "));
-			System::debugSerial().println(static_cast<int>(joint_id));
-		#endif
-
-		return false;
-	}
-
-	angle = constrain(angle, m_SETTINGS[joint_id].MIN, m_SETTINGS[joint_id].MAX);
-	if(joint_id  == 0 || joint_id == 12){
-		#if CLOCK_WISE
-			m_pwms[joint_id] = 90 + angle / 10;
-		#else
-			m_pwms[joint_id] = 90 - angle / 10;
-		#endif
-	}
-	else
-	{
-		m_pwms[joint_id] = map(
-			angle,
-			PLEN2::JointController::ANGLE_MIN_2, PLEN2::JointController::ANGLE_MAX_2,
-
-			#if CLOCK_WISE
-				PLEN2::JointController::PWM_MIN(), PLEN2::JointController::PWM_MAX()
-			#else
-				PLEN2::JointController::PWM_MAX(), PLEN2::JointController::PWM_MIN()
-			#endif
-		);
-	}
-#if DEBUG_LESS
-	System::debugSerial().print(F(": joint_id = "));
-	System::debugSerial().print(static_cast<int>(joint_id));
-	System::debugSerial().print(F(": angle = "));
-	System::debugSerial().print(static_cast<int>(angle));
-	System::debugSerial().print(F(": pwmServoDriver = "));
-	System::debugSerial().print(static_cast<int>(m_pwms[joint_id]));
-#endif
-	return true;
+//	#if DEBUG_HARD
+//		volatile Utility::Profiler p(F("JointController::setAngle()"));
+//	#endif
+//
+//	if (joint_id >= SUM)
+//	{
+//		#if DEBUG_HARD
+//			System::debugSerial().print(F(">>> bad argment! : joint_id = "));
+//			System::debugSerial().println(static_cast<int>(joint_id));
+//		#endif
+//
+//		return false;
+//	}
+//
+//	angle = constrain(angle, m_SETTINGS[joint_id].MIN, m_SETTINGS[joint_id].MAX);
+//	if(joint_id  == 0 || joint_id == 12){
+//		#if CLOCK_WISE
+//			m_pwms[joint_id] = 90 + angle / 10;
+//		#else
+//			m_pwms[joint_id] = 90 - angle / 10;
+//		#endif
+//	}
+//	else
+//	{
+//		m_pwms[joint_id] = map(
+//			angle,
+//			PLEN2::JointController::ANGLE_MIN_2, PLEN2::JointController::ANGLE_MAX_2,
+//
+//			#if CLOCK_WISE
+//				PLEN2::JointController::PWM_MIN(), PLEN2::JointController::PWM_MAX()
+//			#else
+//				PLEN2::JointController::PWM_MAX(), PLEN2::JointController::PWM_MIN()
+//			#endif
+//		);
+//	}
+//#if DEBUG_LESS
+//	System::debugSerial().print(F(": joint_id = "));
+//	System::debugSerial().print(static_cast<int>(joint_id));
+//	System::debugSerial().print(F(": angle = "));
+//	System::debugSerial().print(static_cast<int>(angle));
+//	System::debugSerial().print(F(": pwmServoDriver = "));
+//	System::debugSerial().print(static_cast<int>(m_pwms[joint_id]));
+//#endif
+//	return true;
 }
 
 //设置角度差
 bool PLEN2::JointController::setAngleDiff(unsigned char joint_id, int angle_diff)
 {
-	#if DEBUG_HARD
-		volatile Utility::Profiler p(F("JointController::setAngleDiff()"));
-	#endif
-
-	if (joint_id >= SUM)
-	{
-		#if DEBUG_HARD
-			System::debugSerial().print(F(">>> bad argment! : joint_id = "));
-			System::debugSerial().println(static_cast<int>(joint_id));
-		#endif
-
-		return false;
-	}
-
-
-	int angle = constrain(
-		angle_diff + m_SETTINGS[joint_id].HOME,
-		m_SETTINGS[joint_id].MIN, m_SETTINGS[joint_id].MAX
-	);
-
-	if(joint_id  == 0 || joint_id == 12)
-	{
-		#if CLOCK_WISE
-			m_pwms[joint_id] = 90 + angle / 10;
-		#else
-			m_pwms[joint_id] = 90 - angle / 10;
-		#endif
-	}
-	else
-	{
-		m_pwms[joint_id] = map(
-			angle,
-			PLEN2::JointController::ANGLE_MIN_2, PLEN2::JointController::ANGLE_MAX_2,
-
-			#if CLOCK_WISE
-				PLEN2::JointController::PWM_MIN(), PLEN2::JointController::PWM_MAX()
-			#else
-				PLEN2::JointController::PWM_MAX(), PLEN2::JointController::PWM_MIN()
-			#endif
-		);
-	}
+//	#if DEBUG_HARD
+//		volatile Utility::Profiler p(F("JointController::setAngleDiff()"));
+//	#endif
+//
+//	if (joint_id >= SUM)
+//	{
+//		#if DEBUG_HARD
+//			System::debugSerial().print(F(">>> bad argment! : joint_id = "));
+//			System::debugSerial().println(static_cast<int>(joint_id));
+//		#endif
+//
+//		return false;
+//	}
+//
+//
+//	int angle = constrain(
+//		angle_diff + m_SETTINGS[joint_id].HOME,
+//		m_SETTINGS[joint_id].MIN, m_SETTINGS[joint_id].MAX
+//	);
+//
+//	if(joint_id  == 0 || joint_id == 12)
+//	{
+//		#if CLOCK_WISE
+//			m_pwms[joint_id] = 90 + angle / 10;
+//		#else
+//			m_pwms[joint_id] = 90 - angle / 10;
+//		#endif
+//	}
+//	else
+//	{
+//		m_pwms[joint_id] = map(
+//			angle,
+//			PLEN2::JointController::ANGLE_MIN_2, PLEN2::JointController::ANGLE_MAX_2,
+//
+//			#if CLOCK_WISE
+//				PLEN2::JointController::PWM_MIN(), PLEN2::JointController::PWM_MAX()
+//			#else
+//				PLEN2::JointController::PWM_MAX(), PLEN2::JointController::PWM_MIN()
+//			#endif
+//		);
+//	}
 
 	return true;
 }
@@ -359,40 +359,40 @@ bool PLEN2::JointController::setAngleDiff(unsigned char joint_id, int angle_diff
 
 void PLEN2::JointController::dump()
 {
-	#if DEBUG
-		volatile Utility::Profiler p(F("JointController::dump()"));
-	#endif
-	System::outputSerial().println(F("["));
-
-	for (char joint_id = 0; joint_id < SUM; joint_id++){
-		System::outputSerial().println(F("\t{"));
-
-		System::outputSerial().print(F("\t\t\"max\": "));
-		System::outputSerial().print(m_SETTINGS[joint_id].MAX);
-		System::outputSerial().println(F(","));
-
-		System::outputSerial().print(F("\t\t\"min\": "));
-		System::outputSerial().print(m_SETTINGS[joint_id].MIN);
-		System::outputSerial().println(F(","));
-
-		System::outputSerial().print(F("\t\t\"home\": "));
-		System::outputSerial().println(m_SETTINGS[joint_id].HOME);
-    //wifi_tcp_server.write(m_SETTINGS[joint_id].HOME);
-
-		System::outputSerial().print(F("\t}"));
-
-		if (joint_id != (SUM - 1))
-		{
-			System::outputSerial().println(F(","));
-		}
-		else
-		{
-			System::outputSerial().println();
-		}
-	}
-
-	System::outputSerial().println(F("]"));
-	System::outputSerial().println(F("\r\n"));
+//	#if DEBUG
+//		volatile Utility::Profiler p(F("JointController::dump()"));
+//	#endif
+//	System::outputSerial().println(F("["));
+//
+//	for (char joint_id = 0; joint_id < SUM; joint_id++){
+//		System::outputSerial().println(F("\t{"));
+//
+//		System::outputSerial().print(F("\t\t\"max\": "));
+//		System::outputSerial().print(m_SETTINGS[joint_id].MAX);
+//		System::outputSerial().println(F(","));
+//
+//		System::outputSerial().print(F("\t\t\"min\": "));
+//		System::outputSerial().print(m_SETTINGS[joint_id].MIN);
+//		System::outputSerial().println(F(","));
+//
+//		System::outputSerial().print(F("\t\t\"home\": "));
+//		System::outputSerial().println(m_SETTINGS[joint_id].HOME);
+//    //wifi_tcp_server.write(m_SETTINGS[joint_id].HOME);
+//
+//		System::outputSerial().print(F("\t}"));
+//
+//		if (joint_id != (SUM - 1))
+//		{
+//			System::outputSerial().println(F(","));
+//		}
+//		else
+//		{
+//			System::outputSerial().println();
+//		}
+//	}
+//
+//	System::outputSerial().println(F("]"));
+//	System::outputSerial().println(F("\r\n"));
 }
 
 

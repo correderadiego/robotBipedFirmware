@@ -17,7 +17,7 @@ Plen* PlenFactory::getPlen() {
 	 * Joint
 	 */
 	Joint* joint[] = {
-						new Joint(-40), // [01] Left : Shoulder Pitch
+						new Joint(-40, Joint::counterClockWise), // [01] Left : Shoulder Pitch
 						new Joint(245), // [02] Left : Thigh Yaw
 						new Joint(470), // [03] Left : Shoulder Roll
 						new Joint(-100),// [04] Left : Elbow Roll
@@ -29,7 +29,7 @@ Plen* PlenFactory::getPlen() {
 						new Joint(),
 						new Joint(),
 						new Joint(),
-						new Joint(15), 	// [10] Right : Shoulder Pitch
+						new Joint(15, Joint::counterClockWise), 	// [10] Right : Shoulder Pitch
 						new Joint(-70),	// [11] Right : Thigh Yaw
 						new Joint(-390),// [12] Right : Shoulder Roll
 						new Joint(250),	// [13] Right : Elbow Roll
@@ -53,12 +53,15 @@ Plen* PlenFactory::getPlen() {
 	//TODO review pointers
 	File* fileMotion 		= new File();
 	File* fileConfiguration = new File();
-	this->openFiles(*fileMotion, *fileConfiguration);
+	File* fileSystemConfiguration = new File();
+	this->openFiles(*fileMotion, *fileConfiguration, *fileSystemConfiguration);
 
-	return new Plen(joint, NUMBER_OF_JOINTS, eyes, fileMotion, fileConfiguration);
+	Wifi* wifi = createWifi(fileSystemConfiguration);
+
+	return new Plen(joint, NUMBER_OF_JOINTS, wifi, eyes, fileMotion, fileConfiguration, fileSystemConfiguration);
 }
 
-void PlenFactory::openFiles(File fileMotion, File fileConfiguration){
+void PlenFactory::openFiles(File fileMotion, File fileConfiguration, File fileSystemConfiguration){
 	File file;
 	unsigned char buf[BUF_SIZE] = {1};
 	ExternalFileSystemController* externalFsController = new ExternalFileSystemController();
@@ -70,4 +73,40 @@ void PlenFactory::openFiles(File fileMotion, File fileConfiguration){
     }
     fileMotion = SPIFFS.open(MOTION_FILE, FILE_MODE_READ);
     fileConfiguration = SPIFFS.open(CONFIG_FILE, FILE_MODE_READ);
+    fileSystemConfiguration = SPIFFS.open(SYSTEM_FILE, FILE_MODE_READ);
+}
+
+Wifi* PlenFactory::createWifi(File* fileSystemConfiguration){
+	if( !(fileSystemConfiguration&& fileSystemConfiguration->available())){
+			return createDefaultWifi();
+	}
+
+	ExternalFileSystemController* externalFsController = new ExternalFileSystemController();
+	String apName= "";
+	String password = "";
+	ExternalFileSystemController::FileSystemErrors fileSystemError =
+			externalFsController->readAccesPointNamePassword(
+					fileSystemConfiguration, apName, password);
+	if(fileSystemError == ExternalFileSystemController::NO_ERROR){
+		return new Wifi(
+						apName,
+						password,
+						Wifi::ACCESS_POINT_MODE,
+						new ESP8266WebServer(DEFAULT_HTTP_PORT),
+						new ESP8266HTTPUpdateServer()
+						);
+	}
+	return createDefaultWifi();
+}
+
+Wifi* PlenFactory::createDefaultWifi(){
+	String defaulAccessPointName = "ViVi-" + String(ESP.getChipId(),HEX);
+	const char *defaultPassword = "12345678xyz";
+
+	return new Wifi(
+					defaulAccessPointName,
+					defaultPassword,
+					Wifi::WIFI_CONNECTION_MODE,
+					new ESP8266WebServer(DEFAULT_HTTP_PORT),
+					new ESP8266HTTPUpdateServer());
 }

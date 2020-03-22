@@ -21,6 +21,9 @@
 #define CONFIG_FILE  "/joint_cfg.bin"
 #define CONFIG_FILE_SIZE 0x1000L
 
+#define SYSTEM_FILE  "/sys_cfg.bin"
+#define SYSTEM_FILE_SIZE 0x1000L
+
 #define EEPROM_CHUNK_SIZE		32
 #define SLOT_SIZE				30
 #define SLOT_BEGIN				0
@@ -30,10 +33,12 @@
 #define	INIT_FLAG_VALUE  		2
 #define SETTINGS_HEAD_ADDRESS 	1
 
+#define END_OF_LINE 			'\n'
 
 class ExternalFileSystemController {
 public:
 	enum FileSystemErrors{
+	  UNKNOWN_FILE_FORMAT,
 	  SEEK_ERROR,
 	  SLOT_SIZE_ERROR,
 	  SLOT_END_ERROR,
@@ -46,6 +51,11 @@ public:
 	bool isFileConfigurationInitiated(Plen* plen);
 	void initFileConfiguration(Plen* plen);
 	void loadFileConfiguration(Plen* plen);
+	ExternalFileSystemController::FileSystemErrors readAccesPointNamePassword(
+			File* fileConfiguration, String apName, String password);
+	void writeMinAngle (File* fileConfiguration, Joint* joint);
+	void writeMaxAngle (File* fileConfiguration, Joint* joint);
+	void writeHomeAngle(File* fileConfiguration, Joint* joint);
 
 	void createFile(
 					File file,

@@ -9,6 +9,7 @@
 #define SRC_CONTROLLER_PLENCONTROLLERFACTORY_H_
 
 #include "PlenController.h"
+#include "controller/WifiController.h"
 
 class PlenControllerFactory {
 public:

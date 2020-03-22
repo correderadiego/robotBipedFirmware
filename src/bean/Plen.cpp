@@ -10,15 +10,19 @@
 Plen::Plen(
 			Joint* 	joint[],
 			int 	jointSize,
+			Wifi* wifi,
 			Eyes* 	eyes,
 			File* fileMotion,
-			File* fileConfiguration
+			File* fileConfiguration,
+			File* fileSystemConfiguration
 		  ) {
 	this->joint 			= joint;
 	this->jointSize 		= jointSize;
+	this->wifi				= wifi;
 	this->eyes				= eyes;
 	this->fileMotion		= fileMotion;
 	this->fileConfiguration	= fileConfiguration;
+	this->fileSystemConfiguration = fileSystemConfiguration;
 }
 
 Eyes* Plen::getEyes(){
@@ -35,4 +39,8 @@ Joint** Plen::getJointVector(){
 
 File* Plen::getFileConfiguration(){
 	return fileConfiguration;
+}
+
+File* Plen::getFileSystemConfiguration(){
+	return fileSystemConfiguration;
 }

@@ -12,7 +12,7 @@
 #include <Wire.h>
 #include <Servo.h>
 
-#include "JointController.h"
+#include "JointController2.h"
 #include "Motion.h"
 #include "MotionController.h"
 #include "Interpreter.h"
@@ -23,16 +23,20 @@
 #include "Profiler.h"
 #include "ExternalFileSystemController.h"
 #include "bean/Plen.h"
+#include "WifiController.h"
+#include "HttpServerController.h"
 
 using namespace PLEN2;
 
 class PlenController : public Protocol {
 public:
 	PlenController(
-			JointController*  jointController,
+			JointController2*  jointController,
 			MotionController* motionController,
 			Interpreter*      interpreter,
 			EyeController*	  eyeController,
+			WifiController*   wifiController,
+			HttpServerController* HttpServerController,
 			ExternalFileSystemController* externalFileSystemController);
 	void executeThreadTasks(Plen* plen);
 	virtual void afterHook();
@@ -46,11 +50,13 @@ private:
 		static Soul*                  soul;
 	#endif
 
-	JointController*  jointController;
-	MotionController* motionController;
-	Interpreter*      interpreter;
-	EyeController*	  eyeController;
-	ExternalFileSystemController* externalFileSystemController;
+	JointController2*  				jointController;
+	MotionController* 				motionController;
+	Interpreter*      				interpreter;
+	EyeController*	  				eyeController;
+	WifiController*   				wifiController;
+	HttpServerController* 			httpServerController;
+	ExternalFileSystemController* 	externalFileSystemController;
 
 	static void (PlenController::*CONTROLLER_EVENT_HANDLER[])();
 	static void (PlenController::*INTERPRETER_EVENT_HANDLER[])();
@@ -73,6 +79,7 @@ private:
 	void tcpController();
 
 	void loadFileConfiguration(Plen* plen);
+	void resetConfiguration(Plen* plen);
 	void applyDiff();
 	void apply();
 	void homePosition();
@@ -87,7 +94,7 @@ private:
 	void setMotionFrame();
 	void setMotionHeader();
 	void setMin();
-	void getJointSettings();
+	void getJointSettings(Plen* plen);
 	void getMotion();
 	void getVersionInformation();
 };

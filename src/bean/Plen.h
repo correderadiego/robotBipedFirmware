@@ -14,6 +14,7 @@
 #include "MotionController.h"
 #include "Interpreter.h"
 #include "bean/Joint.h"
+#include "bean/Wifi.h"
 
 using namespace PLEN2;
 
@@ -22,21 +23,29 @@ public:
 	Plen(
 			Joint* joint[],
 			int jointSize,
+			Wifi* wifi,
 			Eyes* eyes,
 			File* fileMotion,
-			File* fileConfiguration
+			File* fileConfiguration,
+			File* fileSystemconfiguration
 			);
 
-	Eyes* getEyes();
 	uint8_t getJointSize();
 	Joint** getJointVector();
+	Wifi*	getWifi();
+	Eyes* getEyes();
+
 	File*	getFileConfiguration();
+	File* 	getFileSystemConfiguration();
+
 private:
 	Joint** joint;
+	int jointSize;
+	Wifi* wifi;
+	Eyes* eyes;
 	File* fileMotion;
 	File* fileConfiguration;
-	int jointSize;
-	Eyes* eyes;
+	File* fileSystemConfiguration;
 };
 
 #endif /* SRC_PLEN_H_ */

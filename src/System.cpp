@@ -18,10 +18,9 @@
 #include <ESP8266HTTPUpdateServer.h>
 #include "ExternalFs.h"
 #include "Profiler.h"
-
 #define PLEN2_SYSTEM_SERIAL Serial
 
-#define CONNECT_TIMEOUT_CNT 100
+#define CONNECT_TIMEOUT 100
 
 IPAddress broadcastIp(255, 255, 255, 255);
 #define BROADCAST_PORT 6000
@@ -36,7 +35,7 @@ WiFiClient serverClient;
 Ticker smartconfig_tricker;
 
 String robot_name = "ViVi-" + String(ESP.getChipId(),HEX);
-const char *wifi_psd = "12345678xyz";
+const char *wifiPassword = "12345678xyz";
 
 volatile bool update_cfg;
 
@@ -47,85 +46,85 @@ File fsUploadFile;
 //启动ao模式
 void PLEN2::System::StartAp()
 {
-#if CLOCK_WISE
-    String ap_name = "ViVi-M-" + String(ESP.getChipId(),HEX);
-#else
-    String ap_name = "ViVi-N-" + String(ESP.getChipId(),HEX);
-#endif
-    WiFi.mode(WIFI_AP);
-    WiFi.softAP(ap_name.c_str(), wifi_psd);
- 
-    IPAddress my_ip = WiFi.softAPIP();
-    outputSerial().print("start AP! SSID:");
-    outputSerial().print(ap_name);
-    outputSerial().print("PSWD:");
-    outputSerial().println(wifi_psd);
+//#if CLOCK_WISE
+//    String ap_name = "ViVi-M-" + String(ESP.getChipId(),HEX);
+//#else
+//    String ap_name = "ViVi-N-" + String(ESP.getChipId(),HEX);
+//#endif
+//    WiFi.mode(WIFI_AP);
+//    WiFi.softAP(ap_name.c_str(), wifiPassword);
+//
+//    IPAddress my_ip = WiFi.softAPIP();
+//    outputSerial().print("start AP! SSID:");
+//    outputSerial().print(ap_name);
+//    outputSerial().print("PSWD:");
+//    outputSerial().println(wifiPassword);
 }
 //启用sta模式
 PLEN2::System::System(){}
 
 void PLEN2::System::setupWifiConnection(){
-	#define END_OF_LINE '\n'
-
-	unsigned char cnt;
-	update_cfg = true;
-	if( !(fileSystemConfiguration && fileSystemConfiguration.available())){
-		smartconfig_tricker.attach_ms(1024, PLEN2::System::smart_config);
-		return;
-	}
-
-	fileSystemConfiguration.seek(0, SeekSet);
-	String apName = fileSystemConfiguration.readStringUntil(END_OF_LINE);
-	String apPassword;
-	if(apName.length() <= 1){
-		smartconfig_tricker.attach_ms(1024, PLEN2::System::smart_config);
-		return;
-	}
-	outputSerial().print("ap:");
-	outputSerial().println(apName);
-	if(!fileSystemConfiguration.available()){
-		smartconfig_tricker.attach_ms(1024, PLEN2::System::smart_config);
-		return;
-	}
-
-	apPassword = fileSystemConfiguration.readStringUntil(END_OF_LINE);
-	outputSerial().print("psw:");
-	outputSerial().println(apPassword);
-	if (apPassword.length() <= 1){
-		smartconfig_tricker.attach_ms(1024, PLEN2::System::smart_config);
-		return;
-	}
-
-	char apNameChar[apName.length()];
-	char apPasswordChar[apPassword.length()];
-
-	memset(apNameChar, '\0', apName.length());
-	for (int i = 0; i < apName.length() - 1; i++){
-		apNameChar[i] = apName.charAt(i);
-	}
-	memset(apPasswordChar, '\0', apPassword.length());
-	for (int i = 0; i < apPassword.length() - 1; i++){
-		apPasswordChar[i] = apPassword.charAt(i);
-	}
-	outputSerial().println(apNameChar);
-	outputSerial().println(apPasswordChar);
-
-	WiFi.begin(apNameChar, apPasswordChar);
-	cnt = 0;
-	while (WiFi.status() != WL_CONNECTED){
-		delay(100);
-		outputSerial().print(".");
-		cnt++;
-		break;
-		if(cnt >= CONNECT_TIMEOUT_CNT){
-			break;
-		}
-	}
-	if(cnt < CONNECT_TIMEOUT_CNT){
-		update_cfg = false;
-	}
-
-	smartconfig_tricker.attach_ms(1024, PLEN2::System::smart_config);
+//	#define END_OF_LINE '\n'
+//
+//	unsigned char cnt;
+//	update_cfg = true;
+//	if( !(fileSystemConfiguration && fileSystemConfiguration.available())){
+//		smartconfig_tricker.attach_ms(1024, PLEN2::System::smart_config);
+//		return;
+//	}
+//
+//	fileSystemConfiguration.seek(0, SeekSet);
+//	String apName = fileSystemConfiguration.readStringUntil(END_OF_LINE);
+//	String apPassword;
+//	if(apName.length() <= 1){
+//		smartconfig_tricker.attach_ms(1024, PLEN2::System::smart_config);
+//		return;
+//	}
+//	outputSerial().print("ap:");
+//	outputSerial().println(apName);
+//	if(!fileSystemConfiguration.available()){
+//		smartconfig_tricker.attach_ms(1024, PLEN2::System::smart_config);
+//		return;
+//	}
+//
+//	apPassword = fileSystemConfiguration.readStringUntil(END_OF_LINE);
+//	outputSerial().print("psw:");
+//	outputSerial().println(apPassword);
+//	if (apPassword.length() <= 1){
+//		smartconfig_tricker.attach_ms(1024, PLEN2::System::smart_config);
+//		return;
+//	}
+//
+//	char apNameChar[apName.length()];
+//	char apPasswordChar[apPassword.length()];
+//
+//	memset(apNameChar, '\0', apName.length());
+//	for (int i = 0; i < apName.length() - 1; i++){
+//		apNameChar[i] = apName.charAt(i);
+//	}
+//	memset(apPasswordChar, '\0', apPassword.length());
+//	for (int i = 0; i < apPassword.length() - 1; i++){
+//		apPasswordChar[i] = apPassword.charAt(i);
+//	}
+//	outputSerial().println(apNameChar);
+//	outputSerial().println(apPasswordChar);
+//
+//	WiFi.begin(apNameChar, apPasswordChar);
+//	cnt = 0;
+//	while (WiFi.status() != WL_CONNECTED){
+//		delay(100);
+//		outputSerial().print(".");
+//		cnt++;
+//		break;
+//		if(cnt >= CONNECT_TIMEOUT){
+//			break;
+//		}
+//	}
+//	if(cnt < CONNECT_TIMEOUT){
+//		update_cfg = false;
+//	}
+//
+//	smartconfig_tricker.attach_ms(1024, PLEN2::System::smart_config);
 }
 
 //format bytes换算
@@ -144,112 +143,112 @@ String formatBytes(size_t bytes)
 
 String getContentType(String filename)
 {
-    if(httpServer.hasArg("download")) return "application/octet-stream";
-    else if(filename.endsWith(".htm")) return "text/html";
-    else if(filename.endsWith(".html")) return "text/html";
-    else if(filename.endsWith(".css")) return "text/css";
-    else if(filename.endsWith(".js")) return "application/javascript";
-    else if(filename.endsWith(".png")) return "image/png";
-    else if(filename.endsWith(".gif")) return "image/gif";
-    else if(filename.endsWith(".jpg")) return "image/jpeg";
-    else if(filename.endsWith(".ico")) return "image/x-icon";
-    else if(filename.endsWith(".xml")) return "text/xml";
-    else if(filename.endsWith(".pdf")) return "application/x-pdf";
-    else if(filename.endsWith(".zip")) return "application/x-zip";
-    else if(filename.endsWith(".gz")) return "application/x-gzip";
-    return "text/plain";
+//    if(httpServer.hasArg("download")) return "application/octet-stream";
+//    else if(filename.endsWith(".htm")) return "text/html";
+//    else if(filename.endsWith(".html")) return "text/html";
+//    else if(filename.endsWith(".css")) return "text/css";
+//    else if(filename.endsWith(".js")) return "application/javascript";
+//    else if(filename.endsWith(".png")) return "image/png";
+//    else if(filename.endsWith(".gif")) return "image/gif";
+//    else if(filename.endsWith(".jpg")) return "image/jpeg";
+//    else if(filename.endsWith(".ico")) return "image/x-icon";
+//    else if(filename.endsWith(".xml")) return "text/xml";
+//    else if(filename.endsWith(".pdf")) return "application/x-pdf";
+//    else if(filename.endsWith(".zip")) return "application/x-zip";
+//    else if(filename.endsWith(".gz")) return "application/x-gzip";
+//    return "text/plain";
 }
 
 bool handleFileRead(String path){
-    PLEN2_SYSTEM_SERIAL.println("handleFileRead: " + path);
-    if(path.endsWith("/")) path += "index.htm";
-    String contentType = getContentType(path);
-    String pathWithGz = path + ".gz";
-    if(SPIFFS.exists(pathWithGz) || SPIFFS.exists(path)){
-    if(SPIFFS.exists(pathWithGz))
-      path += ".gz";
-    File file = SPIFFS.open(path, "r");
-    size_t sent = httpServer.streamFile(file, contentType);
-    file.close();
-    return true;
-    }
-    return false;
+//    PLEN2_SYSTEM_SERIAL.println("handleFileRead: " + path);
+//    if(path.endsWith("/")) path += "index.htm";
+//    String contentType = getContentType(path);
+//    String pathWithGz = path + ".gz";
+//    if(SPIFFS.exists(pathWithGz) || SPIFFS.exists(path)){
+//    if(SPIFFS.exists(pathWithGz))
+//      path += ".gz";
+//    File file = SPIFFS.open(path, "r");
+//    size_t sent = httpServer.streamFile(file, contentType);
+//    file.close();
+//    return true;
+//    }
+//    return false;
 }
 
 void handleFileUpload(){
-  if(httpServer.uri() != "/edit") return;
-  HTTPUpload& upload = httpServer.upload();
-  if(upload.status == UPLOAD_FILE_START){
-    String filename = upload.filename;  
-    if(!filename.startsWith("/")) filename = "/"+filename;
-    PLEN2_SYSTEM_SERIAL.print("handleFileUpload Name: "); PLEN2_SYSTEM_SERIAL.println(filename);
-    fsUploadFile = SPIFFS.open(filename, "w");
-    filename = String();
-  } else if(upload.status == UPLOAD_FILE_WRITE){
-    //PLEN2_SYSTEM_SERIAL.print("handleFileUpload Data: "); PLEN2_SYSTEM_SERIAL.println(upload.currentSize);
-    if(fsUploadFile)
-      fsUploadFile.write(upload.buf, upload.currentSize);
-  } else if(upload.status == UPLOAD_FILE_END){
-    if(fsUploadFile)
-      fsUploadFile.close();
-    PLEN2_SYSTEM_SERIAL.print("handleFileUpload Size: "); PLEN2_SYSTEM_SERIAL.println(upload.totalSize);
-  }
+//  if(httpServer.uri() != "/edit") return;
+//  HTTPUpload& upload = httpServer.upload();
+//  if(upload.status == UPLOAD_FILE_START){
+//    String filename = upload.filename;
+//    if(!filename.startsWith("/")) filename = "/"+filename;
+//    PLEN2_SYSTEM_SERIAL.print("handleFileUpload Name: "); PLEN2_SYSTEM_SERIAL.println(filename);
+//    fsUploadFile = SPIFFS.open(filename, "w");
+//    filename = String();
+//  } else if(upload.status == UPLOAD_FILE_WRITE){
+//    //PLEN2_SYSTEM_SERIAL.print("handleFileUpload Data: "); PLEN2_SYSTEM_SERIAL.println(upload.currentSize);
+//    if(fsUploadFile)
+//      fsUploadFile.write(upload.buf, upload.currentSize);
+//  } else if(upload.status == UPLOAD_FILE_END){
+//    if(fsUploadFile)
+//      fsUploadFile.close();
+//    PLEN2_SYSTEM_SERIAL.print("handleFileUpload Size: "); PLEN2_SYSTEM_SERIAL.println(upload.totalSize);
+//  }
 }
 
 void handleFileDelete(){
-  if(httpServer.args() == 0) return httpServer.send(500, "text/plain", "BAD ARGS");
-  String path = httpServer.arg(0);
-  PLEN2_SYSTEM_SERIAL.println("handleFileDelete: " + path);
-  if(path == "/")
-    return httpServer.send(500, "text/plain", "BAD PATH");
-  if(!SPIFFS.exists(path))
-    return httpServer.send(404, "text/plain", "FileNotFound");
-  SPIFFS.remove(path);
-  httpServer.send(200, "text/plain", "");
-  path = String();
+//  if(httpServer.args() == 0) return httpServer.send(500, "text/plain", "BAD ARGS");
+//  String path = httpServer.arg(0);
+//  PLEN2_SYSTEM_SERIAL.println("handleFileDelete: " + path);
+//  if(path == "/")
+//    return httpServer.send(500, "text/plain", "BAD PATH");
+//  if(!SPIFFS.exists(path))
+//    return httpServer.send(404, "text/plain", "FileNotFound");
+//  SPIFFS.remove(path);
+//  httpServer.send(200, "text/plain", "");
+//  path = String();
 }
 
 void handleFileCreate(){
-  if(httpServer.args() == 0)
-    return httpServer.send(500, "text/plain", "BAD ARGS");
-  String path = httpServer.arg(0);
-  PLEN2_SYSTEM_SERIAL.println("handleFileCreate: " + path);
-  if(path == "/")
-    return httpServer.send(500, "text/plain", "BAD PATH");
-  if(SPIFFS.exists(path))
-    return httpServer.send(500, "text/plain", "FILE EXISTS");
-  File file = SPIFFS.open(path, "w");
-  if(file)
-    file.close();
-  else
-    return httpServer.send(500, "text/plain", "CREATE FAILED");
-  httpServer.send(200, "text/plain", "");
-  path = String();
+//  if(httpServer.args() == 0)
+//    return httpServer.send(500, "text/plain", "BAD ARGS");
+//  String path = httpServer.arg(0);
+//  PLEN2_SYSTEM_SERIAL.println("handleFileCreate: " + path);
+//  if(path == "/")
+//    return httpServer.send(500, "text/plain", "BAD PATH");
+//  if(SPIFFS.exists(path))
+//    return httpServer.send(500, "text/plain", "FILE EXISTS");
+//  File file = SPIFFS.open(path, "w");
+//  if(file)
+//    file.close();
+//  else
+//    return httpServer.send(500, "text/plain", "CREATE FAILED");
+//  httpServer.send(200, "text/plain", "");
+//  path = String();
 }
 
 void handleFileList() {
-  if(!httpServer.hasArg("dir")) {httpServer.send(500, "text/plain", "BAD ARGS"); return;}
-  
-  String path = httpServer.arg("dir");
-  PLEN2_SYSTEM_SERIAL.println("handleFileList: " + path);
-  Dir dir = SPIFFS.openDir(path);
-  path = String();
-
-  String output = "[";
-  while(dir.next()){
-    File entry = dir.openFile("r");
-    if (output != "[") output += ',';
-    bool isDir = false;
-    output += "{\"type\":\"";
-    output += (isDir)?"dir":"file";
-    output += "\",\"name\":\"";
-    output += String(entry.name()).substring(1);
-    output += "\"}";
-    entry.close();
-  }
-  
-  output += "]";
-  httpServer.send(200, "text/json", output);
+//  if(!httpServer.hasArg("dir")) {httpServer.send(500, "text/plain", "BAD ARGS"); return;}
+//
+//  String path = httpServer.arg("dir");
+//  PLEN2_SYSTEM_SERIAL.println("handleFileList: " + path);
+//  Dir dir = SPIFFS.openDir(path);
+//  path = String();
+//
+//  String output = "[";
+//  while(dir.next()){
+//    File entry = dir.openFile("r");
+//    if (output != "[") output += ',';
+//    bool isDir = false;
+//    output += "{\"type\":\"";
+//    output += (isDir)?"dir":"file";
+//    output += "\",\"name\":\"";
+//    output += String(entry.name()).substring(1);
+//    output += "\"}";
+//    entry.close();
+//  }
+//
+//  output += "]";
+//  httpServer.send(200, "text/json", output);
 }
 
 void PLEN2::System::smart_config()
