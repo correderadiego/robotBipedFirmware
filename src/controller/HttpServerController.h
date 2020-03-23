@@ -13,7 +13,7 @@
 #include <ESP8266HTTPUpdateServer.h>
 #include <FS.h>
 #include <ESP8266mDNS.h>
-#include "Plen.h"
+#include "bean/Plen.h"
 
 class HttpServerController {
 public:

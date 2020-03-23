@@ -18,6 +18,7 @@
 #include "hardware/pin/GPIOPin.h"
 #include "hardware/pin/PinDefinition.h"
 #include "FS.h"
+#include <ESP8266WiFi.h>
 
 #define NUMBER_OF_JOINTS 24
 
@@ -28,6 +29,7 @@
 #define FILE_MODE_WRITE			"w+"
 
 #define DEFAULT_HTTP_PORT		80
+#define DEFAULT_WIFI_SOCKET_PORT 23
 
 class PlenFactory {
 public:

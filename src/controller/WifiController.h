@@ -23,10 +23,14 @@ public:
 	};
 	WifiController();
 	void connect(Plen* plen);
+	void executeThreadTasks(Wifi* wifi);
+	bool isSocketClientAvailable(Wifi* wifi);
+	char read(Wifi* wifi);
 private:
 	ConnectionErrors connectToWifiAccessPoint(Plen* plen);
 	void startAccessPoint(Plen* plen);
-	void toCharArray(String string, char charArray[]);
+	void createSocketServer(Wifi* wifi);
+	void updateSocketClientState(Wifi* wifi);
 };
 
 #endif /* SRC_CONTROLLER_WIFICONTROLLER_H_ */

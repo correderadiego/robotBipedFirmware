@@ -57,3 +57,46 @@ WifiController::ConnectionErrors WifiController::connectToWifiAccessPoint(Plen* 
 	Serial.println("Connected");
 	return NO_ERROR;
 }
+
+void WifiController::createSocketServer(Wifi* wifi){
+	wifi->getWifiServer()->begin();
+	wifi->getWifiServer()->setNoDelay(true);
+	Serial.println("Socket created");
+}
+
+void WifiController::updateSocketClientState(Wifi* wifi){
+	if (wifi->getWifiServer()->hasClient()){
+		wifi->setWifiClient(wifi->getWifiServer()->available());
+		if (!wifi->getWifiClient() || !wifi->getWifiClient().connected()){
+			if(wifi->getWifiClient()){
+				wifi->getWifiClient().stop();
+			}
+			wifi->setWifiClient(wifi->getWifiServer()->available());
+		}
+	}
+}
+
+bool WifiController::isSocketClientAvailable(Wifi* wifi){
+	if (!wifi->getWifiClient()){
+		return false;
+	}
+
+	if(!wifi->getWifiClient().connected()){
+		return false;
+	}
+
+	if(!wifi->getWifiClient().available()){
+		return false;
+	}
+
+	return true;
+}
+
+char WifiController::read(Wifi* wifi){
+	 return static_cast<char>(wifi->getWifiClient().read());
+}
+
+void WifiController::executeThreadTasks(Wifi* wifi){
+	updateSocketClientState(wifi);
+	read(wifi);
+}

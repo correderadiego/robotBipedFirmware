@@ -26,21 +26,26 @@ public:
 			String password,
 			WifiMode wifiMode,
 			ESP8266WebServer* httpServer,
-			ESP8266HTTPUpdateServer* httpUpdater);
+			ESP8266HTTPUpdateServer* httpUpdater,
+			WiFiServer* wifiServer);
 
 	String getAccessPointName();
 	String getPassword();
 	WifiMode getWifiMode();
 	ESP8266WebServer* getHttpServer();
 	ESP8266HTTPUpdateServer* getHttpUpdater();
+	WiFiServer* getWifiServer();
+	WiFiClient getWifiClient();
+	void setWifiClient(WiFiClient wifiClient);
 
 private:
-
 	String accessPointName;
 	String password;
 	WifiMode wifiMode;
 	ESP8266WebServer* httpServer;
 	ESP8266HTTPUpdateServer* httpUpdater;
+	WiFiServer* wifiServer;
+	WiFiClient wifiClient;
 };
 
 #endif /* SRC_BEAN_WIFI_H_ */

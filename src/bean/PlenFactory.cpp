@@ -8,11 +8,6 @@
 #include "PlenFactory.h"
 
 Plen* PlenFactory::getPlen() {
-
-	/**
-	 * Controllers
-	 */
-
 	/**
 	 * Joint
 	 */
@@ -93,7 +88,8 @@ Wifi* PlenFactory::createWifi(File* fileSystemConfiguration){
 						password,
 						Wifi::ACCESS_POINT_MODE,
 						new ESP8266WebServer(DEFAULT_HTTP_PORT),
-						new ESP8266HTTPUpdateServer()
+						new ESP8266HTTPUpdateServer(),
+						new WiFiServer(DEFAULT_WIFI_SOCKET_PORT)
 						);
 	}
 	return createDefaultWifi();
@@ -108,5 +104,6 @@ Wifi* PlenFactory::createDefaultWifi(){
 					defaultPassword,
 					Wifi::WIFI_CONNECTION_MODE,
 					new ESP8266WebServer(DEFAULT_HTTP_PORT),
-					new ESP8266HTTPUpdateServer());
+					new ESP8266HTTPUpdateServer(),
+					new WiFiServer(DEFAULT_WIFI_SOCKET_PORT));
 }

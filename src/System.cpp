@@ -339,20 +339,16 @@ void PLEN2::System::handleClient()
 
 bool PLEN2::System::tcp_available()
 {
-    if (wifi_tcp_server.hasClient())
-    {
+    if (wifi_tcp_server.hasClient()){
         serverClient = wifi_tcp_server.available();
-        if (!serverClient || !serverClient.connected())      
-    		{        
-    			if(serverClient)
-    			{
+        if (!serverClient || !serverClient.connected()){
+    			if(serverClient){
     				serverClient.stop();
     			}
     			serverClient = wifi_tcp_server.available();
         }
     }
-    if (serverClient && serverClient.connected())
-    {
+    if (serverClient && serverClient.connected()){
         return serverClient.available();
     }
     return false;
