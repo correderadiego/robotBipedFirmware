@@ -18,6 +18,7 @@
 #include <ESP8266HTTPUpdateServer.h>
 #include "ExternalFs.h"
 #include "Profiler.h"
+
 #define PLEN2_SYSTEM_SERIAL Serial
 
 #define CONNECT_TIMEOUT 100
@@ -130,15 +131,16 @@ void PLEN2::System::setupWifiConnection(){
 //format bytes换算
 String formatBytes(size_t bytes)
 {
-    if (bytes < 1024){
-        return String(bytes)+"B";
-    } else if(bytes < (1024 * 1024)){
-        return String(bytes/1024.0)+"KB";
-    } else if(bytes < (1024 * 1024 * 1024)){
-        return String(bytes/1024.0/1024.0)+"MB";
-    } else {
-        return String(bytes/1024.0/1024.0/1024.0)+"GB";
-    }
+//    if (bytes < 1024){
+//        return String(bytes)+"B";
+//    } else if(bytes < (1024 * 1024)){
+//        return String(bytes/1024.0)+"KB";
+//    } else if(bytes < (1024 * 1024 * 1024)){
+//        return String(bytes/1024.0/1024.0)+"MB";
+//    } else {
+//        return String(bytes/1024.0/1024.0/1024.0)+"GB";
+//    }
+	return "";
 }
 
 String getContentType(String filename)
@@ -331,42 +333,41 @@ void PLEN2::System::smart_config()
 
 void PLEN2::System::handleClient()
 {
-	if (servers_started)
-	{
-	    httpServer.handleClient();
-	}
+//	if (servers_started)
+//	{
+//	    httpServer.handleClient();
+//	}
 }
 
-bool PLEN2::System::tcp_available()
-{
-    if (wifi_tcp_server.hasClient()){
-        serverClient = wifi_tcp_server.available();
-        if (!serverClient || !serverClient.connected()){
-    			if(serverClient){
-    				serverClient.stop();
-    			}
-    			serverClient = wifi_tcp_server.available();
-        }
-    }
-    if (serverClient && serverClient.connected()){
-        return serverClient.available();
-    }
+bool PLEN2::System::tcp_available(){
+//    if (wifi_tcp_server.hasClient()){
+//        serverClient = wifi_tcp_server.available();
+//        if (!serverClient || !serverClient.connected()){
+//    			if(serverClient){
+//    				serverClient.stop();
+//    			}
+//    			serverClient = wifi_tcp_server.available();
+//        }
+//    }
+//    if (serverClient && serverClient.connected()){
+//        return serverClient.available();
+//    }
     return false;
 }
 
 bool PLEN2::System::tcp_connected()
 {
-    return serverClient && serverClient.connected();
+//    return serverClient && serverClient.connected();
 }
 
 char PLEN2::System::tcp_read()
 {
-    return serverClient.read();
+//    return serverClient.read();
 }
 
 Stream& PLEN2::System::SystemSerial()
 {
-	return PLEN2_SYSTEM_SERIAL;
+	 return PLEN2_SYSTEM_SERIAL;
 }
 
 

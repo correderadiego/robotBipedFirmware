@@ -52,6 +52,7 @@ libraries/Wire \
 libraries/gdb \
 src \
 src/bean \
+src/bean/commands \
 src/controller \
 src/hardware/led \
 src/hardware/pin \

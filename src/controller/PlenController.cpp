@@ -139,13 +139,8 @@ void PlenController::tcpController(){
 	if (!PLEN2::System::tcp_available()){
 		return;
 	}
-	#if DEBUG_LESS
-		uint8_t c = PLEN2::System::tcp_read();
-		PLEN2::System::outputSerial().write(c);
-		app.readByte(c);
-	#else
-		readByte(PLEN2::System::tcp_read());
-	#endif
+	readByte(PLEN2::System::tcp_read());
+
 	if (accept()){
 		transitState();
 	}
@@ -333,9 +328,22 @@ void PlenController::getMotion(){
 }
 
 void PlenController::getVersionInformation(){
-	System::dump();
-}
+	Serial.println(F("{"));
 
+	Serial.print(F("\t\"device\": \""));
+	Serial.print(DEVICE_NAME);
+	Serial.println(F("\","));
+
+	Serial.print(F("\t\"codename\": \""));
+	Serial.print(CODE_NAME);
+	Serial.println(F("\","));
+
+	Serial.print(F("\t\"version\": \""));
+	Serial.print(VERSION);
+	Serial.println(F("\""));
+
+	Serial.println(F("}"));
+}
 
 void PlenController::afterHook(){
 	if (m_state == HEADER_INCOMING){
