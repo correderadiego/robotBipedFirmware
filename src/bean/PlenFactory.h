@@ -11,10 +11,10 @@
 #include <controller/ExternalFileSystemController.h>
 #include "bean/Joint.h"
 #include "bean/Plen.h"
-#include "JointController.h"
-#include "MotionController.h"
+#include "controller/JointController.h"
+#include "controller/MotionController.h"
 #include "controller/LedController.h"
-#include "Interpreter.h"
+#include "controller/Interpreter.h"
 #include "hardware/pin/GPIOPin.h"
 #include "hardware/pin/PinDefinition.h"
 #include "FS.h"

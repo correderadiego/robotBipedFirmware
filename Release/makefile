@@ -9,8 +9,10 @@ RM := rm
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir.mk
+-include src/utils/subdir.mk
 -include src/hardware/pin/subdir.mk
 -include src/hardware/led/subdir.mk
+-include src/hardware/subdir.mk
 -include src/controller/parser/subdir.mk
 -include src/controller/subdir.mk
 -include src/bean/commands/subdir.mk

@@ -8,11 +8,11 @@
 #include <controller/PlenControllerFactory.h>
 
 PlenController* PlenControllerFactory::getPlenController(){
-	JointController2* jointController 	= new JointController2();
+	JointController* jointController 	= new JointController();
 	///MotionController* motionController	= new MotionController(*jointController);
 	//TODO
 	MotionController* motionController;
-	Interpreter* interpreter 			= new Interpreter(*motionController);
+	Interpreter* interpreter 			= new Interpreter();
 	LedController* ledController		= new LedController();
 	EyeController* eyeController		= new EyeController(ledController);
 	WifiController* wifiController		= new WifiController();

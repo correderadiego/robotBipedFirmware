@@ -25,3 +25,19 @@ void Buffer::clearBuffer(){
 char* Buffer::getData(){
 	return data;
 }
+
+Buffer::BufferErrors Buffer::addChar(char character){
+	if(position >= LENGTH){
+		clearBuffer();
+		return BUFFER_FULL_ERROR;
+	}
+
+	if(character == '/r'){
+		return COMMAND_COMPLETE;
+	}
+
+	data[position] = character;
+	position ++;
+	data[position] = '\0';
+	return NO_ERROR;
+}

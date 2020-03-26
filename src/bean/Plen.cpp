@@ -23,6 +23,7 @@ Plen::Plen(
 	this->fileMotion		= fileMotion;
 	this->fileConfiguration	= fileConfiguration;
 	this->fileSystemConfiguration = fileSystemConfiguration;
+	this->buffer = new Buffer();
 }
 
 Eyes* Plen::getEyes(){
@@ -31,6 +32,10 @@ Eyes* Plen::getEyes(){
 
 uint8_t Plen::getJointSize(){
 	return this->jointSize;
+}
+
+Wifi* Plen::getWifi(){
+	return this->wifi;
 }
 
 Joint** Plen::getJointVector(){
@@ -43,4 +48,8 @@ File* Plen::getFileConfiguration(){
 
 File* Plen::getFileSystemConfiguration(){
 	return fileSystemConfiguration;
+}
+
+Buffer* Plen::getBuffer(){
+	return this->buffer;
 }

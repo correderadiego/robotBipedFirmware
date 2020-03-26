@@ -76,27 +76,26 @@ void WifiController::updateSocketClientState(Wifi* wifi){
 	}
 }
 
-bool WifiController::isSocketClientAvailable(Wifi* wifi){
-	if (!wifi->getWifiClient()){
+bool WifiController::isSocketClientAvailable(Plen* plen){
+	if (!plen->getWifi()->getWifiClient()){
 		return false;
 	}
 
-	if(!wifi->getWifiClient().connected()){
+	if(!plen->getWifi()->getWifiClient().connected()){
 		return false;
 	}
 
-	if(!wifi->getWifiClient().available()){
+	if(!plen->getWifi()->getWifiClient().available()){
 		return false;
 	}
 
 	return true;
 }
 
-char WifiController::read(Wifi* wifi){
-	 return static_cast<char>(wifi->getWifiClient().read());
+char WifiController::read(Plen* plen){
+	 return static_cast<char>(plen->getWifi()->getWifiClient().read());
 }
 
-void WifiController::executeThreadTasks(Wifi* wifi){
-	updateSocketClientState(wifi);
-	read(wifi);
+void WifiController::executeThreadTasks(Plen* plen){
+	updateSocketClientState(plen->getWifi());
 }

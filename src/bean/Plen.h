@@ -9,14 +9,10 @@
 #define SRC_PLEN_H_
 
 #include "Eyes.h"
-#include "controller/EyeController.h"
-#include "JointController.h"
-#include "MotionController.h"
-#include "Interpreter.h"
+#include <FS.h>
 #include "bean/Joint.h"
 #include "bean/Wifi.h"
-
-using namespace PLEN2;
+#include "bean/Buffer.h"
 
 class Plen {
 public:
@@ -33,10 +29,12 @@ public:
 	uint8_t getJointSize();
 	Joint** getJointVector();
 	Wifi*	getWifi();
-	Eyes* getEyes();
+	Eyes* 	getEyes();
 
 	File*	getFileConfiguration();
 	File* 	getFileSystemConfiguration();
+
+	Buffer* getBuffer();
 
 private:
 	Joint** joint;
@@ -46,6 +44,7 @@ private:
 	File* fileMotion;
 	File* fileConfiguration;
 	File* fileSystemConfiguration;
+	Buffer* buffer;
 };
 
 #endif /* SRC_PLEN_H_ */

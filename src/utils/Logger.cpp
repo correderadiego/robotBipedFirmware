@@ -1,0 +1,36 @@
+/*
+ * Logger.cpp
+ *
+ *  Created on: 26 mar. 2020
+ *      Author: ziash
+ */
+
+#include <utils/Logger.h>
+
+Logger* Logger::logger = NULL;
+
+Logger::Logger() {}
+
+Logger* Logger::getInstance(){
+	if(logger == NULL){
+		logger = new Logger();
+	}
+
+	return logger;
+}
+
+void Logger::setLogLevel(LogLevel logLevel){
+	this->logLevel = logLevel;
+}
+
+void Logger::log(String message, LogLevel logLevel){
+	if(this->logLevel < logLevel){
+		return;
+	}
+	SerialCommunication::getInstance()->println(message);
+}
+
+Logger::~Logger() {
+	// TODO Auto-generated destructor stub
+}
+

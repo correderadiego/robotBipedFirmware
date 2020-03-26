@@ -5,12 +5,12 @@
  *      Author: ziash
  */
 
-#ifndef SRC_CONTROLLER_JOINTCONTROLLER2_H_
-#define SRC_CONTROLLER_JOINTCONTROLLER2_H_
+#ifndef SRC_CONTROLLER_JOINTCONTROLLER_H_
+#define SRC_CONTROLLER_JOINTCONTROLLER_H_
 
 #include "bean/Plen.h"
 
-class JointController2 {
+class JointController {
 public:
 	enum JointControllerErrors{
 	  MIN_VALUE_ERROR,
@@ -19,13 +19,13 @@ public:
 	  NO_ERROR
 	};
 
-	JointController2();
+	JointController();
 	void resetJoints(Plen* plen);
 	void loadInitialValues();
 	void dump(Plen* plen);
-	JointController2::JointControllerErrors setAngleMin (Joint* joint, int minAngle);
-	JointController2::JointControllerErrors setAngleMax (Joint* joint, int maxAngle);
-	JointController2::JointControllerErrors setAngleHome(Joint* joint, int homeAngle);
+	JointController::JointControllerErrors setAngleMin (Joint* joint, int minAngle);
+	JointController::JointControllerErrors setAngleMax (Joint* joint, int maxAngle);
+	JointController::JointControllerErrors setAngleHome(Joint* joint, int homeAngle);
 
 	void setAngle(Joint* joint, int angle);
 	void setAngleDifference(Joint* joint, int angleDifference);
@@ -35,4 +35,4 @@ private:
 	void resetJoint(Joint* joint);
 };
 
-#endif /* SRC_CONTROLLER_JOINTCONTROLLER2_H_ */
+#endif /* SRC_CONTROLLER_JOINTCONTROLLER_H_ */

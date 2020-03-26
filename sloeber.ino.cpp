@@ -2,10 +2,11 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2020-03-26 11:07:11
+//This file has been generated on 2020-03-26 13:39:47
 
 #include "Arduino.h"
 #include "bean/Plen.h"
+#include "utils/Logger.h"
 #include "bean/PlenFactory.h"
 #include "controller/PlenController.h"
 #include "controller/PlenControllerFactory.h"

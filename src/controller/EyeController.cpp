@@ -11,6 +11,6 @@ EyeController::EyeController(LedController* ledController) {
 	this->ledController = ledController;
 }
 
-void EyeController::executeThreadTasks(Eyes* eyes){
-	this->ledController->executeThreadTasks(eyes->getLed());
+void EyeController::executeThreadTasks(Plen* plen){
+	this->ledController->executeThreadTasks(plen->getEyes()->getLed());
 }

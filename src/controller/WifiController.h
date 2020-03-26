@@ -23,9 +23,9 @@ public:
 	};
 	WifiController();
 	void connect(Plen* plen);
-	void executeThreadTasks(Wifi* wifi);
-	bool isSocketClientAvailable(Wifi* wifi);
-	char read(Wifi* wifi);
+	void executeThreadTasks(Plen* plen);
+	bool isSocketClientAvailable(Plen* plen);
+	char read(Plen* plen);
 private:
 	ConnectionErrors connectToWifiAccessPoint(Plen* plen);
 	void startAccessPoint(Plen* plen);

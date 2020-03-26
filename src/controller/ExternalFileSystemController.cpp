@@ -74,7 +74,7 @@ void ExternalFileSystemController::initFileConfiguration(Plen* plen){
 
 void ExternalFileSystemController::loadFileConfiguration(Plen* plen){
 	unsigned char* filler = reinterpret_cast<unsigned char*>(plen->getJointVector());
-	ExternalFs::read(SETTINGS_HEAD_ADDRESS, sizeof(plen->getJointVector()), filler, *plen->getFileConfiguration());
+	//this->read(SETTINGS_HEAD_ADDRESS, sizeof(plen->getJointVector()), filler, *plen->getFileConfiguration());
 }
 
 ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::read(
