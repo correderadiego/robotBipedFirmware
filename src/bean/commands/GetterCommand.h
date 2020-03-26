@@ -8,9 +8,9 @@
 #ifndef SRC_BEAN_COMMANDS_GETTERCOMMAND_H_
 #define SRC_BEAN_COMMANDS_GETTERCOMMAND_H_
 
-#include <bean/commands/Command.h>
+#include "CommandInterface.h"
 
-class GetterCommand  : public Command  {
+class GetterCommand  : public CommandInterface  {
 	public:
 	#define DUMP_JOINT_SETTINGS_CHAR		"JS"
 	#define DUMP_A_MOTION_CHAR				"MO"
@@ -21,10 +21,14 @@ class GetterCommand  : public Command  {
 						DUMP_JOINT_SETTINGS,
 						DUMP_A_MOTION,
 						DUMP_VERSION_INFORMATION
-
 					};
+	GetterCommand(CommandInterface command);
 	GetterCommand(CommandType commandType = GETTER_COMMAND);
 	void setSubCommandType	(SubCommandType subCommandType);
+	void setCommandType		(CommandType commandType);
+	int getCommandLength	();
+	CommandInterface::CommandType getCommandType();
+
 private:
 	SubCommandType subCommandType;
 };

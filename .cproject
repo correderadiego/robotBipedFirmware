@@ -62,6 +62,8 @@
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/libraries/Wire}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/libraries/SPI}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/libraries/gdb}&quot;"/>
                                     								
                                 </option>
                                 								
@@ -94,6 +96,8 @@
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/libraries/Wire}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/libraries/SPI}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/libraries/gdb}&quot;"/>
                                     								
                                 </option>
                                 								
@@ -126,6 +130,8 @@
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/libraries/Wire}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/libraries/SPI}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/libraries/gdb}&quot;"/>
                                     								
                                 </option>
                                 								

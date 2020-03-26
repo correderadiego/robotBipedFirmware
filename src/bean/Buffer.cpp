@@ -21,3 +21,7 @@ void Buffer::clearBuffer(){
 		data[index] = EMPTY_CHAR;
 	}
 }
+
+char* Buffer::getData(){
+	return data;
+}

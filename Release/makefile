@@ -11,6 +11,7 @@ RM := rm
 -include subdir.mk
 -include src/hardware/pin/subdir.mk
 -include src/hardware/led/subdir.mk
+-include src/controller/parser/subdir.mk
 -include src/controller/subdir.mk
 -include src/bean/commands/subdir.mk
 -include src/bean/subdir.mk

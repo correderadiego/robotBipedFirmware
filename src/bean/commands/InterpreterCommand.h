@@ -8,9 +8,9 @@
 #ifndef SRC_BEAN_COMMANDS_INTERPRETERCOMMAND_H_
 #define SRC_BEAN_COMMANDS_INTERPRETERCOMMAND_H_
 
-#include <bean/commands/Command.h>
+#include "CommandInterface.h"
 
-class InterpreterCommand  : public Command  {
+class InterpreterCommand  : public CommandInterface  {
 public:
 	#define PUSH_FUNCTION_CHAR		"PU"
 	#define POP_FUNCTION_CHAR		"PO"
@@ -23,8 +23,13 @@ public:
 							RESET_INTERPRETER
 
 						};
+	InterpreterCommand(CommandInterface command);
 	InterpreterCommand(CommandType commandType = INTERPRETER_COMMAND);
 	void setSubCommandType	(SubCommandType subCommandType);
+	void setCommandType		(CommandType commandType);
+	int getCommandLength	();
+	CommandInterface::CommandType getCommandType();
+
 private:
 	SubCommandType subCommandType;
 };

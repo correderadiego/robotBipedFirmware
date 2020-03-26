@@ -16,6 +16,7 @@ class Buffer {
 public:
 	Buffer(int position = 0);
 	int getPosition();
+	char* getData();
 private:
 	char data[LENGTH];
 	int	 position;

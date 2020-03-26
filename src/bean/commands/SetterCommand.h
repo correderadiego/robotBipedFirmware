@@ -8,9 +8,9 @@
 #ifndef SRC_BEAN_COMMANDS_SETTERCOMMAND_H_
 #define SRC_BEAN_COMMANDS_SETTERCOMMAND_H_
 
-#include <bean/commands/Command.h>
+#include "CommandInterface.h"
 
-class SetterCommand  : public Command  {
+class SetterCommand  : public CommandInterface  {
 public:
 	#define SET_MOTION_HEADER_CHAR		"MH"
 	#define SET_MOTION_FRAME_CHAR		"MF"
@@ -28,8 +28,12 @@ public:
 							SET_MAX_VALUE,
 							SET_MIN_VALUE
 						};
+	SetterCommand(CommandInterface command);
 	SetterCommand(CommandType commandType = SETTER_COMMAND);
 	void setSubCommandType	(SubCommandType subCommandType);
+	void setCommandType		(CommandType commandType);
+	int getCommandLength	();
+	CommandInterface::CommandType getCommandType();
 private:
 	SubCommandType subCommandType;
 };

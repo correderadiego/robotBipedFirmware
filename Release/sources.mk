@@ -54,6 +54,7 @@ src \
 src/bean \
 src/bean/commands \
 src/controller \
+src/controller/parser \
 src/hardware/led \
 src/hardware/pin \
 
