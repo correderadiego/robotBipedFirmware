@@ -8,7 +8,7 @@
 #ifndef SRC_BEAN_COMMANDS_INTERPRETERCOMMAND_H_
 #define SRC_BEAN_COMMANDS_INTERPRETERCOMMAND_H_
 
-#include "CommandInterface.h"
+#include "bean/commands/CommandInterface.h"
 
 class InterpreterCommand  : public CommandInterface  {
 public:
@@ -18,17 +18,16 @@ public:
 
 	enum SubCommandType	{
 							UNKNOWN_SUB_COMMAND_TYPE = -1,
-							PUSH_FUNCTION_VALUE,
-							POP_FUNCTION_VALUE,
+							PUSH_A_FUNCTION,
+							POP_A_FUNCTION,
 							RESET_INTERPRETER
-
 						};
 	InterpreterCommand(CommandInterface command);
-	InterpreterCommand(CommandType commandType = INTERPRETER_COMMAND);
+	InterpreterCommand();
 	void setSubCommandType	(SubCommandType subCommandType);
 	SubCommandType getSubCommandType();
 
-private:
+protected:
 	SubCommandType subCommandType;
 };
 

@@ -10,7 +10,7 @@
 
 #include "ParserInterface.h"
 #include "bean/Buffer.h"
-#include "bean/commands/SetterCommand.h"
+#include "bean/commands/setterCommands/SetterCommand.h"
 #include "string.h"
 
 #define SETTER_COMMAND_CHAR 	 '>'

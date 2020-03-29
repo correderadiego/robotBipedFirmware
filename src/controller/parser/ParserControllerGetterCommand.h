@@ -10,7 +10,7 @@
 
 #include "ParserInterface.h"
 #include "bean/Buffer.h"
-#include "bean/commands/GetterCommand.h"
+#include "bean/commands/getterCommands/GetterCommand.h"
 #include "string.h"
 
 #define GETTER_COMMAND_CHAR 	 '<'

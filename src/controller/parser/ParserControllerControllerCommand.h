@@ -10,7 +10,7 @@
 
 #include "ParserInterface.h"
 #include "bean/Buffer.h"
-#include "bean/commands/ControllerCommand.h"
+#include "bean/commands/controllerCommands/ControllerCommand.h"
 #include "string.h"
 
 #define CONTROLLER_COMMAND_CHAR  '$'

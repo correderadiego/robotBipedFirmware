@@ -5,16 +5,16 @@
  *      Author: ziash
  */
 
-#include <bean/commands/InterpreterCommand.h>
+#include "InterpreterCommand.h"
 
 InterpreterCommand::InterpreterCommand(CommandInterface command) {
-	//this->commandType 	= command.getCommandType();
-	//this->commandLength = command.getCommandLength();
-	//this->subCommandType = UNKNOWN_SUB_COMMAND_TYPE;
+	this->commandType 	 = command.getCommandType();
+	this->commandLength  = command.getCommandLength();
+	this->subCommandType = UNKNOWN_SUB_COMMAND_TYPE;
 }
 
-InterpreterCommand::InterpreterCommand(CommandType commandType) {
-	this->commandType  	 = commandType;
+InterpreterCommand::InterpreterCommand() {
+	this->commandType  	 = INTERPRETER_COMMAND;
 	this->commandLength  = 0;
 	this->subCommandType = UNKNOWN_SUB_COMMAND_TYPE;
 }

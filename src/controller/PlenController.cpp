@@ -59,16 +59,16 @@ void PlenController::serialSocketController(Plen* plen){
 	if (!SerialCommunication::getInstance()->available()){
 		return;
 	}
-//	CommandInterface* command = new CommandInterface();
-//	proccessInputChar(plen, SerialCommunication::getInstance()->read(), *command);
+	CommandInterface* command = new CommandInterface();
+	proccessInputChar(plen, SerialCommunication::getInstance()->read(), *command);
 }
 
 void PlenController::tcpSocketController(Plen* plen){
 	if (!wifiController->isSocketClientAvailable(plen)){
 		return;
 	}
-//	CommandInterface* command = new CommandInterface();
-//	proccessInputChar(plen, wifiController->read(plen), *command);
+	CommandInterface* command = new CommandInterface();
+	proccessInputChar(plen, wifiController->read(plen), *command);
 }
 	
 

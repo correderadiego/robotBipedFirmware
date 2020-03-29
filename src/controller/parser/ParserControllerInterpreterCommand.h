@@ -10,7 +10,7 @@
 
 #include "ParserInterface.h"
 #include "bean/Buffer.h"
-#include "bean/commands/InterpreterCommand.h"
+#include "bean/commands/interpreterCommands/InterpreterCommand.h"
 #include "string.h"
 
 #define INTERPRETER_COMMAND_CHAR '#'

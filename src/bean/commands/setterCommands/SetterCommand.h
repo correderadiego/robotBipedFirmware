@@ -8,7 +8,7 @@
 #ifndef SRC_BEAN_COMMANDS_SETTERCOMMAND_H_
 #define SRC_BEAN_COMMANDS_SETTERCOMMAND_H_
 
-#include "CommandInterface.h"
+#include "bean/commands/CommandInterface.h"
 
 class SetterCommand  : public CommandInterface  {
 public:
@@ -32,7 +32,8 @@ public:
 	SetterCommand(CommandType commandType = SETTER_COMMAND);
 	void setSubCommandType	(SubCommandType subCommandType);
 	SubCommandType getSubCommandType ();
-private:
+
+protected:
 	SubCommandType subCommandType;
 };
 

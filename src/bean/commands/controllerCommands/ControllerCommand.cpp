@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <bean/commands/ControllerCommand.h>
+#include "ControllerCommand.h"
 
 ControllerCommand::ControllerCommand(CommandInterface command) {
 	this->commandType 	= command.getCommandType();
@@ -13,9 +13,9 @@ ControllerCommand::ControllerCommand(CommandInterface command) {
 	this->subCommandType = UNKNOWN_SUB_COMMAND_TYPE;
 }
 
-ControllerCommand::ControllerCommand(CommandType commandType) {
-	this->commandType  	 = commandType;
-	this->commandLength  = 0;
+ControllerCommand::ControllerCommand() {
+	this->commandType  	= CONTROLLER_COMMAND;
+	this->commandLength = 0;
 	this->subCommandType = UNKNOWN_SUB_COMMAND_TYPE;
 }
 

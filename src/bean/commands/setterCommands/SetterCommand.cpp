@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <bean/commands/SetterCommand.h>
+#include "SetterCommand.h"
 
 SetterCommand::SetterCommand(CommandInterface command) {
 	this->commandType 	= command.getCommandType();

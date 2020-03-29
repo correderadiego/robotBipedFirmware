@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <bean/commands/GetterCommand.h>
+#include <bean/commands/getterCommands/GetterCommand.h>
 
 GetterCommand::GetterCommand(CommandInterface command) {
 	this->commandType 	= command.getCommandType();
@@ -13,8 +13,8 @@ GetterCommand::GetterCommand(CommandInterface command) {
 	this->subCommandType = UNKNOWN_SUB_COMMAND_TYPE;
 }
 
-GetterCommand::GetterCommand(CommandType commandType) {
-	this->commandType  	 = commandType;
+GetterCommand::GetterCommand() {
+	this->commandType  	 = GETTER_COMMAND;
 	this->commandLength  = 0;
 	this->subCommandType = UNKNOWN_SUB_COMMAND_TYPE;
 }

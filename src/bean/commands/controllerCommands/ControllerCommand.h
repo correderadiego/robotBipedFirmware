@@ -8,7 +8,7 @@
 #ifndef SRC_BEAN_COMMANDS_CONTROLLERCOMMAND_H_
 #define SRC_BEAN_COMMANDS_CONTROLLERCOMMAND_H_
 
-#include "CommandInterface.h"
+#include "bean/commands/CommandInterface.h"
 
 class ControllerCommand : public CommandInterface {
 public:
@@ -27,11 +27,13 @@ public:
 							APPLY_HOME_POSITION
 						};
 	ControllerCommand(CommandInterface command);
-	ControllerCommand(CommandType commandType = CONTROLLER_COMMAND);
+	ControllerCommand();
 	void setSubCommandType	(SubCommandType subCommandType);
 	SubCommandType getSubCommandType();
-private:
+
+protected:
 	SubCommandType subCommandType;
+
 };
 
 #endif /* SRC_BEAN_COMMANDS_CONTROLLERCOMMAND_H_ */

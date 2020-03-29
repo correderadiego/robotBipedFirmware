@@ -8,7 +8,7 @@
 #ifndef SRC_BEAN_COMMANDS_GETTERCOMMAND_H_
 #define SRC_BEAN_COMMANDS_GETTERCOMMAND_H_
 
-#include "CommandInterface.h"
+#include "bean/commands/CommandInterface.h"
 
 class GetterCommand  : public CommandInterface  {
 	public:
@@ -23,10 +23,11 @@ class GetterCommand  : public CommandInterface  {
 						DUMP_VERSION_INFORMATION
 					};
 	GetterCommand(CommandInterface command);
-	GetterCommand(CommandType commandType = GETTER_COMMAND);
+	GetterCommand();
 	void setSubCommandType	(SubCommandType subCommandType);
 	SubCommandType getSubCommandType();
-private:
+
+protected:
 	SubCommandType subCommandType;
 };
 

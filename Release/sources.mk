@@ -53,6 +53,10 @@ libraries/gdb \
 src \
 src/bean \
 src/bean/commands \
+src/bean/commands/controllerCommands \
+src/bean/commands/getterCommands \
+src/bean/commands/interpreterCommands \
+src/bean/commands/setterCommands \
 src/controller \
 src/controller/command \
 src/controller/parser \
