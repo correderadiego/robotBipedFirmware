@@ -8,8 +8,9 @@
 #ifndef SRC_BEAN_BUFFER_H_
 #define SRC_BEAN_BUFFER_H_
 
-#define LENGTH  	128
-#define EMPTY_CHAR '\0'
+#define LENGTH  				128
+#define EMPTY_CHAR 				'\0'
+#define COMMAND_COMPLETE_CHAR 	'\r'
 
 class Buffer {
 public:
@@ -23,10 +24,13 @@ public:
 	int getPosition();
 	char* getData();
 	BufferErrors addChar(char character);
+	bool getCommandComplete();
+	void setCommandComplete(bool commandComplete);
 
 private:
 	char data[LENGTH];
 	int	 position;
+	bool commandComplete;
 
 	void clearBuffer();
 };

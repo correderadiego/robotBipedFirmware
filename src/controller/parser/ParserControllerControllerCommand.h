@@ -21,6 +21,8 @@ public:
 	ParserControllerControllerCommand(ParserInterface parserInterface);
 	bool match(Buffer* buffer);
 	ParserInterface::ParseErrors parse(Buffer* buffer, CommandInterface command);
+	ParserInterface::ParseErrors parseSubCommandType(
+												Buffer* buffer, ControllerCommand command);
 };
 
 #endif /* SRC_CONTROLLER_PARSER_PARSERCONTROLLERCONTROLLERCOMMAND_H_ */

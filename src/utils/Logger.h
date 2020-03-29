@@ -20,7 +20,7 @@ public:
 	};
 	Logger();
 	static Logger* getInstance();
-	void log(String message, LogLevel logLevel);
+	void log(LogLevel logLevel, String message);
 	virtual ~Logger();
 	void setLogLevel(LogLevel loglevel);
 

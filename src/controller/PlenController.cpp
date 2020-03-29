@@ -14,14 +14,16 @@ PlenController::PlenController(
 		EyeController*	   eyeController,
 		WifiController*	   wifiController,
 		HttpServerController* httpServerController,
-		ExternalFileSystemController* externalFileSystemController) {
+		ExternalFileSystemController* externalFileSystemController,
+		ParserController*	parserController) {
 		this->jointController 				= jointController;
 		this->motionController				= motionController;
-		this->interpreter	  				= interpreter;
-		this->eyeController	  				= eyeController;
+		this->interpreter	  			= interpreter;
+		this->eyeController	  			= eyeController;
 		this->wifiController  				= wifiController;
 		this->httpServerController			= httpServerController;
-		this->externalFileSystemController 	= externalFileSystemController;
+		this->externalFileSystemController 		= externalFileSystemController;
+		this->parserController				= parserController;
 }
 
 void PlenController::initPlenController(Plen* plen){
@@ -49,23 +51,48 @@ void PlenController::executeThreadTasks(Plen* plen){
 }
 
 void PlenController::socketController(Plen* plen){
-	serialSocketController();
+	serialSocketController(plen);
 	tcpSocketController(plen);
 }
 
-void PlenController::serialSocketController(){
+void PlenController::serialSocketController(Plen* plen){
 	if (!SerialCommunication::getInstance()->available()){
 		return;
 	}
-
-	//readByte(SerialCommunication::getInstance()->read());
+//	CommandInterface* command = new CommandInterface();
+//	proccessInputChar(plen, SerialCommunication::getInstance()->read(), *command);
 }
 
 void PlenController::tcpSocketController(Plen* plen){
 	if (!wifiController->isSocketClientAvailable(plen)){
 		return;
 	}
+//	CommandInterface* command = new CommandInterface();
+//	proccessInputChar(plen, wifiController->read(plen), *command);
+}
+	
 
-	//Buffer::BufferErrors bufferError = plen->getBuffer()->addChar(wifiController->read(plen));
+void PlenController::proccessInputChar(Plen* plen, char character, CommandInterface command){
+	Buffer::BufferErrors bufferError = plen->getBuffer()->addChar(character);
 
+	if(bufferError == Buffer::BUFFER_FULL_ERROR){
+		Logger::getInstance()->log(Logger::ERROR, F("Full buffer error"));
+		return;
+	}
+
+	if(!plen->getBuffer()->getCommandComplete()){
+		return;
+	}
+
+	ParserInterface::ParseErrors parseError = parserController->parse(plen->getBuffer(), command);
+
+	if(parseError == ParserInterface::INCOMPLETE_COMMAND){
+		Logger::getInstance()->log(Logger::ERROR, F("Incomplete command"));
+		return;
+	}
+
+	if(parseError == ParserInterface::UNKNOWN_COMMAND){
+		Logger::getInstance()->log(Logger::ERROR, F("Unknown command"));
+		return;
+	}
 }

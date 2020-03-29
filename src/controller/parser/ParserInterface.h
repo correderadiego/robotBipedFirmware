@@ -18,7 +18,7 @@ class ParserInterface{
 
 	enum ParseErrors{
 	  UNKNOWN_COMMAND,
-	  INCOMPLETE_MESSAGE = -1,
+	  INCOMPLETE_COMMAND = -1,
 	  NO_ERROR 			 =  0
 	};
 

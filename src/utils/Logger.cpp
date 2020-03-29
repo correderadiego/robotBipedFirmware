@@ -23,7 +23,7 @@ void Logger::setLogLevel(LogLevel logLevel){
 	this->logLevel = logLevel;
 }
 
-void Logger::log(String message, LogLevel logLevel){
+void Logger::log(LogLevel logLevel, String message){
 	if(this->logLevel < logLevel){
 		return;
 	}

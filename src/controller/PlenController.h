@@ -19,21 +19,25 @@
 #include "WifiController.h"
 #include "HttpServerController.h"
 #include "ExternalFileSystemController.h"
+#include "controller/parser/ParserController.h"
+#include "bean/commands/CommandInterface.h"
 
 #include "bean/Plen.h"
 #include "hardware/SerialCommunication.h"
 #include "bean/Buffer.h"
+#include "utils/Logger.h"
 
 class PlenController{
 public:
 	PlenController(
-			JointController*  jointController,
-			MotionController* motionController,
-			Interpreter*      interpreter,
-			EyeController*	  eyeController,
-			WifiController*   wifiController,
-			HttpServerController* HttpServerController,
-			ExternalFileSystemController* externalFileSystemController);
+			JointController*  				jointController,
+			MotionController* 				motionController,
+			Interpreter*      				interpreter,
+			EyeController*	  				eyeController,
+			WifiController*   				wifiController,
+			HttpServerController* 			HttpServerController,
+			ExternalFileSystemController* 	externalFileSystemController,
+			ParserController*				parserController);
 	void executeThreadTasks(Plen* plen);
 
 private:
@@ -44,13 +48,14 @@ private:
 	WifiController*   				wifiController;
 	HttpServerController* 			httpServerController;
 	ExternalFileSystemController* 	externalFileSystemController;
+	ParserController*				parserController;
 	void initPlenController(Plen* plen);
+	void loadFileConfiguration(Plen* plen);
 
 	void socketController(Plen* plen);
-	void serialSocketController();
+	void proccessInputChar(Plen* plen, char character, CommandInterface command);
+	void serialSocketController(Plen* plen);
 	void tcpSocketController(Plen* plen);
-
-	void loadFileConfiguration(Plen* plen);
 };
 
 #endif /* SRC_PLENCONTROLLER_H_ */

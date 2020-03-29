@@ -11,7 +11,7 @@ ParserController::ParserController() {}
 
 ParserInterface::ParseErrors ParserController::parse(Buffer* buffer,  CommandInterface command){
 	if (buffer->getPosition()< MIN_MESSAGE_SIZE){
-			return ParserInterface::INCOMPLETE_MESSAGE;
+			return ParserInterface::INCOMPLETE_COMMAND;
 	}
 
 	for (unsigned int i= 0; i < sizeof(parseController)/sizeof(parseController[0]); i++) {

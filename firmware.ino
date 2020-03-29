@@ -3,7 +3,7 @@
 #include "bean/PlenFactory.h"
 #include "controller/PlenController.h"
 #include "controller/PlenControllerFactory.h"
-
+#include "controller/parser/ParserController.h"
 PlenController*		plenController;
 Plen*				plen;
 

@@ -18,6 +18,8 @@ PlenController* PlenControllerFactory::getPlenController(){
 	WifiController* wifiController		= new WifiController();
 	HttpServerController* httpServerController = new HttpServerController();
 	ExternalFileSystemController* externalFileSystemController = new ExternalFileSystemController();
+	ParserController* parserController = new ParserController();
+
 
 	return new PlenController(
 			jointController,
@@ -26,5 +28,6 @@ PlenController* PlenControllerFactory::getPlenController(){
 			eyeController,
 			wifiController,
 			httpServerController,
-			externalFileSystemController);
+			externalFileSystemController,
+			parserController);
 }

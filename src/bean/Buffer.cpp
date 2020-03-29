@@ -20,6 +20,7 @@ void Buffer::clearBuffer(){
 	for (unsigned char index = 0; index < LENGTH; index++){
 		data[index] = EMPTY_CHAR;
 	}
+	commandComplete = false;
 }
 
 char* Buffer::getData(){
@@ -32,12 +33,17 @@ Buffer::BufferErrors Buffer::addChar(char character){
 		return BUFFER_FULL_ERROR;
 	}
 
-	if(character == '/r'){
-		return COMMAND_COMPLETE;
+	if(character == COMMAND_COMPLETE_CHAR){
+		commandComplete = true;
+		return NO_ERROR;
 	}
 
 	data[position] = character;
 	position ++;
 	data[position] = '\0';
 	return NO_ERROR;
+}
+
+bool Buffer::getCommandComplete(){
+	return commandComplete;
 }
