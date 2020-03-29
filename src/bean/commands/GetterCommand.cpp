@@ -19,14 +19,10 @@ GetterCommand::GetterCommand(CommandType commandType) {
 	this->subCommandType = UNKNOWN_SUB_COMMAND_TYPE;
 }
 
-void GetterCommand::setCommandType(CommandType commandType){
-	this->commandType = commandType;
+void GetterCommand::setSubCommandType(SubCommandType subCommandType){
+	this->subCommandType = subCommandType;
 }
 
-int GetterCommand::getCommandLength(){
-	return this->commandLength;
-}
-
-CommandInterface::CommandType GetterCommand::getCommandType(){
-	return this->commandType;
+GetterCommand::SubCommandType GetterCommand::getSubCommandType(){
+	return this->subCommandType;
 }

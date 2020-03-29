@@ -19,9 +19,8 @@ class ParserControllerGetterCommand : public ParserInterface {
 public:
 	ParserControllerGetterCommand();
 	ParserControllerGetterCommand(ParserInterface parserInterface);
-	virtual ~ParserControllerGetterCommand();
 	bool match(Buffer* buffer);
-	ParserInterface::ParseErrors parse(Buffer* buffer, GetterCommand command);
+	ParserInterface::ParseErrors parse(Buffer* buffer, CommandInterface command);
 };
 
 #endif /* SRC_CONTROLLER_PARSER_PARSERCONTROLLERGETTERCOMMAND_H_ */

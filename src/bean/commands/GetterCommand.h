@@ -25,10 +25,7 @@ class GetterCommand  : public CommandInterface  {
 	GetterCommand(CommandInterface command);
 	GetterCommand(CommandType commandType = GETTER_COMMAND);
 	void setSubCommandType	(SubCommandType subCommandType);
-	void setCommandType		(CommandType commandType);
-	int getCommandLength	();
-	CommandInterface::CommandType getCommandType();
-
+	SubCommandType getSubCommandType();
 private:
 	SubCommandType subCommandType;
 };

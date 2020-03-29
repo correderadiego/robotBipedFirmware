@@ -19,7 +19,6 @@ class ParserControllerControllerCommand : public ParserInterface{
 public:
 	ParserControllerControllerCommand();
 	ParserControllerControllerCommand(ParserInterface parserInterface);
-	virtual ~ParserControllerControllerCommand();
 	bool match(Buffer* buffer);
 	ParserInterface::ParseErrors parse(Buffer* buffer, CommandInterface command);
 };

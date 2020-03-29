@@ -19,9 +19,8 @@ class ParserControllerSetterCommand : public ParserInterface  {
 public:
 	ParserControllerSetterCommand();
 	ParserControllerSetterCommand(ParserInterface parserInterface);
-	virtual ~ParserControllerSetterCommand();
 	bool match(Buffer* buffer);
-	ParserInterface::ParseErrors parse(Buffer* buffer, SetterCommand command);
+	ParserInterface::ParseErrors parse(Buffer* buffer, CommandInterface command);
 };
 
 #endif /* SRC_CONTROLLER_PARSER_PARSERCONTROLLERSETTERCOMMAND_H_ */

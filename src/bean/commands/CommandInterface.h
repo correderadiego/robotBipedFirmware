@@ -17,10 +17,11 @@ class CommandInterface {
 						  SETTER_COMMAND,
 						  GETTER_COMMAND
 						};
-	virtual ~CommandInterface();
-	virtual void setCommandType		(CommandType commandType);
-	virtual int getCommandLength	();
-	virtual CommandInterface::CommandType getCommandType();
+
+	void setCommandType		(CommandType commandType);
+	CommandInterface::CommandType getCommandType();
+	int getCommandLength	();
+	void setCommandLength(int commandLength);
 
 	protected:
 		CommandType commandType;

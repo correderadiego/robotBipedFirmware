@@ -26,9 +26,7 @@ public:
 	InterpreterCommand(CommandInterface command);
 	InterpreterCommand(CommandType commandType = INTERPRETER_COMMAND);
 	void setSubCommandType	(SubCommandType subCommandType);
-	void setCommandType		(CommandType commandType);
-	int getCommandLength	();
-	CommandInterface::CommandType getCommandType();
+	SubCommandType getSubCommandType();
 
 private:
 	SubCommandType subCommandType;

@@ -162,6 +162,18 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/PlenControllerFactory.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/PlenController.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/WifiController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/CommandInterface.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserInterface.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerControllerCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/ControllerCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/CommandInterface.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerInterpreterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/InterpreterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerSetterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/SetterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerGetterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/GetterCommand.h \
  ../firmware.ino
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/Arduino.h:
@@ -489,5 +501,29 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/PlenController.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/WifiController.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserController.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/CommandInterface.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserInterface.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerControllerCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/ControllerCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/CommandInterface.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerInterpreterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/InterpreterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerSetterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/SetterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerGetterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/GetterCommand.h:
 
 ../firmware.ino:

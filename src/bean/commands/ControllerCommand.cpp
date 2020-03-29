@@ -23,14 +23,6 @@ void ControllerCommand::setSubCommandType(SubCommandType subCommandType){
 	this->subCommandType = subCommandType;
 }
 
-void ControllerCommand::setCommandType(CommandType commandType){
-	this->commandType = commandType;
-}
-
-int ControllerCommand::getCommandLength(){
-	return this->commandLength;
-}
-
-CommandInterface::CommandType ControllerCommand::getCommandType(){
-	return this->commandType;
+ControllerCommand::SubCommandType ControllerCommand::getSubCommandType(){
+	return this->subCommandType;
 }

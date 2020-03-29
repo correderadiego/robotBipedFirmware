@@ -31,9 +31,7 @@ public:
 	SetterCommand(CommandInterface command);
 	SetterCommand(CommandType commandType = SETTER_COMMAND);
 	void setSubCommandType	(SubCommandType subCommandType);
-	void setCommandType		(CommandType commandType);
-	int getCommandLength	();
-	CommandInterface::CommandType getCommandType();
+	SubCommandType getSubCommandType ();
 private:
 	SubCommandType subCommandType;
 };

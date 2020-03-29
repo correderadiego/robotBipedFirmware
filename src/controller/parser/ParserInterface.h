@@ -24,7 +24,6 @@ class ParserInterface{
 
     virtual bool match(Buffer* buffer);
     virtual ParserInterface::ParseErrors parse(Buffer* buffer, CommandInterface command);
-    virtual ~ParserInterface();
 };
 
 

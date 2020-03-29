@@ -8,9 +8,9 @@
 #include <bean/commands/InterpreterCommand.h>
 
 InterpreterCommand::InterpreterCommand(CommandInterface command) {
-	this->commandType 	= command.getCommandType();
-	this->commandLength = command.getCommandLength();
-	this->subCommandType = UNKNOWN_SUB_COMMAND_TYPE;
+	//this->commandType 	= command.getCommandType();
+	//this->commandLength = command.getCommandLength();
+	//this->subCommandType = UNKNOWN_SUB_COMMAND_TYPE;
 }
 
 InterpreterCommand::InterpreterCommand(CommandType commandType) {
@@ -23,14 +23,6 @@ void InterpreterCommand::setSubCommandType(SubCommandType subCommandType){
 	this->subCommandType = subCommandType;
 }
 
-void InterpreterCommand::setCommandType(CommandType commandType){
-	this->commandType = commandType;
-}
-
-int InterpreterCommand::getCommandLength(){
-	return this->commandLength;
-}
-
-CommandInterface::CommandType InterpreterCommand::getCommandType(){
-	return this->commandType;
+InterpreterCommand::SubCommandType InterpreterCommand::getSubCommandType(){
+	return this->subCommandType;
 }

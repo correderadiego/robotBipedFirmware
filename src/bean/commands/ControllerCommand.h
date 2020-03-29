@@ -29,10 +29,7 @@ public:
 	ControllerCommand(CommandInterface command);
 	ControllerCommand(CommandType commandType = CONTROLLER_COMMAND);
 	void setSubCommandType	(SubCommandType subCommandType);
-	void setCommandType		(CommandType commandType);
-	int getCommandLength	();
-	CommandInterface::CommandType getCommandType();
-
+	SubCommandType getSubCommandType();
 private:
 	SubCommandType subCommandType;
 };

@@ -19,9 +19,8 @@ class ParserControllerInterpreterCommand : public ParserInterface {
 public:
 	ParserControllerInterpreterCommand();
 	ParserControllerInterpreterCommand(ParserInterface parserInterface);
-	virtual ~ParserControllerInterpreterCommand();
 	bool match(Buffer* buffer);
-	ParserInterface::ParseErrors parse(Buffer* buffer, InterpreterCommand command);
+	ParserInterface::ParseErrors parse(Buffer* buffer, CommandInterface command);
 };
 
 #endif /* SRC_CONTROLLER_PARSER_PARSERCONTROLLERINTERPRETERCOMMAND_H_ */

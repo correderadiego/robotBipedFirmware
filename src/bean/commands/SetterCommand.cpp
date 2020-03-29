@@ -23,14 +23,6 @@ void SetterCommand::setSubCommandType(SubCommandType subCommandType){
 	this->subCommandType = subCommandType;
 }
 
-void SetterCommand::setCommandType(CommandType commandType){
-	this->commandType = commandType;
-}
-
-int SetterCommand::getCommandLength(){
-	return this->commandLength;
-}
-
-CommandInterface::CommandType SetterCommand::getCommandType(){
-	return this->commandType;
+SetterCommand::SubCommandType SetterCommand::getSubCommandType(){
+	return this->subCommandType;
 }
