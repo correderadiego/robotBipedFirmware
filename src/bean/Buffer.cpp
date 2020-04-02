@@ -12,12 +12,12 @@ Buffer::Buffer(int position) {
 	clearBuffer();
 }
 
-int Buffer::getPosition(){
+int Buffer::getLenght(){
 	return this->position;
 }
 
 void Buffer::clearBuffer(){
-	for (unsigned char index = 0; index < LENGTH; index++){
+	for (unsigned char index = 0; index < SIZE; index++){
 		data[index] = EMPTY_CHAR;
 	}
 	commandComplete = false;
@@ -28,7 +28,7 @@ char* Buffer::getData(){
 }
 
 Buffer::BufferErrors Buffer::addChar(char character){
-	if(position >= LENGTH){
+	if(position >= SIZE){
 		clearBuffer();
 		return BUFFER_FULL_ERROR;
 	}

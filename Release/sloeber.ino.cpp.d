@@ -154,10 +154,25 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserInterface.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerControllerCommand.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/controllerCommands/ControllerCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/controllerCommands/ApplyNativeValueCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/controllerCommands/ControllerCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/controllerCommands/ApplyDiffValueCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/controllerCommands/PlayAMotionCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/controllerCommands/StopAMotionCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/controllerCommands/ApplyHomePositionCommand.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerInterpreterCommand.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/interpreterCommands/InterpreterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/interpreterCommands/PopAFunctionCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/interpreterCommands/InterpreterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/interpreterCommands/PushAFunctionCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/interpreterCommands/ResetInterpreterCommand.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerSetterCommand.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/setterCommands/SetterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/setterCommands/ResetJointSettingsCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/setterCommands/SetterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/setterCommands/SetHomeValueCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/setterCommands/SetMaxValueCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/setterCommands/SetMinValueCommand.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerGetterCommand.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/getterCommands/GetterCommand.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessController.h \
@@ -493,13 +508,43 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/controllerCommands/ControllerCommand.h:
 
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/controllerCommands/ApplyNativeValueCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/controllerCommands/ControllerCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/controllerCommands/ApplyDiffValueCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/controllerCommands/PlayAMotionCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/controllerCommands/StopAMotionCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/controllerCommands/ApplyHomePositionCommand.h:
+
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerInterpreterCommand.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/interpreterCommands/InterpreterCommand.h:
 
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/interpreterCommands/PopAFunctionCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/interpreterCommands/InterpreterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/interpreterCommands/PushAFunctionCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/interpreterCommands/ResetInterpreterCommand.h:
+
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerSetterCommand.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/setterCommands/SetterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/setterCommands/ResetJointSettingsCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/setterCommands/SetterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/setterCommands/SetHomeValueCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/setterCommands/SetMaxValueCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/setterCommands/SetMinValueCommand.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerGetterCommand.h:
 

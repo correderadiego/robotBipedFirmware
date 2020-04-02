@@ -5,9 +5,9 @@
  *      Author: ziash
  */
 
-#include <bean/commands/getterCommands/DumpVersionInformation.h>
+#include <bean/commands/getterCommands/DumpVersionInformationCommand.h>
 
-DumpVersionInformation::DumpVersionInformation() {
+DumpVersionInformationCommand::DumpVersionInformationCommand() {
 	this->subCommandType = DUMP_VERSION_INFORMATION;
 }
 

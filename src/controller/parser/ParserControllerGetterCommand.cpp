@@ -22,24 +22,46 @@ bool ParserControllerGetterCommand::match(Buffer* buffer){
 ParserInterface::ParseErrors ParserControllerGetterCommand::parse(
 									Buffer* buffer, CommandInterface command){
 
-//	char commandSequence[2] = {};
-//	strncpy ( commandSequence, &buffer->getData()[1], 2);
-//
-//	if( strcmp(commandSequence, DUMP_JOINT_SETTINGS_CHAR) == 0){
-//		((GetterCommand)command).setSubCommandType(GetterCommand::DUMP_JOINT_SETTINGS);
-//		return ParserInterface::NO_ERROR;
-//	}
-//
-//	if( strcmp(commandSequence, DUMP_A_MOTION_CHAR) == 0){
-//		((GetterCommand)command).setSubCommandType(GetterCommand::DUMP_A_MOTION);
-//		return ParserInterface::NO_ERROR;
-//	}
-//
-//	if( strcmp(commandSequence, DUMP_VERSION_INFORMATION_CHAR) == 0){
-//		((GetterCommand)command).setSubCommandType(GetterCommand::DUMP_VERSION_INFORMATION);
-//		return ParserInterface::NO_ERROR;
-//	}
-//
-//	((GetterCommand)command).setSubCommandType(GetterCommand::UNKNOWN_SUB_COMMAND_TYPE);
+	char commandSequence[2] = {};
+	strncpy ( commandSequence, &buffer->getData()[1], 2);
+
+	if( strcmp(commandSequence, DUMP_JOINT_SETTINGS_CHAR) == 0){
+		return parseDumpJointSettingsCommand(buffer, command);
+	}
+
+	if( strcmp(commandSequence, DUMP_A_MOTION_CHAR) == 0){
+		return parseDumpMotionCommand(buffer, command);
+	}
+
+	if( strcmp(commandSequence, DUMP_VERSION_INFORMATION_CHAR) == 0){
+		return parseDumpMotionVersionInformationCommand(buffer, command);
+	}
 	return ParserInterface::UNKNOWN_COMMAND_ERROR;
+}
+
+ParserInterface::ParseErrors ParserControllerGetterCommand::parseDumpJointSettingsCommand(
+			Buffer* buffer, CommandInterface command){
+	if(buffer->getLenght() != DUMP_JOINT_SETTING_COMMAND_LENGHT){
+		return WRONG_LENGHT_COMMAND_ERROR;
+	}
+	command = *(new DumpJointSettingsCommand());
+	return NO_ERROR;
+}
+
+ParserInterface::ParseErrors ParserControllerGetterCommand::parseDumpMotionCommand(
+	Buffer* buffer, CommandInterface command){
+	if(buffer->getLenght() != DUMP_MOTION_COMMAND_LENGHT){
+		return WRONG_LENGHT_COMMAND_ERROR;
+	}
+	command = *(new DumpMotionCommand());
+	return NO_ERROR;
+}
+
+ParserInterface::ParseErrors ParserControllerGetterCommand::parseDumpMotionVersionInformationCommand(
+	Buffer* buffer, CommandInterface command){
+	if(buffer->getLenght() != DUMP_MOTION_VERSION_INFORMATION_COMMAND_LENGTH){
+		return WRONG_LENGHT_COMMAND_ERROR;
+	}
+	command = *(new DumpVersionInformationCommand());
+	return NO_ERROR;
 }

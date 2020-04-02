@@ -5,9 +5,9 @@
  *      Author: ziash
  */
 
-#include <bean/commands/getterCommands/DumJointSettingsCommand.h>
+#include <bean/commands/getterCommands/DumpJointSettingsCommand.h>
 
-DumJointSettingsCommand::DumJointSettingsCommand() {
+DumpJointSettingsCommand::DumpJointSettingsCommand() {
 	this->subCommandType = DUMP_JOINT_SETTINGS;
 }
 

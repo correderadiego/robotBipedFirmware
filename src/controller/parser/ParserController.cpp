@@ -10,7 +10,7 @@
 ParserController::ParserController() {}
 
 ParserInterface::ParseErrors ParserController::parse(Buffer* buffer,  CommandInterface command){
-	if (buffer->getPosition()< MIN_MESSAGE_SIZE){
+	if (buffer->getLenght()< MIN_MESSAGE_SIZE){
 			return ParserInterface::WRONG_LENGHT_COMMAND_ERROR;
 	}
 

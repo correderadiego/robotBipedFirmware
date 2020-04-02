@@ -22,39 +22,86 @@ bool ParserControllerSetterCommand::match(Buffer* buffer){
 ParserInterface::ParseErrors ParserControllerSetterCommand::parse(
 		Buffer* buffer, CommandInterface command){
 
-//	char commandSequence[2] = {};
-//	strncpy ( commandSequence, &buffer->getData()[1], 2);
-//
-//	if( strcmp(commandSequence, SET_MOTION_HEADER_CHAR) == 0){
-//		((SetterCommand)command).setSubCommandType(SetterCommand::SET_MOTION_HEADER);
-//		return ParserInterface::NO_ERROR;
-//	}
-//
-//	if( strcmp(commandSequence, SET_MOTION_FRAME_CHAR) == 0){
-//		((SetterCommand)command).setSubCommandType(SetterCommand::SET_MOTION_FRAME);
-//		return ParserInterface::NO_ERROR;
-//	}
-//
-//	if( strcmp(commandSequence, RESET_JOINT_SETTINGS_CHAR) == 0){
-//		((SetterCommand)command).setSubCommandType(SetterCommand::RESET_JOINT_SETTINGS);
-//		return ParserInterface::NO_ERROR;
-//	}
-//
-//	if( strcmp(commandSequence, SET_HOME_VALUE_CHAR) == 0){
-//		((SetterCommand)command).setSubCommandType(SetterCommand::SET_HOME_VALUE);
-//		return ParserInterface::NO_ERROR;
-//	}
-//
-//	if( strcmp(commandSequence, SET_MAX_VALUE_CHAR) == 0){
-//		((SetterCommand)command).setSubCommandType(SetterCommand::SET_MAX_VALUE);
-//		return ParserInterface::NO_ERROR;
-//	}
-//
-//	if( strcmp(commandSequence, SET_MIN_VALUE_CHAR) == 0){
-//		((SetterCommand)command).setSubCommandType(SetterCommand::SET_MIN_VALUE);
-//		return ParserInterface::NO_ERROR;
-//	}
-//
-//	((SetterCommand)command).setSubCommandType(SetterCommand::UNKNOWN_SUB_COMMAND_TYPE);
+	char commandSequence[2] = {};
+	strncpy ( commandSequence, &buffer->getData()[1], 2);
+
+	if( strcmp(commandSequence, SET_MOTION_HEADER_CHAR) == 0){
+		return parseSetMotionHeaderCommand(buffer, command);
+	}
+
+	if( strcmp(commandSequence, SET_MOTION_FRAME_CHAR) == 0){
+		return parseSetMotionFrameCommand(buffer, command);
+	}
+
+	if( strcmp(commandSequence, RESET_JOINT_SETTINGS_CHAR) == 0){
+		return parseResetJointSettingsCommand(buffer, command);
+	}
+
+	if( strcmp(commandSequence, SET_HOME_VALUE_CHAR) == 0){
+		return parseSetHomeCommand(buffer, command);
+	}
+
+	if( strcmp(commandSequence, SET_MAX_VALUE_CHAR) == 0){
+		return parseSetMaxValueCommand(buffer, command);
+	}
+
+	if( strcmp(commandSequence, SET_MIN_VALUE_CHAR) == 0){
+		return parseSetMinValueCommand(buffer, command);
+	}
+
 	return ParserInterface::UNKNOWN_COMMAND_ERROR;
+}
+
+ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMotionHeaderCommand(
+		Buffer* buffer, CommandInterface command){
+	if(buffer->getLenght() != SET_MOTION_HEADER_COMMAND_LENGHT){
+		return WRONG_LENGHT_COMMAND_ERROR;
+	}
+	//command = *(new Set());
+	return NO_ERROR;
+}
+
+ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMotionFrameCommand(
+		Buffer* buffer, CommandInterface command){
+	if(buffer->getLenght() != SET_MOTION_FRAME_COMMAND_LENGHT){
+		return WRONG_LENGHT_COMMAND_ERROR;
+	}
+	//command = *(new PopAFunctionCommand());
+	return NO_ERROR;
+}
+
+ParserInterface::ParseErrors ParserControllerSetterCommand::parseResetJointSettingsCommand(
+		Buffer* buffer, CommandInterface command){
+	if(buffer->getLenght() != RESET_JOINT_SETTINGS_COMMAND_LENGHT){
+		return WRONG_LENGHT_COMMAND_ERROR;
+	}
+	command = *(new ResetJointSettingsCommand());
+	return NO_ERROR;
+}
+
+ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetHomeCommand(
+		Buffer* buffer, CommandInterface command){
+	if(buffer->getLenght() != SET_HOME_COMMAND_LENGTH){
+		return WRONG_LENGHT_COMMAND_ERROR;
+	}
+	command = *(new SetHomeValueCommand());
+	return NO_ERROR;
+}
+
+ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMaxValueCommand(
+		Buffer* buffer, CommandInterface command){
+	if(buffer->getLenght() != SET_MAX_VALUE_COMMAND_LENGHT){
+		return WRONG_LENGHT_COMMAND_ERROR;
+	}
+	command = *(new SetMaxValueCommand());
+	return NO_ERROR;
+}
+
+ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMinValueCommand(
+		Buffer* buffer, CommandInterface command){
+	if(buffer->getLenght() != SET_MIN_VALUE_COMMAND_LENGHT){
+		return WRONG_LENGHT_COMMAND_ERROR;
+	}
+	command = *(new SetMinValueCommand());
+	return NO_ERROR;
 }

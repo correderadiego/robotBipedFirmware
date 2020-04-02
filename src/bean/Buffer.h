@@ -8,7 +8,7 @@
 #ifndef SRC_BEAN_BUFFER_H_
 #define SRC_BEAN_BUFFER_H_
 
-#define LENGTH  				128
+#define SIZE  				128
 #define EMPTY_CHAR 				'\0'
 #define COMMAND_COMPLETE_CHAR 	'\r'
 
@@ -20,14 +20,14 @@ public:
 	};
 
 	Buffer(int position = 0);
-	int getPosition();
+	int getLenght();
 	char* getData();
 	BufferErrors addChar(char character);
 	bool getCommandComplete();
 	void setCommandComplete(bool commandComplete);
 
 private:
-	char data[LENGTH];
+	char data[SIZE];
 	int	 position;
 	bool commandComplete;
 

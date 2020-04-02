@@ -21,44 +21,73 @@ bool ParserControllerControllerCommand::match(Buffer* buffer){
 
 ParserInterface::ParseErrors ParserControllerControllerCommand::parse(
 											Buffer* buffer, CommandInterface command){
-	ParseErrors parseError = parseSubCommandType(buffer, command);
-	if(parseError != NO_ERROR){
-		return parseError;
-	}
-	//int number = (int)strtol(hexstring, NULL, 16);
-}
-
-ParserInterface::ParseErrors ParserControllerControllerCommand::parseSubCommandType(
-											Buffer* buffer, ControllerCommand command){
 	char commandSequence[2] = {};
 	strncpy ( commandSequence, &buffer->getData()[1], 2);
 
 	if( strcmp(commandSequence, APPY_NATIVE_CHAR) == 0){
-		((ControllerCommand)command).setSubCommandType(ControllerCommand::APPY_NATIVE_VALUE);
-		return ParserControllerControllerCommand::NO_ERROR;
+		return parseApplyNativeValueCommand(buffer, command);
 	}
 
 	if( strcmp(commandSequence, APPLY_DIFF_CHAR) == 0){
-		((ControllerCommand)command).setSubCommandType(ControllerCommand::APPLY_DIFF_VALUE);
-		return ParserControllerControllerCommand::NO_ERROR;
+		return parseApplyDiffCommand(buffer, command);
 	}
 
 	if( strcmp(commandSequence, PLAY_A_MOTION_CHAR) == 0){
-		((ControllerCommand)command).setSubCommandType(ControllerCommand::PLAY_A_MOTION);
-		return ParserControllerControllerCommand::NO_ERROR;
+		return parsePlayAMotionCommand(buffer, command);
 	}
 
 	if( strcmp(commandSequence, STOP_A_MOTION_CHAR) == 0){
-		((ControllerCommand)command).setSubCommandType(ControllerCommand::STOP_A_MOTION);
-		return ParserControllerControllerCommand::NO_ERROR;
+		return parseStopAMotionCommand(buffer, command);
 	}
 
 	if( strcmp(commandSequence, APPLY_HOME_POSITION_CHAR) == 0){
-		((ControllerCommand)command).setSubCommandType(ControllerCommand::APPLY_HOME_POSITION);
-		return ParserControllerControllerCommand::NO_ERROR;
+		return parseApplyHomePositionCommand(buffer, command);
 	}
 
-	((ControllerCommand)command).setSubCommandType(ControllerCommand::UNKNOWN_SUB_COMMAND_TYPE);
 	return ParserControllerControllerCommand::UNKNOWN_COMMAND_ERROR;
 }
 
+ParserInterface::ParseErrors ParserControllerControllerCommand::parseApplyNativeValueCommand(
+		Buffer* buffer, ControllerCommand command){
+	if(buffer->getLenght() != APPLY_NATIVE_COMMAND_LENGTH){
+		return WRONG_LENGHT_COMMAND_ERROR;
+	}
+	command = *(new ApplyNativeValueCommand());
+	return NO_ERROR;
+}
+
+ParserInterface::ParseErrors ParserControllerControllerCommand::parseApplyDiffCommand(
+		Buffer* buffer, ControllerCommand command){
+	if(buffer->getLenght() != APPLY_DIFF_COMMAND_LENGTH){
+		return WRONG_LENGHT_COMMAND_ERROR;
+	}
+	command = *(new ApplyDiffValueCommand());
+	return NO_ERROR;
+}
+
+ParserInterface::ParseErrors ParserControllerControllerCommand::parsePlayAMotionCommand(
+		Buffer* buffer, ControllerCommand command){
+	if(buffer->getLenght() != HOME_POSITION_COMMAND_LENGTH){
+		return WRONG_LENGHT_COMMAND_ERROR;
+	}
+	command = *(new PlayAMotionCommand());
+	return NO_ERROR;
+}
+
+ParserInterface::ParseErrors ParserControllerControllerCommand::parseStopAMotionCommand(
+		Buffer* buffer, ControllerCommand command){
+	if(buffer->getLenght() != PLAY_MOTION_COMMAND_LENGTH){
+		return WRONG_LENGHT_COMMAND_ERROR;
+	}
+	command = *(new StopAMotionCommand());
+	return NO_ERROR;
+}
+
+ParserInterface::ParseErrors ParserControllerControllerCommand::parseApplyHomePositionCommand(
+		Buffer* buffer, ControllerCommand command){
+	if(buffer->getLenght() != STOP_MOTION_COMMAND_LENGTH){
+		return WRONG_LENGHT_COMMAND_ERROR;
+	}
+	command = *(new ApplyHomePositionCommand());
+	return NO_ERROR;
+}

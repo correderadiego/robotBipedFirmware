@@ -23,23 +23,46 @@ ParserInterface::ParseErrors ParserControllerInterpreterCommand::parse(
 									Buffer* buffer, CommandInterface command){
 
 	((InterpreterCommand)command);
-//	char commandSequence[2] = {};
-//	strncpy ( commandSequence, &buffer->getData()[1], 2);
-//	if( strcmp(commandSequence, PUSH_FUNCTION_CHAR) == 0){
-//		command.setSubCommandType(InterpreterCommand::PUSH_FUNCTION_VALUE);
-//		return ParserInterface::NO_ERROR;
-//	}
-//
-//	if( strcmp(commandSequence, POP_FUNCTION_CHAR) == 0){
-//		command.setSubCommandType(InterpreterCommand::POP_FUNCTION_VALUE);
-//		return ParserInterface::NO_ERROR;
-//	}
-//
-//	if( strcmp(commandSequence, RESET_INTERPRETER_CHAR) == 0){
-//		command.setSubCommandType(InterpreterCommand::RESET_INTERPRETER);
-//		return ParserInterface::NO_ERROR;
-//	}
-//
-//	command.setSubCommandType(InterpreterCommand::UNKNOWN_SUB_COMMAND_TYPE);
+	char commandSequence[2] = {};
+	strncpy ( commandSequence, &buffer->getData()[1], 2);
+	if( strcmp(commandSequence, PUSH_FUNCTION_CHAR) == 0){
+		return parsePushCodeCommand(buffer, command);
+	}
+
+	if( strcmp(commandSequence, POP_FUNCTION_CHAR) == 0){
+		return parsePopCodeCommand(buffer, command);
+	}
+
+	if( strcmp(commandSequence, RESET_INTERPRETER_CHAR) == 0){
+		return parseResetInterpreterCommand(buffer, command);
+	}
+
 	return ParserInterface::UNKNOWN_COMMAND_ERROR;
+}
+
+ParserInterface::ParseErrors ParserControllerInterpreterCommand::parsePopCodeCommand(
+		Buffer* buffer, CommandInterface command){
+	if(buffer->getLenght() != POP_CODE_COMMAND_LENGTH){
+		return WRONG_LENGHT_COMMAND_ERROR;
+	}
+	command = *(new PopAFunctionCommand());
+	return NO_ERROR;
+}
+
+ParserInterface::ParseErrors ParserControllerInterpreterCommand::parsePushCodeCommand(
+		Buffer* buffer, CommandInterface command){
+	if(buffer->getLenght() != PUSH_CODE_COMMAND_LENGTH){
+		return WRONG_LENGHT_COMMAND_ERROR;
+	}
+	command = *(new PushAFunctionCommand());
+	return NO_ERROR;
+}
+
+ParserInterface::ParseErrors ParserControllerInterpreterCommand::parseResetInterpreterCommand(
+		Buffer* buffer, CommandInterface command){
+	if(buffer->getLenght() != RESET_INTERPRETER_COMMAND_LENGHT){
+		return WRONG_LENGHT_COMMAND_ERROR;
+	}
+	command = *(new ResetInterpreterCommand());
+	return NO_ERROR;
 }
