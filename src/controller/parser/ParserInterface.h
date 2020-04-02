@@ -17,8 +17,8 @@ class ParserInterface{
     public:
 
 	enum ParseErrors{
-	  UNKNOWN_COMMAND,
-	  INCOMPLETE_COMMAND = -1,
+	  UNKNOWN_COMMAND_ERROR,
+	  WRONG_LENGHT_COMMAND_ERROR = -1,
 	  NO_ERROR 			 =  0
 	};
 

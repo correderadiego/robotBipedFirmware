@@ -41,5 +41,5 @@ ParserInterface::ParseErrors ParserControllerInterpreterCommand::parse(
 //	}
 //
 //	command.setSubCommandType(InterpreterCommand::UNKNOWN_SUB_COMMAND_TYPE);
-	return ParserInterface::UNKNOWN_COMMAND;
+	return ParserInterface::UNKNOWN_COMMAND_ERROR;
 }

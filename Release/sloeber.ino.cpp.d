@@ -170,6 +170,13 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/setterCommands/SetterCommand.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerGetterCommand.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/getterCommands/GetterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessControllerInterface.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessControllerControllerCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessControllerInterface.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessControllerInterpreterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessControllerSetterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessControllerGetterCommand.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/PlenControllerFactory.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/PlenController.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/WifiController.h \
@@ -516,6 +523,20 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerGetterCommand.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/getterCommands/GetterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessController.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessControllerInterface.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessControllerControllerCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessControllerInterface.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessControllerInterpreterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessControllerSetterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessControllerGetterCommand.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/PlenControllerFactory.h:
 

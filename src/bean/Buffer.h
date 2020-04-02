@@ -16,7 +16,6 @@ class Buffer {
 public:
 	enum BufferErrors{
 	  BUFFER_FULL_ERROR,
-	  COMMAND_COMPLETE,
 	  NO_ERROR = 0
 	};
 

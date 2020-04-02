@@ -20,6 +20,7 @@
 #include "HttpServerController.h"
 #include "ExternalFileSystemController.h"
 #include "controller/parser/ParserController.h"
+#include "controller/process/ProcessController.h"
 #include "bean/commands/CommandInterface.h"
 
 #include "bean/Plen.h"
@@ -29,6 +30,14 @@
 
 class PlenController{
 public:
+	enum ParseInputCharError{
+	  BUFFER_FULL_ERROR,
+	  COMMAND_INCOMPLETE_ERROR,
+	  WRONG_LENGHT_COMMAND_ERROR,
+	  UNKNOWN_COMMAND_ERROR,
+	  NO_ERROR = 0
+	};
+
 	PlenController(
 			JointController*  				jointController,
 			MotionController* 				motionController,
@@ -37,7 +46,8 @@ public:
 			WifiController*   				wifiController,
 			HttpServerController* 			HttpServerController,
 			ExternalFileSystemController* 	externalFileSystemController,
-			ParserController*				parserController);
+			ParserController*				parserController,
+			ProcessController* 				processController);
 	void executeThreadTasks(Plen* plen);
 
 private:
@@ -49,11 +59,13 @@ private:
 	HttpServerController* 			httpServerController;
 	ExternalFileSystemController* 	externalFileSystemController;
 	ParserController*				parserController;
+	ProcessController* 				processController;
 	void initPlenController(Plen* plen);
 	void loadFileConfiguration(Plen* plen);
 
 	void socketController(Plen* plen);
-	void proccessInputChar(Plen* plen, char character, CommandInterface command);
+	void processInputChar(Plen* plen, char character);
+	ParseInputCharError parseInputChar(Plen* plen, char character, CommandInterface command);
 	void serialSocketController(Plen* plen);
 	void tcpSocketController(Plen* plen);
 };

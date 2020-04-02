@@ -11,7 +11,7 @@ ParserController::ParserController() {}
 
 ParserInterface::ParseErrors ParserController::parse(Buffer* buffer,  CommandInterface command){
 	if (buffer->getPosition()< MIN_MESSAGE_SIZE){
-			return ParserInterface::INCOMPLETE_COMMAND;
+			return ParserInterface::WRONG_LENGHT_COMMAND_ERROR;
 	}
 
 	for (unsigned int i= 0; i < sizeof(parseController)/sizeof(parseController[0]); i++) {
@@ -20,5 +20,5 @@ ParserInterface::ParseErrors ParserController::parse(Buffer* buffer,  CommandInt
 		}
 	}
 
-	return ParserInterface::UNKNOWN_COMMAND;
+	return ParserInterface::UNKNOWN_COMMAND_ERROR;
 }

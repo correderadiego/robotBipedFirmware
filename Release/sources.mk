@@ -58,8 +58,8 @@ src/bean/commands/getterCommands \
 src/bean/commands/interpreterCommands \
 src/bean/commands/setterCommands \
 src/controller \
-src/controller/command \
 src/controller/parser \
+src/controller/process \
 src/hardware \
 src/hardware/led \
 src/hardware/pin \

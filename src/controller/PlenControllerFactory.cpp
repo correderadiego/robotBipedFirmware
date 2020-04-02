@@ -12,14 +12,14 @@ PlenController* PlenControllerFactory::getPlenController(){
 	///MotionController* motionController	= new MotionController(*jointController);
 	//TODO
 	MotionController* motionController;
-	Interpreter* interpreter 			= new Interpreter();
-	LedController* ledController		= new LedController();
-	EyeController* eyeController		= new EyeController(ledController);
-	WifiController* wifiController		= new WifiController();
-	HttpServerController* httpServerController = new HttpServerController();
-	ExternalFileSystemController* externalFileSystemController = new ExternalFileSystemController();
-	ParserController* parserController = new ParserController();
-
+	Interpreter* interpreter 									= new Interpreter();
+	LedController* ledController								= new LedController();
+	EyeController* eyeController								= new EyeController(ledController);
+	WifiController* wifiController								= new WifiController();
+	HttpServerController* httpServerController 					= new HttpServerController();
+	ExternalFileSystemController* externalFileSystemController  = new ExternalFileSystemController();
+	ParserController* parserController 							= new ParserController();
+	ProcessController* processController						= new ProcessController();
 
 	return new PlenController(
 			jointController,
@@ -29,5 +29,6 @@ PlenController* PlenControllerFactory::getPlenController(){
 			wifiController,
 			httpServerController,
 			externalFileSystemController,
-			parserController);
+			parserController,
+			processController);
 }

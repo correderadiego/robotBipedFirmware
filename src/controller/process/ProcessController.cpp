@@ -5,11 +5,11 @@
  *      Author: ziash
  */
 
-#include <controller/command/CommandController.h>
+#include <controller/process/ProcessController.h>
 
-CommandController::CommandController() {}
+ProcessController::ProcessController() {}
 
-CommandControllerInterface::CommandControllerErrors CommandController::process(CommandInterface command){
+ProcessControllerInterface::CommandControllerErrors ProcessController::process(CommandInterface command){
 
 	for (unsigned int i= 0; i < sizeof(commandController)/sizeof(commandController[0]); i++) {
 		if (commandController[i]->match(command)) {
@@ -17,5 +17,5 @@ CommandControllerInterface::CommandControllerErrors CommandController::process(C
 		}
 	}
 
-	return CommandControllerInterface::UNKNOWN_COMMAND;
+	return ProcessControllerInterface::UNKNOWN_COMMAND;
 }

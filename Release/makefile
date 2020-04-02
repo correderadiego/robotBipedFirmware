@@ -13,8 +13,8 @@ RM := rm
 -include src/hardware/pin/subdir.mk
 -include src/hardware/led/subdir.mk
 -include src/hardware/subdir.mk
+-include src/controller/process/subdir.mk
 -include src/controller/parser/subdir.mk
--include src/controller/command/subdir.mk
 -include src/controller/subdir.mk
 -include src/bean/commands/setterCommands/subdir.mk
 -include src/bean/commands/interpreterCommands/subdir.mk

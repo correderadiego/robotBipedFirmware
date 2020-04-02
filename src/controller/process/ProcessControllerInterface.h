@@ -5,12 +5,12 @@
  *      Author: ziash
  */
 
-#ifndef SRC_CONTROLLER_COMMAND_COMMANDCONTROLLERINTERFACE_H_
-#define SRC_CONTROLLER_COMMAND_COMMANDCONTROLLERINTERFACE_H_
+#ifndef SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERINTERFACE_H_
+#define SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERINTERFACE_H_
 
 #include "bean/commands/CommandInterface.h"
 
-class CommandControllerInterface {
+class ProcessControllerInterface {
 public:
 	enum CommandControllerErrors{
 	  UNKNOWN_COMMAND,
@@ -19,9 +19,8 @@ public:
 
     virtual bool match(CommandInterface command);
     virtual CommandControllerErrors process(CommandInterface command);
-    virtual ~CommandControllerInterface();
 };
 
 
 
-#endif /* SRC_CONTROLLER_COMMAND_COMMANDCONTROLLERINTERFACE_H_ */
+#endif /* SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERINTERFACE_H_ */

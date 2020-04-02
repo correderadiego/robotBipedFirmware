@@ -59,6 +59,6 @@ ParserInterface::ParseErrors ParserControllerControllerCommand::parseSubCommandT
 	}
 
 	((ControllerCommand)command).setSubCommandType(ControllerCommand::UNKNOWN_SUB_COMMAND_TYPE);
-	return ParserControllerControllerCommand::UNKNOWN_COMMAND;
+	return ParserControllerControllerCommand::UNKNOWN_COMMAND_ERROR;
 }
 
