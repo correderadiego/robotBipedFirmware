@@ -9,7 +9,7 @@
 #define SRC_CONTROLLER_EYECONTROLLER_H_
 
 #include "bean/Plen.h"
-#include "controller/LedController.h"
+#include "controller/hardware/LedController.h"
 #include "bean/Eyes.h"
 
 class EyeController {

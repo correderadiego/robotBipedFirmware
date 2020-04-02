@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <controller/JointController.h>
+#include "JointController.h"
 
 JointController::JointController() {
 	loadInitialValues();

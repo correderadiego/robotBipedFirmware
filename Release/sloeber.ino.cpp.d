@@ -138,10 +138,10 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
  /home/ziash/workspaceEsp8266/MiniPlen/src/utils/Logger.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/SerialCommunication.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/PlenFactory.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/controller/ExternalFileSystemController.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/controller/JointController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/ExternalFileSystemController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/JointController.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/MotionController.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/controller/LedController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/LedController.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/Interpreter.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PinDefinition.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/PlenController.h \
@@ -149,16 +149,6 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Servo/src/Servo.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/MotionController.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/Interpreter.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/controller/EyeController.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Eyes.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/controller/WifiController.h \
- /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/WiFiClient.h \
- /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266mDNS/ESP8266mDNS.h \
- /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/WiFiUdp.h \
- /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/Udp.h \
- /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/include/slist.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/controller/HttpServerController.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/controller/ExternalFileSystemController.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserController.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/CommandInterface.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserInterface.h \
@@ -177,9 +167,20 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessControllerInterpreterCommand.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessControllerSetterCommand.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessControllerGetterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/EyeController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Eyes.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/WifiController.h \
+ /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/WiFiClient.h \
+ /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266mDNS/ESP8266mDNS.h \
+ /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/WiFiUdp.h \
+ /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/Udp.h \
+ /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/include/slist.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/HttpServerController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/ExternalFileSystemController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/JointController.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/PlenControllerFactory.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/PlenController.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/controller/WifiController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserController.h \
  ../firmware.ino
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/Arduino.h:
@@ -460,13 +461,13 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/bean/PlenFactory.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/controller/ExternalFileSystemController.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/ExternalFileSystemController.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/controller/JointController.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/JointController.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/MotionController.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/controller/LedController.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/LedController.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/Interpreter.h:
 
@@ -481,26 +482,6 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/MotionController.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/Interpreter.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/controller/EyeController.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/bean/Eyes.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/controller/WifiController.h:
-
-/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/WiFiClient.h:
-
-/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266mDNS/ESP8266mDNS.h:
-
-/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/WiFiUdp.h:
-
-/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/Udp.h:
-
-/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/include/slist.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/controller/HttpServerController.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/controller/ExternalFileSystemController.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserController.h:
 
@@ -538,10 +519,32 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessControllerGetterCommand.h:
 
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/EyeController.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/Eyes.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/WifiController.h:
+
+/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/WiFiClient.h:
+
+/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266mDNS/ESP8266mDNS.h:
+
+/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/WiFiUdp.h:
+
+/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/Udp.h:
+
+/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/include/slist.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/HttpServerController.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/ExternalFileSystemController.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/JointController.h:
+
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/PlenControllerFactory.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/PlenController.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/controller/WifiController.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserController.h:
 
 ../firmware.ino:

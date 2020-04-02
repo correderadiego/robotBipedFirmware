@@ -8,12 +8,12 @@
 #ifndef SRC_PLENFACTORY_H_
 #define SRC_PLENFACTORY_H_
 
-#include <controller/ExternalFileSystemController.h>
+#include "controller/hardware/ExternalFileSystemController.h"
 #include "bean/Joint.h"
 #include "bean/Plen.h"
-#include "controller/JointController.h"
+#include "controller/hardware/JointController.h"
 #include "controller/MotionController.h"
-#include "controller/LedController.h"
+#include "controller/hardware/LedController.h"
 #include "controller/Interpreter.h"
 #include "hardware/pin/GPIOPin.h"
 #include "hardware/pin/PinDefinition.h"

@@ -8,19 +8,20 @@
 #ifndef SRC_PLENCONTROLLER_H_
 #define SRC_PLENCONTROLLER_H_
 
-#include <controller/JointController.h>
+
 #include <string.h>
 #include <Wire.h>
 #include <Servo.h>
 
 #include "MotionController.h"
 #include "Interpreter.h"
-#include "EyeController.h"
-#include "WifiController.h"
-#include "HttpServerController.h"
-#include "ExternalFileSystemController.h"
-#include "controller/parser/ParserController.h"
-#include "controller/process/ProcessController.h"
+#include "parser/ParserController.h"
+#include "process/ProcessController.h"
+#include "hardware/EyeController.h"
+#include "hardware/WifiController.h"
+#include "hardware/HttpServerController.h"
+#include "hardware/ExternalFileSystemController.h"
+#include "hardware/JointController.h"
 #include "bean/commands/CommandInterface.h"
 
 #include "bean/Plen.h"

@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <controller/EyeController.h>
+#include "EyeController.h"
 
 EyeController::EyeController(LedController* ledController) {
 	this->ledController = ledController;
