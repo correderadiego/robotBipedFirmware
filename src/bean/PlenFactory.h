@@ -16,9 +16,12 @@
 #include "controller/hardware/LedController.h"
 #include "controller/Interpreter.h"
 #include "hardware/pin/GPIOPin.h"
+#include "hardware/pin/pwmPin/EmbeddedPwmPin.h"
+#include "hardware/pin/pwmPin/PCA9685PwmPin.h"
 #include "hardware/pin/PinDefinition.h"
 #include "FS.h"
 #include <ESP8266WiFi.h>
+#include "Arduino.h"
 
 #define NUMBER_OF_JOINTS 24
 

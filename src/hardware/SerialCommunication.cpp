@@ -32,7 +32,5 @@ char SerialCommunication::read(){
 	return Serial.read();
 }
 
-SerialCommunication::~SerialCommunication() {
-	// TODO Auto-generated destructor stub
-}
+SerialCommunication::~SerialCommunication() {}
 

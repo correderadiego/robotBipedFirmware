@@ -8,7 +8,7 @@
 #include <controller/PlenControllerFactory.h>
 
 PlenController* PlenControllerFactory::getPlenController(){
-	JointController* jointController 	= new JointController();
+	JointController* jointController 	= new JointController(new PCA9685PwmController());
 	///MotionController* motionController	= new MotionController(*jointController);
 	//TODO
 	MotionController* motionController;

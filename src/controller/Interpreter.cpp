@@ -8,11 +8,10 @@
 #include <controller/Interpreter.h>
 
 Interpreter::Interpreter() {
-	// TODO Auto-generated constructor stub
 
 }
 
 Interpreter::~Interpreter() {
-	// TODO Auto-generated destructor stub
+
 }
 

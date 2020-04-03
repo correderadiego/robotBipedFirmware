@@ -10,9 +10,9 @@ class Pin {
 public:
 	Pin();
 	Pin(uint8_t pin);
-	int getPinValue();
+	int getValue();
 	int getPinNumber();
-	void setPinValue(uint8_t value);
+	void setValue(uint8_t value);
 protected:
 	uint8_t pinNumber;
 };

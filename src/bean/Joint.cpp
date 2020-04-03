@@ -7,7 +7,8 @@
 
 #include <bean/Joint.h>
 
-Joint::Joint(int angleHome,  RotationMode rotationMode) {
+Joint::Joint(PwmPin* pwmPin,int angleHome,  RotationMode rotationMode) {
+	this->pwmPin		= pwmPin;
 	this->angleMin 	 	= ANGLE_MIN;
 	this->angleMax 	 	= ANGLE_MAX;
 	this->angleHome 	= angleHome;
@@ -45,6 +46,10 @@ int Joint::getAngleMax(){
 
 int Joint::getAngle(){
 	return this->angle;
+}
+
+PwmPin* Joint::getPwmPin(){
+	return this->pwmPin;
 }
 
 Joint::RotationMode Joint::getRotationMode(){

@@ -12,30 +12,30 @@ Plen* PlenFactory::getPlen() {
 	 * Joint
 	 */
 	Joint* joint[] = {
-						new Joint(-40, Joint::counterClockWise), // [01] Left : Shoulder Pitch
-						new Joint(245), // [02] Left : Thigh Yaw
-						new Joint(470), // [03] Left : Shoulder Roll
-						new Joint(-100),// [04] Left : Elbow Roll
-						new Joint(-205),// [05] Left : Thigh Roll
-						new Joint(50), 	// [06] Left : Thigh Pitch
-						new Joint(445),	// [07] Left : Knee Pitch
-						new Joint(245),	// [08] Left : Foot Pitch
-						new Joint(-75), // [09] Left : Foot Roll
+						new Joint(new EmbeddedPwmPin(1),-40, Joint::counterClockWise), // [01] Left : Shoulder Pitch
+						new Joint(new EmbeddedPwmPin(2),245), // [02] Left : Thigh Yaw
+						new Joint(new EmbeddedPwmPin(3),470), // [03] Left : Shoulder Roll
+						new Joint(new EmbeddedPwmPin(4),-100),// [04] Left : Elbow Roll
+						new Joint(new EmbeddedPwmPin(5),-205),// [05] Left : Thigh Roll
+						new Joint(new EmbeddedPwmPin(6),50), 	// [06] Left : Thigh Pitch
+						new Joint(new EmbeddedPwmPin(7),445),	// [07] Left : Knee Pitch
+						new Joint(new EmbeddedPwmPin(8),245),	// [08] Left : Foot Pitch
+						new Joint(new EmbeddedPwmPin(9),-75), // [09] Left : Foot Roll
 						new Joint(),
 						new Joint(),
 						new Joint(),
-						new Joint(15, Joint::counterClockWise), 	// [10] Right : Shoulder Pitch
-						new Joint(-70),	// [11] Right : Thigh Yaw
-						new Joint(-390),// [12] Right : Shoulder Roll
-						new Joint(250),	// [13] Right : Elbow Roll
-						new Joint(195),	// [14] Right : Thigh Roll
-						new Joint(-105),// [15] Right : Thigh Pitch
-						new Joint(-510),// [16] Right : Knee Pitch
-						new Joint(-305),// [17] Right : Foot Pitch
-						new Joint(60),	// [18] Right : Foot Roll
+						new Joint(new EmbeddedPwmPin(10),  15, Joint::counterClockWise), 	// [10] Right : Shoulder Pitch
+						new Joint(new EmbeddedPwmPin(11), -70),	// [11] Right : Thigh Yaw
+						new Joint(new PCA9685PwmPin(12),  -390),// [12] Right : Shoulder Roll
+						new Joint(new PCA9685PwmPin(13),   250),	// [13] Right : Elbow Roll
+						new Joint(new EmbeddedPwmPin(14),  195),	// [14] Right : Thigh Roll
+						new Joint(new EmbeddedPwmPin(15), -105),// [15] Right : Thigh Pitch
+						new Joint(new EmbeddedPwmPin(16), -510),// [16] Right : Knee Pitch
+						new Joint(new EmbeddedPwmPin(17), -305),// [17] Right : Foot Pitch
+						new Joint(new EmbeddedPwmPin(18),   60),	// [18] Right : Foot Roll
 						new Joint(),
 						new Joint(),
-						new Joint(),
+						new Joint()
 	};
 
 	/**

@@ -30,7 +30,6 @@ PlenController::PlenController(
 
 void PlenController::initPlenController(Plen* plen){
 	loadFileConfiguration(plen);
-	jointController->loadInitialValues();
 	wifiController->connect(plen);
 	httpServerController->configureHttpServer(plen);
 	httpServerController->initHttpServer();
@@ -71,7 +70,6 @@ void PlenController::tcpSocketController(Plen* plen){
 	processInputChar(plen, wifiController->read(plen));
 }
 
-
 void PlenController::processInputChar(Plen* plen, char character){
 	CommandInterface* command = new CommandInterface();
 	ParseInputCharError parseInputCharError = parseInputChar(plen, character, *command);
@@ -79,7 +77,6 @@ void PlenController::processInputChar(Plen* plen, char character){
 		processController->process(*command);
 	}
 }
-
 
 PlenController::ParseInputCharError PlenController::parseInputChar(Plen* plen, char character, CommandInterface command){
 	Buffer::BufferErrors bufferError = plen->getBuffer()->addChar(character);

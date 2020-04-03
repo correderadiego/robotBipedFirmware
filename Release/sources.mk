@@ -64,5 +64,6 @@ src/controller/process \
 src/hardware \
 src/hardware/led \
 src/hardware/pin \
+src/hardware/pin/pwmPin \
 src/utils \
 

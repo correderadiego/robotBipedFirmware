@@ -10,6 +10,7 @@ RM := rm
 -include sources.mk
 -include subdir.mk
 -include src/utils/subdir.mk
+-include src/hardware/pin/pwmPin/subdir.mk
 -include src/hardware/pin/subdir.mk
 -include src/hardware/led/subdir.mk
 -include src/hardware/subdir.mk

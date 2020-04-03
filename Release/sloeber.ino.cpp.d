@@ -65,6 +65,8 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
  /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/Pin.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/FS.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Joint.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/PwmPin.h \
+ /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Servo/src/Servo.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Wifi.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WebServer/src/ESP8266WebServer.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/ESP8266WiFi.h \
@@ -140,13 +142,16 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/PlenFactory.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/ExternalFileSystemController.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/JointController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PCA9685PwmController.h \
+ /home/ziash/Arduino/libraries/Adafruit_PWM_Servo_Driver_Library/Adafruit_PWMServoDriver.h \
+ /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Wire/Wire.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PinDefinition.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/MotionController.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/LedController.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/Interpreter.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PinDefinition.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/EmbeddedPwmPin.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/PCA9685PwmPin.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/PlenController.h \
- /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Wire/Wire.h \
- /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Servo/src/Servo.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/MotionController.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/Interpreter.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserController.h \
@@ -174,7 +179,11 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/setterCommands/SetMaxValueCommand.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/setterCommands/SetMinValueCommand.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerGetterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/getterCommands/DumpJointSettingsCommand.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/getterCommands/GetterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/getterCommands/DumpVersionInformationCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/getterCommands/GetterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/getterCommands/DumpMotionCommand.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessController.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessControllerInterface.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessControllerControllerCommand.h \
@@ -330,6 +339,10 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Joint.h:
 
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/PwmPin.h:
+
+/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Servo/src/Servo.h:
+
 /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Wifi.h:
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WebServer/src/ESP8266WebServer.h:
@@ -480,19 +493,25 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/JointController.h:
 
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PCA9685PwmController.h:
+
+/home/ziash/Arduino/libraries/Adafruit_PWM_Servo_Driver_Library/Adafruit_PWMServoDriver.h:
+
+/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Wire/Wire.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PinDefinition.h:
+
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/MotionController.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/LedController.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/Interpreter.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PinDefinition.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/EmbeddedPwmPin.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/PCA9685PwmPin.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/PlenController.h:
-
-/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Wire/Wire.h:
-
-/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Servo/src/Servo.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/MotionController.h:
 
@@ -548,7 +567,15 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/parser/ParserControllerGetterCommand.h:
 
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/getterCommands/DumpJointSettingsCommand.h:
+
 /home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/getterCommands/GetterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/getterCommands/DumpVersionInformationCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/getterCommands/GetterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/bean/commands/getterCommands/DumpMotionCommand.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/controller/process/ProcessController.h:
 

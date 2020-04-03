@@ -8,6 +8,7 @@
 #ifndef SRC_BEAN_JOINT_H_
 #define SRC_BEAN_JOINT_H_
 
+#include <hardware/pin/pwmPin/PwmPin.h>
 #include "Arduino.h"
 
 #define ANGLE_MIN      -800
@@ -20,7 +21,9 @@ public:
 		clokWise,
 		counterClockWise
 	};
-	Joint(	int homePosition = ANGLE_NEUTRAL,
+	Joint(
+			PwmPin* pwmPin = NULL,
+			int homePosition = ANGLE_NEUTRAL,
 			Joint::RotationMode rotationMode = clokWise
 		  );
 	void setAngle(int angle);
@@ -32,6 +35,7 @@ public:
 	int getAngleMin();
 	int getAngleMax();
 	RotationMode getRotationMode();
+	PwmPin* getPwmPin();
 	void dump();
 private:
 	enum RotationMode rotationMode;
@@ -39,6 +43,7 @@ private:
 	int angleMax;
 	int angleHome;
 	int angle;
+	PwmPin* pwmPin;
 };
 
 #endif /* SRC_BEAN_JOINT_H_ */

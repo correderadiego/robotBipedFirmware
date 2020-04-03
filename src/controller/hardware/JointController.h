@@ -9,6 +9,8 @@
 #define SRC_CONTROLLER_JOINTCONTROLLER_H_
 
 #include "bean/Plen.h"
+#include "hardware/pin/PCA9685PwmController.h"
+#include "hardware/pin/pwmPin/PwmPin.h"
 
 class JointController {
 public:
@@ -19,20 +21,11 @@ public:
 	  NO_ERROR
 	};
 
-	JointController();
-	void resetJoints(Plen* plen);
-	void loadInitialValues();
-	void dump(Plen* plen);
-	JointController::JointControllerErrors setAngleMin (Joint* joint, int minAngle);
-	JointController::JointControllerErrors setAngleMax (Joint* joint, int maxAngle);
-	JointController::JointControllerErrors setAngleHome(Joint* joint, int homeAngle);
-
-	void setAngle(Joint* joint, int angle);
-	void setAngleDifference(Joint* joint, int angleDifference);
+	JointController(PCA9685PwmController* pca9685PwmController);
 	void executeThreadTasks(Plen* plen);
 private:
-
-	void resetJoint(Joint* joint);
+	PCA9685PwmController* pca9685PwmController;
+	void moveJoint(Joint* joint);
 };
 
 #endif /* SRC_CONTROLLER_JOINTCONTROLLER_H_ */
