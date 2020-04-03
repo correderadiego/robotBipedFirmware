@@ -13,6 +13,7 @@
 class ApplyDiffValueCommand : public ControllerCommand {
 public:
 	ApplyDiffValueCommand();
+	ApplyDiffValueCommand(ControllerCommand controllerCommand);
 	int getDeviceId();
 	void setDeviceId(int deviceId);
 	int getValue();

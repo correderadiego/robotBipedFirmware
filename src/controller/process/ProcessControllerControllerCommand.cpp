@@ -17,67 +17,35 @@ bool ProcessControllerControllerCommand::match(CommandInterface command){
 }
 
 ProcessControllerInterface::CommandControllerErrors
-		ProcessControllerControllerCommand::process(CommandInterface command){
-	return NO_ERROR;
+		ProcessControllerControllerCommand::process(Plen* plen, CommandInterface command){
+	ControllerCommand controllerCommand = (ControllerCommand) command;
+
+	if(controllerCommand.getSubCommandType() == ControllerCommand::APPY_NATIVE_VALUE){
+		ApplyNativeValueCommand applyNativeValueCommand = (ApplyNativeValueCommand)controllerCommand;
+		plen->getJointVector()[applyNativeValueCommand.getDeviceId()]->setAngle(applyNativeValueCommand.getValue());
+		return NO_ERROR;
+	}
+	if(controllerCommand.getSubCommandType() == ControllerCommand::APPLY_DIFF_VALUE){
+		ApplyDiffValueCommand applyDiffValueCommand = (ApplyDiffValueCommand)controllerCommand;
+		int angle = plen->getJointVector()[applyDiffValueCommand.getDeviceId()]->getAngleHome() + applyDiffValueCommand.getValue();
+
+		plen->getJointVector()[applyDiffValueCommand.getDeviceId()]->setAngle(angle);
+		return NO_ERROR;
+	}
+	if(controllerCommand.getSubCommandType() == ControllerCommand::PLAY_A_MOTION){
+		//TODO play a motion
+		return NO_ERROR;
+	}
+	if(controllerCommand.getSubCommandType() == ControllerCommand::STOP_A_MOTION){
+		//TODO stop motion
+		return NO_ERROR;
+	}
+	if(controllerCommand.getSubCommandType() == ControllerCommand::APPLY_HOME_POSITION){
+		for (int i = 0; i < plen->getJointSize(); i++) {
+			plen->getJointVector()[i]->setAngle(plen->getJointVector()[i]->getAngleHome());
+		}
+		return NO_ERROR;
+	}
+	return UNKNOWN_COMMAND;
 }
 
-//void JointController::setAngle(Joint* joint, int angle){
-//	angle = constrain(angle, joint->getAngleMin(), joint->getAngleMax());
-//
-//	if(joint->getRotationMode() == Joint::counterClockWise){
-//		angle = 90 - angle / 10;
-//	}
-//}
-//
-//void JointController::setAngleDifference(Joint* joint, int angleDifference){
-//	int angle = constrain(angleDifference + joint->getAngleHome(),	joint->getAngleMin(),joint->getAngleMax());
-//
-//	if(joint->getRotationMode() == Joint::counterClockWise){
-//		angle = 90 - angle / 10;
-//	}
-//}
-//
-//void JointController::dump(Plen* plen){
-//	Joint** jointVector = plen->getJointVector();
-//	for(int i = 0; i < plen->getJointSize(); i++){
-//		jointVector[i]->dump();
-//	}
-//}
-//
-//void JointController::resetJoints(Plen* plen){
-//	Joint** jointVector = plen->getJointVector();
-//	for(int i = 0; i < plen->getJointSize(); i++){
-//		resetJoint(jointVector[i]);
-//	}
-//}
-//
-//void JointController::resetJoint(Joint* joint){
-//	joint->setAngleMax();
-//	joint->setAngleMin();
-//	joint->setAngleHome();
-//	setAngle(joint, joint->getAngleHome());
-//}
-//
-//JointController::JointControllerErrors JointController::setAngleMin(Joint* joint, int angleMin){
-//	if (angleMin < ANGLE_MIN || angleMin >= ANGLE_MAX){
-//		return MIN_VALUE_ERROR;
-//	}
-//	joint->setAngleMin(angleMin);
-//	return NO_ERROR;
-//}
-//
-//JointController::JointControllerErrors JointController::setAngleMax(Joint* joint, int angleMax){
-//	if (angleMax > ANGLE_MAX || angleMax <= ANGLE_MIN){
-//		return MAX_VALUE_ERROR;
-//	}
-//	joint->setAngleMax(angleMax);
-//	return NO_ERROR;
-//}
-//
-//JointController::JointControllerErrors JointController::setAngleHome(Joint* joint, int angleHome){
-//	if (angleHome > ANGLE_MAX || angleHome <= ANGLE_MIN){
-//		return HOME_VALUE_ERROR;
-//	}
-//	joint->setAngleHome(angleHome);
-//	return NO_ERROR;
-//}

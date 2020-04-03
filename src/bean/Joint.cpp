@@ -29,7 +29,11 @@ void Joint::setAngleMax(int angleMax){
 }
 
 void Joint::setAngle(int angle){
-	this->angle = angle;
+	int temporalAngle = constrain(angle, angleMin, angleMax);
+	if(this->rotationMode == Joint::counterClockWise){
+		temporalAngle = 90 - angle / 10;
+	}
+	this->angle = temporalAngle;
 }
 
 int Joint::getAngleHome(){
@@ -57,19 +61,20 @@ Joint::RotationMode Joint::getRotationMode(){
 }
 
 void Joint::dump(){
-	Serial.println(F("["));
-	Serial.println(F("\t{"));
+	Logger::getInstance()->log(Logger::INFO, F("["));
+	Logger::getInstance()->log(Logger::INFO, F("\t{"));
 
-	Serial.print(F("\t\t\"max\": "));
-	Serial.print(angleMax);
-	Serial.println(F(","));
+	Logger::getInstance()->log(Logger::INFO, F("\t\t\"max\": "));
+	Logger::getInstance()->log(Logger::INFO, (String)angleMax);
+	Logger::getInstance()->log(Logger::INFO,F(","));
 
-	Serial.print(F("\t\t\"min\": "));
-	Serial.print(angleMin);
-	Serial.println(F(","));
 
-	Serial.print(F("\t\t\"home\": "));
-	Serial.println(angleHome);
-	Serial.println(F("]"));
-	Serial.println(F("\r\n"));
+	Logger::getInstance()->log(Logger::INFO, F("\t\t\"min\": "));
+	Logger::getInstance()->log(Logger::INFO, (String)angleMin);
+	Logger::getInstance()->log(Logger::INFO, F(","));
+
+	Logger::getInstance()->log(Logger::INFO, F("\t\t\"home\": "));
+	Logger::getInstance()->log(Logger::INFO, (String)angleHome);
+	Logger::getInstance()->log(Logger::INFO, F("]"));
+	Logger::getInstance()->log(Logger::INFO, F("\r\n"));
 }

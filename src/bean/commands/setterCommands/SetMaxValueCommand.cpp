@@ -13,6 +13,10 @@ SetMaxValueCommand::SetMaxValueCommand() {
 	this->value 		= 0;
 }
 
+SetMaxValueCommand::SetMaxValueCommand(SetterCommand setterCommand){
+
+}
+
 int SetMaxValueCommand::getDeviceId(){
 	return this->deviceId;
 }

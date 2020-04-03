@@ -16,7 +16,8 @@ public:
 	enum LogLevel{
 	  ERROR,
 	  WARNING,
-	  DEBUG = 0
+	  DEBUG,
+	  INFO = 0
 	};
 	Logger();
 	static Logger* getInstance();

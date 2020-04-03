@@ -8,6 +8,7 @@
 #ifndef SRC_CONTROLLER_PROCESS_PROCESSCONTROLLER_H_
 #define SRC_CONTROLLER_PROCESS_PROCESSCONTROLLER_H_
 
+#include "bean/Plen.h"
 #include <controller/process/ProcessControllerInterface.h>
 #include "ProcessControllerControllerCommand.h"
 #include "ProcessControllerInterpreterCommand.h"
@@ -19,7 +20,7 @@ class ProcessController {
 public:
 	#define COMMAND_CONTROLLER_VECTOR_SIZE	 4
 	ProcessController();
-	ProcessControllerInterface::CommandControllerErrors process(CommandInterface command);
+	ProcessControllerInterface::CommandControllerErrors process(Plen* plen, CommandInterface command);
 
 	ProcessControllerInterface* commandController[COMMAND_CONTROLLER_VECTOR_SIZE] = {
 			new ProcessControllerControllerCommand(),

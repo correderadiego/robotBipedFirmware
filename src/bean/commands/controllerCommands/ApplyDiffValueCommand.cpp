@@ -13,6 +13,10 @@ ApplyDiffValueCommand::ApplyDiffValueCommand() {
 	this->value 			= 0;
 }
 
+ApplyDiffValueCommand::ApplyDiffValueCommand(ControllerCommand controllerCommand){
+
+}
+
 int ApplyDiffValueCommand::getDeviceId(){
 	return this->deviceId;
 }

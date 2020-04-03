@@ -13,7 +13,7 @@
 class SetMinValueCommand : public SetterCommand {
 public:
 	SetMinValueCommand();
-
+	SetMinValueCommand(SetterCommand setterCommand);
 	int getDeviceId();
 	void setDeviceId(int deviceId);
 	int getValue();

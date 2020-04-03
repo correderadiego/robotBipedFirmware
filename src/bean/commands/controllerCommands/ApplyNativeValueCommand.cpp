@@ -13,6 +13,10 @@ ApplyNativeValueCommand::ApplyNativeValueCommand() {
 	this->value 			= 0;
 }
 
+ApplyNativeValueCommand::ApplyNativeValueCommand(ControllerCommand controllerCommand){
+
+}
+
 int ApplyNativeValueCommand::getDeviceId(){
 	return this->deviceId;
 }

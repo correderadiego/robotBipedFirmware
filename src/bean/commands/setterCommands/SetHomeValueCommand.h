@@ -13,6 +13,7 @@
 class SetHomeValueCommand : public SetterCommand{
 public:
 	SetHomeValueCommand();
+	SetHomeValueCommand(SetterCommand setterCommand);
 
 	int getDeviceId();
 	void setDeviceId(int deviceId);

@@ -9,6 +9,7 @@
 #define SRC_BEAN_JOINT_H_
 
 #include <hardware/pin/pwmPin/PwmPin.h>
+#include "utils/Logger.h"
 #include "Arduino.h"
 
 #define ANGLE_MIN      -800

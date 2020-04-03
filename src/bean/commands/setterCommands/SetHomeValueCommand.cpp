@@ -13,6 +13,10 @@ SetHomeValueCommand::SetHomeValueCommand() {
 	this->value 		= 0;
 }
 
+SetHomeValueCommand::SetHomeValueCommand(SetterCommand setterCommand){
+
+}
+
 int SetHomeValueCommand::getDeviceId(){
 	return this->deviceId;
 }

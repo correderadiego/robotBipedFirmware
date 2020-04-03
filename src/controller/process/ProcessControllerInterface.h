@@ -9,6 +9,7 @@
 #define SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERINTERFACE_H_
 
 #include "bean/commands/CommandInterface.h"
+#include "bean/Plen.h"
 
 class ProcessControllerInterface {
 public:
@@ -18,7 +19,7 @@ public:
 	};
 
     virtual bool match(CommandInterface command);
-    virtual CommandControllerErrors process(CommandInterface command);
+    virtual CommandControllerErrors process(Plen* plen, CommandInterface command);
 };
 
 

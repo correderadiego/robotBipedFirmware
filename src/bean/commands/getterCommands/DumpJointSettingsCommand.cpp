@@ -7,7 +7,8 @@
 
 #include <bean/commands/getterCommands/DumpJointSettingsCommand.h>
 
+DumpJointSettingsCommand::DumpJointSettingsCommand(GetterCommand getterCommand){}
+
 DumpJointSettingsCommand::DumpJointSettingsCommand() {
 	this->subCommandType = DUMP_JOINT_SETTINGS;
 }
-

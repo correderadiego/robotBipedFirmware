@@ -17,7 +17,7 @@ bool ProcessControllerInterpreterCommand::match(CommandInterface command){
 }
 
 ProcessControllerInterface::CommandControllerErrors
-		ProcessControllerInterpreterCommand::process(CommandInterface command){
+		ProcessControllerInterpreterCommand::process(Plen* plen, CommandInterface command){
 	return NO_ERROR;
 }
 

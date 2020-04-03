@@ -13,6 +13,10 @@ SetMinValueCommand::SetMinValueCommand() {
 	this->value 		= 0;
 }
 
+SetMinValueCommand::SetMinValueCommand(SetterCommand setterCommand){
+
+}
+
 int SetMinValueCommand::getDeviceId(){
 	return this->deviceId;
 }

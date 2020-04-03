@@ -67,6 +67,8 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Joint.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/PwmPin.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Servo/src/Servo.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/utils/Logger.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/SerialCommunication.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Wifi.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WebServer/src/ESP8266WebServer.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/ESP8266WiFi.h \
@@ -137,8 +139,6 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WebServer/src/detail/RequestHandler.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266HTTPUpdateServer/src/ESP8266HTTPUpdateServer.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Buffer.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/utils/Logger.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/SerialCommunication.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/bean/PlenFactory.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/ExternalFileSystemController.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/controller/hardware/JointController.h \
@@ -343,6 +343,10 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Servo/src/Servo.h:
 
+/home/ziash/workspaceEsp8266/MiniPlen/src/utils/Logger.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/SerialCommunication.h:
+
 /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Wifi.h:
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WebServer/src/ESP8266WebServer.h:
@@ -482,10 +486,6 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266HTTPUpdateServer/src/ESP8266HTTPUpdateServer.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/bean/Buffer.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/utils/Logger.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/SerialCommunication.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/bean/PlenFactory.h:
 

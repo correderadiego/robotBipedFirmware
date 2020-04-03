@@ -74,7 +74,7 @@ void PlenController::processInputChar(Plen* plen, char character){
 	CommandInterface* command = new CommandInterface();
 	ParseInputCharError parseInputCharError = parseInputChar(plen, character, *command);
 	if( parseInputCharError == NO_ERROR){
-		processController->process(*command);
+		processController->process(plen, *command);
 	}
 }
 
