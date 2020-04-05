@@ -18,6 +18,7 @@ RM := rm
 -include src/controller/parser/subdir.mk
 -include src/controller/hardware/subdir.mk
 -include src/controller/subdir.mk
+-include src/bean/motion/subdir.mk
 -include src/bean/commands/setterCommands/subdir.mk
 -include src/bean/commands/interpreterCommands/subdir.mk
 -include src/bean/commands/getterCommands/subdir.mk

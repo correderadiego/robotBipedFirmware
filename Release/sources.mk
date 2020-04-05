@@ -57,6 +57,7 @@ src/bean/commands/controllerCommands \
 src/bean/commands/getterCommands \
 src/bean/commands/interpreterCommands \
 src/bean/commands/setterCommands \
+src/bean/motion \
 src/controller \
 src/controller/hardware \
 src/controller/parser \
