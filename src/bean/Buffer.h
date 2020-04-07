@@ -12,11 +12,13 @@
 #define EMPTY_CHAR 				'\0'
 #define COMMAND_COMPLETE_CHAR 	'\r'
 
+#include "utils/Logger.h"
+
 class Buffer {
 public:
 	enum BufferErrors{
-	  BUFFER_FULL_ERROR,
-	  NO_ERROR = 0
+		NO_ERROR,
+		BUFFER_FULL_ERROR
 	};
 
 	Buffer(int position = 0);
@@ -25,13 +27,12 @@ public:
 	BufferErrors addChar(char character);
 	bool getCommandComplete();
 	void setCommandComplete(bool commandComplete);
+	void clearBuffer();
 
 private:
 	char data[SIZE];
 	int	 position;
 	bool commandComplete;
-
-	void clearBuffer();
 };
 
 #endif /* SRC_BEAN_BUFFER_H_ */

@@ -31,12 +31,14 @@
 
 class PlenController{
 public:
+	#define DEFAULT_WAIT_PERIOD 1000
+
 	enum ParseInputCharError{
+	  NO_ERROR,
 	  BUFFER_FULL_ERROR,
 	  COMMAND_INCOMPLETE_ERROR,
 	  WRONG_LENGHT_COMMAND_ERROR,
-	  UNKNOWN_COMMAND_ERROR,
-	  NO_ERROR = 0
+	  UNKNOWN_COMMAND_ERROR
 	};
 
 	PlenController(
@@ -61,6 +63,8 @@ private:
 	ExternalFileSystemController* 	externalFileSystemController;
 	ParserController*				parserController;
 	ProcessController* 				processController;
+	unsigned long previousTemporizedWait = millis();
+
 	void initPlenController(Plen* plen);
 	void loadFileConfiguration(Plen* plen);
 
@@ -69,6 +73,10 @@ private:
 	ParseInputCharError parseInputChar(Plen* plen, char character, CommandInterface command);
 	void serialSocketController(Plen* plen);
 	void tcpSocketController(Plen* plen);
+	void temporizedWait();
+
+
+
 };
 
 #endif /* SRC_PLENCONTROLLER_H_ */
