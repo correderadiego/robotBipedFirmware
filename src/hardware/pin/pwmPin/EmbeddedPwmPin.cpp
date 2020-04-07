@@ -9,10 +9,10 @@
 
 EmbeddedPwmPin::EmbeddedPwmPin(uint8_t pinNumber) {
 	this->pinNumber = pinNumber;
-	servo.attach(pinNumber);
+	servo->attach(pinNumber);
 	this->pwmPinType = PwmPin::EMBEDDED_PWM_PIN;
 }
 
 void EmbeddedPwmPin::setValue(uint8_t duty){
-	servo.write(duty);
+	servo->write(duty);
 }

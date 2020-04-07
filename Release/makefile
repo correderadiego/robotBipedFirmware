@@ -96,13 +96,13 @@ all: MiniPlen
 MiniPlen: $(HEX)
 	@echo 'Building target: $@'
 	@echo 'Printing size:'
-	"/home/ziash/eclipse/eclipse//arduinoPlugin/packages/esp8266/tools/xtensa-lx106-elf-gcc/1.20.0-26-gb404fb9-2/bin/xtensa-lx106-elf-size" -A "/home/ziash/workspaceEsp8266/MiniPlen/Release/MiniPlen.elf"
+	"/home/ziash/eclipse/eclipse//arduinoPlugin/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-3-20ed2b9/bin/xtensa-lx106-elf-size" -A "/home/ziash/workspaceEsp8266/MiniPlen/Release/MiniPlen.elf"
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 /home/ziash/workspaceEsp8266/MiniPlen/Release/arduino.ar: $(AR_OBJ)
 	@echo 'Starting archiver'
-	"/home/ziash/eclipse/eclipse//arduinoPlugin/packages/esp8266/tools/xtensa-lx106-elf-gcc/1.20.0-26-gb404fb9-2/bin/xtensa-lx106-elf-ar" cru  "/home/ziash/workspaceEsp8266/MiniPlen/Release/arduino.ar"    /home/ziash/workspaceEsp8266/MiniPlen/Release/arduino.ar $(AR_OBJ)
+	"/home/ziash/eclipse/eclipse//arduinoPlugin/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-3-20ed2b9/bin/xtensa-lx106-elf-ar" cru  "/home/ziash/workspaceEsp8266/MiniPlen/Release/arduino.ar"    /home/ziash/workspaceEsp8266/MiniPlen/Release/arduino.ar $(AR_OBJ)
 	@echo 'Finished building: $@'
 	@echo ' '
 
@@ -115,7 +115,7 @@ MiniPlen.elf: $(LINK_OBJ) $(AR)
 
 MiniPlen.hex: $(ELF)
 	@echo 'Do all objcopy commands'
-	"/home/ziash/eclipse/eclipse//arduinoPlugin/packages/esp8266/tools/esptool/0.4.13/esptool" -eo "/home/ziash/eclipse/eclipse//arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/bootloaders/eboot/eboot.elf" -bo "/home/ziash/workspaceEsp8266/MiniPlen/Release/MiniPlen.bin" -bm dio -bf 40 -bz 4M -bs .text -bp 4096 -ec -eo "/home/ziash/workspaceEsp8266/MiniPlen/Release/MiniPlen.elf" -bs .irom0.text -bs .text -bs .data -bs .rodata -bc -ec
+	"/home/ziash/eclipse/eclipse//arduinoPlugin/packages/esp8266/tools/esptool/2.5.0-3-20ed2b9/esptool" -eo "/home/ziash/eclipse/eclipse//arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/bootloaders/eboot/eboot.elf" -bo "/home/ziash/workspaceEsp8266/MiniPlen/Release/MiniPlen.bin" -bm dio -bf 40 -bz 4M -bs .text -bp 4096 -ec -eo "/home/ziash/workspaceEsp8266/MiniPlen/Release/MiniPlen.elf" -bs .irom0.text -bs .text -bs .data -bs .rodata -bc -ec
 	@echo 'Finished building: $@'
 	@echo ' '
 

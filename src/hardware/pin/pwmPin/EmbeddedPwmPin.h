@@ -16,7 +16,7 @@ public:
 	EmbeddedPwmPin(uint8_t pinNumber);
 	void setValue(uint8_t duty);
 private:
-    Servo servo;
+    Servo* servo = new Servo();
 };
 
 #endif /* SRC_HARDWARE_PIN_PWMPIN_EMBEDDEDPWMPIN_H_ */

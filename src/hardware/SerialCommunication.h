@@ -10,7 +10,7 @@
 
 #include "Arduino.h"
 
-#define SERIAL_BAUDRATE 115200L
+#define SERIAL_BAUDRATE 115200
 
 class SerialCommunication {
 public:

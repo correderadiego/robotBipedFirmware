@@ -16,4 +16,6 @@ void setup(){
 
 void loop(){
 	plenController->executeThreadTasks(plen);
+	Logger::getInstance()->log(Logger::INFO,F("Wait"));
+	delay(1000);
 }

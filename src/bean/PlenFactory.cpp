@@ -8,44 +8,35 @@
 #include "PlenFactory.h"
 
 Plen* PlenFactory::getPlen() {
-	/**
-	 * Joint
-	 */
-	Joint* joint[] = {
-						new Joint(new EmbeddedPwmPin(1),-40, Joint::counterClockWise), // [01] Left : Shoulder Pitch
-						new Joint(new EmbeddedPwmPin(2),245), // [02] Left : Thigh Yaw
-						new Joint(new EmbeddedPwmPin(3),470), // [03] Left : Shoulder Roll
-						new Joint(new EmbeddedPwmPin(4),-100),// [04] Left : Elbow Roll
-						new Joint(new EmbeddedPwmPin(5),-205),// [05] Left : Thigh Roll
-						new Joint(new EmbeddedPwmPin(6),50), 	// [06] Left : Thigh Pitch
-						new Joint(new EmbeddedPwmPin(7),445),	// [07] Left : Knee Pitch
-						new Joint(new EmbeddedPwmPin(8),245),	// [08] Left : Foot Pitch
-						new Joint(new EmbeddedPwmPin(9),-75), // [09] Left : Foot Roll
-						new Joint(),
-						new Joint(),
-						new Joint(),
-						new Joint(new EmbeddedPwmPin(10),  15, Joint::counterClockWise), 	// [10] Right : Shoulder Pitch
-						new Joint(new EmbeddedPwmPin(11), -70),	// [11] Right : Thigh Yaw
-						new Joint(new PCA9685PwmPin(12),  -390),// [12] Right : Shoulder Roll
-						new Joint(new PCA9685PwmPin(13),   250),	// [13] Right : Elbow Roll
-						new Joint(new EmbeddedPwmPin(14),  195),	// [14] Right : Thigh Roll
-						new Joint(new EmbeddedPwmPin(15), -105),// [15] Right : Thigh Pitch
-						new Joint(new EmbeddedPwmPin(16), -510),// [16] Right : Knee Pitch
-						new Joint(new EmbeddedPwmPin(17), -305),// [17] Right : Foot Pitch
-						new Joint(new EmbeddedPwmPin(18),   60),	// [18] Right : Foot Roll
-						new Joint(),
-						new Joint(),
-						new Joint()
-	};
+	joint[0] =	new Joint(new PCA9685PwmPin(PIN_LEFT_SHOULDER_PITCH),-40, Joint::counterClockWise);
+	joint[1] =	new Joint(new PCA9685PwmPin(PIN_LEFT_THIGH_YAW),245);
+	joint[2] =  new Joint(new PCA9685PwmPin(PIN_LEFT_SHOULDER_ROLL),470);
+	joint[3] =	new Joint(new PCA9685PwmPin(PIN_LEFT_ELBOW_ROLL),-100);
+	joint[4] =	new Joint(new PCA9685PwmPin(PIN_LEFT_THIGH_ROLL),-205);
+	joint[5] =	new Joint(new PCA9685PwmPin(PIN_LEFT_THIGH_PITCH),50);
+	joint[6] =	new Joint(new PCA9685PwmPin(PIN_LEFT_KNEE_PITCH),445);
+	joint[7] =	new Joint(new PCA9685PwmPin(PIN_LEFT_FOOT_PITCH),245);
+	joint[8] =	new Joint(new PCA9685PwmPin(PIN_LEFT_FOOT_ROLL),-75);
+	joint[9] =	new Joint();
+	joint[10] =	new Joint();
+	joint[11] =	new Joint();
+	joint[12] =	new Joint(new PCA9685PwmPin(PIN_RIGHT_SHOULDER_PITCH),  15, Joint::counterClockWise);
+	joint[13] =	new Joint(new PCA9685PwmPin(PIN_RIGHT_THIGH_YAW), -70);
+	joint[14] =	new Joint(new EmbeddedPwmPin(PIN_RIGHT_SHOULDER_ROLl),  -390);
+	joint[15] =	new Joint(new EmbeddedPwmPin(PIN_RIGHT_ELBOW_ROLL), 250);
+	joint[16] =	new Joint(new PCA9685PwmPin(PIN_RIGHT_THIGH_ROLL),  195);
+	joint[17] =	new Joint(new PCA9685PwmPin(PIN_RIGHT_THIGH_PITCH), -105);
+	joint[18] =	new Joint(new PCA9685PwmPin(PIN_RIGHT_KNEE_PITCH), -510);
+	joint[19] =	new Joint(new PCA9685PwmPin(PIN_RIGHT_FOOT_PITCH), -305);
+	joint[20] =	new Joint(new PCA9685PwmPin(PIN_RIGHT_FOOT_ROLL),   60);
+	joint[21] =	new Joint();
+	joint[22] =	new Joint();
+	joint[23] =	new Joint();
 
-	/**
-	 * Eyes
-	 */
 	GPIOPin* gpioPinLed = new GPIOPin(PIN_LED, OUTPUT);
 	Led* led 			= new Led(gpioPinLed);
 	Eyes* eyes 			= new Eyes(led);
 
-	//TODO review pointers
 	File* fileMotion 		= new File();
 	File* fileConfiguration = new File();
 	File* fileSystemConfiguration = new File();
