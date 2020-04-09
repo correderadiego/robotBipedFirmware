@@ -8,7 +8,7 @@
 #ifndef SRC_BEAN_BUFFER_H_
 #define SRC_BEAN_BUFFER_H_
 
-#define SIZE  				128
+#define SIZE  					128
 #define EMPTY_CHAR 				'\0'
 #define COMMAND_COMPLETE_CHAR 	'\r'
 

@@ -32,5 +32,9 @@ char SerialCommunication::read(){
 	return Serial.read();
 }
 
+void SerialCommunication::flush(){
+	return Serial.flush();
+}
+
 SerialCommunication::~SerialCommunication() {}
 

@@ -21,6 +21,7 @@ void Buffer::clearBuffer(){
 		data[index] = EMPTY_CHAR;
 	}
 	commandComplete = false;
+	this->position = 0;
 }
 
 char* Buffer::getData(){
@@ -44,7 +45,7 @@ Buffer::BufferErrors Buffer::addChar(char character){
 
 	data[position] = character;
 	position ++;
-	data[position] = '\0';
+	data[position] = EMPTY_CHAR;
 	return NO_ERROR;
 }
 

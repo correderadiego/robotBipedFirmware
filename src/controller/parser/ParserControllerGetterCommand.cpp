@@ -14,6 +14,7 @@ ParserControllerGetterCommand::ParserControllerGetterCommand(
 
 bool ParserControllerGetterCommand::match(Buffer* buffer){
 	if(buffer->getData()[HEADER_CHAR_POSITION] == GETTER_COMMAND_CHAR){
+		Logger::getInstance()->log(Logger::DEBUG, "Getter command received");
 		return true;
 	}
 	return false;

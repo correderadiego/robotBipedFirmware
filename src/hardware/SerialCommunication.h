@@ -20,6 +20,7 @@ public:
 	void println(String string);
 	char read();
 	bool available();
+	void flush();
 
 private:
 	static SerialCommunication* serialCommunication;

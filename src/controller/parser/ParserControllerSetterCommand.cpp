@@ -14,6 +14,7 @@ ParserControllerSetterCommand::ParserControllerSetterCommand(
 
 bool ParserControllerSetterCommand::match(Buffer* buffer){
 	if(buffer->getData()[HEADER_CHAR_POSITION] == SETTER_COMMAND_CHAR){
+		Logger::getInstance()->log(Logger::DEBUG, F("Setter command received"));
 		return true;
 	}
 	return false;
@@ -58,6 +59,7 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMotionHeader
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
 	//command = *(new Set());
+	Logger::getInstance()->log(Logger::DEBUG, F("Set motion header command received"));
 	return NO_ERROR;
 }
 
@@ -67,6 +69,7 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMotionFrameC
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
 	//command = *(new PopAFunctionCommand());
+	Logger::getInstance()->log(Logger::DEBUG, F("Set motion frame command received"));
 	return NO_ERROR;
 }
 
@@ -76,6 +79,7 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parseResetJointSetti
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
 	command = *(new ResetJointSettingsCommand());
+	Logger::getInstance()->log(Logger::DEBUG, F("Reset joint setting command received"));
 	return NO_ERROR;
 }
 
@@ -85,6 +89,7 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetHomeCommand(
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
 	command = *(new SetHomeValueCommand());
+	Logger::getInstance()->log(Logger::DEBUG, F("Set home command received"));
 	return NO_ERROR;
 }
 
@@ -94,6 +99,7 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMaxValueComm
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
 	command = *(new SetMaxValueCommand());
+	Logger::getInstance()->log(Logger::DEBUG, F("Set max value command received"));
 	return NO_ERROR;
 }
 
@@ -103,5 +109,6 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMinValueComm
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
 	command = *(new SetMinValueCommand());
+	Logger::getInstance()->log(Logger::DEBUG, F("Set min value command received"));
 	return NO_ERROR;
 }

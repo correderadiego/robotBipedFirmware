@@ -11,15 +11,16 @@
 
 #include "bean/commands/CommandInterface.h"
 #include "bean/Buffer.h"
+#include "utils/Logger.h"
 
 class ParserInterface{
 	#define HEADER_CHAR_POSITION			 0
     public:
 
 	enum ParseErrors{
+	  NO_ERROR = 0,
 	  UNKNOWN_COMMAND_ERROR,
-	  WRONG_LENGHT_COMMAND_ERROR = -1,
-	  NO_ERROR 			 =  0
+	  WRONG_LENGHT_COMMAND_ERROR
 	};
 
     virtual bool match(Buffer* buffer);

@@ -44,7 +44,6 @@ void PlenController::loadFileConfiguration(Plen* plen){
 }
 
 void PlenController::executeThreadTasks(Plen* plen){
-	temporizedWait();
 	socketController(plen);
 //	this->jointController->executeThreadTasks(plen);
 //	this->eyeController->executeThreadTasks(plen);
@@ -58,6 +57,7 @@ void PlenController::socketController(Plen* plen){
 }
 
 void PlenController::serialSocketController(Plen* plen){
+	temporizedWait();
 	if (!SerialCommunication::getInstance()->available()){
 		return;
 	}
@@ -74,7 +74,7 @@ void PlenController::tcpSocketController(Plen* plen){
 void PlenController::processInputChar(Plen* plen, char character){
 	CommandInterface* command = new CommandInterface();
 	ParseInputCharError parseInputCharError = parseInputChar(plen, character, *command);
-	if( parseInputCharError == NO_ERROR){
+	if(parseInputCharError == NO_ERROR){
 		processController->process(plen, *command);
 	}
 }
@@ -99,15 +99,14 @@ PlenController::ParseInputCharError PlenController::parseInputChar(Plen* plen, c
 	}
 
 	ParserInterface::ParseErrors parseError = parserController->parse(plen->getBuffer(), command);
+	plen->getBuffer()->clearBuffer();
 
 	if(parseError == ParserInterface::WRONG_LENGHT_COMMAND_ERROR){
-		plen->getBuffer()->clearBuffer();
-		Logger::getInstance()->log(Logger::ERROR, F("Incomplete command"));
-		return WRONG_LENGHT_COMMAND_ERROR;
+		Logger::getInstance()->log(Logger::ERROR, F("Wrong command length"));
+		return WRONG_LENGTH_COMMAND_ERROR;
 	}
 
 	if(parseError == ParserInterface::UNKNOWN_COMMAND_ERROR){
-		plen->getBuffer()->clearBuffer();
 		Logger::getInstance()->log(Logger::ERROR, F("Unknown command"));
 		return UNKNOWN_COMMAND_ERROR;
 	}

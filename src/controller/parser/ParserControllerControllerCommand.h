@@ -21,9 +21,9 @@
 #define CONTROLLER_COMMAND_CHAR  		'$'
 #define APPLY_NATIVE_COMMAND_LENGTH 	5
 #define APPLY_DIFF_COMMAND_LENGTH 		5
-#define HOME_POSITION_COMMAND_LENGTH 	0
+#define APPLY_HOME_POSITION_COMMAND_LENGTH 	3
 #define PLAY_MOTION_COMMAND_LENGTH		2
-#define STOP_MOTION_COMMAND_LENGTH 		0
+#define STOP_MOTION_COMMAND_LENGTH 		3
 
 class ParserControllerControllerCommand : public ParserInterface{
 public:

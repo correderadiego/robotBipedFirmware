@@ -14,6 +14,7 @@ ParserControllerControllerCommand::ParserControllerControllerCommand(
 
 bool ParserControllerControllerCommand::match(Buffer* buffer){
 	if(buffer->getData()[HEADER_CHAR_POSITION] == CONTROLLER_COMMAND_CHAR){
+		Logger::getInstance()->log(Logger::DEBUG, F("Controller command received"));
 		return true;
 	}
 	return false;
@@ -21,8 +22,8 @@ bool ParserControllerControllerCommand::match(Buffer* buffer){
 
 ParserInterface::ParseErrors ParserControllerControllerCommand::parse(
 											Buffer* buffer, CommandInterface command){
-	char commandSequence[2] = {};
-	strncpy ( commandSequence, &buffer->getData()[1], 2);
+	char commandSequence[3] = {'\0'};
+	strncpy ( commandSequence, &buffer->getData()[1],  2);
 
 	if( strcmp(commandSequence, APPY_NATIVE_CHAR) == 0){
 		return parseApplyNativeValueCommand(buffer, command);
@@ -49,6 +50,7 @@ ParserInterface::ParseErrors ParserControllerControllerCommand::parse(
 
 ParserInterface::ParseErrors ParserControllerControllerCommand::parseApplyNativeValueCommand(
 		Buffer* buffer, ControllerCommand command){
+	Logger::getInstance()->log(Logger::DEBUG, F("Apply native value command received"));
 	if(buffer->getLenght() != APPLY_NATIVE_COMMAND_LENGTH){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
@@ -58,6 +60,7 @@ ParserInterface::ParseErrors ParserControllerControllerCommand::parseApplyNative
 
 ParserInterface::ParseErrors ParserControllerControllerCommand::parseApplyDiffCommand(
 		Buffer* buffer, ControllerCommand command){
+	Logger::getInstance()->log(Logger::DEBUG, F("Apply diff command received"));
 	if(buffer->getLenght() != APPLY_DIFF_COMMAND_LENGTH){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
@@ -67,7 +70,8 @@ ParserInterface::ParseErrors ParserControllerControllerCommand::parseApplyDiffCo
 
 ParserInterface::ParseErrors ParserControllerControllerCommand::parsePlayAMotionCommand(
 		Buffer* buffer, ControllerCommand command){
-	if(buffer->getLenght() != HOME_POSITION_COMMAND_LENGTH){
+	Logger::getInstance()->log(Logger::DEBUG, F("Play motion command received"));
+	if(buffer->getLenght() != PLAY_MOTION_COMMAND_LENGTH){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
 	command = *(new PlayAMotionCommand());
@@ -76,7 +80,8 @@ ParserInterface::ParseErrors ParserControllerControllerCommand::parsePlayAMotion
 
 ParserInterface::ParseErrors ParserControllerControllerCommand::parseStopAMotionCommand(
 		Buffer* buffer, ControllerCommand command){
-	if(buffer->getLenght() != PLAY_MOTION_COMMAND_LENGTH){
+	Logger::getInstance()->log(Logger::DEBUG, F("Stop motion command received"));
+	if(buffer->getLenght() != STOP_MOTION_COMMAND_LENGTH){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
 	command = *(new StopAMotionCommand());
@@ -85,7 +90,8 @@ ParserInterface::ParseErrors ParserControllerControllerCommand::parseStopAMotion
 
 ParserInterface::ParseErrors ParserControllerControllerCommand::parseApplyHomePositionCommand(
 		Buffer* buffer, ControllerCommand command){
-	if(buffer->getLenght() != STOP_MOTION_COMMAND_LENGTH){
+	Logger::getInstance()->log(Logger::DEBUG, F("Home position command received"));
+	if(buffer->getLenght() != APPLY_HOME_POSITION_COMMAND_LENGTH){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
 	command = *(new ApplyHomePositionCommand());

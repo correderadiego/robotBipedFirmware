@@ -14,6 +14,7 @@ ParserControllerInterpreterCommand::ParserControllerInterpreterCommand(
 
 bool ParserControllerInterpreterCommand::match(Buffer* buffer){
 	if(buffer->getData()[HEADER_CHAR_POSITION] == INTERPRETER_COMMAND_CHAR){
+		Logger::getInstance()->log(Logger::DEBUG, F("Interpreter command received"));
 		return true;
 	}
 	return false;
@@ -42,15 +43,18 @@ ParserInterface::ParseErrors ParserControllerInterpreterCommand::parse(
 
 ParserInterface::ParseErrors ParserControllerInterpreterCommand::parsePopCodeCommand(
 		Buffer* buffer, CommandInterface command){
+	Logger::getInstance()->log(Logger::DEBUG, F(""));
 	if(buffer->getLenght() != POP_CODE_COMMAND_LENGTH){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
 	command = *(new PopAFunctionCommand());
+
 	return NO_ERROR;
 }
 
 ParserInterface::ParseErrors ParserControllerInterpreterCommand::parsePushCodeCommand(
 		Buffer* buffer, CommandInterface command){
+	Logger::getInstance()->log(Logger::DEBUG, F(""));
 	if(buffer->getLenght() != PUSH_CODE_COMMAND_LENGTH){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
