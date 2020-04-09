@@ -1,9 +1,9 @@
-#include "bean/Plen.h"
+#include "logic/bean/Plen.h"
 #include "utils/Logger.h"
-#include "bean/PlenFactory.h"
-#include "controller/PlenController.h"
-#include "controller/PlenControllerFactory.h"
-#include "controller/parser/ParserController.h"
+#include "logic/PlenFactory.h"
+#include "logic/controller/PlenController.h"
+#include "logic/PlenControllerFactory.h"
+#include "logic/controller/parser/ParserController.h"
 PlenController*		plenController;
 Plen*				plen;
 

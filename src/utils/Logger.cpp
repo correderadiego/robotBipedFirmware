@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <utils/Logger.h>
+#include "Logger.h"
 
 Logger* Logger::logger = NULL;
 
@@ -30,7 +30,5 @@ void Logger::log(LogLevel logLevel, String message){
 	SerialCommunication::getInstance()->println(message);
 }
 
-Logger::~Logger() {
-	// TODO Auto-generated destructor stub
-}
+Logger::~Logger() {}
 

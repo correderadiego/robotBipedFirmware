@@ -8,7 +8,6 @@
 #ifndef SRC_UTILS_LOGGER_H_
 #define SRC_UTILS_LOGGER_H_
 
-#include "Arduino.h"
 #include "hardware/SerialCommunication.h"
 
 class Logger {
