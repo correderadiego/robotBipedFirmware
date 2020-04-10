@@ -8,6 +8,7 @@
 #ifndef SRC_UTILS_LOGGER_H_
 #define SRC_UTILS_LOGGER_H_
 
+#include "SocketLoggerInterface.h"
 #include "hardware/SerialCommunication.h"
 
 class Logger {
@@ -20,13 +21,15 @@ public:
 	};
 	Logger();
 	static Logger* getInstance();
-	void log(LogLevel logLevel, String message);
+	void log(LogLevel logLevel, const char * message);
 	virtual ~Logger();
 	void setLogLevel(LogLevel loglevel);
+	void initLogger(SocketLoggerInterface* socketLoggerInterface);
 
 private:
 	LogLevel logLevel = DEBUG;
 	static Logger* logger;
+	static SocketLoggerInterface* socketLoggerInterface;
 };
 
 #endif /* SRC_UTILS_LOGGER_H_ */

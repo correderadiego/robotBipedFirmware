@@ -7,12 +7,12 @@
 
 #include "Logger.h"
 
-Logger* Logger::logger = NULL;
+Logger* Logger::logger = nullptr;
 
 Logger::Logger() {}
 
 Logger* Logger::getInstance(){
-	if(logger == NULL){
+	if(logger == nullptr){
 		logger = new Logger();
 	}
 
@@ -23,7 +23,11 @@ void Logger::setLogLevel(LogLevel logLevel){
 	this->logLevel = logLevel;
 }
 
-void Logger::log(LogLevel logLevel, String message){
+void Logger::initLogger(SocketLoggerInterface* socketLoggerInterface){
+	this->socketLoggerInterface = socketLoggerInterface;
+}
+
+void Logger::log(LogLevel logLevel, const char * message){
 	if(this->logLevel < logLevel){
 		return;
 	}

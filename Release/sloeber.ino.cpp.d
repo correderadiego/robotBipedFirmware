@@ -68,7 +68,9 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
  /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/PwmPin.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Servo/src/Servo.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/utils/Logger.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/utils/SocketLoggerInterface.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/SerialCommunication.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/ArduinoIncludes.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/logic/bean/Wifi.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WebServer/src/ESP8266WebServer.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/ESP8266WiFi.h \
@@ -347,7 +349,11 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/utils/Logger.h:
 
+/home/ziash/workspaceEsp8266/MiniPlen/src/utils/SocketLoggerInterface.h:
+
 /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/SerialCommunication.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/ArduinoIncludes.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/logic/bean/Wifi.h:
 

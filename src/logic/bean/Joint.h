@@ -10,7 +10,7 @@
 
 #include <hardware/pin/pwmPin/PwmPin.h>
 #include "utils/Logger.h"
-#include "Arduino.h"
+#include "ArduinoIncludes.h"
 
 #define ANGLE_MIN      -800
 #define	ANGLE_MAX       800

@@ -28,6 +28,7 @@
 #include "hardware/SerialCommunication.h"
 #include "logic/bean/Buffer.h"
 #include "utils/Logger.h"
+#include "Arduino.h"
 
 class PlenController{
 public:

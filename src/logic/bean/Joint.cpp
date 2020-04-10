@@ -61,20 +61,20 @@ Joint::RotationMode Joint::getRotationMode(){
 }
 
 void Joint::dump(){
-	Logger::getInstance()->log(Logger::INFO, F("["));
-	Logger::getInstance()->log(Logger::INFO, F("\t{"));
+	Logger::getInstance()->log(Logger::INFO, S("["));
+	Logger::getInstance()->log(Logger::INFO, S("\t{"));
 
-	Logger::getInstance()->log(Logger::INFO, F("\t\t\"max\": "));
-	Logger::getInstance()->log(Logger::INFO, (String)angleMax);
-	Logger::getInstance()->log(Logger::INFO,F(","));
+	Logger::getInstance()->log(Logger::INFO, S("\t\t\"max\": "));
+	Logger::getInstance()->log(Logger::INFO, (char *)angleMax);
+	Logger::getInstance()->log(Logger::INFO, S(","));
 
 
-	Logger::getInstance()->log(Logger::INFO, F("\t\t\"min\": "));
-	Logger::getInstance()->log(Logger::INFO, (String)angleMin);
-	Logger::getInstance()->log(Logger::INFO, F(","));
+	Logger::getInstance()->log(Logger::INFO, S("\t\t\"min\": "));
+	Logger::getInstance()->log(Logger::INFO, (char *)angleMin);
+	Logger::getInstance()->log(Logger::INFO, S(","));
 
-	Logger::getInstance()->log(Logger::INFO, F("\t\t\"home\": "));
-	Logger::getInstance()->log(Logger::INFO, (String)angleHome);
-	Logger::getInstance()->log(Logger::INFO, F("]"));
-	Logger::getInstance()->log(Logger::INFO, F("\r\n"));
+	Logger::getInstance()->log(Logger::INFO, S("\t\t\"home\": "));
+	Logger::getInstance()->log(Logger::INFO, (char *)angleHome);
+	Logger::getInstance()->log(Logger::INFO, S("]"));
+	Logger::getInstance()->log(Logger::INFO, S("\r\n"));
 }

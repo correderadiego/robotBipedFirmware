@@ -8,7 +8,6 @@
 #ifndef SRC_BEAN_WIFI_H_
 #define SRC_BEAN_WIFI_H_
 
-#include "Arduino.h"
 #include <ESP8266WebServer.h>
 #include <ESP8266HTTPUpdateServer.h>
 

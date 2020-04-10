@@ -16,6 +16,7 @@
 #include "logic/bean/commands/setterCommands/SetMaxValueCommand.h"
 #include "logic/bean/commands/setterCommands/SetMinValueCommand.h"
 #include "string.h"
+#include "ArduinoIncludes.h"
 
 #define SETTER_COMMAND_CHAR 	 '>'
 #define SET_MOTION_HEADER_COMMAND_LENGHT 	30

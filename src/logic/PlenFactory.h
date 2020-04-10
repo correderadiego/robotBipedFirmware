@@ -21,7 +21,6 @@
 #include "hardware/pin/PinDefinition.h"
 #include "FS.h"
 #include <ESP8266WiFi.h>
-#include "Arduino.h"
 
 #define NUMBER_OF_JOINTS 24
 

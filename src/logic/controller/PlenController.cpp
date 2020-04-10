@@ -81,7 +81,7 @@ void PlenController::processInputChar(Plen* plen, char character){
 
 void PlenController::temporizedWait(){
 	if(millis() - previousTemporizedWait > DEFAULT_WAIT_PERIOD){
-		Logger::getInstance()->log(Logger::INFO,F("wait"));
+		Logger::getInstance()->log(Logger::INFO,S("wait"));
 		previousTemporizedWait = millis();
 	}
 }
@@ -90,7 +90,7 @@ PlenController::ParseInputCharError PlenController::parseInputChar(Plen* plen, c
 	Buffer::BufferErrors bufferError = plen->getBuffer()->addChar(character);
 
 	if(bufferError == Buffer::BUFFER_FULL_ERROR){
-		Logger::getInstance()->log(Logger::ERROR, F("Full buffer error"));
+		Logger::getInstance()->log(Logger::ERROR, S("Full buffer error"));
 		return BUFFER_FULL_ERROR;
 	}
 
@@ -102,12 +102,12 @@ PlenController::ParseInputCharError PlenController::parseInputChar(Plen* plen, c
 	plen->getBuffer()->clearBuffer();
 
 	if(parseError == ParserInterface::WRONG_LENGHT_COMMAND_ERROR){
-		Logger::getInstance()->log(Logger::ERROR, F("Wrong command length"));
+		Logger::getInstance()->log(Logger::ERROR, S("Wrong command length"));
 		return WRONG_LENGTH_COMMAND_ERROR;
 	}
 
 	if(parseError == ParserInterface::UNKNOWN_COMMAND_ERROR){
-		Logger::getInstance()->log(Logger::ERROR, F("Unknown command"));
+		Logger::getInstance()->log(Logger::ERROR, S("Unknown command"));
 		return UNKNOWN_COMMAND_ERROR;
 	}
 

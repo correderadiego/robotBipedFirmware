@@ -13,6 +13,7 @@
 #define COMMAND_COMPLETE_CHAR 	'\r'
 
 #include "utils/Logger.h"
+#include "ArduinoIncludes.h"
 
 class Buffer {
 public:

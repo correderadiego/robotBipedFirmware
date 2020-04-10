@@ -16,7 +16,8 @@
 #include "logic/bean/commands/controllerCommands/PlayAMotionCommand.h"
 #include "logic/bean/commands/controllerCommands/StopAMotionCommand.h"
 #include "logic/bean/commands/controllerCommands/ApplyHomePositionCommand.h"
-#include "string.h"
+#include "ArduinoIncludes.h"
+
 
 #define CONTROLLER_COMMAND_CHAR  		'$'
 #define APPLY_NATIVE_COMMAND_LENGTH 	5

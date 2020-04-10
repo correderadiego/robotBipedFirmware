@@ -17,7 +17,7 @@ public:
 	SerialCommunication();
 	static SerialCommunication* getInstance();
 	virtual ~SerialCommunication();
-	void println(String string);
+	void println(const char * string);
 	char read();
 	bool available();
 	void flush();

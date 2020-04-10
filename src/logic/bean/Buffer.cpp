@@ -31,14 +31,14 @@ char* Buffer::getData(){
 Buffer::BufferErrors Buffer::addChar(char character){
 	if(position >= SIZE){
 		clearBuffer();
-		Logger::getInstance()->log(Logger::ERROR, "Buffer size : ");
-		Logger::getInstance()->log(Logger::ERROR, (String)position);
+		Logger::getInstance()->log(Logger::ERROR, S("Buffer size : "));
+		Logger::getInstance()->log(Logger::ERROR, (char *)position);
 		return BUFFER_FULL_ERROR;
 	}
 
 	if(character == COMMAND_COMPLETE_CHAR){
 		commandComplete = true;
-		Logger::getInstance()->log(Logger::DEBUG, "Command complete ");
+		Logger::getInstance()->log(Logger::DEBUG, S("Command complete "));
 		Logger::getInstance()->log(Logger::DEBUG, (char *)data);
 		return NO_ERROR;
 	}

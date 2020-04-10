@@ -15,6 +15,7 @@
 #include "logic/bean/commands/interpreterCommands/PopAFunctionCommand.h"
 #include "logic/bean/commands/interpreterCommands/PushAFunctionCommand.h"
 #include "logic/bean/commands/interpreterCommands/ResetInterpreterCommand.h"
+#include "ArduinoIncludes.h"
 
 
 #define INTERPRETER_COMMAND_CHAR 			'#'

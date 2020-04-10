@@ -20,8 +20,8 @@ SerialCommunication* SerialCommunication::getInstance(){
 	return serialCommunication;
 }
 
-void SerialCommunication::println(String string){
-	Serial.println(string);
+void SerialCommunication::println(const char * string){
+	Serial.println(FPSTR(string));
 }
 
 bool SerialCommunication::available(){

@@ -1562,7 +1562,7 @@ environment/project/io.sloeber.core.toolChain.release.1369960914/A.UPLOAD.ALTID/
 environment/project/io.sloeber.core.toolChain.release.1369960914/A.UPLOAD.ALTID/value=no_altID
 environment/project/io.sloeber.core.toolChain.release.1369960914/A.UPLOAD.ERASE_CMD/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1369960914/A.UPLOAD.ERASE_CMD/operation=replace
-environment/project/io.sloeber.core.toolChain.release.1369960914/A.UPLOAD.ERASE_CMD/value=-ca "${A.BUILD.RFCAL_ADDR}" -cz 0x4000
+environment/project/io.sloeber.core.toolChain.release.1369960914/A.UPLOAD.ERASE_CMD/value=
 environment/project/io.sloeber.core.toolChain.release.1369960914/A.UPLOAD.MAXIMUM_DATA_SIZE/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1369960914/A.UPLOAD.MAXIMUM_DATA_SIZE/operation=replace
 environment/project/io.sloeber.core.toolChain.release.1369960914/A.UPLOAD.MAXIMUM_DATA_SIZE/value=81920
@@ -1604,10 +1604,10 @@ environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.BOARD_NA
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.BOARD_NAME/value=LOLIN(WEMOS) D1 R2 & mini
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.COM_PORT/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.COM_PORT/operation=replace
-environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.COM_PORT/value=/dev/ttyUSB0
+environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.COM_PORT/value=/dev/ttyUSB3
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.ECLIPSE_LOCATION/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.ECLIPSE_LOCATION/operation=replace
-environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.ECLIPSE_LOCATION/value=${eclipse_home}//////////////////////////////////////////////////////////////////////////////////////////////////////
+environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.ECLIPSE_LOCATION/value=${eclipse_home}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.EXTRA.ALL/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.EXTRA.ALL/operation=replace
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.EXTRA.ALL/value=
@@ -1631,7 +1631,7 @@ environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.EXTRA.LI
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.EXTRA.LINK/value=
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.MENU/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.MENU/operation=replace
-environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.MENU/value=CpuFrequency\=80\nCrystalFreq\=40\nDebug\=Disabled\nDebugLevel\=None____\nESPModule\=ESP12\nFlashErase\=sdk\nFlashFreq\=80\nFlashMode\=dio\nFlashSize\=4M1M\nled\=2\nLwIPVariant\=v2mss536\nResetMethod\=none\nUploadSpeed\=115200\nVTable\=flash
+environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.MENU/value=CpuFrequency\=80\nCrystalFreq\=40\nDebug\=Disabled\nDebugLevel\=None____\nESPModule\=ESP12\nFlashErase\=none\nFlashFreq\=80\nFlashMode\=dio\nFlashSize\=4M1M\nled\=2\nLwIPVariant\=v2mss536\nResetMethod\=none\nUploadSpeed\=115200\nVTable\=flash
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.OBJCOPY/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.OBJCOPY/operation=replace
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.OBJCOPY/value=${A.RECIPE.OBJCOPY.HEX.PATTERN}
