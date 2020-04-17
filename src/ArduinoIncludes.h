@@ -7,7 +7,7 @@
 
 #ifndef SRC_ARDUINOINCLUDES_H_
 #define SRC_ARDUINOINCLUDES_H_
-
+	#include "FS.h"
 	#include "Arduino.h"
 	#define S(string_literal) PSTR(string_literal)
 

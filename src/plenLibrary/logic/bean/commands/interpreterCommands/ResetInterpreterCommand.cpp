@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/interpreterCommands/ResetInterpreterCommand.h>
+#include <logic/bean/commands/interpreterCommands/ResetInterpreterCommand.h>
 
 ResetInterpreterCommand::ResetInterpreterCommand() {
 	this->subCommandType = RESET_INTERPRETER;

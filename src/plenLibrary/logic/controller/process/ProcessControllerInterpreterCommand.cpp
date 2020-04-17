@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/controller/process/ProcessControllerInterpreterCommand.h>
+#include <logic/controller/process/ProcessControllerInterpreterCommand.h>
 
 ProcessControllerInterpreterCommand::ProcessControllerInterpreterCommand() {}
 

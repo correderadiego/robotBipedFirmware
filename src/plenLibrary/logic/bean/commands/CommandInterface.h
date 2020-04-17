@@ -10,21 +10,21 @@
 
 class CommandInterface {
 	public:
-	enum CommandType{
-						  UNKNOWN_COMMAND_TYPE = -1,
+	enum CommandTypeEnum{
+						  UNKNOWN_COMMAND_TYPE,
 						  CONTROLLER_COMMAND,
 						  INTERPRETER_COMMAND,
 						  SETTER_COMMAND,
 						  GETTER_COMMAND
 						};
-
-	void setCommandType		(CommandType commandType);
-	CommandInterface::CommandType getCommandType();
+	CommandInterface(CommandTypeEnum commandType = UNKNOWN_COMMAND_TYPE);
+	void setCommandType		(CommandTypeEnum commandType);
+	CommandInterface::CommandTypeEnum getCommandType();
 	int getCommandLength	();
 	void setCommandLength(int commandLength);
 
 	protected:
-		CommandType commandType;
+		CommandTypeEnum commandType;
 		int commandLength;
 };
 

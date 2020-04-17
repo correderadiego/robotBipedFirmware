@@ -1,19 +1,40 @@
-#include <plenLibrary/logic/bean/Plen.h>
-#include <plenLibrary/logic/controller/parser/ParserController.h>
-#include <plenLibrary/logic/controller/PlenController.h>
-#include <plenLibrary/logic/PlenControllerFactory.h>
-#include <plenLibrary/logic/PlenFactory.h>
-#include <plenLibrary/utils/Logger.h>
-PlenController*		plenController;
-Plen*				plen;
+#include "logic/bean/Plen.h"
+#include <logic/controller/PlenController.h>
+#include "PlenFactory.h"
+#include <PlenControllerFactory.h>
+
+#include "hardware/bean/Network.h"
+#include "hardware/controller/networkController/NetworkController.h"
+#include "NetworkFactory.h"
+#include "NetworkControllerFactory.h"
+
+#include "hardware/bean/SerialCommunication.h"
+#include "hardware/controller/SerialController.h"
+
+#include <utils/Logger.h>
+
+PlenController*		  plenController;
+Plen*				  plen;
+Network* 			  network;
+NetworkController*	  networkController;
+SerialController*	  serialController;
 
 void setup(){
 	Logger::getInstance()->setLogLevel(Logger::DEBUG);
 
 	plen = (new PlenFactory())->getPlen();
 	plenController  = (new PlenControllerFactory())->getPlenController();
+
+	network = (new NetworkFactory())->getNetwork();
+	networkController = (new NetworkControllerFactory())->getNetworkController();
+	networkController->configureNetworkController(network);
+
+	serialController = new SerialController();
 }
 
 void loop(){
+	serialController->executeThreadTasks(plen, SerialCommunication::getInstance());
+	networkController->executeThreadTasks(plen, network);
 	plenController->executeThreadTasks(plen);
 }
+

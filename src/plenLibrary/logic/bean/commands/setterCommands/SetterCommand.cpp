@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/setterCommands/SetterCommand.h>
+#include <logic/bean/commands/setterCommands/SetterCommand.h>
 
 SetterCommand::SetterCommand(CommandInterface command) {
 	this->commandType 	= command.getCommandType();
@@ -13,8 +13,8 @@ SetterCommand::SetterCommand(CommandInterface command) {
 	this->subCommandType = UNKNOWN_SUB_COMMAND_TYPE;
 }
 
-SetterCommand::SetterCommand(CommandType commandType) {
-	this->commandType  	 = commandType;
+SetterCommand::SetterCommand() {
+	this->commandType  	 = SETTER_COMMAND;
 	this->commandLength  = 0;
 	this->subCommandType = UNKNOWN_SUB_COMMAND_TYPE;
 }

@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/setterCommands/SetMaxValueCommand.h>
+#include <logic/bean/commands/setterCommands/SetMaxValueCommand.h>
 
 SetMaxValueCommand::SetMaxValueCommand() {
 	this->subCommandType = SET_MAX_VALUE;

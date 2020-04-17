@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/getterCommands/DumpJointSettingsCommand.h>
+#include <logic/bean/commands/getterCommands/DumpJointSettingsCommand.h>
 
 DumpJointSettingsCommand::DumpJointSettingsCommand(GetterCommand getterCommand){}
 

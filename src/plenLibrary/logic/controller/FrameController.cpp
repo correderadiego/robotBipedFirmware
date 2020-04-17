@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/controller/FrameController.h>
+#include <logic/controller/FrameController.h>
 
 FrameController::FrameController() {}
 

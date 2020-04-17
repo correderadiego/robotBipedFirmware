@@ -2,15 +2,20 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2020-04-10 18:58:07
+//This file has been generated on 2020-04-17 13:48:10
 
 #include "Arduino.h"
-#include <plenLibrary/logic/bean/Plen.h>
-#include <plenLibrary/logic/controller/parser/ParserController.h>
-#include <plenLibrary/logic/controller/PlenController.h>
-#include <plenLibrary/logic/PlenControllerFactory.h>
-#include <plenLibrary/logic/PlenFactory.h>
-#include <plenLibrary/utils/Logger.h>
+#include "logic/bean/Plen.h"
+#include <logic/controller/PlenController.h>
+#include "PlenFactory.h"
+#include <PlenControllerFactory.h>
+#include "hardware/bean/Network.h"
+#include "hardware/controller/networkController/NetworkController.h"
+#include "NetworkFactory.h"
+#include "NetworkControllerFactory.h"
+#include "hardware/bean/SerialCommunication.h"
+#include "hardware/controller/SerialController.h"
+#include <utils/Logger.h>
 
 void setup();
 void loop();

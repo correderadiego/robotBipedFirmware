@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/interpreterCommands/PopAFunctionCommand.h>
+#include <logic/bean/commands/interpreterCommands/PopAFunctionCommand.h>
 
 PopAFunctionCommand::PopAFunctionCommand() {
 	this->subCommandType = POP_A_FUNCTION;

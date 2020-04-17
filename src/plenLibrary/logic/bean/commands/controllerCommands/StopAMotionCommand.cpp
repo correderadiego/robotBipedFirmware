@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/controllerCommands/StopAMotionCommand.h>
+#include <logic/bean/commands/controllerCommands/StopAMotionCommand.h>
 
 StopAMotionCommand::StopAMotionCommand() {
 	this->subCommandType 	= STOP_A_MOTION;

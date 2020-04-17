@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/controller/process/ProcessControllerControllerCommand.h>
+#include <logic/controller/process/ProcessControllerControllerCommand.h>
 
 ProcessControllerControllerCommand::ProcessControllerControllerCommand() {}
 

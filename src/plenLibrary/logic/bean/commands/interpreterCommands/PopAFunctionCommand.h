@@ -8,7 +8,7 @@
 #ifndef SRC_BEAN_COMMANDS_INTERPRETERCOMMANDS_POPAFUNCTIONCOMMAND_H_
 #define SRC_BEAN_COMMANDS_INTERPRETERCOMMANDS_POPAFUNCTIONCOMMAND_H_
 
-#include <plenLibrary/logic/bean/commands/interpreterCommands/InterpreterCommand.h>
+#include <logic/bean/commands/interpreterCommands/InterpreterCommand.h>
 
 class PopAFunctionCommand : public InterpreterCommand{
 public:

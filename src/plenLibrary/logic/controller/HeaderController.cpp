@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/controller/HeaderController.h>
+#include <logic/controller/HeaderController.h>
 
 HeaderController::HeaderController() {}
 

@@ -41,6 +41,8 @@
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/core/core}&quot;"/>
                                     									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/src/plenLibrary}&quot;"/>
+                                    									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/core/variant}&quot;"/>
@@ -64,8 +66,6 @@
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/libraries/SPI}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/libraries/gdb}&quot;"/>
-                                    									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/libraries/Pin/src}&quot;"/>
                                     								
                                 </option>
                                 								
@@ -100,8 +100,6 @@
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/libraries/SPI}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/libraries/gdb}&quot;"/>
-                                    									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/libraries/Pin/src}&quot;"/>
                                     								
                                 </option>
                                 								
@@ -136,8 +134,6 @@
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/libraries/SPI}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/libraries/gdb}&quot;"/>
-                                    									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MiniPlen/libraries/Pin/src}&quot;"/>
                                     								
                                 </option>
                                 								

@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/controllerCommands/ApplyHomePositionCommand.h>
+#include <logic/bean/commands/controllerCommands/ApplyHomePositionCommand.h>
 
 ApplyHomePositionCommand::ApplyHomePositionCommand() {
 	this->subCommandType 	= APPLY_HOME_POSITION;

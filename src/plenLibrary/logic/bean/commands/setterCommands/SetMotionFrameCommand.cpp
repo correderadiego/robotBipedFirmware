@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/setterCommands/SetMotionFrameCommand.h>
+#include <logic/bean/commands/setterCommands/SetMotionFrameCommand.h>
 
 SetMotionFrameCommand::SetMotionFrameCommand() {
 	// TODO Auto-generated constructor stub

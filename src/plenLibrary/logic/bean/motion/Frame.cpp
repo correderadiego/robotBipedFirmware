@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/motion/Frame.h>
+#include <logic/bean/motion/Frame.h>
 
 Frame::Frame() {
 	// TODO Auto-generated constructor stub

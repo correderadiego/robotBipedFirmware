@@ -9,16 +9,16 @@
 #define SRC_CONTROLLER_PARSER_PARSERINTERFACE_H_
 
 
-#include <plenLibrary/logic/bean/Buffer.h>
-#include <plenLibrary/logic/bean/commands/CommandInterface.h>
-#include <plenLibrary/utils/Logger.h>
+#include <logic/bean/commands/CommandInterface.h>
+#include <logic/bean/hardware/Buffer.h>
+#include <utils/Logger.h>
 
 class ParserInterface{
 	#define HEADER_CHAR_POSITION			 0
     public:
 
 	enum ParseErrors{
-	  NO_ERROR = 0,
+	  NO_ERROR,
 	  UNKNOWN_COMMAND_ERROR,
 	  WRONG_LENGHT_COMMAND_ERROR
 	};

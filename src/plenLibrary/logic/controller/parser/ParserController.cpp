@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/controller/parser/ParserController.h>
+#include <logic/controller/parser/ParserController.h>
 
 ParserController::ParserController() {}
 

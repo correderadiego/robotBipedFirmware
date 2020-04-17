@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/controllerCommands/ControllerCommand.h>
+#include <logic/bean/commands/controllerCommands/ControllerCommand.h>
 
 ControllerCommand::ControllerCommand(CommandInterface command) {
 	this->commandType 	= command.getCommandType();

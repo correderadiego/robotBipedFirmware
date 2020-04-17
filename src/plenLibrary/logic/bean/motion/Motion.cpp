@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/motion/Motion.h>
+#include <logic/bean/motion/Motion.h>
 
 Motion::Motion(Header* header, Frame* frame){
 	this->header = header;

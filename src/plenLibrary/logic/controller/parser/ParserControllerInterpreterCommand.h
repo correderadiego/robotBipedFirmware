@@ -8,14 +8,14 @@
 #ifndef SRC_CONTROLLER_PARSER_PARSERCONTROLLERINTERPRETERCOMMAND_H_
 #define SRC_CONTROLLER_PARSER_PARSERCONTROLLERINTERPRETERCOMMAND_H_
 
-#include <plenLibrary/logic/bean/Buffer.h>
-#include <plenLibrary/logic/bean/commands/interpreterCommands/InterpreterCommand.h>
-#include <plenLibrary/logic/bean/commands/interpreterCommands/PopAFunctionCommand.h>
-#include <plenLibrary/logic/bean/commands/interpreterCommands/PushAFunctionCommand.h>
-#include <plenLibrary/logic/bean/commands/interpreterCommands/ResetInterpreterCommand.h>
-#include <plenLibrary/logic/controller/parser/ParserInterface.h>
+#include <ArduinoIncludes.h>
+#include <logic/bean/commands/interpreterCommands/InterpreterCommand.h>
+#include <logic/bean/commands/interpreterCommands/PopAFunctionCommand.h>
+#include <logic/bean/commands/interpreterCommands/PushAFunctionCommand.h>
+#include <logic/bean/commands/interpreterCommands/ResetInterpreterCommand.h>
+#include <logic/bean/hardware/Buffer.h>
+#include <logic/controller/parser/ParserInterface.h>
 #include "string.h"
-#include "ArduinoIncludes.h"
 
 
 #define INTERPRETER_COMMAND_CHAR 			'#'

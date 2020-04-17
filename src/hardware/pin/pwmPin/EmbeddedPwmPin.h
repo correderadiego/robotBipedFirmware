@@ -11,7 +11,7 @@
 #include <hardware/pin/pwmPin/PwmPin.h>
 #include <Servo.h>
 
-class EmbeddedPwmPin: public PwmPin {
+class EmbeddedPwmPin: public PwmPin{
 public:
 	EmbeddedPwmPin(uint8_t pinNumber);
 	void setValue(uint8_t duty);

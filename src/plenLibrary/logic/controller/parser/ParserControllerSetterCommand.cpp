@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/controller/parser/ParserControllerSetterCommand.h>
+#include <logic/controller/parser/ParserControllerSetterCommand.h>
 
 ParserControllerSetterCommand::ParserControllerSetterCommand() {}
 

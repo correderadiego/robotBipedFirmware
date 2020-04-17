@@ -3,48 +3,44 @@
  *
  *  Created on: 16 mar. 2020
  *      Author: ziash
- */
+ Wifi*/
 
 #ifndef SRC_PLEN_H_
 #define SRC_PLEN_H_
 
-#include <FS.h>
-#include <plenLibrary/logic/bean/Buffer.h>
-#include <plenLibrary/logic/bean/Eyes.h>
-#include <plenLibrary/logic/bean/Joint.h>
-#include <plenLibrary/logic/bean/Wifi.h>
+#include <logic/bean/hardware/Buffer.h>
+#include <logic/bean/hardware/Eyes.h>
+#include <logic/bean/hardware/Joint.h>
+#include "ArduinoIncludes.h"
 
 class Plen {
 public:
 	Plen(
 			Joint* joint[],
 			int jointSize,
-			Wifi* wifi,
 			Eyes* eyes,
+			Buffer* serialBuffer,
+			Buffer* socketBuffer,
 			File* fileMotion,
-			File* fileConfiguration,
-			File* fileSystemconfiguration
+			File* fileConfiguration
 			);
 
 	uint8_t getJointSize();
 	Joint** getJointVector();
-	Wifi*	getWifi();
 	Eyes* 	getEyes();
 
 	File*	getFileConfiguration();
-	File* 	getFileSystemConfiguration();
-
-	Buffer* getBuffer();
+	Buffer* getSerialBuffer();
+	Buffer* getSocketBuffer();
 
 private:
 	Joint** joint;
 	int jointSize;
-	Wifi* wifi;
 	Eyes* eyes;
 	File* fileMotion;
 	File* fileConfiguration;
-	File* fileSystemConfiguration;
-	Buffer* buffer;
+	Buffer* serialBuffer;
+	Buffer* socketBuffer;
 };
 
 #endif /* SRC_PLEN_H_ */

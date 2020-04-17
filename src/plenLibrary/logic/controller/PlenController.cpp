@@ -5,15 +5,13 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/controller/PlenController.h>
+#include <logic/controller/PlenController.h>
 
 PlenController::PlenController(
 		JointController*  				jointController,
 		MotionController*  				motionController,
 		Interpreter*       				interpreter,
 		EyeController*	   				eyeController,
-		WifiController*	   				wifiController,
-		HttpServerController* 			httpServerController,
 		ExternalFileSystemController* 	externalFileSystemController,
 		ParserController*				parserController,
 		ProcessController* 				processController) {
@@ -21,8 +19,6 @@ PlenController::PlenController(
 		this->motionController				= motionController;
 		this->interpreter	  				= interpreter;
 		this->eyeController	  				= eyeController;
-		this->wifiController  				= wifiController;
-		this->httpServerController			= httpServerController;
 		this->externalFileSystemController 	= externalFileSystemController;
 		this->parserController				= parserController;
 		this->processController				= processController;
@@ -30,9 +26,6 @@ PlenController::PlenController(
 
 void PlenController::initPlenController(Plen* plen){
 	loadFileConfiguration(plen);
-	wifiController->connect(plen);
-	httpServerController->configureHttpServer(plen);
-	httpServerController->initHttpServer();
 }
 
 void PlenController::loadFileConfiguration(Plen* plen){
@@ -44,62 +37,28 @@ void PlenController::loadFileConfiguration(Plen* plen){
 }
 
 void PlenController::executeThreadTasks(Plen* plen){
-	socketController(plen);
+	processBuffer(plen, plen->getSerialBuffer());
+	processBuffer(plen, plen->getSocketBuffer());
 //	this->jointController->executeThreadTasks(plen);
 //	this->eyeController->executeThreadTasks(plen);
-//	this->wifiController->executeThreadTasks(plen);
-//	this->httpServerController->executeThreadTasks();
 }
 
-void PlenController::socketController(Plen* plen){
-	serialSocketController(plen);
-	tcpSocketController(plen);
-}
-
-void PlenController::serialSocketController(Plen* plen){
-	temporizedWait();
-	if (!SerialCommunication::getInstance()->available()){
-		return;
-	}
-	processInputChar(plen, SerialCommunication::getInstance()->read());
-}
-
-void PlenController::tcpSocketController(Plen* plen){
-	if (!wifiController->isSocketClientAvailable(plen)){
-		return;
-	}
-	processInputChar(plen, wifiController->read(plen));
-}
-
-void PlenController::processInputChar(Plen* plen, char character){
-	CommandInterface* command = new CommandInterface();
-	ParseInputCharError parseInputCharError = parseInputChar(plen, character, *command);
-	if(parseInputCharError == NO_ERROR){
+void PlenController::processBuffer(Plen* plen, Buffer* buffer){
+	ParseBufferErrors parseBufferError = parseBuffer(buffer, *command);
+	if(parseBufferError == NO_ERROR){
 		processController->process(plen, *command);
 	}
 }
 
-void PlenController::temporizedWait(){
-	if(millis() - previousTemporizedWait > DEFAULT_WAIT_PERIOD){
-		Logger::getInstance()->log(Logger::INFO,S("wait"));
-		previousTemporizedWait = millis();
-	}
-}
-
-PlenController::ParseInputCharError PlenController::parseInputChar(Plen* plen, char character, CommandInterface command){
-	Buffer::BufferErrors bufferError = plen->getBuffer()->addChar(character);
-
-	if(bufferError == Buffer::BUFFER_FULL_ERROR){
-		Logger::getInstance()->log(Logger::ERROR, S("Full buffer error"));
-		return BUFFER_FULL_ERROR;
-	}
-
-	if(!plen->getBuffer()->getCommandComplete()){
+PlenController::ParseBufferErrors PlenController::parseBuffer(Buffer* buffer, CommandInterface command){
+	if(!buffer->getCommandComplete()){
 		return COMMAND_INCOMPLETE_ERROR;
 	}
 
-	ParserInterface::ParseErrors parseError = parserController->parse(plen->getBuffer(), command);
-	plen->getBuffer()->clearBuffer();
+	ParserInterface::ParseErrors parseError = parserController->parse(buffer, command);
+	Serial.println("After parse");
+	Serial.println(command.getCommandType());
+	buffer->clearBuffer();
 
 	if(parseError == ParserInterface::WRONG_LENGHT_COMMAND_ERROR){
 		Logger::getInstance()->log(Logger::ERROR, S("Wrong command length"));

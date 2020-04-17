@@ -5,13 +5,18 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/CommandInterface.h>
+#include <logic/bean/commands/CommandInterface.h>
 
-void CommandInterface::setCommandType(CommandType commandType){
+CommandInterface::CommandInterface(CommandTypeEnum commandType){
+	this->commandType 	= commandType;
+	this->commandLength = 0;
+}
+
+void CommandInterface::setCommandType(CommandTypeEnum commandType){
 	this->commandType = commandType;
 }
 
-CommandInterface::CommandType CommandInterface::getCommandType(){
+CommandInterface::CommandTypeEnum CommandInterface::getCommandType(){
 	return this->commandType;
 }
 

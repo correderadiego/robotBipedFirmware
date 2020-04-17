@@ -8,12 +8,12 @@
 #ifndef SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERCONTROLLERCOMMAND_H_
 #define SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERCONTROLLERCOMMAND_H_
 
-#include <plenLibrary/logic/bean/commands/controllerCommands/ApplyDiffValueCommand.h>
-#include <plenLibrary/logic/bean/commands/controllerCommands/ApplyNativeValueCommand.h>
-#include <plenLibrary/logic/bean/commands/controllerCommands/ControllerCommand.h>
-#include <plenLibrary/logic/bean/commands/CommandInterface.h>
-#include <plenLibrary/logic/bean/Plen.h>
-#include <plenLibrary/logic/controller/process/ProcessControllerInterface.h>
+#include <logic/bean/commands/controllerCommands/ApplyDiffValueCommand.h>
+#include <logic/bean/commands/controllerCommands/ApplyNativeValueCommand.h>
+#include <logic/bean/commands/controllerCommands/ControllerCommand.h>
+#include <logic/bean/commands/CommandInterface.h>
+#include <logic/bean/Plen.h>
+#include <logic/controller/process/ProcessControllerInterface.h>
 
 class ProcessControllerControllerCommand : public ProcessControllerInterface {
 public:

@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/controller/process/ProcessControllerSetterCommand.h>
+#include <logic/controller/process/ProcessControllerSetterCommand.h>
 
 ProcessControllerSetterCommand::ProcessControllerSetterCommand() {}
 

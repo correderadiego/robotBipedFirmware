@@ -8,8 +8,8 @@
 #ifndef SRC_PLENLIBRARY_UTILS_LOGGER_H_
 #define SRC_PLENLIBRARY_UTILS_LOGGER_H_
 
-#include <plenLibrary/utils/SocketLoggerInterface.h>
-#include "hardware/SerialCommunication.h"
+#include "SocketLoggerInterface.h"
+//#include "hardware/bean/SerialCommunication.h"
 
 class Logger {
 public:

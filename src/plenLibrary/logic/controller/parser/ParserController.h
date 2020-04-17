@@ -8,13 +8,13 @@
 #ifndef SRC_CONTROLLER_PARSERCONTROLLER_H_
 #define SRC_CONTROLLER_PARSERCONTROLLER_H_
 
-#include <plenLibrary/logic/bean/Buffer.h>
-#include <plenLibrary/logic/bean/commands/CommandInterface.h>
-#include <plenLibrary/logic/controller/parser/ParserControllerControllerCommand.h>
-#include <plenLibrary/logic/controller/parser/ParserControllerGetterCommand.h>
-#include <plenLibrary/logic/controller/parser/ParserControllerInterpreterCommand.h>
-#include <plenLibrary/logic/controller/parser/ParserControllerSetterCommand.h>
-#include <plenLibrary/logic/controller/parser/ParserInterface.h>
+#include <logic/bean/commands/CommandInterface.h>
+#include <logic/bean/hardware/Buffer.h>
+#include <logic/controller/parser/ParserControllerControllerCommand.h>
+#include <logic/controller/parser/ParserControllerGetterCommand.h>
+#include <logic/controller/parser/ParserControllerInterpreterCommand.h>
+#include <logic/controller/parser/ParserControllerSetterCommand.h>
+#include <logic/controller/parser/ParserInterface.h>
 
 
 class ParserController {

@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/setterCommands/SetHomeValueCommand.h>
+#include <logic/bean/commands/setterCommands/SetHomeValueCommand.h>
 
 SetHomeValueCommand::SetHomeValueCommand() {
 	this->subCommandType = SET_HOME_VALUE;

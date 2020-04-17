@@ -8,14 +8,14 @@
 #ifndef SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERINTERFACE_H_
 #define SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERINTERFACE_H_
 
-#include <plenLibrary/logic/bean/commands/CommandInterface.h>
-#include <plenLibrary/logic/bean/Plen.h>
+#include <logic/bean/commands/CommandInterface.h>
+#include <logic/bean/Plen.h>
 
 class ProcessControllerInterface {
 public:
 	enum CommandControllerErrors{
 	  UNKNOWN_COMMAND,
-	  NO_ERROR 			 =  0
+	  NO_ERROR
 	};
 
     virtual bool match(CommandInterface command);

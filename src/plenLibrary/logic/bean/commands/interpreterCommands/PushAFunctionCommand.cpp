@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/interpreterCommands/PushAFunctionCommand.h>
+#include <logic/bean/commands/interpreterCommands/PushAFunctionCommand.h>
 
 PushAFunctionCommand::PushAFunctionCommand() {
 	this->subCommandType 	= PUSH_A_FUNCTION;

@@ -19,3 +19,7 @@ void PwmPin::setValue(uint8_t duty){}
 PwmPin::PwmPinType PwmPin::getPwmPinType(){
 	return pwmPinType;
 }
+
+uint8_t PwmPin::getPinNumber(){
+	return this->pinNumber;
+}

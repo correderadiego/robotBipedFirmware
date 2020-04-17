@@ -9,5 +9,5 @@
 
 PCA9685PwmPin::PCA9685PwmPin(uint8_t pinNumber) {
 	this->pinNumber = pinNumber;
-	this->pwmPinType = PwmPin::EMBEDDED_PWM_PIN;
+	this->pwmPinType = PwmPin::PAC9685_PWM_PIN;
 }

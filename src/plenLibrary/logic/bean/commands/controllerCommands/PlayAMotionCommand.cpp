@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/controllerCommands/PlayAMotionCommand.h>
+#include <logic/bean/commands/controllerCommands/PlayAMotionCommand.h>
 
 PlayAMotionCommand::PlayAMotionCommand() {
 	this->subCommandType 	= PLAY_A_MOTION;

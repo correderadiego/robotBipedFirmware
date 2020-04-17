@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/getterCommands/DumpMotionCommand.h>
+#include <logic/bean/commands/getterCommands/DumpMotionCommand.h>
 
 DumpMotionCommand::DumpMotionCommand() {
 	this->subCommandType = DUMP_A_MOTION;

@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/controller/MotionController.h>
+#include <logic/controller/MotionController.h>
 
 MotionController::MotionController() {
 	// TODO Auto-generated constructor stub

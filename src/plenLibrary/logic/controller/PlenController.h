@@ -9,31 +9,27 @@
 #define SRC_PLENCONTROLLER_H_
 
 
-#include <plenLibrary/logic/bean/Buffer.h>
-#include <plenLibrary/logic/bean/commands/CommandInterface.h>
-#include <plenLibrary/logic/bean/Plen.h>
-#include <plenLibrary/logic/controller/hardware/ExternalFileSystemController.h>
-#include <plenLibrary/logic/controller/hardware/EyeController.h>
-#include <plenLibrary/logic/controller/hardware/HttpServerController.h>
-#include <plenLibrary/logic/controller/hardware/JointController.h>
-#include <plenLibrary/logic/controller/hardware/WifiController.h>
-#include <plenLibrary/logic/controller/Interpreter.h>
-#include <plenLibrary/logic/controller/MotionController.h>
-#include <plenLibrary/logic/controller/parser/ParserController.h>
-#include <plenLibrary/logic/controller/process/ProcessController.h>
-#include <plenLibrary/utils/Logger.h>
+#include <hardware/bean/SerialCommunication.h>
+#include <hardware/controller/ExternalFileSystemController.h>
+#include <logic/bean/commands/CommandInterface.h>
+#include <logic/bean/hardware/Buffer.h>
+#include <logic/bean/Plen.h>
+#include <logic/controller/EyeController.h>
+#include <logic/controller/Interpreter.h>
+#include <logic/controller/JointController.h>
+#include <logic/controller/MotionController.h>
+#include <logic/controller/parser/ParserController.h>
+#include <logic/controller/process/ProcessController.h>
+#include <utils/Logger.h>
 #include <string.h>
 #include <Wire.h>
 #include <Servo.h>
 
-#include "hardware/SerialCommunication.h"
 #include "Arduino.h"
 
 class PlenController{
 public:
-	#define DEFAULT_WAIT_PERIOD 1000
-
-	enum ParseInputCharError{
+	enum ParseBufferErrors{
 	  NO_ERROR,
 	  BUFFER_FULL_ERROR,
 	  COMMAND_INCOMPLETE_ERROR,
@@ -46,8 +42,6 @@ public:
 			MotionController* 				motionController,
 			Interpreter*      				interpreter,
 			EyeController*	  				eyeController,
-			WifiController*   				wifiController,
-			HttpServerController* 			HttpServerController,
 			ExternalFileSystemController* 	externalFileSystemController,
 			ParserController*				parserController,
 			ProcessController* 				processController);
@@ -58,25 +52,16 @@ private:
 	MotionController* 				motionController;
 	Interpreter*      				interpreter;
 	EyeController*	  				eyeController;
-	WifiController*   				wifiController;
-	HttpServerController* 			httpServerController;
 	ExternalFileSystemController* 	externalFileSystemController;
 	ParserController*				parserController;
 	ProcessController* 				processController;
-	unsigned long previousTemporizedWait = millis();
+
 
 	void initPlenController(Plen* plen);
 	void loadFileConfiguration(Plen* plen);
-
-	void socketController(Plen* plen);
-	void processInputChar(Plen* plen, char character);
-	ParseInputCharError parseInputChar(Plen* plen, char character, CommandInterface command);
-	void serialSocketController(Plen* plen);
-	void tcpSocketController(Plen* plen);
-	void temporizedWait();
-
-
-
+	void processBuffer(Plen* plen, Buffer* buffer);
+	ParseBufferErrors parseBuffer(Buffer* buffer, CommandInterface command);
+	CommandInterface* command = new CommandInterface();
 };
 
 #endif /* SRC_PLENCONTROLLER_H_ */

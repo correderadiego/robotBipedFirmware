@@ -58,22 +58,66 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/variants/d1_mini/pins_arduino.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/variants/d1_mini/../generic/common.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/Plen.h \
- /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/FS.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/Buffer.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/hardware/Buffer.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/utils/Logger.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/utils/SocketLoggerInterface.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/SerialCommunication.h \
  /home/ziash/workspaceEsp8266/MiniPlen/src/ArduinoIncludes.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/Eyes.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/Pin.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/led/Led.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/GPIOPin.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/Pin.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/Joint.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/PwmPin.h \
+ /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/FS.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/hardware/Eyes.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/hardware/Led.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/interfaces/GPIOPinInterface.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/hardware/Joint.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/interfaces/PwmPinInterface.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/PlenController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/bean/SerialCommunication.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/controller/ExternalFileSystemController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/CommandInterface.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/EyeController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/LedController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/Interpreter.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/JointController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/interfaces/PCA9685PwmControllerInterface.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/MotionController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserControllerControllerCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/ApplyDiffValueCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/ControllerCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/ApplyHomePositionCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/ApplyNativeValueCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/PlayAMotionCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/StopAMotionCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserInterface.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserControllerGetterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/getterCommands/DumpJointSettingsCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/getterCommands/GetterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/getterCommands/DumpMotionCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/getterCommands/DumpVersionInformationCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/getterCommands/DumpNetworkInformationCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserControllerInterpreterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/interpreterCommands/InterpreterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/interpreterCommands/PopAFunctionCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/interpreterCommands/PushAFunctionCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/interpreterCommands/ResetInterpreterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserControllerSetterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/ResetJointSettingsCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/SetterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/SetHomeValueCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/SetMaxValueCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/SetMinValueCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerControllerCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerInterface.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerGetterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/Configuration.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerInterpreterCommand.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerSetterCommand.h \
+ /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Wire/Wire.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Servo/src/Servo.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/Wifi.h \
- /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WebServer/src/ESP8266WebServer.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/PlenFactory.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/EmbeddedPwmPin.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/PwmPin.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/ArduinoPin.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/PCA9685PwmPin.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/ESP8266WiFi.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/include/wl_definitions.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/IPAddress.h \
@@ -139,62 +183,31 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/WiFiClientSecure.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/WiFiClientSecureAxTLS.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/include/ssl.h \
- /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WebServer/src/detail/RequestHandler.h \
- /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266HTTPUpdateServer/src/ESP8266HTTPUpdateServer.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserController.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/CommandInterface.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserControllerControllerCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/ApplyDiffValueCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/ControllerCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/ApplyHomePositionCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/ApplyNativeValueCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/PlayAMotionCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/StopAMotionCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserInterface.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserControllerGetterCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/getterCommands/DumpJointSettingsCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/getterCommands/GetterCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/getterCommands/DumpMotionCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/getterCommands/DumpVersionInformationCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserControllerInterpreterCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/interpreterCommands/InterpreterCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/interpreterCommands/PopAFunctionCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/interpreterCommands/PushAFunctionCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/interpreterCommands/ResetInterpreterCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserControllerSetterCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/ResetJointSettingsCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/SetterCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/SetHomeValueCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/SetMaxValueCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/SetMinValueCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/PlenController.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/hardware/ExternalFileSystemController.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/hardware/EyeController.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/hardware/LedController.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/hardware/HttpServerController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/controller/networkController/WifiController.h \
+ /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/WiFiClient.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266mDNS/ESP8266mDNS.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/WiFiUdp.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/Udp.h \
  /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/include/slist.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/hardware/JointController.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PCA9685PwmController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/bean/Network.h \
+ /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WebServer/src/ESP8266WebServer.h \
+ /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WebServer/src/detail/RequestHandler.h \
+ /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266HTTPUpdateServer/src/ESP8266HTTPUpdateServer.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/gpioPin/GPIOPin.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/PinDefinition.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/PlenControllerFactory.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/controller/PCA9685PwmController.h \
  /home/ziash/Arduino/libraries/Adafruit_PWM_Servo_Driver_Library/Adafruit_PWMServoDriver.h \
- /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Wire/Wire.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PinDefinition.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/hardware/WifiController.h \
- /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/WiFiClient.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/Interpreter.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/MotionController.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessController.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerControllerCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerInterface.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerGetterCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerInterpreterCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerSetterCommand.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/PlenControllerFactory.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/PlenFactory.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/EmbeddedPwmPin.h \
- /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/PCA9685PwmPin.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/interfaces/PCA9685PwmControllerInterface.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/controller/networkController/NetworkController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/controller/networkController/WifiController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/controller/networkController/HttpServerController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/NetworkFactory.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/bean/Network.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/controller/ExternalFileSystemController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/NetworkControllerFactory.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/controller/networkController/NetworkController.h \
+ /home/ziash/workspaceEsp8266/MiniPlen/src/hardware/controller/SerialController.h \
  ../firmware.ino
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/Arduino.h:
@@ -315,37 +328,125 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/Plen.h:
 
-/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/FS.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/Buffer.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/hardware/Buffer.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/utils/Logger.h:
 
 /home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/utils/SocketLoggerInterface.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/SerialCommunication.h:
-
 /home/ziash/workspaceEsp8266/MiniPlen/src/ArduinoIncludes.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/Eyes.h:
+/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/cores/esp8266/FS.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/Pin.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/hardware/Eyes.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/led/Led.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/hardware/Led.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/GPIOPin.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/interfaces/GPIOPinInterface.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/Pin.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/hardware/Joint.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/Joint.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/interfaces/PwmPinInterface.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/PwmPin.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/PlenController.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/bean/SerialCommunication.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/controller/ExternalFileSystemController.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/CommandInterface.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/EyeController.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/LedController.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/Interpreter.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/JointController.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/interfaces/PCA9685PwmControllerInterface.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/MotionController.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserController.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserControllerControllerCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/ApplyDiffValueCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/ControllerCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/ApplyHomePositionCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/ApplyNativeValueCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/PlayAMotionCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/StopAMotionCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserInterface.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserControllerGetterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/getterCommands/DumpJointSettingsCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/getterCommands/GetterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/getterCommands/DumpMotionCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/getterCommands/DumpVersionInformationCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/getterCommands/DumpNetworkInformationCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserControllerInterpreterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/interpreterCommands/InterpreterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/interpreterCommands/PopAFunctionCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/interpreterCommands/PushAFunctionCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/interpreterCommands/ResetInterpreterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserControllerSetterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/ResetJointSettingsCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/SetterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/SetHomeValueCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/SetMaxValueCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/SetMinValueCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessController.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerControllerCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerInterface.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerGetterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/Configuration.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerInterpreterCommand.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerSetterCommand.h:
+
+/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Wire/Wire.h:
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Servo/src/Servo.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/Wifi.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/PlenFactory.h:
 
-/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WebServer/src/ESP8266WebServer.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/EmbeddedPwmPin.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/PwmPin.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/ArduinoPin.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/PCA9685PwmPin.h:
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/ESP8266WiFi.h:
 
@@ -477,71 +578,9 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/include/ssl.h:
 
-/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WebServer/src/detail/RequestHandler.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/controller/networkController/WifiController.h:
 
-/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266HTTPUpdateServer/src/ESP8266HTTPUpdateServer.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserController.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/CommandInterface.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserControllerControllerCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/ApplyDiffValueCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/ControllerCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/ApplyHomePositionCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/ApplyNativeValueCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/PlayAMotionCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/controllerCommands/StopAMotionCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserInterface.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserControllerGetterCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/getterCommands/DumpJointSettingsCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/getterCommands/GetterCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/getterCommands/DumpMotionCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/getterCommands/DumpVersionInformationCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserControllerInterpreterCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/interpreterCommands/InterpreterCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/interpreterCommands/PopAFunctionCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/interpreterCommands/PushAFunctionCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/interpreterCommands/ResetInterpreterCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/parser/ParserControllerSetterCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/ResetJointSettingsCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/SetterCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/SetHomeValueCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/SetMaxValueCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/bean/commands/setterCommands/SetMinValueCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/PlenController.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/hardware/ExternalFileSystemController.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/hardware/EyeController.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/hardware/LedController.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/hardware/HttpServerController.h:
+/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/WiFiClient.h:
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266mDNS/ESP8266mDNS.h:
 
@@ -551,42 +590,42 @@ sloeber.ino.cpp.o: ../sloeber.ino.cpp \
 
 /home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/include/slist.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/hardware/JointController.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/bean/Network.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PCA9685PwmController.h:
+/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WebServer/src/ESP8266WebServer.h:
+
+/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WebServer/src/detail/RequestHandler.h:
+
+/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266HTTPUpdateServer/src/ESP8266HTTPUpdateServer.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/gpioPin/GPIOPin.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/PinDefinition.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/PlenControllerFactory.h:
+
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/controller/PCA9685PwmController.h:
 
 /home/ziash/Arduino/libraries/Adafruit_PWM_Servo_Driver_Library/Adafruit_PWMServoDriver.h:
 
-/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/Wire/Wire.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/interfaces/PCA9685PwmControllerInterface.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/PinDefinition.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/controller/networkController/NetworkController.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/hardware/WifiController.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/controller/networkController/WifiController.h:
 
-/home/ziash/eclipse/eclipse/arduinoPlugin/packages/esp8266/hardware/esp8266/2.4.2/libraries/ESP8266WiFi/src/WiFiClient.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/controller/networkController/HttpServerController.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/Interpreter.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/NetworkFactory.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/MotionController.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/bean/Network.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessController.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/controller/ExternalFileSystemController.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerControllerCommand.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/NetworkControllerFactory.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerInterface.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/controller/networkController/NetworkController.h:
 
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerGetterCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerInterpreterCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/controller/process/ProcessControllerSetterCommand.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/PlenControllerFactory.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/plenLibrary/logic/PlenFactory.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/EmbeddedPwmPin.h:
-
-/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/pin/pwmPin/PCA9685PwmPin.h:
+/home/ziash/workspaceEsp8266/MiniPlen/src/hardware/controller/SerialController.h:
 
 ../firmware.ino:

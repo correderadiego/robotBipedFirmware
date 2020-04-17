@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/controller/Interpreter.h>
+#include <logic/controller/Interpreter.h>
 
 Interpreter::Interpreter() {
 

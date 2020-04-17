@@ -8,7 +8,7 @@
 #ifndef SRC_BEAN_COMMANDS_SETTERCOMMANDS_RESETJOINTSETTINGSCOMMAND_H_
 #define SRC_BEAN_COMMANDS_SETTERCOMMANDS_RESETJOINTSETTINGSCOMMAND_H_
 
-#include <plenLibrary/logic/bean/commands/setterCommands/SetterCommand.h>
+#include <logic/bean/commands/setterCommands/SetterCommand.h>
 
 class ResetJointSettingsCommand : public SetterCommand{
 public:

@@ -5,25 +5,24 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/Plen.h>
+#include <logic/bean/Plen.h>
 
 Plen::Plen(
 			Joint* 	joint[],
 			int 	jointSize,
-			Wifi* wifi,
 			Eyes* 	eyes,
+			Buffer* serialBuffer,
+			Buffer* socketBuffer,
 			File* fileMotion,
-			File* fileConfiguration,
-			File* fileSystemConfiguration
+			File* fileConfiguration
 		  ) {
-	this->joint 			= joint;
-	this->jointSize 		= jointSize;
-	this->wifi				= wifi;
-	this->eyes				= eyes;
-	this->fileMotion		= fileMotion;
-	this->fileConfiguration	= fileConfiguration;
-	this->fileSystemConfiguration = fileSystemConfiguration;
-	this->buffer = new Buffer();
+	this->joint 					= joint;
+	this->jointSize 				= jointSize;
+	this->eyes						= eyes;
+	this->fileMotion				= fileMotion;
+	this->fileConfiguration			= fileConfiguration;
+	this->serialBuffer 				= serialBuffer;
+	this->socketBuffer				= socketBuffer;
 }
 
 Eyes* Plen::getEyes(){
@@ -34,10 +33,6 @@ uint8_t Plen::getJointSize(){
 	return this->jointSize;
 }
 
-Wifi* Plen::getWifi(){
-	return this->wifi;
-}
-
 Joint** Plen::getJointVector(){
 	return this->joint;
 }
@@ -46,10 +41,10 @@ File* Plen::getFileConfiguration(){
 	return fileConfiguration;
 }
 
-File* Plen::getFileSystemConfiguration(){
-	return fileSystemConfiguration;
+Buffer* Plen::getSerialBuffer(){
+	return this->serialBuffer;
 }
 
-Buffer* Plen::getBuffer(){
-	return this->buffer;
+Buffer* Plen::getSocketBuffer(){
+	return this->socketBuffer;
 }

@@ -8,13 +8,13 @@
 #ifndef SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERSETTERCOMMAND_H_
 #define SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERSETTERCOMMAND_H_
 
-#include <plenLibrary/logic/bean/commands/CommandInterface.h>
-#include <plenLibrary/logic/bean/commands/setterCommands/SetHomeValueCommand.h>
-#include <plenLibrary/logic/bean/commands/setterCommands/SetMaxValueCommand.h>
-#include <plenLibrary/logic/bean/commands/setterCommands/SetMinValueCommand.h>
-#include <plenLibrary/logic/bean/commands/setterCommands/SetterCommand.h>
-#include <plenLibrary/logic/bean/Plen.h>
-#include <plenLibrary/logic/controller/process/ProcessControllerInterface.h>
+#include <logic/bean/commands/CommandInterface.h>
+#include <logic/bean/commands/setterCommands/SetHomeValueCommand.h>
+#include <logic/bean/commands/setterCommands/SetMaxValueCommand.h>
+#include <logic/bean/commands/setterCommands/SetMinValueCommand.h>
+#include <logic/bean/commands/setterCommands/SetterCommand.h>
+#include <logic/bean/Plen.h>
+#include <logic/controller/process/ProcessControllerInterface.h>
 
 
 class ProcessControllerSetterCommand : public ProcessControllerInterface{

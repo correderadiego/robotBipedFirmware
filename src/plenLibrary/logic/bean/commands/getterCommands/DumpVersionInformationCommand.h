@@ -8,7 +8,7 @@
 #ifndef SRC_BEAN_COMMANDS_GETTERCOMMANDS_DUMPVERSIONINFORMATIONCOMMAND_H_
 #define SRC_BEAN_COMMANDS_GETTERCOMMANDS_DUMPVERSIONINFORMATIONCOMMAND_H_
 
-#include <plenLibrary/logic/bean/commands/getterCommands/GetterCommand.h>
+#include <logic/bean/commands/getterCommands/GetterCommand.h>
 
 class DumpVersionInformationCommand : public GetterCommand{
 public:

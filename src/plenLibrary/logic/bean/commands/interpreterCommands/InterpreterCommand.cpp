@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/interpreterCommands/InterpreterCommand.h>
+#include <logic/bean/commands/interpreterCommands/InterpreterCommand.h>
 
 InterpreterCommand::InterpreterCommand(CommandInterface command) {
 	this->commandType 	 = command.getCommandType();

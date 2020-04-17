@@ -8,7 +8,7 @@
 #ifndef SRC_BEAN_COMMANDS_SETTERCOMMANDS_SETMINVALUECOMMAND_H_
 #define SRC_BEAN_COMMANDS_SETTERCOMMANDS_SETMINVALUECOMMAND_H_
 
-#include <plenLibrary/logic/bean/commands/setterCommands/SetterCommand.h>
+#include <logic/bean/commands/setterCommands/SetterCommand.h>
 
 class SetMinValueCommand : public SetterCommand {
 public:

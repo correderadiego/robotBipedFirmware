@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/getterCommands/DumpVersionInformationCommand.h>
+#include <logic/bean/commands/getterCommands/DumpVersionInformationCommand.h>
 
 DumpVersionInformationCommand::DumpVersionInformationCommand() {
 	this->subCommandType = DUMP_VERSION_INFORMATION;

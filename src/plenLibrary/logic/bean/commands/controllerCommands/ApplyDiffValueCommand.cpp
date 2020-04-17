@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/controllerCommands/ApplyDiffValueCommand.h>
+#include <logic/bean/commands/controllerCommands/ApplyDiffValueCommand.h>
 
 ApplyDiffValueCommand::ApplyDiffValueCommand() {
 	this->subCommandType 	= APPY_NATIVE_VALUE;

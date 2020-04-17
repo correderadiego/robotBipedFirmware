@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/setterCommands/SetHeaderFrameCommand.h>
+#include <logic/bean/commands/setterCommands/SetHeaderFrameCommand.h>
 
 SetHeaderFrameCommand::SetHeaderFrameCommand() {
 	// TODO Auto-generated constructor stub

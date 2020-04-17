@@ -8,7 +8,7 @@
 #ifndef SRC_CONTROLLER_FRAMECONTROLLER_H_
 #define SRC_CONTROLLER_FRAMECONTROLLER_H_
 
-#include <plenLibrary/logic/bean/motion/Frame.h>
+#include <logic/bean/motion/Frame.h>
 
 class FrameController {
 public:

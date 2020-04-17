@@ -5,10 +5,10 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/getterCommands/GetterCommand.h>
+#include <logic/bean/commands/getterCommands/GetterCommand.h>
 
 GetterCommand::GetterCommand(CommandInterface command) {
-	this->commandType 	= command.getCommandType();
+	this->commandType 	= GETTER_COMMAND;
 	this->commandLength = command.getCommandLength();
 	this->subCommandType = UNKNOWN_SUB_COMMAND_TYPE;
 }

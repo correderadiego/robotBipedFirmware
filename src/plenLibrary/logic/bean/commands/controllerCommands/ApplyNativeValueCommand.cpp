@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/bean/commands/controllerCommands/ApplyNativeValueCommand.h>
+#include <logic/bean/commands/controllerCommands/ApplyNativeValueCommand.h>
 
 ApplyNativeValueCommand::ApplyNativeValueCommand() {
 	this->subCommandType 	= APPY_NATIVE_VALUE;

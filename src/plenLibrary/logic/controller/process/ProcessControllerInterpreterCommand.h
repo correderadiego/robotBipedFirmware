@@ -8,8 +8,8 @@
 #ifndef SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERINTERPRETERCOMMAND_H_
 #define SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERINTERPRETERCOMMAND_H_
 
-#include <plenLibrary/logic/bean/commands/CommandInterface.h>
-#include <plenLibrary/logic/controller/process/ProcessControllerInterface.h>
+#include <logic/bean/commands/CommandInterface.h>
+#include <logic/controller/process/ProcessControllerInterface.h>
 
 class ProcessControllerInterpreterCommand : public ProcessControllerInterface {
 public:

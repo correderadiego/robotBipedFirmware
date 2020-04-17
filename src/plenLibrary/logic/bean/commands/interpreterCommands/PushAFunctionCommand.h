@@ -8,7 +8,7 @@
 #ifndef SRC_BEAN_COMMANDS_INTERPRETERCOMMANDS_PUSHAFUNCTIONCOMMAND_H_
 #define SRC_BEAN_COMMANDS_INTERPRETERCOMMANDS_PUSHAFUNCTIONCOMMAND_H_
 
-#include <plenLibrary/logic/bean/commands/interpreterCommands/InterpreterCommand.h>
+#include <logic/bean/commands/interpreterCommands/InterpreterCommand.h>
 
 class PushAFunctionCommand : public InterpreterCommand{
 public:

@@ -8,15 +8,15 @@
 #ifndef SRC_CONTROLLER_PARSER_PARSERCONTROLLERCONTROLLERCOMMAND_H_
 #define SRC_CONTROLLER_PARSER_PARSERCONTROLLERCONTROLLERCOMMAND_H_
 
-#include <plenLibrary/logic/bean/Buffer.h>
-#include <plenLibrary/logic/bean/commands/controllerCommands/ApplyDiffValueCommand.h>
-#include <plenLibrary/logic/bean/commands/controllerCommands/ApplyHomePositionCommand.h>
-#include <plenLibrary/logic/bean/commands/controllerCommands/ApplyNativeValueCommand.h>
-#include <plenLibrary/logic/bean/commands/controllerCommands/ControllerCommand.h>
-#include <plenLibrary/logic/bean/commands/controllerCommands/PlayAMotionCommand.h>
-#include <plenLibrary/logic/bean/commands/controllerCommands/StopAMotionCommand.h>
-#include <plenLibrary/logic/controller/parser/ParserInterface.h>
-#include "ArduinoIncludes.h"
+#include <ArduinoIncludes.h>
+#include <logic/bean/commands/controllerCommands/ApplyDiffValueCommand.h>
+#include <logic/bean/commands/controllerCommands/ApplyHomePositionCommand.h>
+#include <logic/bean/commands/controllerCommands/ApplyNativeValueCommand.h>
+#include <logic/bean/commands/controllerCommands/ControllerCommand.h>
+#include <logic/bean/commands/controllerCommands/PlayAMotionCommand.h>
+#include <logic/bean/commands/controllerCommands/StopAMotionCommand.h>
+#include <logic/bean/hardware/Buffer.h>
+#include <logic/controller/parser/ParserInterface.h>
 
 
 #define CONTROLLER_COMMAND_CHAR  		'$'

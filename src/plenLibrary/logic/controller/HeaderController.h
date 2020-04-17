@@ -8,7 +8,7 @@
 #ifndef SRC_CONTROLLER_HEADERCONTROLLER_H_
 #define SRC_CONTROLLER_HEADERCONTROLLER_H_
 
-#include <plenLibrary/logic/bean/motion/Header.h>
+#include <logic/bean/motion/Header.h>
 
 class HeaderController {
 public:

@@ -8,8 +8,8 @@
 #ifndef SRC_BEAN_MOTION_MOTION_H_
 #define SRC_BEAN_MOTION_MOTION_H_
 
-#include <plenLibrary/logic/bean/motion/Frame.h>
-#include <plenLibrary/logic/bean/motion/Header.h>
+#include <logic/bean/motion/Frame.h>
+#include <logic/bean/motion/Header.h>
 
 class Motion {
 public:

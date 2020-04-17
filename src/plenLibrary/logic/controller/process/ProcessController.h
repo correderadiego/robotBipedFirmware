@@ -8,12 +8,11 @@
 #ifndef SRC_CONTROLLER_PROCESS_PROCESSCONTROLLER_H_
 #define SRC_CONTROLLER_PROCESS_PROCESSCONTROLLER_H_
 
-#include <plenLibrary/logic/bean/Plen.h>
-#include <plenLibrary/logic/controller/process/ProcessControllerControllerCommand.h>
-#include <plenLibrary/logic/controller/process/ProcessControllerGetterCommand.h>
-#include <plenLibrary/logic/controller/process/ProcessControllerInterface.h>
-#include <plenLibrary/logic/controller/process/ProcessControllerInterpreterCommand.h>
-#include <plenLibrary/logic/controller/process/ProcessControllerSetterCommand.h>
+#include <logic/controller/process/ProcessControllerControllerCommand.h>
+#include <logic/controller/process/ProcessControllerGetterCommand.h>
+#include <logic/controller/process/ProcessControllerInterface.h>
+#include <logic/controller/process/ProcessControllerInterpreterCommand.h>
+#include <logic/controller/process/ProcessControllerSetterCommand.h>
 
 
 class ProcessController {

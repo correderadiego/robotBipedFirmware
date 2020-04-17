@@ -8,7 +8,7 @@
 #ifndef SRC_BEAN_COMMANDS_SETTERCOMMAND_H_
 #define SRC_BEAN_COMMANDS_SETTERCOMMAND_H_
 
-#include <plenLibrary/logic/bean/commands/CommandInterface.h>
+#include <logic/bean/commands/CommandInterface.h>
 
 class SetterCommand  : public CommandInterface  {
 public:
@@ -29,7 +29,7 @@ public:
 							SET_MIN_VALUE
 						};
 	SetterCommand(CommandInterface command);
-	SetterCommand(CommandType commandType = SETTER_COMMAND);
+	SetterCommand();
 	void setSubCommandType	(SubCommandType subCommandType);
 	SubCommandType getSubCommandType ();
 

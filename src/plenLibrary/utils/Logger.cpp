@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/utils/Logger.h>
+#include "Logger.h"
 
 Logger* Logger::logger = nullptr;
 
@@ -31,7 +31,7 @@ void Logger::log(LogLevel logLevel, const char * message){
 	if(this->logLevel < logLevel){
 		return;
 	}
-	SerialCommunication::getInstance()->println(message);
+	//SerialCommunication::getInstance()->println(message);
 }
 
 Logger::~Logger() {}

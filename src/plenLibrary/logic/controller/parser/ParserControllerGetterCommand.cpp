@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/logic/controller/parser/ParserControllerGetterCommand.h>
+#include <logic/controller/parser/ParserControllerGetterCommand.h>
 
 ParserControllerGetterCommand::ParserControllerGetterCommand() {}
 
@@ -23,8 +23,8 @@ bool ParserControllerGetterCommand::match(Buffer* buffer){
 ParserInterface::ParseErrors ParserControllerGetterCommand::parse(
 									Buffer* buffer, CommandInterface command){
 
-	char commandSequence[2] = {};
-	strncpy ( commandSequence, &buffer->getData()[1], 2);
+	char commandSequence[3] = {'\0'};
+	strncpy ( commandSequence, &buffer->getData()[1],  2);
 
 	if( strcmp(commandSequence, DUMP_JOINT_SETTINGS_CHAR) == 0){
 		return parseDumpJointSettingsCommand(buffer, command);
@@ -35,7 +35,11 @@ ParserInterface::ParseErrors ParserControllerGetterCommand::parse(
 	}
 
 	if( strcmp(commandSequence, DUMP_VERSION_INFORMATION_CHAR) == 0){
-		return parseDumpMotionVersionInformationCommand(buffer, command);
+		return parseVersionInformationCommand(buffer, command);
+	}
+
+	if( strcmp(commandSequence, DUMP_NETWORK_INFORMATION_CHAR) == 0){
+		return parseNetworkInformationCommand(buffer, command);
 	}
 	return ParserInterface::UNKNOWN_COMMAND_ERROR;
 }
@@ -58,11 +62,20 @@ ParserInterface::ParseErrors ParserControllerGetterCommand::parseDumpMotionComma
 	return NO_ERROR;
 }
 
-ParserInterface::ParseErrors ParserControllerGetterCommand::parseDumpMotionVersionInformationCommand(
+ParserInterface::ParseErrors ParserControllerGetterCommand::parseVersionInformationCommand(
 	Buffer* buffer, CommandInterface command){
-	if(buffer->getLenght() != DUMP_MOTION_VERSION_INFORMATION_COMMAND_LENGTH){
+	if(buffer->getLenght() != DUMP_VERSION_INFORMATION_COMMAND_LENGTH){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
 	command = *(new DumpVersionInformationCommand());
+	return NO_ERROR;
+}
+
+ParserInterface::ParseErrors ParserControllerGetterCommand::parseNetworkInformationCommand(
+	Buffer* buffer, CommandInterface command){
+	if(buffer->getLenght() != DUMP_NETWORK_INFORMATION_COMMAND_LENGTH){
+		return WRONG_LENGHT_COMMAND_ERROR;
+	}
+	command = *(new DumpNetworkInformationCommand());
 	return NO_ERROR;
 }

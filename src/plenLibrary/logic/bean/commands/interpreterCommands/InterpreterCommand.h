@@ -8,7 +8,7 @@
 #ifndef SRC_BEAN_COMMANDS_INTERPRETERCOMMAND_H_
 #define SRC_BEAN_COMMANDS_INTERPRETERCOMMAND_H_
 
-#include <plenLibrary/logic/bean/commands/CommandInterface.h>
+#include <logic/bean/commands/CommandInterface.h>
 
 class InterpreterCommand  : public CommandInterface  {
 public:

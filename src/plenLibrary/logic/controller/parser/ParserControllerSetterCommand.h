@@ -8,15 +8,15 @@
 #ifndef SRC_CONTROLLER_PARSER_PARSERCONTROLLERSETTERCOMMAND_H_
 #define SRC_CONTROLLER_PARSER_PARSERCONTROLLERSETTERCOMMAND_H_
 
-#include <plenLibrary/logic/bean/Buffer.h>
-#include <plenLibrary/logic/bean/commands/setterCommands/ResetJointSettingsCommand.h>
-#include <plenLibrary/logic/bean/commands/setterCommands/SetHomeValueCommand.h>
-#include <plenLibrary/logic/bean/commands/setterCommands/SetMaxValueCommand.h>
-#include <plenLibrary/logic/bean/commands/setterCommands/SetMinValueCommand.h>
-#include <plenLibrary/logic/bean/commands/setterCommands/SetterCommand.h>
-#include <plenLibrary/logic/controller/parser/ParserInterface.h>
+#include <ArduinoIncludes.h>
+#include <logic/bean/commands/setterCommands/ResetJointSettingsCommand.h>
+#include <logic/bean/commands/setterCommands/SetHomeValueCommand.h>
+#include <logic/bean/commands/setterCommands/SetMaxValueCommand.h>
+#include <logic/bean/commands/setterCommands/SetMinValueCommand.h>
+#include <logic/bean/commands/setterCommands/SetterCommand.h>
+#include <logic/bean/hardware/Buffer.h>
+#include <logic/controller/parser/ParserInterface.h>
 #include "string.h"
-#include "ArduinoIncludes.h"
 
 #define SETTER_COMMAND_CHAR 	 '>'
 #define SET_MOTION_HEADER_COMMAND_LENGHT 	30

@@ -8,7 +8,7 @@
 #ifndef SRC_BEAN_COMMANDS_CONTROLLERCOMMANDS_APPLYDIFFVALUECOMMAND_H_
 #define SRC_BEAN_COMMANDS_CONTROLLERCOMMANDS_APPLYDIFFVALUECOMMAND_H_
 
-#include <plenLibrary/logic/bean/commands/controllerCommands/ControllerCommand.h>
+#include <logic/bean/commands/controllerCommands/ControllerCommand.h>
 
 class ApplyDiffValueCommand : public ControllerCommand {
 public:

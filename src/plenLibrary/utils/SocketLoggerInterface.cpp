@@ -5,7 +5,7 @@
  *      Author: ziash
  */
 
-#include <plenLibrary/utils/SocketLoggerInterface.h>
+#include "SocketLoggerInterface.h"
 
 SocketLoggerInterface::SocketLoggerInterface() {}
 
