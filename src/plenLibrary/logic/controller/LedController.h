@@ -10,15 +10,14 @@
 
 #include <logic/bean/hardware/Led.h>
 #include "Arduino.h"
+#include "hardware/controller/RunnableController.h"
 
-class LedController {
+class LedController : public RunnableController {
 public:
 	#define LED_CONTROLLER_EXECUTION_DELAY 50
-	LedController();
+	LedController(int executionDelayMilliSeconds = LED_CONTROLLER_EXECUTION_DELAY);
 	void executeThreadTasks(Led* led);
 private:
-	unsigned long currentMillis;
-	unsigned long previousMillis;
 	void blinkLed(Led* led);
 };
 

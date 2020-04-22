@@ -9,9 +9,6 @@
 
 ParserControllerGetterCommand::ParserControllerGetterCommand() {}
 
-ParserControllerGetterCommand::ParserControllerGetterCommand(
-		ParserInterface parserInterface){}
-
 bool ParserControllerGetterCommand::match(Buffer* buffer){
 	if(buffer->getData()[HEADER_CHAR_POSITION] == GETTER_COMMAND_CHAR){
 		Logger::getInstance()->log(Logger::DEBUG, "Getter command received");
@@ -21,7 +18,7 @@ bool ParserControllerGetterCommand::match(Buffer* buffer){
 }
 
 ParserInterface::ParseErrors ParserControllerGetterCommand::parse(
-									Buffer* buffer, CommandInterface command){
+									Buffer* buffer, CommandInterface** command){
 
 	char commandSequence[3] = {'\0'};
 	strncpy ( commandSequence, &buffer->getData()[1],  2);
@@ -45,37 +42,37 @@ ParserInterface::ParseErrors ParserControllerGetterCommand::parse(
 }
 
 ParserInterface::ParseErrors ParserControllerGetterCommand::parseDumpJointSettingsCommand(
-			Buffer* buffer, CommandInterface command){
+			Buffer* buffer, CommandInterface** command){
 	if(buffer->getLenght() != DUMP_JOINT_SETTING_COMMAND_LENGHT){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
-	command = *(new DumpJointSettingsCommand());
+	*command = new DumpJointSettingsCommand();
 	return NO_ERROR;
 }
 
 ParserInterface::ParseErrors ParserControllerGetterCommand::parseDumpMotionCommand(
-	Buffer* buffer, CommandInterface command){
+	Buffer* buffer, CommandInterface** command){
 	if(buffer->getLenght() != DUMP_MOTION_COMMAND_LENGHT){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
-	command = *(new DumpMotionCommand());
+	*command = new DumpMotionCommand();
 	return NO_ERROR;
 }
 
 ParserInterface::ParseErrors ParserControllerGetterCommand::parseVersionInformationCommand(
-	Buffer* buffer, CommandInterface command){
+	Buffer* buffer, CommandInterface** command){
 	if(buffer->getLenght() != DUMP_VERSION_INFORMATION_COMMAND_LENGTH){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
-	command = *(new DumpVersionInformationCommand());
+	*command = new DumpVersionInformationCommand();
 	return NO_ERROR;
 }
 
 ParserInterface::ParseErrors ParserControllerGetterCommand::parseNetworkInformationCommand(
-	Buffer* buffer, CommandInterface command){
+	Buffer* buffer, CommandInterface** command){
 	if(buffer->getLenght() != DUMP_NETWORK_INFORMATION_COMMAND_LENGTH){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
-	command = *(new DumpNetworkInformationCommand());
+	*command = new DumpNetworkInformationCommand();
 	return NO_ERROR;
 }

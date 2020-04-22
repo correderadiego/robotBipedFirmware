@@ -8,7 +8,7 @@
 #include <logic/bean/commands/setterCommands/SetterCommand.h>
 
 SetterCommand::SetterCommand(CommandInterface command) {
-	this->commandType 	= command.getCommandType();
+	this->commandType 	= SETTER_COMMAND;
 	this->commandLength = command.getCommandLength();
 	this->subCommandType = UNKNOWN_SUB_COMMAND_TYPE;
 }

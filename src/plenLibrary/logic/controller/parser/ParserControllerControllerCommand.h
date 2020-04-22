@@ -20,7 +20,7 @@
 
 
 #define CONTROLLER_COMMAND_CHAR  		'$'
-#define APPLY_NATIVE_COMMAND_LENGTH 	5
+#define APPLY_NATIVE_COMMAND_LENGTH 	8
 #define APPLY_DIFF_COMMAND_LENGTH 		5
 #define APPLY_HOME_POSITION_COMMAND_LENGTH 	3
 #define PLAY_MOTION_COMMAND_LENGTH		2
@@ -29,20 +29,19 @@
 class ParserControllerControllerCommand : public ParserInterface{
 public:
 	ParserControllerControllerCommand();
-	ParserControllerControllerCommand(ParserInterface parserInterface);
 	bool match(Buffer* buffer);
 	ParserInterface::ParseErrors parse(
-			Buffer* buffer, CommandInterface command);
+			Buffer* buffer, CommandInterface** command);
 	ParserInterface::ParseErrors parseApplyNativeValueCommand(
-			Buffer* buffer, ControllerCommand command);
+			Buffer* buffer, CommandInterface** command);
 	ParserInterface::ParseErrors parseApplyDiffCommand(
-			Buffer* buffer, ControllerCommand command);
+			Buffer* buffer, CommandInterface** command);
 	ParserInterface::ParseErrors parsePlayAMotionCommand(
-			Buffer* buffer, ControllerCommand command);
+			Buffer* buffer, CommandInterface** command);
 	ParserInterface::ParseErrors parseStopAMotionCommand(
-			Buffer* buffer, ControllerCommand command);
+			Buffer* buffer, CommandInterface** command);
 	ParserInterface::ParseErrors parseApplyHomePositionCommand(
-			Buffer* buffer, ControllerCommand command);
+			Buffer* buffer, CommandInterface** command);
 };
 
 #endif /* SRC_CONTROLLER_PARSER_PARSERCONTROLLERCONTROLLERCOMMAND_H_ */

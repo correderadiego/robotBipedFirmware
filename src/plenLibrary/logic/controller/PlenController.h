@@ -8,7 +8,6 @@
 #ifndef SRC_PLENCONTROLLER_H_
 #define SRC_PLENCONTROLLER_H_
 
-
 #include <hardware/bean/SerialCommunication.h>
 #include <hardware/controller/ExternalFileSystemController.h>
 #include <logic/bean/commands/CommandInterface.h>
@@ -22,8 +21,6 @@
 #include <logic/controller/process/ProcessController.h>
 #include <utils/Logger.h>
 #include <string.h>
-#include <Wire.h>
-#include <Servo.h>
 
 #include "Arduino.h"
 
@@ -60,8 +57,8 @@ private:
 	void initPlenController(Plen* plen);
 	void loadFileConfiguration(Plen* plen);
 	void processBuffer(Plen* plen, Buffer* buffer);
-	ParseBufferErrors parseBuffer(Buffer* buffer, CommandInterface command);
-	CommandInterface* command = new CommandInterface();
+	ParseBufferErrors parseBuffer(Buffer* buffer, CommandInterface** command);
+	CommandInterface** command;
 };
 
 #endif /* SRC_PLENCONTROLLER_H_ */

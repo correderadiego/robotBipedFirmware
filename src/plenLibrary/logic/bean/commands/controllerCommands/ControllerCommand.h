@@ -26,7 +26,7 @@ public:
 							STOP_A_MOTION,
 							APPLY_HOME_POSITION
 						};
-	ControllerCommand(CommandInterface command);
+	ControllerCommand(CommandInterface* command);
 	ControllerCommand();
 	void setSubCommandType	(SubCommandType subCommandType);
 	SubCommandType getSubCommandType();

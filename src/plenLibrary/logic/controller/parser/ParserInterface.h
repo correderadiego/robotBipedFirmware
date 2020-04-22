@@ -23,8 +23,8 @@ class ParserInterface{
 	  WRONG_LENGHT_COMMAND_ERROR
 	};
 
-    virtual bool match(Buffer* buffer);
-    virtual ParserInterface::ParseErrors parse(Buffer* buffer, CommandInterface command);
+	virtual bool match(Buffer* buffer) = 0;
+    virtual ParserInterface::ParseErrors parse(Buffer* buffer, CommandInterface** command) = 0;
 };
 
 

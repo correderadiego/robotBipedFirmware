@@ -26,17 +26,16 @@
 class ParserControllerGetterCommand : public ParserInterface {
 public:
 	ParserControllerGetterCommand();
-	ParserControllerGetterCommand(ParserInterface parserInterface);
 	bool match(Buffer* buffer);
-	ParserInterface::ParseErrors parse(Buffer* buffer, CommandInterface command);
+	ParserInterface::ParseErrors parse(Buffer* buffer, CommandInterface** command);
 	ParserInterface::ParseErrors parseDumpJointSettingsCommand(
-			Buffer* buffer, CommandInterface command);
+			Buffer* buffer, CommandInterface** command);
 	ParserInterface::ParseErrors parseDumpMotionCommand(
-			Buffer* buffer, CommandInterface command);
+			Buffer* buffer, CommandInterface** command);
 	ParserInterface::ParseErrors parseVersionInformationCommand(
-			Buffer* buffer, CommandInterface command);
+			Buffer* buffer, CommandInterface** command);
 	ParserInterface::ParseErrors parseNetworkInformationCommand(
-				Buffer* buffer, CommandInterface command);
+				Buffer* buffer, CommandInterface** command);
 };
 
 #endif /* SRC_CONTROLLER_PARSER_PARSERCONTROLLERGETTERCOMMAND_H_ */

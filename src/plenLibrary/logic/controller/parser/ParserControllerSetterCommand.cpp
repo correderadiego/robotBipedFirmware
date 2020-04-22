@@ -9,9 +9,6 @@
 
 ParserControllerSetterCommand::ParserControllerSetterCommand() {}
 
-ParserControllerSetterCommand::ParserControllerSetterCommand(
-		ParserInterface parserInterface) {}
-
 bool ParserControllerSetterCommand::match(Buffer* buffer){
 	if(buffer->getData()[HEADER_CHAR_POSITION] == SETTER_COMMAND_CHAR){
 		Logger::getInstance()->log(Logger::DEBUG, S("Setter command received"));
@@ -21,7 +18,7 @@ bool ParserControllerSetterCommand::match(Buffer* buffer){
 }
 
 ParserInterface::ParseErrors ParserControllerSetterCommand::parse(
-		Buffer* buffer, CommandInterface command){
+		Buffer* buffer, CommandInterface** command){
 
 	char commandSequence[2] = {};
 	strncpy ( commandSequence, &buffer->getData()[1], 2);
@@ -54,17 +51,17 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parse(
 }
 
 ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMotionHeaderCommand(
-		Buffer* buffer, CommandInterface command){
+		Buffer* buffer, CommandInterface** command){
 	if(buffer->getLenght() != SET_MOTION_HEADER_COMMAND_LENGHT){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
-	//command = *(new Set());
+	//*command = new Set();
 	Logger::getInstance()->log(Logger::DEBUG, S("Set motion header command received"));
 	return NO_ERROR;
 }
 
 ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMotionFrameCommand(
-		Buffer* buffer, CommandInterface command){
+		Buffer* buffer, CommandInterface** command){
 	if(buffer->getLenght() != SET_MOTION_FRAME_COMMAND_LENGHT){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
@@ -74,41 +71,41 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMotionFrameC
 }
 
 ParserInterface::ParseErrors ParserControllerSetterCommand::parseResetJointSettingsCommand(
-		Buffer* buffer, CommandInterface command){
+		Buffer* buffer, CommandInterface** command){
 	if(buffer->getLenght() != RESET_JOINT_SETTINGS_COMMAND_LENGHT){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
-	command = *(new ResetJointSettingsCommand());
-	Logger::getInstance()->log(Logger::DEBUG, S("Reset joint setting command received"));
+	*command = new ResetJointSettingsCommand();
+
 	return NO_ERROR;
 }
 
 ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetHomeCommand(
-		Buffer* buffer, CommandInterface command){
+		Buffer* buffer, CommandInterface** command){
 	if(buffer->getLenght() != SET_HOME_COMMAND_LENGTH){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
-	command = *(new SetHomeValueCommand());
+	*command = new SetHomeValueCommand();
 	Logger::getInstance()->log(Logger::DEBUG, S("Set home command received"));
 	return NO_ERROR;
 }
 
 ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMaxValueCommand(
-		Buffer* buffer, CommandInterface command){
+		Buffer* buffer, CommandInterface** command){
 	if(buffer->getLenght() != SET_MAX_VALUE_COMMAND_LENGHT){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
-	command = *(new SetMaxValueCommand());
+	*command = new SetMaxValueCommand();
 	Logger::getInstance()->log(Logger::DEBUG, S("Set max value command received"));
 	return NO_ERROR;
 }
 
 ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMinValueCommand(
-		Buffer* buffer, CommandInterface command){
+		Buffer* buffer, CommandInterface** command){
 	if(buffer->getLenght() != SET_MIN_VALUE_COMMAND_LENGHT){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
-	command = *(new SetMinValueCommand());
-	Logger::getInstance()->log(Logger::DEBUG, S("Set min value command received"));
+	*command = new SetMinValueCommand();
+
 	return NO_ERROR;
 }

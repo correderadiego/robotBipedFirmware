@@ -23,7 +23,7 @@ public:
 	#define MIN_MESSAGE_SIZE 				 3
 
 	ParserController();
-	ParserInterface::ParseErrors parse(Buffer* buffer, CommandInterface command);
+	ParserInterface::ParseErrors parse(Buffer* buffer, CommandInterface** command);
 
 private:
 

@@ -9,9 +9,6 @@
 
 ParserControllerInterpreterCommand::ParserControllerInterpreterCommand() {}
 
-ParserControllerInterpreterCommand::ParserControllerInterpreterCommand(
-		ParserInterface parserInterface) {}
-
 bool ParserControllerInterpreterCommand::match(Buffer* buffer){
 	if(buffer->getData()[HEADER_CHAR_POSITION] == INTERPRETER_COMMAND_CHAR){
 		Logger::getInstance()->log(Logger::DEBUG, S("Interpreter command received"));
@@ -21,11 +18,10 @@ bool ParserControllerInterpreterCommand::match(Buffer* buffer){
 }
 
 ParserInterface::ParseErrors ParserControllerInterpreterCommand::parse(
-									Buffer* buffer, CommandInterface command){
+									Buffer* buffer, CommandInterface** command){
+	char commandSequence[3] = {'\0'};
+	strncpy ( commandSequence, &buffer->getData()[1],  2);
 
-	((InterpreterCommand)command);
-	char commandSequence[2] = {};
-	strncpy ( commandSequence, &buffer->getData()[1], 2);
 	if( strcmp(commandSequence, PUSH_FUNCTION_CHAR) == 0){
 		return parsePushCodeCommand(buffer, command);
 	}
@@ -42,31 +38,30 @@ ParserInterface::ParseErrors ParserControllerInterpreterCommand::parse(
 }
 
 ParserInterface::ParseErrors ParserControllerInterpreterCommand::parsePopCodeCommand(
-		Buffer* buffer, CommandInterface command){
+		Buffer* buffer, CommandInterface** command){
 	Logger::getInstance()->log(Logger::DEBUG, S("Pop code command received"));
 	if(buffer->getLenght() != POP_CODE_COMMAND_LENGTH){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
-	command = *(new PopAFunctionCommand());
-
+	*command = new PopAFunctionCommand();
 	return NO_ERROR;
 }
 
 ParserInterface::ParseErrors ParserControllerInterpreterCommand::parsePushCodeCommand(
-		Buffer* buffer, CommandInterface command){
+		Buffer* buffer, CommandInterface** command){
 	Logger::getInstance()->log(Logger::DEBUG, S("Push code command received"));
 	if(buffer->getLenght() != PUSH_CODE_COMMAND_LENGTH){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
-	command = *(new PushAFunctionCommand());
+	*command = new PushAFunctionCommand();
 	return NO_ERROR;
 }
 
 ParserInterface::ParseErrors ParserControllerInterpreterCommand::parseResetInterpreterCommand(
-		Buffer* buffer, CommandInterface command){
+		Buffer* buffer, CommandInterface** command){
 	if(buffer->getLenght() != RESET_INTERPRETER_COMMAND_LENGHT){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
-	command = *(new ResetInterpreterCommand());
+	*command = new ResetInterpreterCommand();
 	return NO_ERROR;
 }

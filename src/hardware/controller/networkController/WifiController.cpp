@@ -65,18 +65,17 @@ void WifiController::createSocketServer(Network* network){
 }
 
 void WifiController::updateSocketClientState(Network* network){
-	//TODO disconnection doesn't work library problem. The library doesn't
-	//detect the disconnection
 	if (network->getWifiClient() && (!network->getWifiClient().connected())){
-			network->getWifiClient().stop();
-			Logger::getInstance()->log(Logger::DEBUG, S("Socket client disconnected"));
+		network->getWifiClient().stop();
+		Logger::getInstance()->log(Logger::DEBUG, S("Socket client disconnected"));
 	}
 
 	if (!network->getWifiServer()->hasClient()){
 		return;
 	}
+	network->getWifiClient().stop();
+	Logger::getInstance()->log(Logger::DEBUG, S("Previous socket client disconnected"));
 	network->setWifiClient(network->getWifiServer()->available());
-	network->getWifiClient().keepAlive(0,0,0);
 	Logger::getInstance()->log(Logger::DEBUG, S("Socket client connected"));
 }
 

@@ -7,9 +7,9 @@
 
 #include <logic/bean/commands/controllerCommands/ControllerCommand.h>
 
-ControllerCommand::ControllerCommand(CommandInterface command) {
-	this->commandType 	= command.getCommandType();
-	this->commandLength = command.getCommandLength();
+ControllerCommand::ControllerCommand(CommandInterface* command) {
+	this->commandType 	= CONTROLLER_COMMAND;
+	this->commandLength = command->getCommandLength();
 	this->subCommandType = UNKNOWN_SUB_COMMAND_TYPE;
 }
 

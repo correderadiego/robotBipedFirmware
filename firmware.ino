@@ -15,8 +15,8 @@
 
 PlenController*		  plenController;
 Plen*				  plen;
-Network* 			  network;
 NetworkController*	  networkController;
+Network* 			  network;
 SerialController*	  serialController;
 
 void setup(){

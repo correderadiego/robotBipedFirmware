@@ -44,20 +44,18 @@ void PlenController::executeThreadTasks(Plen* plen){
 }
 
 void PlenController::processBuffer(Plen* plen, Buffer* buffer){
-	ParseBufferErrors parseBufferError = parseBuffer(buffer, *command);
+	ParseBufferErrors parseBufferError = parseBuffer(buffer, command);
 	if(parseBufferError == NO_ERROR){
-		processController->process(plen, *command);
+		//processController->process(plen, *command);
 	}
 }
 
-PlenController::ParseBufferErrors PlenController::parseBuffer(Buffer* buffer, CommandInterface command){
-	if(!buffer->getCommandComplete()){
+PlenController::ParseBufferErrors PlenController::parseBuffer(Buffer* buffer, CommandInterface** command){
+	if(!buffer->isCommandComplete()){
 		return COMMAND_INCOMPLETE_ERROR;
 	}
 
 	ParserInterface::ParseErrors parseError = parserController->parse(buffer, command);
-	Serial.println("After parse");
-	Serial.println(command.getCommandType());
 	buffer->clearBuffer();
 
 	if(parseError == ParserInterface::WRONG_LENGHT_COMMAND_ERROR){

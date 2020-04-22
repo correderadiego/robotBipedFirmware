@@ -21,21 +21,20 @@
 #define INTERPRETER_COMMAND_CHAR 			'#'
 #define POP_CODE_COMMAND_LENGTH				0
 #define PUSH_CODE_COMMAND_LENGTH			4
-#define RESET_INTERPRETER_COMMAND_LENGHT	0
+#define RESET_INTERPRETER_COMMAND_LENGHT	3
 
 class ParserControllerInterpreterCommand : public ParserInterface {
 public:
 	ParserControllerInterpreterCommand();
-	ParserControllerInterpreterCommand(ParserInterface parserInterface);
 	bool match(Buffer* buffer);
 	ParserInterface::ParseErrors parse(
-			Buffer* buffer, CommandInterface command);
+			Buffer* buffer, CommandInterface** command);
 	ParserInterface::ParseErrors parsePopCodeCommand(
-			Buffer* buffer, CommandInterface command);
+			Buffer* buffer, CommandInterface** command);
 	ParserInterface::ParseErrors parsePushCodeCommand(
-			Buffer* buffer, CommandInterface command);
+			Buffer* buffer, CommandInterface** command);
 	ParserInterface::ParseErrors parseResetInterpreterCommand(
-			Buffer* buffer, CommandInterface command);
+			Buffer* buffer, CommandInterface** command);
 };
 
 #endif /* SRC_CONTROLLER_PARSER_PARSERCONTROLLERINTERPRETERCOMMAND_H_ */

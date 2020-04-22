@@ -7,18 +7,14 @@
 
 #include <logic/controller/LedController.h>
 
-LedController::LedController() {
-	this->currentMillis 		= millis();
-	this->previousMillis		= 0;
+LedController::LedController(int executionDelayMilliSeconds) {
+	this->executionDelayMilliSeconds = executionDelayMilliSeconds;
 }
 
 void LedController::executeThreadTasks(Led* led){
-	currentMillis = millis();
-	if (currentMillis - previousMillis <= led->getBlinkDelay()){
-		return;
+	if(executeTask()){
+		this->blinkLed(led);
 	}
-	this->blinkLed(led);
-	previousMillis = currentMillis;
 }
 
 void LedController::blinkLed(Led* led){

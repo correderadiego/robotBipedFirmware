@@ -8,12 +8,12 @@
 #ifndef SRC_BEAN_BUFFER_H_
 #define SRC_BEAN_BUFFER_H_
 
-#define SIZE  					128
+#define BUFFER_SIZE				128
 #define EMPTY_CHAR 				'\0'
 #define COMMAND_COMPLETE_CHAR 	'\r'
 #define COMMAND_NEW_LINE_CHAR 	'\n'
 
-#include <utils/Logger.h>
+#include "utils/Logger.h"
 #include <ArduinoIncludes.h>
 
 class Buffer {
@@ -27,12 +27,12 @@ public:
 	int getLenght();
 	char* getData();
 	BufferErrors addChar(char character);
-	bool getCommandComplete();
+	bool isCommandComplete();
 	void setCommandComplete(bool commandComplete);
 	void clearBuffer();
 
 private:
-	char data[SIZE];
+	char data[BUFFER_SIZE];
 	int	 position;
 	bool commandComplete;
 };

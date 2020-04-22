@@ -17,7 +17,7 @@ int Buffer::getLenght(){
 }
 
 void Buffer::clearBuffer(){
-	for (unsigned char index = 0; index < SIZE; index++){
+	for (unsigned char index = 0; index < BUFFER_SIZE; index++){
 		data[index] = EMPTY_CHAR;
 	}
 	commandComplete = false;
@@ -29,22 +29,18 @@ char* Buffer::getData(){
 }
 
 Buffer::BufferErrors Buffer::addChar(char character){
-	if(position >= SIZE){
+	if(position >= BUFFER_SIZE - 1){
 		clearBuffer();
-		Logger::getInstance()->log(Logger::ERROR, S("Buffer size : "));
-		Logger::getInstance()->log(Logger::ERROR, (char *)position);
 		return BUFFER_FULL_ERROR;
 	}
 
 	if(character == COMMAND_COMPLETE_CHAR){
 		commandComplete = true;
-		Logger::getInstance()->log(Logger::DEBUG, S("Command complete "));
-		Logger::getInstance()->log(Logger::DEBUG, (char *)data);
 		return NO_ERROR;
 	}
 
 	if(character == COMMAND_NEW_LINE_CHAR){
-			return NO_ERROR;
+		return NO_ERROR;
 	}
 
 	data[position] = character;
@@ -53,6 +49,6 @@ Buffer::BufferErrors Buffer::addChar(char character){
 	return NO_ERROR;
 }
 
-bool Buffer::getCommandComplete(){
+bool Buffer::isCommandComplete(){
 	return commandComplete;
 }

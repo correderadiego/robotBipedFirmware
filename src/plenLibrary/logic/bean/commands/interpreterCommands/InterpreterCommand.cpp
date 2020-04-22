@@ -8,7 +8,7 @@
 #include <logic/bean/commands/interpreterCommands/InterpreterCommand.h>
 
 InterpreterCommand::InterpreterCommand(CommandInterface command) {
-	this->commandType 	 = command.getCommandType();
+	this->commandType 	 = INTERPRETER_COMMAND;
 	this->commandLength  = command.getCommandLength();
 	this->subCommandType = UNKNOWN_SUB_COMMAND_TYPE;
 }

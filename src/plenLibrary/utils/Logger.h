@@ -8,8 +8,7 @@
 #ifndef SRC_PLENLIBRARY_UTILS_LOGGER_H_
 #define SRC_PLENLIBRARY_UTILS_LOGGER_H_
 
-#include "SocketLoggerInterface.h"
-//#include "hardware/bean/SerialCommunication.h"
+#include "hardware/bean/SerialCommunication.h"
 
 class Logger {
 public:
@@ -24,12 +23,10 @@ public:
 	void log(LogLevel logLevel, const char * message);
 	virtual ~Logger();
 	void setLogLevel(LogLevel loglevel);
-	void initLogger(SocketLoggerInterface* socketLoggerInterface);
 
 private:
 	LogLevel logLevel = DEBUG;
 	static Logger* logger;
-	static SocketLoggerInterface* socketLoggerInterface;
 };
 
 #endif /* SRC_PLENLIBRARY_UTILS_LOGGER_H_ */
