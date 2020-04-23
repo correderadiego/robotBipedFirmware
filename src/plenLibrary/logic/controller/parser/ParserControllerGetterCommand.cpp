@@ -11,7 +11,6 @@ ParserControllerGetterCommand::ParserControllerGetterCommand() {}
 
 bool ParserControllerGetterCommand::match(Buffer* buffer){
 	if(buffer->getData()[HEADER_CHAR_POSITION] == GETTER_COMMAND_CHAR){
-		Logger::getInstance()->log(Logger::DEBUG, "Getter command received");
 		return true;
 	}
 	return false;
@@ -22,6 +21,7 @@ ParserInterface::ParseErrors ParserControllerGetterCommand::parse(
 
 	char commandSequence[3] = {'\0'};
 	strncpy ( commandSequence, &buffer->getData()[1],  2);
+	(**command).setCommandType(CommandInterface::GETTER_COMMAND);
 
 	if( strcmp(commandSequence, DUMP_JOINT_SETTINGS_CHAR) == 0){
 		return parseDumpJointSettingsCommand(buffer, command);

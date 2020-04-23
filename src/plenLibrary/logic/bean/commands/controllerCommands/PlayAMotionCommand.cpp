@@ -17,5 +17,5 @@ int PlayAMotionCommand::getSlot(){
 }
 
 void PlayAMotionCommand::setSlot(int slot){
-	this->slot;
+	this->slot = slot;
 }

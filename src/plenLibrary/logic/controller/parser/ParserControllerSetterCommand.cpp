@@ -22,6 +22,7 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parse(
 
 	char commandSequence[2] = {};
 	strncpy ( commandSequence, &buffer->getData()[1], 2);
+	(**command).setCommandType(CommandInterface::SETTER_COMMAND);
 
 	if( strcmp(commandSequence, SET_MOTION_HEADER_CHAR) == 0){
 		return parseSetMotionHeaderCommand(buffer, command);

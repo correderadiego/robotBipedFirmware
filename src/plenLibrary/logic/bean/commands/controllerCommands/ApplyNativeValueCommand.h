@@ -12,6 +12,7 @@
 
 class ApplyNativeValueCommand : public ControllerCommand{
 public:
+	ApplyNativeValueCommand(CommandInterface commandInterfaces);
 	ApplyNativeValueCommand();
 	ApplyNativeValueCommand(ControllerCommand controllerCommand);
 	int getDeviceId();

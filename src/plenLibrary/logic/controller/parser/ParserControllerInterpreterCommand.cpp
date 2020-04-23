@@ -21,6 +21,7 @@ ParserInterface::ParseErrors ParserControllerInterpreterCommand::parse(
 									Buffer* buffer, CommandInterface** command){
 	char commandSequence[3] = {'\0'};
 	strncpy ( commandSequence, &buffer->getData()[1],  2);
+	(**command).setCommandType(CommandInterface::INTERPRETER_COMMAND);
 
 	if( strcmp(commandSequence, PUSH_FUNCTION_CHAR) == 0){
 		return parsePushCodeCommand(buffer, command);
