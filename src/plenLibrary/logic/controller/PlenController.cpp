@@ -44,9 +44,9 @@ void PlenController::executeThreadTasks(Plen* plen){
 }
 
 void PlenController::processBuffer(Plen* plen, Buffer* buffer){
-	ParseBufferErrors parseBufferError = parseBuffer(buffer, command);
+	ParseBufferErrors parseBufferError = parseBuffer(buffer, &command);
 	if(parseBufferError == NO_ERROR){
-		//processController->process(plen, *command);
+		processController->process(plen, command);
 	}
 }
 
@@ -59,12 +59,12 @@ PlenController::ParseBufferErrors PlenController::parseBuffer(Buffer* buffer, Co
 	buffer->clearBuffer();
 
 	if(parseError == ParserInterface::WRONG_LENGHT_COMMAND_ERROR){
-		Logger::getInstance()->log(Logger::ERROR, S("Wrong command length"));
+		Logger::getInstance()->logln(Logger::ERROR, S("Wrong command length"));
 		return WRONG_LENGTH_COMMAND_ERROR;
 	}
 
 	if(parseError == ParserInterface::UNKNOWN_COMMAND_ERROR){
-		Logger::getInstance()->log(Logger::ERROR, S("Unknown command"));
+		Logger::getInstance()->logln(Logger::ERROR, S("Unknown command"));
 		return UNKNOWN_COMMAND_ERROR;
 	}
 

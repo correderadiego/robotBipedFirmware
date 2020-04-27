@@ -12,8 +12,8 @@
 
 class ControllerCommand : public CommandInterface {
 public:
-	#define APPY_NATIVE_CHAR			"AN"
-	#define APPLY_DIFF_CHAR				"AD"
+	#define APPY_NATIVE_VALUE_CHAR		"AN"
+	#define APPLY_DIFF_VALUE_CHAR		"AD"
 	#define PLAY_A_MOTION_CHAR			"PM"
 	#define STOP_A_MOTION_CHAR			"SM"
 	#define APPLY_HOME_POSITION_CHAR	"HP"

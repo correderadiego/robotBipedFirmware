@@ -14,19 +14,18 @@
 #include <logic/controller/process/ProcessControllerInterpreterCommand.h>
 #include <logic/controller/process/ProcessControllerSetterCommand.h>
 
-
+#define COMMAND_CONTROLLER_VECTOR_SIZE	 4
 class ProcessController {
-public:
-	#define COMMAND_CONTROLLER_VECTOR_SIZE	 4
-	ProcessController();
-	ProcessControllerInterface::CommandControllerErrors process(Plen* plen, CommandInterface command);
+	public:
+		ProcessController();
+		ProcessControllerInterface::CommandControllerErrors process(Plen* plen, CommandInterface* command);
 
-	ProcessControllerInterface* commandController[COMMAND_CONTROLLER_VECTOR_SIZE] = {
-			new ProcessControllerControllerCommand(),
-			new ProcessControllerInterpreterCommand(),
-			new ProcessControllerSetterCommand(),
-			new ProcessControllerGetterCommand()
-	};
+		ProcessControllerInterface* commandController[COMMAND_CONTROLLER_VECTOR_SIZE] = {
+				new ProcessControllerControllerCommand(),
+				new ProcessControllerInterpreterCommand(),
+				new ProcessControllerSetterCommand(),
+				new ProcessControllerGetterCommand()
+		};
 };
 
 #endif /* SRC_CONTROLLER_PROCESS_PROCESSCONTROLLER_H_ */

@@ -9,14 +9,14 @@
 
 ProcessControllerInterpreterCommand::ProcessControllerInterpreterCommand() {}
 
-bool ProcessControllerInterpreterCommand::match(CommandInterface command){
-	if(command.getCommandType() == CommandInterface::INTERPRETER_COMMAND){
+bool ProcessControllerInterpreterCommand::match(CommandInterface* command){
+	if((*command).getCommandType() == CommandInterface::INTERPRETER_COMMAND){
 		return true;
 	}
 	return false;
 }
 
 ProcessControllerInterface::CommandControllerErrors
-		ProcessControllerInterpreterCommand::process(Plen* plen, CommandInterface command){
+		ProcessControllerInterpreterCommand::process(Plen* plen, CommandInterface* command){
 	return NO_ERROR;
 }

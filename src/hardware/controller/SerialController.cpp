@@ -27,7 +27,7 @@ void SerialController::executeThreadTasks(Plen* plen, SerialCommunication* seria
 
 void SerialController::temporizedWait(){
 	if(millis() - previousTemporizedWait > DEFAULT_WAIT_PERIOD){
-		Logger::getInstance()->log(Logger::INFO,S("wait"));
+		Logger::getInstance()->logln(Logger::INFO,S("wait"));
 		previousTemporizedWait = millis();
 	}
 }

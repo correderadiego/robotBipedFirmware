@@ -15,7 +15,7 @@ class GetterCommand  : public CommandInterface  {
 	#define DUMP_JOINT_SETTINGS_CHAR		"JS"
 	#define DUMP_A_MOTION_CHAR				"MO"
 	#define DUMP_VERSION_INFORMATION_CHAR	"VI"
-	#define DUMP_NETWORK_INFORMATION_CHAR	"NW"
+	#define DUMP_NETWORK_INFORMATION_CHAR	"NI"
 
 	enum SubCommandType	{
 						UNKNOWN_SUB_COMMAND_TYPE,

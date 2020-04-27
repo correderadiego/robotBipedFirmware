@@ -22,19 +22,19 @@ SerialController*	  serialController;
 void setup(){
 	Logger::getInstance()->setLogLevel(Logger::DEBUG);
 
-	plen = (new PlenFactory())->getPlen();
+	plen 			= (new PlenFactory())->getPlen();
 	plenController  = (new PlenControllerFactory())->getPlenController();
 
-	network = (new NetworkFactory())->getNetwork();
-	networkController = (new NetworkControllerFactory())->getNetworkController();
-	networkController->configureNetworkController(network);
+	network 			= (new NetworkFactory())->getNetwork();
+	networkController 	= (new NetworkControllerFactory())->getNetworkController();
+	networkController->configureNetworkController(plen, network);
 
 	serialController = new SerialController();
 }
 
 void loop(){
-	serialController->executeThreadTasks(plen, SerialCommunication::getInstance());
+	serialController ->executeThreadTasks(plen, SerialCommunication::getInstance());
 	networkController->executeThreadTasks(plen, network);
-	plenController->executeThreadTasks(plen);
+	plenController   ->executeThreadTasks(plen);
 }
 

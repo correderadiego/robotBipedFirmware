@@ -18,6 +18,8 @@ public:
 	static SerialCommunication* getInstance();
 	virtual ~SerialCommunication();
 	void println(const char * string);
+	void print(const char * string);
+	void print(int number);
 	char read();
 	bool available();
 	void flush();

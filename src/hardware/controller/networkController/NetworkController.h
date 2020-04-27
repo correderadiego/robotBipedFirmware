@@ -16,7 +16,7 @@ public:
 	NetworkController(
 			WifiController* wifiController,
 			HttpServerController* httpServerController);
-	void configureNetworkController(Network* network);
+	void configureNetworkController(Plen* plen, Network* network);
 	void executeThreadTasks(Plen* plen, Network* network);
 
 private:

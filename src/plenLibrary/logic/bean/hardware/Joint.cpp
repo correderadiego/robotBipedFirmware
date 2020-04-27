@@ -29,7 +29,8 @@ void Joint::setAngleMax(int angleMax){
 }
 
 void Joint::setAngle(int angle){
-	int temporalAngle = constrain(angle, angleMin, angleMax);
+	//int temporalAngle = constrain(angle, angleMin, angleMax);
+	int temporalAngle = angle;
 	if(this->rotationMode == Joint::counterClockWise){
 		temporalAngle = 90 - angle / 10;
 	}
@@ -61,20 +62,17 @@ Joint::RotationMode Joint::getRotationMode(){
 }
 
 void Joint::dump(){
-	Logger::getInstance()->log(Logger::INFO, S("["));
 	Logger::getInstance()->log(Logger::INFO, S("\t{"));
 
 	Logger::getInstance()->log(Logger::INFO, S("\t\t\"max\": "));
-	Logger::getInstance()->log(Logger::INFO, (char *)angleMax);
+	Logger::getInstance()->log(Logger::INFO, this->angleMax);
 	Logger::getInstance()->log(Logger::INFO, S(","));
 
-
 	Logger::getInstance()->log(Logger::INFO, S("\t\t\"min\": "));
-	Logger::getInstance()->log(Logger::INFO, (char *)angleMin);
+	Logger::getInstance()->log(Logger::INFO, this->angleMin);
 	Logger::getInstance()->log(Logger::INFO, S(","));
 
 	Logger::getInstance()->log(Logger::INFO, S("\t\t\"home\": "));
-	Logger::getInstance()->log(Logger::INFO, (char *)angleHome);
-	Logger::getInstance()->log(Logger::INFO, S("]"));
-	Logger::getInstance()->log(Logger::INFO, S("\r\n"));
+	Logger::getInstance()->log(Logger::INFO, this->angleHome);
+	Logger::getInstance()->log(Logger::INFO, S("\t}"));
 }

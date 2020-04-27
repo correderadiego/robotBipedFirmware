@@ -18,8 +18,8 @@ public:
 	  NO_ERROR
 	};
 
-    virtual bool match(CommandInterface command) = 0;
-    virtual CommandControllerErrors process(Plen* plen, CommandInterface command) = 0;
+    virtual bool match(CommandInterface* command) = 0;
+    virtual CommandControllerErrors process(Plen* plen, CommandInterface* command) = 0;
 };
 
 

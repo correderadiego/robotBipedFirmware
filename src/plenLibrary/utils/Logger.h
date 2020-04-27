@@ -9,6 +9,8 @@
 #define SRC_PLENLIBRARY_UTILS_LOGGER_H_
 
 #include "hardware/bean/SerialCommunication.h"
+#include <stdlib.h>
+#include "utils/ParserUtils.h"
 
 class Logger {
 public:
@@ -21,6 +23,8 @@ public:
 	Logger();
 	static Logger* getInstance();
 	void log(LogLevel logLevel, const char * message);
+	void log(LogLevel logLevel, int message);
+	void logln(LogLevel logLevel, const char * message);
 	virtual ~Logger();
 	void setLogLevel(LogLevel loglevel);
 

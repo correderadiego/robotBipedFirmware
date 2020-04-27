@@ -18,8 +18,8 @@
 class ProcessControllerControllerCommand : public ProcessControllerInterface {
 public:
 	ProcessControllerControllerCommand();
-	bool match(CommandInterface command);
-	CommandControllerErrors process(Plen* plen, CommandInterface command);
+	bool match(CommandInterface* command);
+	CommandControllerErrors process(Plen* plen, CommandInterface* command);
 };
 
 #endif /* SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERCONTROLLERCOMMAND_H_ */

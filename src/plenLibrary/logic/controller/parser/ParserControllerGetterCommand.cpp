@@ -19,60 +19,66 @@ bool ParserControllerGetterCommand::match(Buffer* buffer){
 ParserInterface::ParseErrors ParserControllerGetterCommand::parse(
 									Buffer* buffer, CommandInterface** command){
 
-	char commandSequence[3] = {'\0'};
-	strncpy ( commandSequence, &buffer->getData()[1],  2);
+	char commandSequence[HEADER_LENGTH+1] = {'\0'};
+	strncpy ( commandSequence, &buffer->getData()[HEADER_INDEX_POSITION], HEADER_LENGTH);
 	(**command).setCommandType(CommandInterface::GETTER_COMMAND);
 
 	if( strcmp(commandSequence, DUMP_JOINT_SETTINGS_CHAR) == 0){
-		return parseDumpJointSettingsCommand(buffer, command);
+		return parseDumpJointSettingsCommand(buffer, (DumpJointSettingsCommand**)command);
 	}
 
 	if( strcmp(commandSequence, DUMP_A_MOTION_CHAR) == 0){
-		return parseDumpMotionCommand(buffer, command);
+		return parseDumpMotionCommand(buffer, (DumpMotionCommand**)command);
 	}
 
 	if( strcmp(commandSequence, DUMP_VERSION_INFORMATION_CHAR) == 0){
-		return parseVersionInformationCommand(buffer, command);
+		return parseDumpVersionInformationCommand(buffer, (DumpVersionInformationCommand**)command);
 	}
 
 	if( strcmp(commandSequence, DUMP_NETWORK_INFORMATION_CHAR) == 0){
-		return parseNetworkInformationCommand(buffer, command);
+		return parseDumpNetworkInformationCommand(buffer, (DumpNetworkInformationCommand**)command);
 	}
 	return ParserInterface::UNKNOWN_COMMAND_ERROR;
 }
 
 ParserInterface::ParseErrors ParserControllerGetterCommand::parseDumpJointSettingsCommand(
-			Buffer* buffer, CommandInterface** command){
+			Buffer* buffer, DumpJointSettingsCommand** command){
+	(**command).setSubCommandType(GetterCommand::DUMP_JOINT_SETTINGS);
 	if(buffer->getLenght() != DUMP_JOINT_SETTING_COMMAND_LENGHT){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
-	*command = new DumpJointSettingsCommand();
+
 	return NO_ERROR;
 }
 
 ParserInterface::ParseErrors ParserControllerGetterCommand::parseDumpMotionCommand(
-	Buffer* buffer, CommandInterface** command){
+	Buffer* buffer, DumpMotionCommand** command){
+	(**command).setSubCommandType(GetterCommand::DUMP_A_MOTION);
 	if(buffer->getLenght() != DUMP_MOTION_COMMAND_LENGHT){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
-	*command = new DumpMotionCommand();
+
+	char slot[SLOT_LENGTH+1] = {'\0'};
+	strncpy ( slot, &buffer->getData()[SLOT_POSITION],  SLOT_LENGTH);
+	(**command).setSlot(ParserUtils::hexbytes2int(slot, SLOT_LENGTH));
+
 	return NO_ERROR;
 }
 
-ParserInterface::ParseErrors ParserControllerGetterCommand::parseVersionInformationCommand(
-	Buffer* buffer, CommandInterface** command){
+ParserInterface::ParseErrors ParserControllerGetterCommand::parseDumpVersionInformationCommand(
+	Buffer* buffer, DumpVersionInformationCommand** command){
+	(**command).setSubCommandType(GetterCommand::DUMP_VERSION_INFORMATION);
 	if(buffer->getLenght() != DUMP_VERSION_INFORMATION_COMMAND_LENGTH){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
-	*command = new DumpVersionInformationCommand();
 	return NO_ERROR;
 }
 
-ParserInterface::ParseErrors ParserControllerGetterCommand::parseNetworkInformationCommand(
-	Buffer* buffer, CommandInterface** command){
+ParserInterface::ParseErrors ParserControllerGetterCommand::parseDumpNetworkInformationCommand(
+	Buffer* buffer, DumpNetworkInformationCommand** command){
+	(**command).setSubCommandType(GetterCommand::DUMP_NETWORK_INFORMATION);
 	if(buffer->getLenght() != DUMP_NETWORK_INFORMATION_COMMAND_LENGTH){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
-	*command = new DumpNetworkInformationCommand();
 	return NO_ERROR;
 }

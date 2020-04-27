@@ -17,14 +17,25 @@
 #include <logic/bean/hardware/Buffer.h>
 #include <logic/controller/parser/ParserInterface.h>
 #include "string.h"
+#include "utils/ParserUtils.h"
 
 #define SETTER_COMMAND_CHAR 	 '>'
 #define SET_MOTION_HEADER_COMMAND_LENGHT 	30
 #define SET_MOTION_FRAME_COMMAND_LENGHT 	104
 #define RESET_JOINT_SETTINGS_COMMAND_LENGHT 3
-#define SET_HOME_COMMAND_LENGTH 			5
-#define SET_MAX_VALUE_COMMAND_LENGHT 		5
-#define SET_MIN_VALUE_COMMAND_LENGHT 		5
+#define SET_HOME_VALUE_COMMAND_LENGTH 		8
+#define SET_MAX_VALUE_COMMAND_LENGHT 		8
+#define SET_MIN_VALUE_COMMAND_LENGHT 		8
+
+#define HEADER_LENGTH			2
+#define HEADER_INDEX_POSITION	1
+
+#define DEVICE_ID_LENGTH		2
+#define DEVICE_ID_POSITION      HEADER_INDEX_POSITION + HEADER_LENGTH
+
+#define VALUE_LENGHT			3
+#define VALUE_POSITION			DEVICE_ID_POSITION + DEVICE_ID_LENGTH
+
 
 class ParserControllerSetterCommand : public ParserInterface  {
 public:
@@ -37,13 +48,13 @@ public:
 	ParserInterface::ParseErrors parseSetMotionFrameCommand(
 			Buffer* buffer, CommandInterface** command);
 	ParserInterface::ParseErrors parseResetJointSettingsCommand(
-			Buffer* buffer, CommandInterface** command);
-	ParserInterface::ParseErrors parseSetHomeCommand(
-			Buffer* buffer, CommandInterface** command);
+			Buffer* buffer, ResetJointSettingsCommand** command);
+	ParserInterface::ParseErrors parseSetHomeValueCommand(
+			Buffer* buffer, SetHomeValueCommand** command);
 	ParserInterface::ParseErrors parseSetMaxValueCommand(
-			Buffer* buffer, CommandInterface** command);
+			Buffer* buffer, SetMaxValueCommand** command);
 	ParserInterface::ParseErrors parseSetMinValueCommand(
-			Buffer* buffer, CommandInterface** command);
+			Buffer* buffer, SetMinValueCommand** command);
 };
 
 #endif /* SRC_CONTROLLER_PARSER_PARSERCONTROLLERSETTERCOMMAND_H_ */

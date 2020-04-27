@@ -27,6 +27,20 @@ void Logger::log(LogLevel logLevel, const char * message){
 	if(this->logLevel < logLevel){
 		return;
 	}
+	SerialCommunication::getInstance()->print(message);
+}
+
+void Logger::log(LogLevel logLevel, int message){
+	if(this->logLevel < logLevel){
+		return;
+	}
+	SerialCommunication::getInstance()->print(message);
+}
+
+void Logger::logln(LogLevel logLevel, const char * message){
+	if(this->logLevel < logLevel){
+		return;
+	}
 	SerialCommunication::getInstance()->println(message);
 }
 

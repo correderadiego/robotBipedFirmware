@@ -8,7 +8,7 @@
 #include <logic/bean/Plen.h>
 
 Plen::Plen(
-			Joint* 	joint[],
+			Joint**	joint,
 			int 	jointSize,
 			Eyes* 	eyes,
 			Buffer* serialBuffer,
@@ -47,4 +47,36 @@ Buffer* Plen::getSerialBuffer(){
 
 Buffer* Plen::getSocketBuffer(){
 	return this->socketBuffer;
+}
+
+void Plen::setAccessPointMode(const char* accessPointMode){
+	this->accessPointMode = accessPointMode;
+}
+
+const char* Plen::getAccessPointMode(){
+	return accessPointMode;
+}
+
+void Plen::setAccessPointName(const char* accessPointName){
+	this->accessPointName = accessPointName;
+}
+
+const char* Plen::getAccessPointName(){
+	return this->accessPointName;
+}
+
+void Plen::setAccessPointPassword(const char* accessPointPassword){
+	this->accessPointPassword = accessPointPassword;
+}
+
+const char* Plen::getAccessPointPassword(){
+	return this->accessPointPassword;
+}
+
+void Plen::setIp(const char* ip){
+	this->ip = ip;
+}
+
+const char* Plen::getIp(){
+	return this->ip;
 }

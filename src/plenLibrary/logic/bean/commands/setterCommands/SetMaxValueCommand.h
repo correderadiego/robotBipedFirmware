@@ -14,7 +14,6 @@ class SetMaxValueCommand : public SetterCommand{
 public:
 	SetMaxValueCommand();
 	SetMaxValueCommand(SetterCommand setterCommand);
-
 	int getDeviceId();
 	void setDeviceId(int deviceId);
 	int getValue();

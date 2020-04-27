@@ -36,7 +36,7 @@
 #define VALUE_POSITION			DEVICE_ID_POSITION + DEVICE_ID_LENGTH
 
 #define SLOT_LENGTH				2
-#define SLOT_POSITION     		3
+#define SLOT_POSITION     		HEADER_INDEX_POSITION + HEADER_LENGTH
 
 class ParserControllerControllerCommand : public ParserInterface{
 public:

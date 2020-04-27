@@ -18,8 +18,8 @@
 class ProcessControllerGetterCommand : public ProcessControllerInterface {
 public:
 	ProcessControllerGetterCommand();
-	bool match(CommandInterface command);
-	CommandControllerErrors process(Plen* plen, CommandInterface command);
+	bool match(CommandInterface* command);
+	CommandControllerErrors process(Plen* plen, CommandInterface* command);
 
 private:
 	void processDumpNetworkInformation(Plen* plen);

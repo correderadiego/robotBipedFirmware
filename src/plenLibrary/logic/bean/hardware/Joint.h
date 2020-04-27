@@ -25,7 +25,7 @@ public:
 	Joint(
 			PwmPinInterface* pwmPinInterface = nullptr,
 			int homePosition = ANGLE_NEUTRAL,
-			Joint::RotationMode rotationMode = clokWise
+			Joint::RotationMode rotationMode = RotationMode::clokWise
 		  );
 	void setAngle(int angle);
 	void setAngleHome(int homePosition = ANGLE_NEUTRAL);

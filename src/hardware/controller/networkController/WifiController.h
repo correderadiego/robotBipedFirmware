@@ -24,14 +24,14 @@ public:
 		NO_ERROR
 	};
 	WifiController();
-	void connect(Network* network);
+	void connect(Plen* plen, Network* network);
 	void createSocketServer(Network* network);
 	void executeThreadTasks(Network* network);
 	bool isSocketClientAvailable(Network* network);
 	char read(Network* network);
 
 private:
-	ConnectionErrors connectToWifiAccessPoint(Network* network);
+	ConnectionErrors connectToWifiAccessPoint(Plen* plen, Network* network);
 	void startAccessPoint(Network* network);
 	void updateSocketClientState(Network* network);
 };

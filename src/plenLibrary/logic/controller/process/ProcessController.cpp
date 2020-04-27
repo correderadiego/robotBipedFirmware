@@ -9,7 +9,7 @@
 
 ProcessController::ProcessController() {}
 
-ProcessControllerInterface::CommandControllerErrors ProcessController::process(Plen* plen, CommandInterface command){
+ProcessControllerInterface::CommandControllerErrors ProcessController::process(Plen* plen, CommandInterface* command){
 
 	for (unsigned int i= 0; i < sizeof(commandController)/sizeof(commandController[0]); i++) {
 		if (commandController[i]->match(command)) {

@@ -24,6 +24,14 @@ void SerialCommunication::println(const char * string){
 	Serial.println(FPSTR(string));
 }
 
+void SerialCommunication::print(const char * string){
+	Serial.print(FPSTR(string));
+}
+
+void SerialCommunication::print(int number){
+	Serial.print(number);
+}
+
 bool SerialCommunication::available(){
 	return Serial.available();
 }
@@ -33,7 +41,7 @@ char SerialCommunication::read(){
 }
 
 void SerialCommunication::flush(){
-	//Serial.flush();
+	Serial.flush();
 }
 
 SerialCommunication::~SerialCommunication() {}

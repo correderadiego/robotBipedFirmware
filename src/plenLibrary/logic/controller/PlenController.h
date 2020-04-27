@@ -58,7 +58,7 @@ private:
 	void loadFileConfiguration(Plen* plen);
 	void processBuffer(Plen* plen, Buffer* buffer);
 	ParseBufferErrors parseBuffer(Buffer* buffer, CommandInterface** command);
-	CommandInterface** command;
+	CommandInterface* command = new CommandInterface();
 };
 
 #endif /* SRC_PLENCONTROLLER_H_ */

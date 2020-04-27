@@ -38,3 +38,4 @@ int ParserUtils::hexbytes2int(
 	result >>= (((sizeof(int) * 2) - size) * 4);
 	return result;
 }
+

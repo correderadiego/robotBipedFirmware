@@ -14,8 +14,8 @@ NetworkController::NetworkController(
 	this->httpServerController 	= httpServerController;
 }
 
-void NetworkController::configureNetworkController(Network* network){
-	wifiController->connect(network);
+void NetworkController::configureNetworkController(Plen* plen, Network* network){
+	wifiController->connect(plen, network);
 	wifiController->createSocketServer(network);
 	httpServerController->configureHttpServer(network);
 	httpServerController->initHttpServer();
@@ -29,7 +29,7 @@ void NetworkController::readByte(Plen* plen, Network* network){
 	Buffer::BufferErrors bufferError = plen->getSerialBuffer()->addChar(wifiController->read(network));
 
 	if(bufferError == Buffer::BUFFER_FULL_ERROR){
-		Logger::getInstance()->log(Logger::ERROR, S("Full buffer error"));
+		Logger::getInstance()->logln(Logger::ERROR, S("Full buffer error"));
 		plen->getSerialBuffer()->clearBuffer();
 	}
 }
