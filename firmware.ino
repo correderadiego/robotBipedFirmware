@@ -21,15 +21,16 @@ SerialController*	  serialController;
 
 void setup(){
 	Logger::getInstance()->setLogLevel(Logger::DEBUG);
-
 	plen 			= (new PlenFactory())->getPlen();
 	plenController  = (new PlenControllerFactory())->getPlenController();
+	plenController->initPlenController(plen);
 
 	network 			= (new NetworkFactory())->getNetwork();
 	networkController 	= (new NetworkControllerFactory())->getNetworkController();
 	networkController->configureNetworkController(plen, network);
 
 	serialController = new SerialController();
+	serialController->printBootMessage();
 }
 
 void loop(){

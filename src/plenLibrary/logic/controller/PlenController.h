@@ -43,6 +43,7 @@ public:
 			ParserController*				parserController,
 			ProcessController* 				processController);
 	void executeThreadTasks(Plen* plen);
+	void initPlenController(Plen* plen);
 
 private:
 	JointController*  				jointController;
@@ -53,8 +54,6 @@ private:
 	ParserController*				parserController;
 	ProcessController* 				processController;
 
-
-	void initPlenController(Plen* plen);
 	void loadFileConfiguration(Plen* plen);
 	void processBuffer(Plen* plen, Buffer* buffer);
 	ParseBufferErrors parseBuffer(Buffer* buffer, CommandInterface** command);

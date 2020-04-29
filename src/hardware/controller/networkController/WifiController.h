@@ -15,7 +15,7 @@
 #include "hardware/bean/Network.h"
 #include "utils/Logger.h"
 #include <stddef.h>
-
+#include "Configuration.h"
 
 class WifiController {
 public:

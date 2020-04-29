@@ -14,15 +14,17 @@ Plen::Plen(
 			Buffer* serialBuffer,
 			Buffer* socketBuffer,
 			File* fileMotion,
-			File* fileConfiguration
+			File* fileConfiguration,
+			File* fileSystem
 		  ) {
 	this->joint 					= joint;
 	this->jointSize 				= jointSize;
 	this->eyes						= eyes;
-	this->fileMotion				= fileMotion;
-	this->fileConfiguration			= fileConfiguration;
 	this->serialBuffer 				= serialBuffer;
 	this->socketBuffer				= socketBuffer;
+	this->fileMotion				= fileMotion;
+	this->fileConfiguration			= fileConfiguration;
+	this->fileSystem				= fileSystem;
 }
 
 Eyes* Plen::getEyes(){
@@ -39,6 +41,14 @@ Joint** Plen::getJointVector(){
 
 File* Plen::getFileConfiguration(){
 	return fileConfiguration;
+}
+
+File* Plen::getFileMotion(){
+	return fileMotion;
+}
+
+File* Plen::getFileSystem(){
+	return fileSystem;
 }
 
 Buffer* Plen::getSerialBuffer(){

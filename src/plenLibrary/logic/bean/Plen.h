@@ -24,7 +24,8 @@ public:
 			Buffer* serialBuffer,
 			Buffer* socketBuffer,
 			File* fileMotion,
-			File* fileConfiguration
+			File* fileConfiguration,
+			File* fileSystem
 			);
 
 	uint8_t getJointSize();
@@ -32,6 +33,8 @@ public:
 	Eyes* 	getEyes();
 
 	File*	getFileConfiguration();
+	File*	getFileMotion();
+	File*	getFileSystem();
 	Buffer* getSerialBuffer();
 	Buffer* getSocketBuffer();
 
@@ -50,6 +53,7 @@ private:
 	Eyes* eyes;
 	File* fileMotion;
 	File* fileConfiguration;
+	File* fileSystem;
 	Buffer* serialBuffer;
 	Buffer* socketBuffer;
 

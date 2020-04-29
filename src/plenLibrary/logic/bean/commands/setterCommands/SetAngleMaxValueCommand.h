@@ -10,10 +10,10 @@
 
 #include <logic/bean/commands/setterCommands/SetterCommand.h>
 
-class SetMaxValueCommand : public SetterCommand{
+class SetAngleMaxValueCommand : public SetterCommand{
 public:
-	SetMaxValueCommand();
-	SetMaxValueCommand(SetterCommand setterCommand);
+	SetAngleMaxValueCommand();
+	SetAngleMaxValueCommand(SetterCommand setterCommand);
 	int getDeviceId();
 	void setDeviceId(int deviceId);
 	int getValue();

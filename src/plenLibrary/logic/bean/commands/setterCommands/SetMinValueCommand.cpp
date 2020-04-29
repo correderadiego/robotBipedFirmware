@@ -8,7 +8,7 @@
 #include <logic/bean/commands/setterCommands/SetMinValueCommand.h>
 
 SetMinValueCommand::SetMinValueCommand() {
-	this->subCommandType = SET_MIN_VALUE;
+	this->subCommandType = SET_ANGLE_MIN_VALUE;
 	this->deviceId 		= 0;
 	this->value 		= 0;
 }

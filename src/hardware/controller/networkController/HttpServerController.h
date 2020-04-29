@@ -13,6 +13,9 @@
 #include <FS.h>
 #include <ESP8266mDNS.h>
 #include "hardware/bean/Network.h"
+#include "utils/Logger.h"
+#include "Configuration.h"
+#include "ArduinoIncludes.h"
 
 class HttpServerController {
 public:

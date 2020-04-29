@@ -31,6 +31,7 @@ class ExternalFileSystemController {
 public:
 	enum FileSystemErrors{
 	  NO_ERROR,
+	  MOUNTING_FILESISTEM_ERROR,
 	  UNKNOWN_FILE_FORMAT,
 	  SEEK_ERROR,
 	  SLOT_SIZE_ERROR,
@@ -40,17 +41,18 @@ public:
 	};
 
 	ExternalFileSystemController();
+	FileSystemErrors initExternalFileSystemController();
 	bool isFileConfigurationInitiated(Plen* plen);
 	void initFileConfiguration(Plen* plen);
 	void loadFileConfiguration(Plen* plen);
 	ExternalFileSystemController::FileSystemErrors readAccesPointNamePassword(
 			File* fileConfiguration, String apName, String password);
-	void writeMinAngle (File* fileConfiguration, Joint* joint);
+	void writeMinAngle (Plen* plen, Joint* joint);
 	void writeMaxAngle (File* fileConfiguration, Joint* joint);
 	void writeHomeAngle(File* fileConfiguration, Joint* joint);
 
 	void createFile(
-					File file,
+					File* file,
 					const char* filePath,
 					int fileSize,
 					unsigned char* buf,
@@ -59,33 +61,33 @@ public:
 					unsigned int start_addr,
 					unsigned int size,
 					unsigned char data[],
-					unsigned int sizeRead,
-					File file);
+					int* sizeRead,
+					File* file);
 	FileSystemErrors write(
 					unsigned int start_addr,
 					unsigned int size,
 					const unsigned char data[],
-					unsigned int sizeWrite,
-					File file);
+					unsigned int* sizeWrite,
+					File* file);
 	FileSystemErrors readByte(
 					unsigned int start_addr,
-					unsigned char data,
-					File file);
+					unsigned char* data,
+					File* file);
 	FileSystemErrors writeByte(
 					unsigned int start_addr,
 					unsigned char data,
 					unsigned int sizeWrite,
-					File file);
+					File* file);
 	FileSystemErrors readSlot(
 					unsigned int  slot,
 					unsigned char data[],
 					unsigned char read_size,
-					File file);
+					File* file);
 	FileSystemErrors writeSlot(
 					unsigned int  slot,
 					const unsigned char data[],
 					unsigned char writeSize,
-					File file);
+					File* file);
 };
 
 #endif /* SRC_CONTROLLER_EXTERNALFILESYSTEMCONTROLLER_H_ */

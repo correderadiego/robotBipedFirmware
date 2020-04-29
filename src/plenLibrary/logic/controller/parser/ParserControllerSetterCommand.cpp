@@ -36,11 +36,11 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parse(
 	}
 
 	if( strcmp(commandSequence, SET_HOME_VALUE_CHAR) == 0){
-		return parseSetHomeValueCommand(buffer, (SetHomeValueCommand**)command);
+		return parseSetHomeValueCommand(buffer, (SetAngleHomeValueCommand**)command);
 	}
 
 	if( strcmp(commandSequence, SET_MAX_VALUE_CHAR) == 0){
-		return parseSetMaxValueCommand(buffer, (SetMaxValueCommand**)command);
+		return parseSetMaxValueCommand(buffer, (SetAngleMaxValueCommand**)command);
 	}
 
 	if( strcmp(commandSequence, SET_MIN_VALUE_CHAR) == 0){
@@ -78,8 +78,8 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parseResetJointSetti
 }
 
 ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetHomeValueCommand(
-		Buffer* buffer, SetHomeValueCommand** command){
-	(**command).setSubCommandType(SetterCommand::SET_HOME_VALUE);
+		Buffer* buffer, SetAngleHomeValueCommand** command){
+	(**command).setSubCommandType(SetterCommand::SET_ANGLE_HOME_VALUE);
 	if(buffer->getLenght() != SET_HOME_VALUE_COMMAND_LENGTH){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
@@ -96,8 +96,8 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetHomeValueCom
 }
 
 ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMaxValueCommand(
-		Buffer* buffer, SetMaxValueCommand** command){
-	(**command).setSubCommandType(SetterCommand::SET_MAX_VALUE);
+		Buffer* buffer, SetAngleMaxValueCommand** command){
+	(**command).setSubCommandType(SetterCommand::SET_ANGLE_MAX_VALUE);
 	if(buffer->getLenght() != SET_MAX_VALUE_COMMAND_LENGHT){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
@@ -115,7 +115,7 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMaxValueComm
 
 ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMinValueCommand(
 		Buffer* buffer, SetMinValueCommand** command){
-	(**command).setSubCommandType(SetterCommand::SET_MIN_VALUE);
+	(**command).setSubCommandType(SetterCommand::SET_ANGLE_MIN_VALUE);
 	if(buffer->getLenght() != SET_MIN_VALUE_COMMAND_LENGHT){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}

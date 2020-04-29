@@ -42,23 +42,40 @@ Plen* PlenFactory::getPlen() {
 
 	File* fileMotion 		= new File();
 	File* fileConfiguration = new File();
-	this->openFiles(*fileMotion, *fileConfiguration);
+	File* fileSystem		= new File();
+	this->openFiles(fileMotion, fileConfiguration, fileSystem);
 
-	return new Plen(joint, NUMBER_OF_JOINTS, eyes, serialBuffer, socketBuffer, fileMotion, fileConfiguration);
+	return new Plen(joint, NUMBER_OF_JOINTS, eyes, serialBuffer, socketBuffer, fileMotion, fileConfiguration, fileSystem);
 }
 
-void PlenFactory::openFiles(File fileMotion, File fileConfiguration){
-	File file;
-	unsigned char buf[BUF_SIZE] = {1};
+void PlenFactory::openFiles(File* fileMotion, File* fileConfiguration, File* fileSystem){
 	ExternalFileSystemController* externalFsController = new ExternalFileSystemController();
-    if (!SPIFFS.exists(MOTION_FILE) || !SPIFFS.exists(CONFIG_FILE)){
-    	externalFsController->createFile(
-    			file, MOTION_FILE, MOTION_FILE_SIZE, buf, BUF_SIZE);
-    	externalFsController->createFile(
-    			file, CONFIG_FILE, CONFIG_FILE_SIZE, buf, BUF_SIZE );
-    }
-    fileMotion = SPIFFS.open(MOTION_FILE, FILE_MODE_READ);
-    fileConfiguration = SPIFFS.open(CONFIG_FILE, FILE_MODE_READ);
+	externalFsController->initExternalFileSystemController();
+
+    createFilesIfDontExist(externalFsController);
+    *fileMotion 		= SPIFFS.open(MOTION_FILE, FILE_MODE_READ);
+    *fileConfiguration 	= SPIFFS.open(CONFIG_FILE, FILE_MODE_READ);
+    *fileSystem		 	= SPIFFS.open(SYS_FILE,    FILE_MODE_READ);
+}
+
+void PlenFactory::createFilesIfDontExist(ExternalFileSystemController* externalFsController){
+	unsigned char buf[BUF_SIZE] = {1};
+	File* file = new File();
+
+	if (!SPIFFS.exists(CONFIG_FILE)){
+			externalFsController->createFile(
+							file, CONFIG_FILE, CONFIG_FILE_SIZE, buf, BUF_SIZE );
+	}
+
+	if (!SPIFFS.exists(SYS_FILE)){
+				externalFsController->createFile(
+								file, SYS_FILE, SYS_FILE_SIZE, buf, BUF_SIZE );
+	}
+
+	if (!SPIFFS.exists(MOTION_FILE)){
+		externalFsController->createFile(
+						file, MOTION_FILE, MOTION_FILE_SIZE, buf, BUF_SIZE);
+	}
 }
 
 

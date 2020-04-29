@@ -31,3 +31,13 @@ void SerialController::temporizedWait(){
 		previousTemporizedWait = millis();
 	}
 }
+
+void SerialController::printBootMessage(){
+	Logger::getInstance()->logln(Logger::INFO, S(" === System ready ==="));
+	Logger::getInstance()->log(Logger::INFO, S("	Device name : "));
+	Logger::getInstance()->log(Logger::INFO, DEVICE_NAME);
+	Logger::getInstance()->log(Logger::INFO, S(" -- Code name : "));
+	Logger::getInstance()->log(Logger::INFO, CODE_NAME);
+	Logger::getInstance()->log(Logger::INFO, S(" -- Version : "));
+	Logger::getInstance()->logln(Logger::INFO, VERSION);
+}

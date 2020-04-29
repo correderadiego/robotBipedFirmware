@@ -10,13 +10,14 @@
 
 #include "logic/bean/Plen.h"
 #include "hardware/bean/SerialCommunication.h"
+#include "Configuration.h"
 
 #define DEFAULT_WAIT_PERIOD 1000
 
 class SerialController {
 public:
 	void executeThreadTasks(Plen* plen, SerialCommunication* serialCommunication);
-
+	void printBootMessage();
 private:
 	unsigned long previousTemporizedWait = millis();
 	void temporizedWait();

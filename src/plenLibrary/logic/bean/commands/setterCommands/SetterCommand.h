@@ -24,9 +24,9 @@ public:
 							SET_MOTION_HEADER,
 							SET_MOTION_FRAME,
 							RESET_JOINT_SETTINGS,
-							SET_HOME_VALUE,
-							SET_MAX_VALUE,
-							SET_MIN_VALUE
+							SET_ANGLE_HOME_VALUE,
+							SET_ANGLE_MAX_VALUE,
+							SET_ANGLE_MIN_VALUE
 						};
 	SetterCommand(CommandInterface command);
 	SetterCommand();

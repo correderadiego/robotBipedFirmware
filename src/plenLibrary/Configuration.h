@@ -14,11 +14,20 @@
 
 #define NUMBER_OF_JOINTS 24
 
-#define MOTION_FILE  "/motion.bin"
-#define MOTION_FILE_SIZE 0x200000L
+#define MOTION_FILE  		"/motion.bin"
+#define MOTION_FILE_SIZE 	0x200000L
 
-#define CONFIG_FILE  "/joint_cfg.bin"
-#define CONFIG_FILE_SIZE 0x1000L
+#define CONFIG_FILE  		"/joint_cfg.bin"
+#define CONFIG_FILE_SIZE 	0x1000L
+
+#define SYS_FILE  			"/sys_cfg.bin"
+#define SYS_FILE_SIZE 		0x1000L
+
+#define WIFI_PASSWORD 		"chocolate"
+#define ACCESS_POINT_NAME 	"Conguito-"
+
+#define DEFAULT_HTTP_PORT		 80
+#define DEFAULT_WIFI_SOCKET_PORT 23
 
 #define HOME_POSITION_LEFT_SHOULDER_PITCH 	-40
 #define HOME_POSITION_LEFT_THIGH_YAW		254

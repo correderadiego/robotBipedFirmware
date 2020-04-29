@@ -8,7 +8,6 @@
 #include <logic/bean/commands/setterCommands/SetMotionFrameCommand.h>
 
 SetMotionFrameCommand::SetMotionFrameCommand() {
-	// TODO Auto-generated constructor stub
-
+	this->subCommandType = SET_MOTION_FRAME;
 }
 

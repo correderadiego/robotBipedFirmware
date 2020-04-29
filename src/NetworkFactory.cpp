@@ -13,7 +13,7 @@ Network* NetworkFactory::getNetwork(){
 }
 
 Network* NetworkFactory::createNetwork(File fileSystemConfiguration){
-    fileSystemConfiguration = SPIFFS.open(SYSTEM_FILE, FILE_MODE_READ);
+    fileSystemConfiguration = SPIFFS.open(SYS_FILE, FILE_MODE_READ);
 
 	if( !(fileSystemConfiguration && fileSystemConfiguration.available())){
 			return createDefaultNetwork();
@@ -39,8 +39,8 @@ Network* NetworkFactory::createNetwork(File fileSystemConfiguration){
 }
 
 Network* NetworkFactory::createDefaultNetwork(){
-	String defaulAccessPointName = "ViVi-" + String(ESP.getChipId(),HEX);
-	const char *defaultPassword = "12345678xyz";
+	String defaulAccessPointName = ACCESS_POINT_NAME + String(ESP.getChipId(),HEX);
+	const char *defaultPassword  = WIFI_PASSWORD;
 
 	return new Network(
 					defaulAccessPointName,

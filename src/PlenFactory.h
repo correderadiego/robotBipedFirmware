@@ -34,7 +34,8 @@ class PlenFactory {
 public:
 	Plen* getPlen();
 private:
-	void openFiles (File fileMotion, File fileConfiguration);
+	void openFiles (File* fileMotion, File* fileConfiguration, File* fileSystem);
+	void createFilesIfDontExist(ExternalFileSystemController* externalFsController);
 	Joint* joint[24] = {};
 };
 

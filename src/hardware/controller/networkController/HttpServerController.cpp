@@ -62,7 +62,8 @@ void HttpServerController::configureHttpServer(Network* network){
 	});
 	httpUpdater->setup(httpServer);
 
-	Serial.println("HTTP server started");
+	Logger::getInstance()->log(Logger::INFO, S(" +++ HTTP server started on port : "));
+	Logger::getInstance()->logln(Logger::INFO, ((String)DEFAULT_HTTP_PORT).c_str());
 }
 
 void HttpServerController::handleFileList() {

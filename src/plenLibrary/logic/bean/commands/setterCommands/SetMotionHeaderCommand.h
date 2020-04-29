@@ -10,9 +10,9 @@
 
 #include <logic/bean/commands/setterCommands/SetterCommand.h>
 
-class SetHeaderFrameCommand : public SetterCommand {
+class SetMotionHeaderCommand : public SetterCommand {
 public:
-	SetHeaderFrameCommand();
+	SetMotionHeaderCommand();
 };
 
 #endif /* SRC_BEAN_COMMANDS_SETTERCOMMANDS_SETHEADERFRAMECOMMAND_H_ */

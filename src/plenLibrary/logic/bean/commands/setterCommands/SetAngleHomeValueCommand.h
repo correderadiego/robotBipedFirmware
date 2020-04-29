@@ -10,10 +10,10 @@
 
 #include <logic/bean/commands/setterCommands/SetterCommand.h>
 
-class SetHomeValueCommand : public SetterCommand{
+class SetAngleHomeValueCommand : public SetterCommand{
 public:
-	SetHomeValueCommand();
-	SetHomeValueCommand(SetterCommand setterCommand);
+	SetAngleHomeValueCommand();
+	SetAngleHomeValueCommand(SetterCommand setterCommand);
 
 	int getDeviceId();
 	void setDeviceId(int deviceId);

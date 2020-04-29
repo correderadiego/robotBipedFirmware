@@ -10,8 +10,8 @@
 
 #include <ArduinoIncludes.h>
 #include <logic/bean/commands/setterCommands/ResetJointSettingsCommand.h>
-#include <logic/bean/commands/setterCommands/SetHomeValueCommand.h>
-#include <logic/bean/commands/setterCommands/SetMaxValueCommand.h>
+#include <logic/bean/commands/setterCommands/SetAngleHomeValueCommand.h>
+#include <logic/bean/commands/setterCommands/SetAngleMaxValueCommand.h>
 #include <logic/bean/commands/setterCommands/SetMinValueCommand.h>
 #include <logic/bean/commands/setterCommands/SetterCommand.h>
 #include <logic/bean/hardware/Buffer.h>
@@ -50,9 +50,9 @@ public:
 	ParserInterface::ParseErrors parseResetJointSettingsCommand(
 			Buffer* buffer, ResetJointSettingsCommand** command);
 	ParserInterface::ParseErrors parseSetHomeValueCommand(
-			Buffer* buffer, SetHomeValueCommand** command);
+			Buffer* buffer, SetAngleHomeValueCommand** command);
 	ParserInterface::ParseErrors parseSetMaxValueCommand(
-			Buffer* buffer, SetMaxValueCommand** command);
+			Buffer* buffer, SetAngleMaxValueCommand** command);
 	ParserInterface::ParseErrors parseSetMinValueCommand(
 			Buffer* buffer, SetMinValueCommand** command);
 };

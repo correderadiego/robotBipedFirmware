@@ -12,14 +12,14 @@ WifiController::WifiController() {}
 void WifiController::connect(Plen* plen, Network* network){
 	if(network->getWifiMode() == Network::ACCESS_POINT_MODE){
 		plen->setAccessPointMode(S("Access point mode"));
-		Logger::getInstance()->logln(Logger::INFO, S("Access point mode"));
+		Logger::getInstance()->logln(Logger::INFO, S(" +++ Access point mode +++ "));
 		startAccessPoint(network);
 		return;
 	}
 
 	if(network->getWifiMode() == Network::WIFI_CONNECTION_MODE){
 		plen->setAccessPointMode(S("Wifi connection mode"));
-		Logger::getInstance()->logln(Logger::INFO, S("Wifi connection mode"));
+		Logger::getInstance()->logln(Logger::INFO, S(" +++ Wifi connection mode +++ "));
 		connectToWifiAccessPoint(plen, network);
 		return;
 	}
@@ -33,6 +33,12 @@ void WifiController::startAccessPoint(Network* network){
     	Logger::getInstance()->logln(Logger::INFO, S("."));
     	delay(100);
     }
+
+	Logger::getInstance()->logln(Logger::INFO, S(" +++ AccesPoint created +++ "));
+	Logger::getInstance()->log(Logger::INFO, S(" +++ Gateway IP address: "));
+	Logger::getInstance()->logln(Logger::INFO, "192.168.4.1");
+	Logger::getInstance()->log(Logger::INFO, S(" +++ AccesPoint name: "));
+	Logger::getInstance()->logln(Logger::INFO, network->getAccessPointName().c_str());
 }
 
 WifiController::ConnectionErrors WifiController::connectToWifiAccessPoint(Plen* plen, Network* network){
@@ -49,14 +55,16 @@ WifiController::ConnectionErrors WifiController::connectToWifiAccessPoint(Plen* 
 		cnt++;
 		break;
 		if(cnt >= CONNECT_TIMEOUT){
-			Logger::getInstance()->logln(Logger::ERROR, S("Connection error"));
+			Logger::getInstance()->logln(Logger::ERROR, S(" +++ Wifi connection error +++"));
 			return CONNECTION_ERROR;
 		}
 	}
 
-	Logger::getInstance()->logln(Logger::INFO, S("WiFi connected"));
-	Logger::getInstance()->logln(Logger::INFO, S("IP address: "));
+	Logger::getInstance()->logln(Logger::INFO, S(" +++ WiFi connected +++ "));
+	Logger::getInstance()->logln(Logger::INFO, S(" +++ IP address: "));
 	Logger::getInstance()->logln(Logger::INFO, WiFi.localIP().toString().c_str());
+	Logger::getInstance()->logln(Logger::INFO, S(" +++ AccesPoint name: "));
+	Logger::getInstance()->logln(Logger::INFO, network->getAccessPointName().c_str());
 	plen->setIp(WiFi.localIP().toString().c_str());
 	return NO_ERROR;
 }
@@ -64,22 +72,23 @@ WifiController::ConnectionErrors WifiController::connectToWifiAccessPoint(Plen* 
 void WifiController::createSocketServer(Network* network){
 	network->getWifiServer()->begin();
 	network->getWifiServer()->setNoDelay(true);
-	Logger::getInstance()->logln(Logger::DEBUG, S("Socket created"));
+	Logger::getInstance()->log(Logger::INFO, S(" +++ Socket created on port : "));
+	Logger::getInstance()->logln(Logger::INFO, ((String)DEFAULT_WIFI_SOCKET_PORT).c_str());
 }
 
 void WifiController::updateSocketClientState(Network* network){
 	if (network->getWifiClient() && (!network->getWifiClient().connected())){
 		network->getWifiClient().stop();
-		Logger::getInstance()->logln(Logger::DEBUG, S("Socket client disconnected"));
+		Logger::getInstance()->logln(Logger::DEBUG, S(" +++ Socket client disconnected +++"));
 	}
 
 	if (!network->getWifiServer()->hasClient()){
 		return;
 	}
 	network->getWifiClient().stop();
-	Logger::getInstance()->logln(Logger::DEBUG, S("Previous socket client disconnected"));
+	Logger::getInstance()->logln(Logger::DEBUG, S(" +++ Previous socket client disconnected +++"));
 	network->setWifiClient(network->getWifiServer()->available());
-	Logger::getInstance()->logln(Logger::DEBUG, S("Socket client connected"));
+	Logger::getInstance()->logln(Logger::DEBUG, S(" +++ Socket client connected +++"));
 }
 
 bool WifiController::isSocketClientAvailable(Network* network){
