@@ -14,18 +14,25 @@ Joint::Joint(PwmPinInterface* pwmPinInterface, int angleHome,  RotationMode rota
 	this->angleHome 			= angleHome;
 	this->angle					= angleHome;
 	this->rotationMode  		= rotationMode;
+
+	jointDataStore.angleHomeMemory = this->angleHome;
+	jointDataStore.angleMaxMemory  = this->angleMax;
+	jointDataStore.angleMaxMemory  = this->angleMin;
 }
 
 void Joint::setAngleHome(int angleHome){
 	this->angleHome = angleHome;
+	jointDataStore.angleHomeMemory = angleHome;
 }
 
 void Joint::setAngleMin(int angleMin){
 	this->angleMin = angleMin;
+	jointDataStore.angleMinMemory = angleMin;
 }
 
 void Joint::setAngleMax(int angleMax){
 	this->angleMax = angleMax;
+	jointDataStore.angleMaxMemory = angleMax;
 }
 
 void Joint::setAngle(int angle){

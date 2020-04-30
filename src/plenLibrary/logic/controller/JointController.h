@@ -9,6 +9,7 @@
 #define SRC_CONTROLLER_JOINTCONTROLLER_H_
 
 #include "interfaces/PCA9685PwmControllerInterface.h"
+#include "hardware/controller/ExternalFileSystemController.h"
 #include <logic/bean/hardware/Joint.h>
 #include <logic/bean/Plen.h>
 #include "interfaces/PwmPinInterface.h"
@@ -23,6 +24,8 @@ public:
 	};
 
 	JointController(PCA9685PwmControllerInterface* pca9685PwmControllerInterface);
+	ExternalFileSystemController::FileSystemErrors storeJoint(Plen* plen, Joint* joint, unsigned int startAddress);
+	ExternalFileSystemController::FileSystemErrors loadJoint(Plen* plen, Joint* joint, unsigned int startAddress);
 	void executeThreadTasks(Plen* plen);
 private:
 	PCA9685PwmControllerInterface* pca9685PwmControllerInterface;

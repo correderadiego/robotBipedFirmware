@@ -46,7 +46,6 @@ ProcessControllerInterface::CommandControllerErrors
 		SetMinValueCommand* setMinValueCommand = (SetMinValueCommand*)controllerCommand;
 		plen->getJointVector()[setMinValueCommand->getDeviceId()]->
 				setAngleMin(setMinValueCommand->getValue());
-		(new ExternalFileSystemController())->writeMinAngle(plen, plen->getJointVector()[setMinValueCommand->getDeviceId()]);
 		return NO_ERROR;
 	}
 

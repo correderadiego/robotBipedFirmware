@@ -44,13 +44,18 @@ public:
 	FileSystemErrors initExternalFileSystemController();
 	bool isFileConfigurationInitiated(Plen* plen);
 	void initFileConfiguration(Plen* plen);
-	void loadFileConfiguration(Plen* plen);
 	ExternalFileSystemController::FileSystemErrors readAccesPointNamePassword(
 			File* fileConfiguration, String apName, String password);
 	void writeMinAngle (Plen* plen, Joint* joint);
 	void writeMaxAngle (File* fileConfiguration, Joint* joint);
 	void writeHomeAngle(File* fileConfiguration, Joint* joint);
 
+	void createAndResetFile(
+					File* file,
+					const char* filePath,
+					int fileSize,
+					unsigned char* buf,
+					int bufferSize);
 	void createFile(
 					File* file,
 					const char* filePath,

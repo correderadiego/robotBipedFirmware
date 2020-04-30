@@ -18,7 +18,7 @@ ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::ini
 	return NO_ERROR;
 }
 
-void ExternalFileSystemController::createFile(
+void ExternalFileSystemController::createAndResetFile(
 								File* file,
 								const char* filePath,
 								int fileSize,
@@ -29,19 +29,31 @@ void ExternalFileSystemController::createFile(
 
 	*file = SPIFFS.open(filePath, FILE_MODE_WRITE);
 	unsigned int sizeWrite = 0;
-//	for (i = 0, startAddress = 0; i < (unsigned int)(fileSize / bufferSize); i++, startAddress += bufferSize){
-//		write(startAddress, bufferSize, buf, sizeWrite, file);
-//	}
+	for (i = 0, startAddress = 0; i < (unsigned int)(fileSize / bufferSize); i++, startAddress += bufferSize){
+		write(startAddress, bufferSize, buf, &sizeWrite, file);
+	}
+	file->close();
+	Logger::getInstance()->log(Logger::DEBUG, S(" *** Created file : "));
+	Logger::getInstance()->logln(Logger::DEBUG, filePath);
+}
+
+void ExternalFileSystemController::createFile(
+								File* file,
+								const char* filePath,
+								int fileSize,
+								unsigned char* buf,
+								int bufferSize){
+
+	*file = SPIFFS.open(filePath, FILE_MODE_WRITE);
 	file->close();
 	Logger::getInstance()->log(Logger::DEBUG, S(" *** Created file : "));
 	Logger::getInstance()->logln(Logger::DEBUG, filePath);
 }
 
 void ExternalFileSystemController::writeMinAngle(Plen* plen, Joint* joint){
-	unsigned char* filler = reinterpret_cast<unsigned char*>(joint->getAngleMin());
-	unsigned int sizeWrite = 0;
-	int address_offset    = reinterpret_cast<int>(filler) - reinterpret_cast<int>(plen->getJointVector());
-	write(SETTINGS_HEAD_ADDRESS + address_offset, sizeof(joint->getAngleMin()), filler, &sizeWrite, plen->getFileConfiguration());
+//	unsigned char* filler 	= reinterpret_cast<unsigned char*>(&(joint->getAngleMin()));
+//	int address_offset    	= reinterpret_cast<int>(filler) - reinterpret_cast<int>(plen->getJointVector());
+//	write(SETTINGS_HEAD_ADDRESS + address_offset, sizeof(joint->getAngleMin()), filler, &sizeWrite, plen->getFileConfiguration());
 }
 
 void ExternalFileSystemController::writeMaxAngle(File* fileConfiguration, Joint* joint){
@@ -57,14 +69,14 @@ void ExternalFileSystemController::writeHomeAngle(File* fileConfiguration, Joint
 }
 
 ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::readAccesPointNamePassword(
-		File* fileConfiguration, String apName, String password){
-		fileConfiguration->seek(0, SeekSet);
-		apName 		= fileConfiguration->readStringUntil(END_OF_LINE);
-		password 	= fileConfiguration->readStringUntil(END_OF_LINE);
-		if(apName.length() <= 1){
-			return UNKNOWN_FILE_FORMAT;
-		}
-		return NO_ERROR;
+	File* fileConfiguration, String apName, String password){
+	fileConfiguration->seek(0, SeekSet);
+	apName 		= fileConfiguration->readStringUntil(END_OF_LINE);
+	password 	= fileConfiguration->readStringUntil(END_OF_LINE);
+	if(apName.length() <= 1){
+		return UNKNOWN_FILE_FORMAT;
+	}
+	return NO_ERROR;
 }
 
 bool ExternalFileSystemController::isFileConfigurationInitiated(Plen* plen){
@@ -79,24 +91,7 @@ bool ExternalFileSystemController::isFileConfigurationInitiated(Plen* plen){
 
 void ExternalFileSystemController::initFileConfiguration(Plen* plen){
 	unsigned int sizeWrite = 0;
-	unsigned char* filler = reinterpret_cast<unsigned char*>(plen->getJointVector());
 	writeByte(INIT_FLAG_ADDRESS, (unsigned char)INIT_FLAG_VALUE, sizeWrite, plen->getFileConfiguration());
-	write(SETTINGS_HEAD_ADDRESS, sizeof(plen->getJointVector()), filler, &sizeWrite, plen->getFileConfiguration());
-
-	Logger::getInstance()->logln(Logger::DEBUG, S(" *** Creating default file configuration *** "));
-}
-
-void ExternalFileSystemController::loadFileConfiguration(Plen* plen){
-	unsigned char* filler = reinterpret_cast<unsigned char*>(plen->getJointVector());
-	int sizeRead = 0;
-	this->read(
-			SETTINGS_HEAD_ADDRESS,
-			sizeof(plen->getJointVector()),
-			filler,
-			&sizeRead,
-			plen->getFileConfiguration()
-			);
-	Logger::getInstance()->logln(Logger::DEBUG, S(" *** Loading file configuration *** "));
 }
 
 ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::read(
@@ -114,6 +109,10 @@ ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::rea
 
 	file->seek(startAddress, SeekSet);
 	*sizeRead = file->read(data, size);
+	if(*sizeRead != size){
+		Logger::getInstance()->logln(Logger::ERROR, S("Read size read error"));
+		return WRITE_SIZE_ERROR;
+	}
 	return NO_ERROR;
 }
 
@@ -134,7 +133,11 @@ ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::wri
 	*sizeWrite = file->write(data, size);
 	file->flush();
 	if(*sizeWrite != size){
-		Logger::getInstance()->logln(Logger::ERROR, S("Write size write error"));
+		Logger::getInstance()->logln(Logger::ERROR, S(" *** Write size write error ***"));
+		Logger::getInstance()->log(Logger::ERROR, S(" *** Size to write  : "));
+		Logger::getInstance()->log(Logger::ERROR, size);
+		Logger::getInstance()->log(Logger::ERROR, S(" *** Size wrote  : "));
+		Logger::getInstance()->log(Logger::ERROR, *sizeWrite);
 		return WRITE_SIZE_ERROR;
 	}
 
@@ -175,7 +178,7 @@ ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::wri
 	file->flush();
 
 	if( sizeWrite != WRITE_BYTE_SIZE){
-		Logger::getInstance()->logln(Logger::ERROR, S("Write byte size write error"));
+		Logger::getInstance()->logln(Logger::ERROR, S(" *** Write byte size write error ***"));
 		return WRITE_SIZE_ERROR;
 	}
 	return NO_ERROR;

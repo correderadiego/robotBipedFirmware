@@ -17,7 +17,7 @@
 #define MOTION_FILE  		"/motion.bin"
 #define MOTION_FILE_SIZE 	0x200000L
 
-#define CONFIG_FILE  		"/joint_cfg.bin"
+#define JOINT_CONFIG_FILE  	"/joint_cfg.bin"
 #define CONFIG_FILE_SIZE 	0x1000L
 
 #define SYS_FILE  			"/sys_cfg.bin"

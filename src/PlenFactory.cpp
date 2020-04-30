@@ -54,7 +54,7 @@ void PlenFactory::openFiles(File* fileMotion, File* fileConfiguration, File* fil
 
     createFilesIfDontExist(externalFsController);
     *fileMotion 		= SPIFFS.open(MOTION_FILE, FILE_MODE_READ);
-    *fileConfiguration 	= SPIFFS.open(CONFIG_FILE, FILE_MODE_READ);
+    *fileConfiguration 	= SPIFFS.open(JOINT_CONFIG_FILE, FILE_MODE_READ);
     *fileSystem		 	= SPIFFS.open(SYS_FILE,    FILE_MODE_READ);
 }
 
@@ -62,13 +62,13 @@ void PlenFactory::createFilesIfDontExist(ExternalFileSystemController* externalF
 	unsigned char buf[BUF_SIZE] = {1};
 	File* file = new File();
 
-	if (!SPIFFS.exists(CONFIG_FILE)){
-			externalFsController->createFile(
-							file, CONFIG_FILE, CONFIG_FILE_SIZE, buf, BUF_SIZE );
+	if (!SPIFFS.exists(JOINT_CONFIG_FILE)){
+			externalFsController->createAndResetFile(
+							file, JOINT_CONFIG_FILE, CONFIG_FILE_SIZE, buf, BUF_SIZE );
 	}
 
 	if (!SPIFFS.exists(SYS_FILE)){
-				externalFsController->createFile(
+				externalFsController->createAndResetFile(
 								file, SYS_FILE, SYS_FILE_SIZE, buf, BUF_SIZE );
 	}
 

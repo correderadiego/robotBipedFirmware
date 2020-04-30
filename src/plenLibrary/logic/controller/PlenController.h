@@ -56,6 +56,8 @@ private:
 
 	void loadFileConfiguration(Plen* plen);
 	void processBuffer(Plen* plen, Buffer* buffer);
+	void initFileConfiguration(Plen* plen);
+	void loadFileJoints(Plen* plen);
 	ParseBufferErrors parseBuffer(Buffer* buffer, CommandInterface** command);
 	CommandInterface* command = new CommandInterface();
 };

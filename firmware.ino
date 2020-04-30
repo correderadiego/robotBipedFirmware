@@ -5,6 +5,7 @@
 
 #include "hardware/bean/Network.h"
 #include "hardware/controller/networkController/NetworkController.h"
+#include "plenLibrary/logic/controller/JointController.h"
 #include "NetworkFactory.h"
 #include "NetworkControllerFactory.h"
 

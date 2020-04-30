@@ -22,6 +22,13 @@ public:
 		clokWise,
 		counterClockWise
 	};
+
+	struct JointDataStore {
+		int angleMinMemory;
+		int angleMaxMemory;
+		int angleHomeMemory;
+	};
+
 	Joint(
 			PwmPinInterface* pwmPinInterface = nullptr,
 			int homePosition = ANGLE_NEUTRAL,
@@ -38,12 +45,14 @@ public:
 	RotationMode getRotationMode();
 	PwmPinInterface* getPwmPin();
 	void dump();
+
 private:
 	enum RotationMode rotationMode;
 	int angleMin;
 	int angleMax;
 	int angleHome;
 	int angle;
+	JointDataStore jointDataStore;
 	PwmPinInterface* pwmPinInterface;
 };
 
