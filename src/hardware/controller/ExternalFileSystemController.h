@@ -42,8 +42,8 @@ public:
 
 	ExternalFileSystemController();
 	FileSystemErrors initExternalFileSystemController();
-	bool isFileConfigurationInitiated(Plen* plen);
-	void initFileConfiguration(Plen* plen);
+	bool isFileInitiated(Plen* plen, File* file);
+	void initFile(File* file);
 	ExternalFileSystemController::FileSystemErrors readAccesPointNamePassword(
 			File* fileConfiguration, String apName, String password);
 	void writeMinAngle (Plen* plen, Joint* joint);

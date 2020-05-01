@@ -7,7 +7,7 @@
 
 #include <PlenFactory.h>
 
-Plen* PlenFactory::getPlen() {
+Plen* PlenFactory::getPlen(ExternalFileSystemController* externalFsController) {
 	joint[0] =	new Joint(new PCA9685PwmPin(PIN_LEFT_SHOULDER_PITCH),	HOME_POSITION_LEFT_SHOULDER_PITCH, Joint::counterClockWise);
 	joint[1] =	new Joint(new PCA9685PwmPin(PIN_LEFT_THIGH_YAW),		HOME_POSITION_LEFT_THIGH_YAW);
 	joint[2] =  new Joint(new PCA9685PwmPin(PIN_LEFT_SHOULDER_ROLL),	HOME_POSITION_LEFT_SHOULDER_ROLL);
@@ -43,15 +43,12 @@ Plen* PlenFactory::getPlen() {
 	File* fileMotion 		= new File();
 	File* fileConfiguration = new File();
 	File* fileSystem		= new File();
-	this->openFiles(fileMotion, fileConfiguration, fileSystem);
+	this->openFiles(externalFsController, fileMotion, fileConfiguration, fileSystem);
 
 	return new Plen(joint, NUMBER_OF_JOINTS, eyes, serialBuffer, socketBuffer, fileMotion, fileConfiguration, fileSystem);
 }
 
-void PlenFactory::openFiles(File* fileMotion, File* fileConfiguration, File* fileSystem){
-	ExternalFileSystemController* externalFsController = new ExternalFileSystemController();
-	externalFsController->initExternalFileSystemController();
-
+void PlenFactory::openFiles(ExternalFileSystemController* externalFsController, File* fileMotion, File* fileConfiguration, File* fileSystem){
     createFilesIfDontExist(externalFsController);
     *fileMotion 		= SPIFFS.open(MOTION_FILE, FILE_MODE_READ);
     *fileConfiguration 	= SPIFFS.open(JOINT_CONFIG_FILE, FILE_MODE_READ);

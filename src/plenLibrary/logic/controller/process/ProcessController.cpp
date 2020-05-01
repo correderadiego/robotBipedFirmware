@@ -7,7 +7,9 @@
 
 #include "ProcessController.h"
 
-ProcessController::ProcessController() {}
+ProcessController::ProcessController(JointController* jointController) {
+		this->jointController = jointController;
+}
 
 ProcessControllerInterface::CommandControllerErrors ProcessController::process(Plen* plen, CommandInterface* command){
 

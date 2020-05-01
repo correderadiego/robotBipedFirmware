@@ -23,12 +23,14 @@ public:
 	  NO_ERROR
 	};
 
-	JointController(PCA9685PwmControllerInterface* pca9685PwmControllerInterface);
-	ExternalFileSystemController::FileSystemErrors storeJoint(Plen* plen, Joint* joint, unsigned int startAddress);
-	ExternalFileSystemController::FileSystemErrors loadJoint(Plen* plen, Joint* joint, unsigned int startAddress);
+	JointController(PCA9685PwmControllerInterface* pca9685PwmControllerInterface,
+			ExternalFileSystemController* externalFileSystemController);
+	ExternalFileSystemController::FileSystemErrors storeJoint(Plen* plen, Joint* joint, int jointIndex);
+	ExternalFileSystemController::FileSystemErrors loadJoint(Plen* plen, Joint* joint, int jointIndex);
 	void executeThreadTasks(Plen* plen);
 private:
 	PCA9685PwmControllerInterface* pca9685PwmControllerInterface;
+	ExternalFileSystemController* externalFileSystemController;
 	void moveJoint(Joint* joint);
 };
 

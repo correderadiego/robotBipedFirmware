@@ -8,30 +8,38 @@
 #include "Network.h"
 
 Network::Network(
-		String accesPointName,
-		String password,
+		char* accesPointName,
+		char* password,
 		WifiMode wifiMode,
 		ESP8266WebServer* httpServer,
 		ESP8266HTTPUpdateServer* httpUpdater,
 		WiFiServer* wifiServer) {
-	this->accessPointName 	= accesPointName;
-	this->password 			= password;
-	this->wifiMode 			= wifiMode;
-	this->httpServer 		= httpServer;
-	this->httpUpdater 		= httpUpdater;
-	this->wifiServer  		= wifiServer;
+	this->networkMemory->accessPointName 	= accesPointName;
+	this->networkMemory->password 			= password;
+	this->networkMemory->wifiMode 			= wifiMode;
+	this->httpServer 						= httpServer;
+	this->httpUpdater 						= httpUpdater;
+	this->wifiServer  						= wifiServer;
 }
 
-String Network::getAccessPointName(){
-	return this->accessPointName;
+void Network::setAccesPointName(char* accesPointName){
+	this->networkMemory->accessPointName = accesPointName;
 }
 
-String Network::getPassword(){
-	return this->password;
+Network::NetworkMemory* Network::getNetworkMemory(){
+	return this->networkMemory;
+}
+
+char* Network::getAccessPointName(){
+	return this->networkMemory->accessPointName;
+}
+
+char* Network::getPassword(){
+	return this->networkMemory->password;
 }
 
 Network::WifiMode Network::getWifiMode(){
-	return this->wifiMode;
+	return this->networkMemory->wifiMode;
 }
 
 ESP8266WebServer* Network::getHttpServer(){

@@ -13,7 +13,7 @@
 
 class PlenControllerFactory {
 public:
-	PlenController* getPlenController();
+	PlenController* getPlenController(ExternalFileSystemController* externalFileSystemController);
 };
 
 #endif /* SRC_CONTROLLER_PLENCONTROLLERFACTORY_H_ */

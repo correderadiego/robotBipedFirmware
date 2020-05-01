@@ -13,19 +13,22 @@
 #include <logic/controller/process/ProcessControllerInterface.h>
 #include <logic/controller/process/ProcessControllerInterpreterCommand.h>
 #include <logic/controller/process/ProcessControllerSetterCommand.h>
+#include "logic/controller/JointController.h"
 
 #define COMMAND_CONTROLLER_VECTOR_SIZE	 4
 class ProcessController {
 	public:
-		ProcessController();
+		ProcessController(JointController* jointController);
 		ProcessControllerInterface::CommandControllerErrors process(Plen* plen, CommandInterface* command);
 
 		ProcessControllerInterface* commandController[COMMAND_CONTROLLER_VECTOR_SIZE] = {
 				new ProcessControllerControllerCommand(),
 				new ProcessControllerInterpreterCommand(),
-				new ProcessControllerSetterCommand(),
+				new ProcessControllerSetterCommand(jointController),
 				new ProcessControllerGetterCommand()
 		};
+	private:
+		JointController* jointController;
 };
 
 #endif /* SRC_CONTROLLER_PROCESS_PROCESSCONTROLLER_H_ */

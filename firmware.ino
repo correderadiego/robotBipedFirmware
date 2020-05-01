@@ -19,15 +19,19 @@ Plen*				  plen;
 NetworkController*	  networkController;
 Network* 			  network;
 SerialController*	  serialController;
+ExternalFileSystemController* externalFileSystemController;
 
 void setup(){
 	Logger::getInstance()->setLogLevel(Logger::DEBUG);
-	plen 			= (new PlenFactory())->getPlen();
-	plenController  = (new PlenControllerFactory())->getPlenController();
+
+	externalFileSystemController = new ExternalFileSystemController();
+
+	plen 			= (new PlenFactory())->getPlen(externalFileSystemController);
+	plenController  = (new PlenControllerFactory())->getPlenController(externalFileSystemController);
 	plenController->initPlenController(plen);
 
 	network 			= (new NetworkFactory())->getNetwork();
-	networkController 	= (new NetworkControllerFactory())->getNetworkController();
+	networkController 	= (new NetworkControllerFactory())->getNetworkController(externalFileSystemController);
 	networkController->configureNetworkController(plen, network);
 
 	serialController = new SerialController();

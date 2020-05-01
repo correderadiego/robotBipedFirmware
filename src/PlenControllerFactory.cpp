@@ -7,17 +7,16 @@
 
 #include <PlenControllerFactory.h>
 
-PlenController* PlenControllerFactory::getPlenController(){
-	JointController* jointController 	= new JointController(new PCA9685PwmController());
-	///MotionController* motionController	= new MotionController(*jointController);
-	//TODO
+PlenController* PlenControllerFactory::getPlenController(
+		ExternalFileSystemController* externalFileSystemController){
+
 	MotionController* motionController;
 	Interpreter* interpreter 									= new Interpreter();
 	LedController* ledController								= new LedController();
 	EyeController* eyeController								= new EyeController(ledController);
-	ExternalFileSystemController* externalFileSystemController  = new ExternalFileSystemController();
 	ParserController* parserController 							= new ParserController();
-	ProcessController* processController						= new ProcessController();
+	JointController* jointController 							= new JointController(new PCA9685PwmController(), externalFileSystemController);
+	ProcessController* processController						= new ProcessController(jointController);
 
 	return new PlenController(
 			jointController,

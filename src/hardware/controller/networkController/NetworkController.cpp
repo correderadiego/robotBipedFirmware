@@ -15,6 +15,7 @@ NetworkController::NetworkController(
 }
 
 void NetworkController::configureNetworkController(Plen* plen, Network* network){
+	wifiController->init(plen, network);
 	wifiController->connect(plen, network);
 	wifiController->createSocketServer(network);
 	httpServerController->configureHttpServer(network);

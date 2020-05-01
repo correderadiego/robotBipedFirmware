@@ -7,9 +7,9 @@
 
 #include <NetworkControllerFactory.h>
 
-NetworkController* NetworkControllerFactory::getNetworkController() {
-	WifiController*  	  wifiController = new WifiController();
-	HttpServerController* httpServerController = new HttpServerController();
+NetworkController* NetworkControllerFactory::getNetworkController(ExternalFileSystemController* externalFileSystemController) {
+	WifiController*  	  wifiController 		= new WifiController(externalFileSystemController);
+	HttpServerController* httpServerController 	= new HttpServerController();
 
 	return new NetworkController(wifiController, httpServerController);
 }

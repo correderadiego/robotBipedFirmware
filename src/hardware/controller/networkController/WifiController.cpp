@@ -7,7 +7,40 @@
 
 #include <hardware/controller/networkController/WifiController.h>
 
-WifiController::WifiController() {}
+WifiController::WifiController(ExternalFileSystemController* externalFileSystemController) {
+	this->externalFileSystemController = externalFileSystemController;
+}
+
+void WifiController::init(Plen* plen, Network* network){
+	loadFileConfiguration(plen, network);
+}
+
+void WifiController::loadFileConfiguration(Plen* plen, Network* network){
+	if(externalFileSystemController->isFileInitiated(plen, plen->getFileSystem())){
+		network->setAccesPointName("teste");
+		loadNetworkConfiguration(plen, network);
+		return;
+	}
+	this->initFileSystem(plen, network);
+}
+
+void WifiController::loadNetworkConfiguration(Plen* plen, Network* network){
+	int sizeRead = 0;
+	unsigned char* filler = reinterpret_cast<unsigned char*>(network->getNetworkMemory());
+	externalFileSystemController->read(
+			SETTINGS_HEAD_ADDRESS, sizeof(*network->getNetworkMemory()), filler, &sizeRead, plen->getFileSystem());
+	Logger::getInstance()->logln(Logger::DEBUG, S(" *** Loading file system *** "));
+}
+
+void WifiController::initFileSystem(Plen* plen, Network* network){
+	unsigned int sizeWrite = 0;
+	unsigned char* filler = reinterpret_cast<unsigned char*>(network->getNetworkMemory());
+	this->externalFileSystemController->initFile(plen->getFileSystem());
+	Serial.println("Init file system");
+	externalFileSystemController->write(
+			SETTINGS_HEAD_ADDRESS, sizeof(*network->getNetworkMemory()), filler, &sizeWrite, plen->getFileSystem());
+	Logger::getInstance()->logln(Logger::DEBUG, S(" *** Creating default file system *** "));
+}
 
 void WifiController::connect(Plen* plen, Network* network){
 	if(network->getWifiMode() == Network::ACCESS_POINT_MODE){
@@ -28,8 +61,8 @@ void WifiController::connect(Plen* plen, Network* network){
 void WifiController::startAccessPoint(Network* network){
     WiFi.mode(WIFI_AP);
     while(!WiFi.softAP(
-    		network->getAccessPointName().c_str(),
-			network->getPassword().c_str())){
+    		(network->getAccessPointName() + String(ESP.getChipId(),HEX)).c_str(),
+			network->getPassword())){
     	Logger::getInstance()->logln(Logger::INFO, S("."));
     	delay(100);
     }
@@ -38,15 +71,15 @@ void WifiController::startAccessPoint(Network* network){
 	Logger::getInstance()->log(Logger::INFO, S(" +++ Gateway IP address: "));
 	Logger::getInstance()->logln(Logger::INFO, "192.168.4.1");
 	Logger::getInstance()->log(Logger::INFO, S(" +++ AccesPoint name: "));
-	Logger::getInstance()->logln(Logger::INFO, network->getAccessPointName().c_str());
+	Logger::getInstance()->logln(Logger::INFO, (network->getAccessPointName() + String(ESP.getChipId(),HEX)).c_str());
 }
 
 WifiController::ConnectionErrors WifiController::connectToWifiAccessPoint(Plen* plen, Network* network){
 	unsigned char cnt;
 	WiFi.mode(WIFI_STA);
 	WiFi.begin(
-			network->getAccessPointName().c_str(),
-			network->getPassword().c_str()
+			network->getAccessPointName(),
+			network->getPassword()
 			);
 	cnt = 0;
 	while (WiFi.status() != WL_CONNECTED){
@@ -64,7 +97,7 @@ WifiController::ConnectionErrors WifiController::connectToWifiAccessPoint(Plen* 
 	Logger::getInstance()->logln(Logger::INFO, S(" +++ IP address: "));
 	Logger::getInstance()->logln(Logger::INFO, WiFi.localIP().toString().c_str());
 	Logger::getInstance()->logln(Logger::INFO, S(" +++ AccesPoint name: "));
-	Logger::getInstance()->logln(Logger::INFO, network->getAccessPointName().c_str());
+	Logger::getInstance()->logln(Logger::INFO, network->getAccessPointName());
 	plen->setIp(WiFi.localIP().toString().c_str());
 	return NO_ERROR;
 }

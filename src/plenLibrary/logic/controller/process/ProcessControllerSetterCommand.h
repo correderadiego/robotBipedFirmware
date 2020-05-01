@@ -16,13 +16,16 @@
 #include <logic/bean/Plen.h>
 #include <logic/controller/process/ProcessControllerInterface.h>
 #include "hardware/controller/ExternalFileSystemController.h"
+#include "logic/controller/JointController.h"
 
 
 class ProcessControllerSetterCommand : public ProcessControllerInterface{
 public:
-	ProcessControllerSetterCommand();
+	ProcessControllerSetterCommand(JointController* jointController);
 	bool match(CommandInterface* command);
 	CommandControllerErrors process(Plen* plen, CommandInterface* command);
+private:
+	JointController* jointController;
 };
 
 #endif /* SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERSETTERCOMMAND_H_ */

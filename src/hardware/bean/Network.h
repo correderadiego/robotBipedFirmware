@@ -20,16 +20,24 @@ public:
 	  WIFI_CONNECTION_MODE
 	};
 
+	struct NetworkMemory{
+		char* accessPointName;
+		char* password;
+		WifiMode wifiMode;
+	};
+
 	Network(
-			String accesPointName,
-			String password,
+			char* accesPointName,
+			char* password,
 			WifiMode wifiMode,
 			ESP8266WebServer* httpServer,
 			ESP8266HTTPUpdateServer* httpUpdater,
 			WiFiServer* wifiServer);
 
-	String getAccessPointName();
-	String getPassword();
+	void setAccesPointName(char* accesPointName);
+	NetworkMemory* getNetworkMemory();
+	char* getAccessPointName();
+	char* getPassword();
 	WifiMode getWifiMode();
 	ESP8266WebServer* getHttpServer();
 	ESP8266HTTPUpdateServer* getHttpUpdater();
@@ -38,13 +46,11 @@ public:
 	void setWifiClient(WiFiClient wifiClient);
 
 private:
-	String accessPointName;
-	String password;
-	WifiMode wifiMode;
 	ESP8266WebServer* httpServer;
 	ESP8266HTTPUpdateServer* httpUpdater;
 	WiFiServer* wifiServer;
 	WiFiClient wifiClient;
+	NetworkMemory* networkMemory = new NetworkMemory();
 };
 
 #endif /* SRC_BEAN_NETWORK_H_ */

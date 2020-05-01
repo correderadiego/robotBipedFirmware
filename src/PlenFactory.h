@@ -32,11 +32,13 @@
 
 class PlenFactory {
 public:
-	Plen* getPlen();
+	Plen* getPlen(ExternalFileSystemController* externalFsController);
 private:
-	void openFiles (File* fileMotion, File* fileConfiguration, File* fileSystem);
-	void createFilesIfDontExist(ExternalFileSystemController* externalFsController);
 	Joint* joint[24] = {};
+
+	void openFiles (ExternalFileSystemController* externalFsController,
+			File* fileMotion, File* fileConfiguration, File* fileSystem);
+	void createFilesIfDontExist(ExternalFileSystemController* externalFsController);
 };
 
 #endif /* SRC_PLENFACTORY_H_ */

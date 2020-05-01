@@ -29,7 +29,7 @@ void PlenController::initPlenController(Plen* plen){
 }
 
 void PlenController::loadFileConfiguration(Plen* plen){
-	if(externalFileSystemController->isFileConfigurationInitiated(plen)){
+	if(externalFileSystemController->isFileInitiated(plen, plen->getFileConfiguration())){
 		loadFileJoints(plen);
 		return;
 	}
@@ -72,17 +72,16 @@ PlenController::ParseBufferErrors PlenController::parseBuffer(Buffer* buffer, Co
 }
 
 void PlenController::loadFileJoints(Plen* plen){
-	plen->getJointVector()[1]->setAngleMin(10);
 	for (int i = 0; i < plen->getJointSize(); i++) {
-		jointController->loadJoint(plen, (plen->getJointVector()[i]), HEADER_INDEX_POSITION + i*sizeof(*(plen->getJointVector()[i])));
+		jointController->loadJoint(plen, (plen->getJointVector()[i]), i);
 	}
 	Logger::getInstance()->logln(Logger::DEBUG, S(" *** Loading file configuration *** "));
 }
 
 void PlenController::initFileConfiguration(Plen* plen){
-	this->externalFileSystemController->initFileConfiguration(plen);
+	this->externalFileSystemController->initFile(plen->getFileConfiguration());
 	for (int i = 0; i < plen->getJointSize(); i++) {
-		jointController->storeJoint(plen, (plen->getJointVector()[i]), HEADER_INDEX_POSITION + i*sizeof(*(plen->getJointVector()[i])));
+		jointController->storeJoint(plen, (plen->getJointVector()[i]), i);
 	}
 
 	Logger::getInstance()->logln(Logger::DEBUG, S(" *** Creating default file configuration *** "));

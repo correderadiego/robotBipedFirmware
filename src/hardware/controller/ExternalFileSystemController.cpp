@@ -7,7 +7,9 @@
 
 #include <hardware/controller/ExternalFileSystemController.h>
 
-ExternalFileSystemController::ExternalFileSystemController() {}
+ExternalFileSystemController::ExternalFileSystemController() {
+	this->initExternalFileSystemController();
+}
 
 ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::initExternalFileSystemController(){
 	if (!SPIFFS.begin()) {
@@ -79,19 +81,19 @@ ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::rea
 	return NO_ERROR;
 }
 
-bool ExternalFileSystemController::isFileConfigurationInitiated(Plen* plen){
+bool ExternalFileSystemController::isFileInitiated(Plen* plen, File* file){
 	unsigned char data = 0;
 
-	this->readByte(INIT_FLAG_ADDRESS, &data, plen->getFileConfiguration());
+	this->readByte(INIT_FLAG_ADDRESS, &data, file);
 	if ( data == (unsigned char)INIT_FLAG_VALUE){
 		return true;
 	}
 	return false;
 }
 
-void ExternalFileSystemController::initFileConfiguration(Plen* plen){
+void ExternalFileSystemController::initFile(File* file){
 	unsigned int sizeWrite = 0;
-	writeByte(INIT_FLAG_ADDRESS, (unsigned char)INIT_FLAG_VALUE, sizeWrite, plen->getFileConfiguration());
+	writeByte(INIT_FLAG_ADDRESS, (unsigned char)INIT_FLAG_VALUE, sizeWrite, file);
 }
 
 ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::read(

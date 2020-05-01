@@ -7,8 +7,10 @@
 
 #include <logic/controller/JointController.h>
 
-JointController::JointController(PCA9685PwmControllerInterface* pca9685PwmControllerInterface) {
+JointController::JointController(PCA9685PwmControllerInterface* pca9685PwmControllerInterface,
+		ExternalFileSystemController* externalFileSystemControler) {
 	this->pca9685PwmControllerInterface = pca9685PwmControllerInterface;
+	this->externalFileSystemController  = externalFileSystemController;
 }
 
 void JointController::executeThreadTasks(Plen* plen){
@@ -17,20 +19,20 @@ void JointController::executeThreadTasks(Plen* plen){
 	}
 }
 
-ExternalFileSystemController::FileSystemErrors JointController::storeJoint(Plen* plen, Joint* joint, unsigned int startAddress){
+ExternalFileSystemController::FileSystemErrors JointController::storeJoint(Plen* plen, Joint* joint, int jointIndex){
 	unsigned int sizeWrite = 0;
 	unsigned char* filler = reinterpret_cast<unsigned char*>(joint);
 
-	return (new ExternalFileSystemController())->write(
-			startAddress, sizeof(*joint), filler, &sizeWrite, plen->getFileSystem());
+	return externalFileSystemController->write(
+			SETTINGS_HEAD_ADDRESS + jointIndex*sizeof(*joint), sizeof(*joint), filler, &sizeWrite, plen->getFileConfiguration());
 }
 
-ExternalFileSystemController::FileSystemErrors JointController::loadJoint(Plen* plen, Joint* joint, unsigned int startAddress){
+ExternalFileSystemController::FileSystemErrors JointController::loadJoint(Plen* plen, Joint* joint, int jointIndex){
 	int sizeRead = 0;
 	unsigned char* filler = reinterpret_cast<unsigned char*>(joint);
 
-	return  (new ExternalFileSystemController())->read(
-			startAddress, sizeof(*joint), filler, &sizeRead, plen->getFileSystem());
+	return  externalFileSystemController->read(
+			SETTINGS_HEAD_ADDRESS + jointIndex*sizeof(*joint), sizeof(*joint), filler, &sizeRead, plen->getFileConfiguration());
 }
 
 void JointController::moveJoint(Joint* joint){

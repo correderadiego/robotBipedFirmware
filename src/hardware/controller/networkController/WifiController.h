@@ -16,6 +16,7 @@
 #include "utils/Logger.h"
 #include <stddef.h>
 #include "Configuration.h"
+#include "hardware/controller/ExternalFileSystemController.h"
 
 class WifiController {
 public:
@@ -23,7 +24,8 @@ public:
 		CONNECTION_ERROR,
 		NO_ERROR
 	};
-	WifiController();
+	WifiController(ExternalFileSystemController* externalFileSystemController);
+	void init(Plen* plen, Network* network);
 	void connect(Plen* plen, Network* network);
 	void createSocketServer(Network* network);
 	void executeThreadTasks(Network* network);
@@ -31,6 +33,10 @@ public:
 	char read(Network* network);
 
 private:
+	ExternalFileSystemController* externalFileSystemController;
+	void loadFileConfiguration(Plen* plen, Network* network);
+	void initFileSystem(Plen* plen, Network* network);
+	void loadNetworkConfiguration(Plen* plen, Network* network);
 	ConnectionErrors connectToWifiAccessPoint(Plen* plen, Network* network);
 	void startAccessPoint(Network* network);
 	void updateSocketClientState(Network* network);

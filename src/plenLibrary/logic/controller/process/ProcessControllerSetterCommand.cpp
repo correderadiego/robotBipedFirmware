@@ -7,7 +7,9 @@
 
 #include <logic/controller/process/ProcessControllerSetterCommand.h>
 
-ProcessControllerSetterCommand::ProcessControllerSetterCommand() {}
+ProcessControllerSetterCommand::ProcessControllerSetterCommand(JointController* jointController) {
+	this->jointController = jointController;
+}
 
 bool ProcessControllerSetterCommand::match(CommandInterface* command){
 	if(command->getCommandType() == CommandInterface::SETTER_COMMAND){
@@ -34,18 +36,33 @@ ProcessControllerInterface::CommandControllerErrors
 		SetAngleHomeValueCommand* setHomeValueCommand = (SetAngleHomeValueCommand*)controllerCommand;
 		plen->getJointVector()[setHomeValueCommand->getDeviceId()]->
 				setAngleHome(setHomeValueCommand->getValue());
+		jointController->storeJoint(
+									plen,
+									plen->getJointVector()[setHomeValueCommand->getDeviceId()],
+									setHomeValueCommand->getDeviceId()
+									);
 		return NO_ERROR;
 	}
 	if(controllerCommand->getSubCommandType() == SetterCommand::SET_ANGLE_MAX_VALUE){
 		SetAngleMaxValueCommand* setAngleMaxValueCommand = (SetAngleMaxValueCommand*)controllerCommand;
 		plen->getJointVector()[setAngleMaxValueCommand->getDeviceId()]->
 				setAngleMax(setAngleMaxValueCommand->getValue());
+		jointController->storeJoint(
+									plen,
+									plen->getJointVector()[setAngleMaxValueCommand->getDeviceId()],
+									setAngleMaxValueCommand->getDeviceId()
+									);
 		return NO_ERROR;
 	}
 	if(controllerCommand->getSubCommandType() == SetterCommand::SET_ANGLE_MIN_VALUE){
 		SetMinValueCommand* setMinValueCommand = (SetMinValueCommand*)controllerCommand;
 		plen->getJointVector()[setMinValueCommand->getDeviceId()]->
 				setAngleMin(setMinValueCommand->getValue());
+		jointController->storeJoint(
+									plen,
+									plen->getJointVector()[setMinValueCommand->getDeviceId()],
+									setMinValueCommand->getDeviceId()
+									);
 		return NO_ERROR;
 	}
 
