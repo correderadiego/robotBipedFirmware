@@ -17,7 +17,6 @@ void WifiController::init(Plen* plen, Network* network){
 
 void WifiController::loadFileConfiguration(Plen* plen, Network* network){
 	if(externalFileSystemController->isFileInitiated(plen, plen->getFileSystem())){
-		network->setAccesPointName("teste");
 		loadNetworkConfiguration(plen, network);
 		return;
 	}
@@ -36,7 +35,6 @@ void WifiController::initFileSystem(Plen* plen, Network* network){
 	unsigned int sizeWrite = 0;
 	unsigned char* filler = reinterpret_cast<unsigned char*>(network->getNetworkMemory());
 	this->externalFileSystemController->initFile(plen->getFileSystem());
-	Serial.println("Init file system");
 	externalFileSystemController->write(
 			SETTINGS_HEAD_ADDRESS, sizeof(*network->getNetworkMemory()), filler, &sizeWrite, plen->getFileSystem());
 	Logger::getInstance()->logln(Logger::DEBUG, S(" *** Creating default file system *** "));

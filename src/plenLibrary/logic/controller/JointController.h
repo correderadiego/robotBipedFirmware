@@ -23,6 +23,8 @@ public:
 	  NO_ERROR
 	};
 
+	ExternalFileSystemController* getExternalFileSystemController();
+
 	JointController(PCA9685PwmControllerInterface* pca9685PwmControllerInterface,
 			ExternalFileSystemController* externalFileSystemController);
 	ExternalFileSystemController::FileSystemErrors storeJoint(Plen* plen, Joint* joint, int jointIndex);

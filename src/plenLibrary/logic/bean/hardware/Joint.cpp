@@ -8,31 +8,28 @@
 #include <logic/bean/hardware/Joint.h>
 
 Joint::Joint(PwmPinInterface* pwmPinInterface, int angleHome,  RotationMode rotationMode) {
-	this->pwmPinInterface		= pwmPinInterface;
-	this->angleMin 	 			= ANGLE_MIN;
-	this->angleMax 	 			= ANGLE_MAX;
-	this->angleHome 			= angleHome;
-	this->angle					= angleHome;
-	this->rotationMode  		= rotationMode;
+	this->pwmPinInterface		 = pwmPinInterface;
+	this->jointMemory->angleMin  = ANGLE_MIN;
+	this->jointMemory->angleMax  = ANGLE_MAX;
+	this->jointMemory->angleHome = angleHome;
+	this->angle					 = angleHome;
+	this->rotationMode  		 = rotationMode;
+}
 
-	jointDataStore.angleHomeMemory = this->angleHome;
-	jointDataStore.angleMaxMemory  = this->angleMax;
-	jointDataStore.angleMaxMemory  = this->angleMin;
+Joint::JointMemory* Joint::getJointMemory(){
+	return this->jointMemory;
 }
 
 void Joint::setAngleHome(int angleHome){
-	this->angleHome = angleHome;
-	jointDataStore.angleHomeMemory = angleHome;
+	this->jointMemory->angleHome = angleHome;
 }
 
 void Joint::setAngleMin(int angleMin){
-	this->angleMin = angleMin;
-	jointDataStore.angleMinMemory = angleMin;
+	this->jointMemory->angleMin = angleMin;
 }
 
 void Joint::setAngleMax(int angleMax){
-	this->angleMax = angleMax;
-	jointDataStore.angleMaxMemory = angleMax;
+	this->jointMemory->angleMax = angleMax;
 }
 
 void Joint::setAngle(int angle){
@@ -45,15 +42,15 @@ void Joint::setAngle(int angle){
 }
 
 int Joint::getAngleHome(){
-	return this->angleHome;
+	return this->jointMemory->angleHome;
 }
 
 int Joint::getAngleMin(){
-	return this->angleMin;
+	return this->jointMemory->angleMin;
 }
 
 int Joint::getAngleMax(){
-	return this->angleMax;
+	return this->jointMemory->angleMax;
 }
 
 int Joint::getAngle(){
@@ -72,14 +69,14 @@ void Joint::dump(){
 	Logger::getInstance()->log(Logger::INFO, S("\t{"));
 
 	Logger::getInstance()->log(Logger::INFO, S("\t\t\"max\": "));
-	Logger::getInstance()->log(Logger::INFO, this->angleMax);
+	Logger::getInstance()->log(Logger::INFO, this->jointMemory->angleMax);
 	Logger::getInstance()->log(Logger::INFO, S(","));
 
 	Logger::getInstance()->log(Logger::INFO, S("\t\t\"min\": "));
-	Logger::getInstance()->log(Logger::INFO, this->angleMin);
+	Logger::getInstance()->log(Logger::INFO, this->jointMemory->angleMin);
 	Logger::getInstance()->log(Logger::INFO, S(","));
 
 	Logger::getInstance()->log(Logger::INFO, S("\t\t\"home\": "));
-	Logger::getInstance()->log(Logger::INFO, this->angleHome);
+	Logger::getInstance()->log(Logger::INFO, this->jointMemory->angleHome);
 	Logger::getInstance()->log(Logger::INFO, S("\t}"));
 }

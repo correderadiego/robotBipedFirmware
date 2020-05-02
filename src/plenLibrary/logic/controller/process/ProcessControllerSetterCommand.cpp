@@ -58,11 +58,22 @@ ProcessControllerInterface::CommandControllerErrors
 		SetMinValueCommand* setMinValueCommand = (SetMinValueCommand*)controllerCommand;
 		plen->getJointVector()[setMinValueCommand->getDeviceId()]->
 				setAngleMin(setMinValueCommand->getValue());
-		jointController->storeJoint(
-									plen,
-									plen->getJointVector()[setMinValueCommand->getDeviceId()],
-									setMinValueCommand->getDeviceId()
-									);
+
+//		jointController->storeJoint(
+//									plen,
+//									plen->getJointVector()[setMinValueCommand->getDeviceId()],
+//									setMinValueCommand->getDeviceId()
+//									);
+		int jointIndex = setMinValueCommand->getDeviceId();
+		Joint* joint = (plen->getJointVector()[jointIndex]);
+		unsigned char* filler = reinterpret_cast<unsigned char*>(joint->getJointMemory());
+		unsigned int sizeWrite = 0;
+		(new ExternalFileSystemController())->write(
+					SETTINGS_HEAD_ADDRESS + jointIndex*sizeof(*joint->getJointMemory()),
+					sizeof(*joint->getJointMemory()),
+					filler,
+					&sizeWrite,
+					plen->getFileConfiguration());
 		return NO_ERROR;
 	}
 

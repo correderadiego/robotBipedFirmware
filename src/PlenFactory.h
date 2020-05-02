@@ -26,7 +26,7 @@
 
 #define BUF_SIZE    (1024)
 
-#define FILE_MODE_READ			"r+"
+#define FILE_MODE_READ_WRITE	"r+"
 #define FILE_MODE_READ_APPEND	"a+"
 #define FILE_MODE_WRITE			"w+"
 

@@ -19,20 +19,30 @@ void JointController::executeThreadTasks(Plen* plen){
 	}
 }
 
+ExternalFileSystemController* JointController::getExternalFileSystemController(){
+	return this->externalFileSystemController;
+}
+
 ExternalFileSystemController::FileSystemErrors JointController::storeJoint(Plen* plen, Joint* joint, int jointIndex){
 	unsigned int sizeWrite = 0;
-	unsigned char* filler = reinterpret_cast<unsigned char*>(joint);
+	unsigned char* filler = reinterpret_cast<unsigned char*>(joint->getJointMemory());
 
-	return externalFileSystemController->write(
-			SETTINGS_HEAD_ADDRESS + jointIndex*sizeof(*joint), sizeof(*joint), filler, &sizeWrite, plen->getFileConfiguration());
+	return (new ExternalFileSystemController)->write(
+			SETTINGS_HEAD_ADDRESS + jointIndex*sizeof(*joint->getJointMemory()),
+			sizeof(*joint->getJointMemory()),
+			filler,
+			&sizeWrite,
+			plen->getFileConfiguration());
 }
 
 ExternalFileSystemController::FileSystemErrors JointController::loadJoint(Plen* plen, Joint* joint, int jointIndex){
 	int sizeRead = 0;
-	unsigned char* filler = reinterpret_cast<unsigned char*>(joint);
+	unsigned char* filler = reinterpret_cast<unsigned char*>(joint->getJointMemory());
 
-	return  externalFileSystemController->read(
-			SETTINGS_HEAD_ADDRESS + jointIndex*sizeof(*joint), sizeof(*joint), filler, &sizeRead, plen->getFileConfiguration());
+	return  (new ExternalFileSystemController())->read(
+			SETTINGS_HEAD_ADDRESS + jointIndex*sizeof(*joint->getJointMemory()),
+			sizeof(*joint->getJointMemory()),
+			filler, &sizeRead, plen->getFileConfiguration());
 }
 
 void JointController::moveJoint(Joint* joint){

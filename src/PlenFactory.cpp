@@ -50,9 +50,9 @@ Plen* PlenFactory::getPlen(ExternalFileSystemController* externalFsController) {
 
 void PlenFactory::openFiles(ExternalFileSystemController* externalFsController, File* fileMotion, File* fileConfiguration, File* fileSystem){
     createFilesIfDontExist(externalFsController);
-    *fileMotion 		= SPIFFS.open(MOTION_FILE, FILE_MODE_READ);
-    *fileConfiguration 	= SPIFFS.open(JOINT_CONFIG_FILE, FILE_MODE_READ);
-    *fileSystem		 	= SPIFFS.open(SYS_FILE,    FILE_MODE_READ);
+    *fileMotion 		= SPIFFS.open(MOTION_FILE, 		 FILE_MODE_READ_WRITE);
+    *fileConfiguration 	= SPIFFS.open(JOINT_CONFIG_FILE, FILE_MODE_READ_WRITE);
+    *fileSystem		 	= SPIFFS.open(SYS_FILE,    		 FILE_MODE_READ_WRITE);
 }
 
 void PlenFactory::createFilesIfDontExist(ExternalFileSystemController* externalFsController){

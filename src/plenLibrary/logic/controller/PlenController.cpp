@@ -72,8 +72,9 @@ PlenController::ParseBufferErrors PlenController::parseBuffer(Buffer* buffer, Co
 }
 
 void PlenController::loadFileJoints(Plen* plen){
+	plen->getJointVector()[0]->setAngleMin(1);
 	for (int i = 0; i < plen->getJointSize(); i++) {
-		jointController->loadJoint(plen, (plen->getJointVector()[i]), i);
+		jointController->loadJoint(plen, plen->getJointVector()[i], i);
 	}
 	Logger::getInstance()->logln(Logger::DEBUG, S(" *** Loading file configuration *** "));
 }
@@ -81,7 +82,7 @@ void PlenController::loadFileJoints(Plen* plen){
 void PlenController::initFileConfiguration(Plen* plen){
 	this->externalFileSystemController->initFile(plen->getFileConfiguration());
 	for (int i = 0; i < plen->getJointSize(); i++) {
-		jointController->storeJoint(plen, (plen->getJointVector()[i]), i);
+		jointController->storeJoint(plen, plen->getJointVector()[i], i);
 	}
 
 	Logger::getInstance()->logln(Logger::DEBUG, S(" *** Creating default file configuration *** "));

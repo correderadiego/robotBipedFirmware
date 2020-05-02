@@ -12,7 +12,7 @@
 #include <logic/bean/Plen.h>
 #include "FS.h"
 
-#define FILE_MODE_READ			"r+"
+#define FILE_MODE_READ_WRITE			"r+"
 #define FILE_MODE_READ_APPEND	"a+"
 #define FILE_MODE_WRITE			"w+"
 

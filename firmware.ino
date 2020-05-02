@@ -25,6 +25,7 @@ void setup(){
 	Logger::getInstance()->setLogLevel(Logger::DEBUG);
 
 	externalFileSystemController = new ExternalFileSystemController();
+	externalFileSystemController->initExternalFileSystemController();
 
 	plen 			= (new PlenFactory())->getPlen(externalFileSystemController);
 	plenController  = (new PlenControllerFactory())->getPlenController(externalFileSystemController);
