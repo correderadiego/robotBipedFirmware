@@ -72,7 +72,6 @@ PlenController::ParseBufferErrors PlenController::parseBuffer(Buffer* buffer, Co
 }
 
 void PlenController::loadFileJoints(Plen* plen){
-	plen->getJointVector()[0]->setAngleMin(1);
 	for (int i = 0; i < plen->getJointSize(); i++) {
 		jointController->loadJoint(plen, plen->getJointVector()[i], i);
 	}

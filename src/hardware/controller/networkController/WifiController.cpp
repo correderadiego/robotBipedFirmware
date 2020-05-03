@@ -44,7 +44,7 @@ void WifiController::connect(Plen* plen, Network* network){
 	if(network->getWifiMode() == Network::ACCESS_POINT_MODE){
 		plen->setAccessPointMode(S("Access point mode"));
 		Logger::getInstance()->logln(Logger::INFO, S(" +++ Access point mode +++ "));
-		startAccessPoint(network);
+		startAccessPoint(network, plen);
 		return;
 	}
 
@@ -56,19 +56,23 @@ void WifiController::connect(Plen* plen, Network* network){
 	}
 }
 
-void WifiController::startAccessPoint(Network* network){
+void WifiController::startAccessPoint(Network* network, Plen* plen){
     WiFi.mode(WIFI_AP);
     while(!WiFi.softAP(
     		(network->getAccessPointName() + String(ESP.getChipId(),HEX)).c_str(),
 			network->getPassword())){
-    	Logger::getInstance()->logln(Logger::INFO, S("."));
+    	Logger::getInstance()->logln(Logger::INFO, S("\t connecting ..."));
     	delay(100);
     }
 
+    plen->setAccessPointMode(ACCESS_POINT_MODE_STRING);
+    plen->setAccessPointName(ACCESS_POINT_NAME_STRING);
+    plen->setIp(ACCESS_POINT_IP);
+
 	Logger::getInstance()->logln(Logger::INFO, S(" +++ AccesPoint created +++ "));
-	Logger::getInstance()->log(Logger::INFO, S(" +++ Gateway IP address: "));
-	Logger::getInstance()->logln(Logger::INFO, "192.168.4.1");
-	Logger::getInstance()->log(Logger::INFO, S(" +++ AccesPoint name: "));
+	Logger::getInstance()->log(Logger::INFO,   S(" +++ Gateway IP address: "));
+	Logger::getInstance()->logln(Logger::INFO, S(ACCESS_POINT_IP));
+	Logger::getInstance()->log(Logger::INFO,   S(" +++ AccesPoint name: "));
 	Logger::getInstance()->logln(Logger::INFO, (network->getAccessPointName() + String(ESP.getChipId(),HEX)).c_str());
 }
 
@@ -82,21 +86,24 @@ WifiController::ConnectionErrors WifiController::connectToWifiAccessPoint(Plen* 
 	cnt = 0;
 	while (WiFi.status() != WL_CONNECTED){
 		delay(100);
-		Serial.print(".");
+		Serial.println(S("\t connecting ..."));
 		cnt++;
 		break;
 		if(cnt >= CONNECT_TIMEOUT){
-			Logger::getInstance()->logln(Logger::ERROR, S(" +++ Wifi connection error +++"));
+			Logger::getInstance()->logln(Logger::ERROR, S(" +++ Wifi connection ERROR +++"));
 			return CONNECTION_ERROR;
 		}
 	}
+
+	plen->setAccessPointMode(WIFI_MODE_STRING);
+	plen->setAccessPointName(network->getAccessPointName());
+	plen->setIp(WiFi.localIP().toString().c_str());
 
 	Logger::getInstance()->logln(Logger::INFO, S(" +++ WiFi connected +++ "));
 	Logger::getInstance()->logln(Logger::INFO, S(" +++ IP address: "));
 	Logger::getInstance()->logln(Logger::INFO, WiFi.localIP().toString().c_str());
 	Logger::getInstance()->logln(Logger::INFO, S(" +++ AccesPoint name: "));
 	Logger::getInstance()->logln(Logger::INFO, network->getAccessPointName());
-	plen->setIp(WiFi.localIP().toString().c_str());
 	return NO_ERROR;
 }
 

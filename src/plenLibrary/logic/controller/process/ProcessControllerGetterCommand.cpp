@@ -7,7 +7,9 @@
 
 #include <logic/controller/process/ProcessControllerGetterCommand.h>
 
-ProcessControllerGetterCommand::ProcessControllerGetterCommand() {}
+ProcessControllerGetterCommand::ProcessControllerGetterCommand(JointController* jointController) {
+	this->jointController = jointController;
+}
 
 bool ProcessControllerGetterCommand::match(CommandInterface* command){
 	if(command->getCommandType() == CommandInterface::GETTER_COMMAND){
@@ -23,27 +25,32 @@ ProcessControllerInterface::CommandControllerErrors
 	if(getterCommand->getSubCommandType() == GetterCommand::DUMP_JOINT_SETTINGS){
 		Logger::getInstance()->log(Logger::INFO, S("["));
 		for (int i = 0; i < plen->getJointSize(); i++) {
-			(plen->getJointVector()[i])->dump();
+			jointController->dump((plen->getJointVector()[i]));
 		}
 		Logger::getInstance()->log(Logger::INFO, S("]"));
 		Logger::getInstance()->log(Logger::INFO, S("\r\n"));
+		delete command;
 		return NO_ERROR;
 	}
 
 	if(getterCommand->getSubCommandType() == GetterCommand::DUMP_A_MOTION){
+		delete command;
 		return NO_ERROR;
 	}
 
 	if(getterCommand->getSubCommandType() == GetterCommand::DUMP_VERSION_INFORMATION){
 		processDumpVersionInformation();
+		delete command;
 		return NO_ERROR;
 	}
 
 	if(getterCommand->getSubCommandType() == GetterCommand::DUMP_NETWORK_INFORMATION){
 		processDumpNetworkInformation(plen);
+		delete command;
 		return NO_ERROR;
 	}
 
+	delete command;
 	return UNKNOWN_COMMAND;
 }
 

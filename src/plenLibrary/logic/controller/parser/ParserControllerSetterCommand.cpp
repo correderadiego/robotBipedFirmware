@@ -21,7 +21,7 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parse(
 
 	char commandSequence[HEADER_LENGTH+1] = {'\0'};
 	strncpy ( commandSequence, &buffer->getData()[HEADER_INDEX_POSITION], HEADER_LENGTH);
-	(**command).setCommandType(CommandInterface::SETTER_COMMAND);
+	*command = new SetterCommand();
 
 	if( strcmp(commandSequence, SET_MOTION_HEADER_CHAR) == 0){
 		return parseSetMotionHeaderCommand(buffer, command);
@@ -47,6 +47,7 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parse(
 		return parseSetMinValueCommand(buffer, (SetMinValueCommand**)command);
 	}
 
+	delete *command;
 	return ParserInterface::UNKNOWN_COMMAND_ERROR;
 }
 

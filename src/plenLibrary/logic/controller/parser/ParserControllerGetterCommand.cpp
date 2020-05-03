@@ -21,7 +21,7 @@ ParserInterface::ParseErrors ParserControllerGetterCommand::parse(
 
 	char commandSequence[HEADER_LENGTH+1] = {'\0'};
 	strncpy ( commandSequence, &buffer->getData()[HEADER_INDEX_POSITION], HEADER_LENGTH);
-	(**command).setCommandType(CommandInterface::GETTER_COMMAND);
+	*command = new GetterCommand();
 
 	if( strcmp(commandSequence, DUMP_JOINT_SETTINGS_CHAR) == 0){
 		return parseDumpJointSettingsCommand(buffer, (DumpJointSettingsCommand**)command);
@@ -38,6 +38,8 @@ ParserInterface::ParseErrors ParserControllerGetterCommand::parse(
 	if( strcmp(commandSequence, DUMP_NETWORK_INFORMATION_CHAR) == 0){
 		return parseDumpNetworkInformationCommand(buffer, (DumpNetworkInformationCommand**)command);
 	}
+
+	delete *command;
 	return ParserInterface::UNKNOWN_COMMAND_ERROR;
 }
 

@@ -40,18 +40,19 @@ public:
 	void setAngleHome(int homePosition = ANGLE_NEUTRAL);
 	void setAngleMin(int angleMin = ANGLE_MIN);
 	void setAngleMax(int angleMax = ANGLE_MAX);
+	int getDefaultAngleHome();
 	int getAngle();
 	int getAngleHome();
 	int getAngleMin();
 	int getAngleMax();
 	RotationMode getRotationMode();
 	PwmPinInterface* getPwmPin();
-	void dump();
 
 private:
 	enum RotationMode rotationMode;
 	int angle;
-	JointMemory* jointMemory = new JointMemory();
+	int defaultHome;
+	JointMemory jointMemory;
 	PwmPinInterface* pwmPinInterface;
 };
 

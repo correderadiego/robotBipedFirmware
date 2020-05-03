@@ -9,6 +9,10 @@
 
 ProcessController::ProcessController(JointController* jointController) {
 		this->jointController = jointController;
+		commandController[0] = new ProcessControllerControllerCommand();
+		commandController[1] = new ProcessControllerInterpreterCommand();
+		commandController[2] = new ProcessControllerSetterCommand(jointController);
+		commandController[3] = new ProcessControllerGetterCommand(jointController);
 }
 
 ProcessControllerInterface::CommandControllerErrors ProcessController::process(Plen* plen, CommandInterface* command){

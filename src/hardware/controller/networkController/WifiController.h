@@ -38,7 +38,7 @@ private:
 	void initFileSystem(Plen* plen, Network* network);
 	void loadNetworkConfiguration(Plen* plen, Network* network);
 	ConnectionErrors connectToWifiAccessPoint(Plen* plen, Network* network);
-	void startAccessPoint(Network* network);
+	void startAccessPoint(Network* network, Plen* plen);
 	void updateSocketClientState(Network* network);
 };
 

@@ -43,8 +43,8 @@ Plen* PlenFactory::getPlen(ExternalFileSystemController* externalFsController) {
 	File* fileMotion 		= new File();
 	File* fileConfiguration = new File();
 	File* fileSystem		= new File();
-	this->openFiles(externalFsController, fileMotion, fileConfiguration, fileSystem);
 
+	this->openFiles(externalFsController, fileMotion, fileConfiguration, fileSystem);
 	return new Plen(joint, NUMBER_OF_JOINTS, eyes, serialBuffer, socketBuffer, fileMotion, fileConfiguration, fileSystem);
 }
 

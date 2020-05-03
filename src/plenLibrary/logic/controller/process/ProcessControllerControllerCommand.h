@@ -10,6 +10,8 @@
 
 #include <logic/bean/commands/controllerCommands/ApplyDiffValueCommand.h>
 #include <logic/bean/commands/controllerCommands/ApplyNativeValueCommand.h>
+#include <logic/bean/commands/controllerCommands/PlayAMotionCommand.h>
+#include <logic/bean/commands/controllerCommands/StopAMotionCommand.h>
 #include <logic/bean/commands/controllerCommands/ControllerCommand.h>
 #include <logic/bean/commands/CommandInterface.h>
 #include <logic/bean/Plen.h>

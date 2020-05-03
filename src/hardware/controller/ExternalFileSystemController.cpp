@@ -7,9 +7,7 @@
 
 #include <hardware/controller/ExternalFileSystemController.h>
 
-ExternalFileSystemController::ExternalFileSystemController() {
-	//this->initExternalFileSystemController();
-}
+ExternalFileSystemController::ExternalFileSystemController() {}
 
 ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::initExternalFileSystemController(){
 	if (!SPIFFS.begin()) {

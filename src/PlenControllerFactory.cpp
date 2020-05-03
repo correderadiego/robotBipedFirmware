@@ -9,7 +9,6 @@
 
 PlenController* PlenControllerFactory::getPlenController(
 		ExternalFileSystemController* externalFileSystemController){
-
 	MotionController* motionController;
 	Interpreter* interpreter 									= new Interpreter();
 	LedController* ledController								= new LedController();

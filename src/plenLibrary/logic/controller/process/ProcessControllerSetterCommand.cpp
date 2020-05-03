@@ -23,13 +23,19 @@ ProcessControllerInterface::CommandControllerErrors
 	SetterCommand* controllerCommand = (SetterCommand*) command;
 
 	if(controllerCommand->getSubCommandType() == SetterCommand::SET_MOTION_HEADER){
+		delete command;
 		return NO_ERROR;
 	}
 	if(controllerCommand->getSubCommandType() == SetterCommand::SET_MOTION_FRAME){
+		delete command;
 		return NO_ERROR;
 	}
 	if(controllerCommand->getSubCommandType() == SetterCommand::RESET_JOINT_SETTINGS){
-		//TODO reset joint settings
+		for (int i = 0; i < plen->getJointSize(); i++) {
+			jointController->resetJoint((plen->getJointVector()[i]));
+			jointController->storeJoint( plen, plen->getJointVector()[i], i);
+		}
+		delete command;
 		return NO_ERROR;
 	}
 	if(controllerCommand->getSubCommandType() == SetterCommand::SET_ANGLE_HOME_VALUE){
@@ -41,6 +47,7 @@ ProcessControllerInterface::CommandControllerErrors
 									plen->getJointVector()[setHomeValueCommand->getDeviceId()],
 									setHomeValueCommand->getDeviceId()
 									);
+		delete setHomeValueCommand;
 		return NO_ERROR;
 	}
 	if(controllerCommand->getSubCommandType() == SetterCommand::SET_ANGLE_MAX_VALUE){
@@ -52,30 +59,22 @@ ProcessControllerInterface::CommandControllerErrors
 									plen->getJointVector()[setAngleMaxValueCommand->getDeviceId()],
 									setAngleMaxValueCommand->getDeviceId()
 									);
+		delete setAngleMaxValueCommand;
 		return NO_ERROR;
 	}
 	if(controllerCommand->getSubCommandType() == SetterCommand::SET_ANGLE_MIN_VALUE){
 		SetMinValueCommand* setMinValueCommand = (SetMinValueCommand*)controllerCommand;
 		plen->getJointVector()[setMinValueCommand->getDeviceId()]->
 				setAngleMin(setMinValueCommand->getValue());
-
-//		jointController->storeJoint(
-//									plen,
-//									plen->getJointVector()[setMinValueCommand->getDeviceId()],
-//									setMinValueCommand->getDeviceId()
-//									);
-		int jointIndex = setMinValueCommand->getDeviceId();
-		Joint* joint = (plen->getJointVector()[jointIndex]);
-		unsigned char* filler = reinterpret_cast<unsigned char*>(joint->getJointMemory());
-		unsigned int sizeWrite = 0;
-		(new ExternalFileSystemController())->write(
-					SETTINGS_HEAD_ADDRESS + jointIndex*sizeof(*joint->getJointMemory()),
-					sizeof(*joint->getJointMemory()),
-					filler,
-					&sizeWrite,
-					plen->getFileConfiguration());
+		jointController->storeJoint(
+									plen,
+									plen->getJointVector()[setMinValueCommand->getDeviceId()],
+									setMinValueCommand->getDeviceId()
+									);
+		delete setMinValueCommand;
 		return NO_ERROR;
 	}
 
+	delete command;
 	return UNKNOWN_COMMAND;
 }

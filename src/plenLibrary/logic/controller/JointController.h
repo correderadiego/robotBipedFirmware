@@ -29,6 +29,8 @@ public:
 			ExternalFileSystemController* externalFileSystemController);
 	ExternalFileSystemController::FileSystemErrors storeJoint(Plen* plen, Joint* joint, int jointIndex);
 	ExternalFileSystemController::FileSystemErrors loadJoint(Plen* plen, Joint* joint, int jointIndex);
+	void dump(Joint* joint);
+	void resetJoint(Joint* joint);
 	void executeThreadTasks(Plen* plen);
 private:
 	PCA9685PwmControllerInterface* pca9685PwmControllerInterface;

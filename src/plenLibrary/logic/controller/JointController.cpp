@@ -7,8 +7,9 @@
 
 #include <logic/controller/JointController.h>
 
-JointController::JointController(PCA9685PwmControllerInterface* pca9685PwmControllerInterface,
-		ExternalFileSystemController* externalFileSystemControler) {
+JointController::JointController(
+		PCA9685PwmControllerInterface* pca9685PwmControllerInterface,
+		ExternalFileSystemController* externalFileSystemController) {
 	this->pca9685PwmControllerInterface = pca9685PwmControllerInterface;
 	this->externalFileSystemController  = externalFileSystemController;
 }
@@ -25,9 +26,9 @@ ExternalFileSystemController* JointController::getExternalFileSystemController()
 
 ExternalFileSystemController::FileSystemErrors JointController::storeJoint(Plen* plen, Joint* joint, int jointIndex){
 	unsigned int sizeWrite = 0;
-	unsigned char* filler = reinterpret_cast<unsigned char*>(joint->getJointMemory());
+	unsigned char* filler  = reinterpret_cast<unsigned char*>(joint->getJointMemory());
 
-	return (new ExternalFileSystemController)->write(
+	return (this->externalFileSystemController)->write(
 			SETTINGS_HEAD_ADDRESS + jointIndex*sizeof(*joint->getJointMemory()),
 			sizeof(*joint->getJointMemory()),
 			filler,
@@ -39,10 +40,12 @@ ExternalFileSystemController::FileSystemErrors JointController::loadJoint(Plen* 
 	int sizeRead = 0;
 	unsigned char* filler = reinterpret_cast<unsigned char*>(joint->getJointMemory());
 
-	return  (new ExternalFileSystemController())->read(
+	return  (this->externalFileSystemController)->read(
 			SETTINGS_HEAD_ADDRESS + jointIndex*sizeof(*joint->getJointMemory()),
 			sizeof(*joint->getJointMemory()),
-			filler, &sizeRead, plen->getFileConfiguration());
+			filler,
+			&sizeRead,
+			plen->getFileConfiguration());
 }
 
 void JointController::moveJoint(Joint* joint){
@@ -51,4 +54,26 @@ void JointController::moveJoint(Joint* joint){
 		return;
 	}
 	joint->getPwmPin()->setValue(joint->getAngle());
+}
+
+void JointController::resetJoint(Joint* joint){
+	joint->setAngleHome(joint->getDefaultAngleHome());
+	joint->setAngleMax(ANGLE_MAX);
+	joint->setAngleMin(ANGLE_MIN);
+}
+
+void JointController::dump(Joint* joint){
+	Logger::getInstance()->log(Logger::INFO, S("\t{"));
+
+	Logger::getInstance()->log(Logger::INFO, S("\t\t\"max\": "));
+	Logger::getInstance()->log(Logger::INFO, joint->getAngleMax());
+	Logger::getInstance()->log(Logger::INFO, S(","));
+
+	Logger::getInstance()->log(Logger::INFO, S("\t\t\"min\": "));
+	Logger::getInstance()->log(Logger::INFO, joint->getAngleMin());
+	Logger::getInstance()->log(Logger::INFO, S(","));
+
+	Logger::getInstance()->log(Logger::INFO, S("\t\t\"home\": "));
+	Logger::getInstance()->log(Logger::INFO, joint->getAngleHome());
+	Logger::getInstance()->log(Logger::INFO, S("\t}"));
 }

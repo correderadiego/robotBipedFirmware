@@ -14,14 +14,16 @@
 #include <logic/bean/commands/getterCommands/DumpMotionCommand.h>
 #include <logic/bean/commands/getterCommands/GetterCommand.h>
 #include <logic/controller/process/ProcessControllerInterface.h>
+#include "logic/controller/JointController.h"
 
 class ProcessControllerGetterCommand : public ProcessControllerInterface {
 public:
-	ProcessControllerGetterCommand();
+	ProcessControllerGetterCommand(JointController* jointController);
 	bool match(CommandInterface* command);
 	CommandControllerErrors process(Plen* plen, CommandInterface* command);
 
 private:
+	JointController* jointController;
 	void processDumpNetworkInformation(Plen* plen);
 	void processDumpVersionInformation();
 };

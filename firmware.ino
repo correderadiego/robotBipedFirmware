@@ -27,8 +27,8 @@ void setup(){
 	externalFileSystemController = new ExternalFileSystemController();
 	externalFileSystemController->initExternalFileSystemController();
 
-	plen 			= (new PlenFactory())->getPlen(externalFileSystemController);
 	plenController  = (new PlenControllerFactory())->getPlenController(externalFileSystemController);
+	plen 			= (new PlenFactory())->getPlen(externalFileSystemController);
 	plenController->initPlenController(plen);
 
 	network 			= (new NetworkFactory())->getNetwork();

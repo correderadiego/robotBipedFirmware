@@ -20,7 +20,7 @@ ParserInterface::ParseErrors ParserControllerInterpreterCommand::parse(
 									Buffer* buffer, CommandInterface** command){
 	char commandSequence[3] = {'\0'};
 	strncpy ( commandSequence, &buffer->getData()[1],  2);
-	(**command).setCommandType(CommandInterface::INTERPRETER_COMMAND);
+	*command = new InterpreterCommand();
 
 	if( strcmp(commandSequence, PUSH_A_FUNCTION_CHAR) == 0){
 		return parsePushAFunctionCommand(buffer, (PushAFunctionCommand**)command);
@@ -34,6 +34,7 @@ ParserInterface::ParseErrors ParserControllerInterpreterCommand::parse(
 		return parseResetInterpreterCommand(buffer, (ResetInterpreterCommand**)command);
 	}
 
+	delete *command;
 	return ParserInterface::UNKNOWN_COMMAND_ERROR;
 }
 

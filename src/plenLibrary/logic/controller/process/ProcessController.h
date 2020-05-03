@@ -1,4 +1,4 @@
-/*
+	/*
  * CommandController.h
  *
  *  Created on: 28 mar. 2020
@@ -21,12 +21,7 @@ class ProcessController {
 		ProcessController(JointController* jointController);
 		ProcessControllerInterface::CommandControllerErrors process(Plen* plen, CommandInterface* command);
 
-		ProcessControllerInterface* commandController[COMMAND_CONTROLLER_VECTOR_SIZE] = {
-				new ProcessControllerControllerCommand(),
-				new ProcessControllerInterpreterCommand(),
-				new ProcessControllerSetterCommand(jointController),
-				new ProcessControllerGetterCommand()
-		};
+		ProcessControllerInterface* commandController[COMMAND_CONTROLLER_VECTOR_SIZE];
 	private:
 		JointController* jointController;
 };

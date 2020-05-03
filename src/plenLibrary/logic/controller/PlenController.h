@@ -45,8 +45,10 @@ public:
 	void executeThreadTasks(Plen* plen);
 	void initPlenController(Plen* plen);
 
-private:
 	JointController*  				jointController;
+
+private:
+
 	MotionController* 				motionController;
 	Interpreter*      				interpreter;
 	EyeController*	  				eyeController;
@@ -59,7 +61,7 @@ private:
 	void initFileConfiguration(Plen* plen);
 	void loadFileJoints(Plen* plen);
 	ParseBufferErrors parseBuffer(Buffer* buffer, CommandInterface** command);
-	CommandInterface* command = new CommandInterface();
+	CommandInterface* command;
 };
 
 #endif /* SRC_PLENCONTROLLER_H_ */

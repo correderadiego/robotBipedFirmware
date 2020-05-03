@@ -21,7 +21,7 @@ ParserInterface::ParseErrors ParserControllerControllerCommand::parse(
 
 	char commandSequence[HEADER_LENGTH+1] = {'\0'};
 	strncpy ( commandSequence, &buffer->getData()[HEADER_INDEX_POSITION],  HEADER_LENGTH);
-	(**command).setCommandType(CommandInterface::CONTROLLER_COMMAND);
+	*command = new ControllerCommand();
 
 	if( strcmp(commandSequence, APPY_NATIVE_VALUE_CHAR) == 0){
 		return parseApplyNativeValueCommand(buffer, (ApplyNativeValueCommand**)command);
@@ -43,6 +43,7 @@ ParserInterface::ParseErrors ParserControllerControllerCommand::parse(
 		return parseApplyHomePositionCommand(buffer, (ApplyHomePositionCommand**)command);
 	}
 
+	delete *command;
 	return ParserControllerControllerCommand::UNKNOWN_COMMAND_ERROR;
 }
 

@@ -13,7 +13,11 @@
 #include <logic/bean/hardware/Joint.h>
 #include "ArduinoIncludes.h"
 
-#define EMPTY_VALUE "empty"
+#define EMPTY_VALUE 				"empty"
+#define ACCESS_POINT_MODE_STRING 	"AccessPoint"
+#define ACCESS_POINT_NAME_STRING 	"Conguito"
+#define WIFI_MODE_STRING		 	"Wifi"
+#define ACCESS_POINT_IP 			"192.168.4.1"
 
 class Plen {
 public:
