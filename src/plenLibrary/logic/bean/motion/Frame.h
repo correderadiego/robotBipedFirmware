@@ -8,19 +8,35 @@
 #ifndef SRC_BEAN_MOTION_FRAME_H_
 #define SRC_BEAN_MOTION_FRAME_H_
 
-class Frame {
+#include "Configuration.h"
 
-#define UPDATE_SERVO_INTERVAL_MS 	32
-#define FRAME_BEGIN 				 0
-#define FRAME_END 					20
-#define NUMBER_OF_JOINTS 24
+class Frame {
 public:
 	Frame();
+	Frame(
+			unsigned int slot,
+			unsigned int frameIndex,
+			unsigned int transitionTimems,
+			int*         jointAngle,
+			int 		 numberOfJoints
+			);
+
+	unsigned int getSlot();
+	unsigned int getFrameIndex();
+	unsigned int getTransitionTime();
+	int* getJointAngle();
+
+	void setSlot(unsigned int slot);
+	void setFrameIndex(unsigned int frameIndex);
+	void setTransitionTime(unsigned int transitionTime);
+	void setJointAngle(int* jointAngle);
+
 private:
-	unsigned char frameIndex;
-	unsigned int  transitionTimems;
-	int           jointAngle[NUMBER_OF_JOINTS];
-	unsigned char deviceValue[8];
+	unsigned int slot;
+	unsigned int frameIndex;
+	unsigned int transitionTime;
+	int*         jointAngle;
+	int 		 numberOfJoints;
 };
 
 #endif /* SRC_BEAN_MOTION_FRAME_H_ */

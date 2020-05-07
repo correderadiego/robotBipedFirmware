@@ -23,6 +23,14 @@
 #define SYS_FILE  			"/sys_cfg.bin"
 #define SYS_FILE_SIZE 		0x1000L
 
+#define EEPROM_SLOT_SIZE_BYTES		32
+#define SLOT_SIZE_BYTES				30
+#define SLOT_BEGIN					0
+#define FILE_SLOT_NUMBERS			MOTION_FILE_SIZE/EEPROM_SLOT_SIZE_BYTES
+#define	MOTION_NAME_LENGTH     		21
+#define FRAME_NUMBER_MIN 			1
+#define	FRAME_NUMBER_MAX 			20
+
 #define WIFI_PASSWORD 		"chocolate"
 #define ACCESS_POINT_NAME 	"Conguito-"
 

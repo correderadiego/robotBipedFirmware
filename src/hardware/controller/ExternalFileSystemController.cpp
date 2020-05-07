@@ -30,7 +30,11 @@ void ExternalFileSystemController::createAndResetFile(
 	*file = SPIFFS.open(filePath, FILE_MODE_WRITE);
 	unsigned int sizeWrite = 0;
 	for (i = 0, startAddress = 0; i < (unsigned int)(fileSize / bufferSize); i++, startAddress += bufferSize){
-		write(startAddress, bufferSize, buf, &sizeWrite, file);
+		if(write(startAddress, bufferSize, buf, &sizeWrite, file) != NO_ERROR){
+			Logger::getInstance()->log(Logger::DEBUG, S(" *** Error creating file : "));
+			Logger::getInstance()->logln(Logger::DEBUG, filePath);
+			return;
+		}
 	}
 	file->close();
 	Logger::getInstance()->log(Logger::DEBUG, S(" *** Created file : "));
@@ -48,35 +52,6 @@ void ExternalFileSystemController::createFile(
 	file->close();
 	Logger::getInstance()->log(Logger::DEBUG, S(" *** Created file : "));
 	Logger::getInstance()->logln(Logger::DEBUG, filePath);
-}
-
-void ExternalFileSystemController::writeMinAngle(Plen* plen, Joint* joint){
-//	unsigned char* filler 	= reinterpret_cast<unsigned char*>(&(joint->getAngleMin()));
-//	int address_offset    	= reinterpret_cast<int>(filler) - reinterpret_cast<int>(plen->getJointVector());
-//	write(SETTINGS_HEAD_ADDRESS + address_offset, sizeof(joint->getAngleMin()), filler, &sizeWrite, plen->getFileConfiguration());
-}
-
-void ExternalFileSystemController::writeMaxAngle(File* fileConfiguration, Joint* joint){
-	unsigned char* filler = reinterpret_cast<unsigned char*>(joint->getAngleMin());
-//	int address_offset    = reinterpret_cast<int>(filler) - reinterpret_cast<int>(m_SETTINGS);
-//	ExternalFs::write(SETTINGS_HEAD_ADDRESS() + address_offset, sizeof(m_SETTINGS[joint_id].MAX), filler, fileConfiguration);
-}
-
-void ExternalFileSystemController::writeHomeAngle(File* fileConfiguration, Joint* joint){
-	unsigned char* filler = reinterpret_cast<unsigned char*>(joint->getAngleMin());
-//	int address_offset    = reinterpret_cast<int>(filler) - reinterpret_cast<int>(m_SETTINGS);
-//	ExternalFs::write(SETTINGS_HEAD_ADDRESS() + address_offset, sizeof(m_SETTINGS[joint_id].HOME), filler, fileConfiguration);
-}
-
-ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::readAccesPointNamePassword(
-	File* fileConfiguration, String apName, String password){
-	fileConfiguration->seek(0, SeekSet);
-	apName 		= fileConfiguration->readStringUntil(END_OF_LINE);
-	password 	= fileConfiguration->readStringUntil(END_OF_LINE);
-	if(apName.length() <= 1){
-		return UNKNOWN_FILE_FORMAT;
-	}
-	return NO_ERROR;
 }
 
 bool ExternalFileSystemController::isFileInitiated(Plen* plen, File* file){
@@ -101,7 +76,6 @@ ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::rea
 								int* sizeRead,
 								File* file
 							){
-
 	if(!file){
 		Logger::getInstance()->logln(Logger::ERROR, S(" *** Read file doesn't exist *** "));
 		return FILE_DOESNT_EXIST_ERROR;
@@ -123,24 +97,21 @@ ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::wri
 								unsigned int* sizeWrite,
 								File* file
 							){
-
 	if(!file){
 		Logger::getInstance()->logln(Logger::ERROR, S(" *** Write file doesn't exist *** "));
 		return FILE_DOESNT_EXIST_ERROR;
 	}
 
-	file->seek(startAddress, SeekSet);
+	if (!file->seek(startAddress, SeekSet)){
+		Logger::getInstance()->logln(Logger::ERROR, S(" *** Error finding file location *** "));
+		return SEEK_ERROR;
+	}
 	*sizeWrite = file->write(data, size);
-	file->flush();
 	if(*sizeWrite != size){
 		Logger::getInstance()->logln(Logger::ERROR, S(" *** Write size write error ***"));
-		Logger::getInstance()->log(Logger::ERROR, S(" *** Size to write  : "));
-		Logger::getInstance()->log(Logger::ERROR, size);
-		Logger::getInstance()->log(Logger::ERROR, S(" *** Size wrote  : "));
-		Logger::getInstance()->log(Logger::ERROR, *sizeWrite);
 		return WRITE_SIZE_ERROR;
 	}
-
+	file->flush();
 	return NO_ERROR;
 }
 
@@ -154,7 +125,10 @@ ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::rea
 		return FILE_DOESNT_EXIST_ERROR;
 	}
 
-	file->seek(startAddress, SeekSet);
+	if (!file->seek(startAddress, SeekSet)){
+		Logger::getInstance()->logln(Logger::ERROR, S(" *** Error finding file location *** "));
+		return SEEK_ERROR;
+	}
 	*data = (unsigned char) file->read();
 	return NO_ERROR;
 }
@@ -165,7 +139,6 @@ ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::wri
 											unsigned int sizeWrite,
 											File* file
 										){
-
 	#define WRITE_BYTE_SIZE 1
 
 	if (!file){
@@ -173,14 +146,17 @@ ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::wri
 		return FILE_DOESNT_EXIST_ERROR;
 	}
 
-	file->seek(startAddress, SeekSet);
+	if (!file->seek(startAddress, SeekSet)){
+		Logger::getInstance()->logln(Logger::ERROR, S(" *** Error finding file location *** "));
+		return SEEK_ERROR;
+	}
 	sizeWrite = file->write(data);
-	file->flush();
 
 	if( sizeWrite != WRITE_BYTE_SIZE){
 		Logger::getInstance()->logln(Logger::ERROR, S(" *** Write byte size write error ***"));
 		return WRITE_SIZE_ERROR;
 	}
+	file->flush();
 	return NO_ERROR;
 }
 
@@ -191,23 +167,21 @@ ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::rea
 									File* file
 								){
 	if(*file == -1){
+		Logger::getInstance()->logln(Logger::ERROR, S(" *** Write byte file doesn't exist *** "));
 		return FILE_DOESNT_EXIST_ERROR;
 	}
 
-	if ((slot >= SLOT_END)){
-		 return SLOT_END_ERROR;
-	}
-
-	if(readSize > SLOT_SIZE){
+	if(readSize > SLOT_SIZE_BYTES){
 		return SLOT_SIZE_ERROR;
 	}
 
-	unsigned int dataAddress = slot * EEPROM_CHUNK_SIZE;
+	unsigned int dataAddress = slot * EEPROM_SLOT_SIZE_BYTES;
 
 	if (!file->seek(dataAddress, SeekSet)){
+		Logger::getInstance()->logln(Logger::ERROR, S(" *** Error finding file location *** "));
 		return SEEK_ERROR;
 	}
-	readSize = file->read(data, readSize);
+	file->read(data, readSize);
 	return NO_ERROR;
 }
 
@@ -217,25 +191,19 @@ ExternalFileSystemController::FileSystemErrors ExternalFileSystemController::wri
 									unsigned char writeSize,
 									File* file
 								){
-
 	if(*file == -1){
+		Logger::getInstance()->logln(Logger::ERROR, S(" *** Write byte file doesn't exist *** "));
 		return FILE_DOESNT_EXIST_ERROR;
 	}
 
-	if ((slot >= SLOT_END)){
-		 return SLOT_END_ERROR;
-	}
-
-	if(writeSize > SLOT_SIZE){
-		return SLOT_SIZE_ERROR;
-	}
-
-	unsigned int dataAddress = slot * EEPROM_CHUNK_SIZE;
+	unsigned int dataAddress = slot * EEPROM_SLOT_SIZE_BYTES;
 
 	if(!file->seek(dataAddress, SeekSet)){
+		Logger::getInstance()->logln(Logger::ERROR, S(" *** Error finding file location *** "));
         return SEEK_ERROR;
 	}
-	writeSize = file->write(data, writeSize);
+
+	file->write(data, writeSize);
 	file->flush();
 	return NO_ERROR;
 }

@@ -24,6 +24,7 @@ public:
 		CONNECTION_ERROR,
 		NO_ERROR
 	};
+
 	WifiController(ExternalFileSystemController* externalFileSystemController);
 	void init(Plen* plen, Network* network);
 	void connect(Plen* plen, Network* network);

@@ -9,37 +9,57 @@
 #define SRC_BEAN_MOTION_HEADER_H_
 
 class Header {
-	#define NAME_LENGTH      			21
-	#define FRAME_LENGTH_MIN  			 1
-	#define FRAME_LENGTH_MAX 			20
-	#define STOP_FLAG_DEFAULT_VALUE		0xFF
-	#define LOOP_COUNT_INFINITY_VALUE 	255
-	#define SLOT_BEGIN 					0
-	#define SLOT_END  					90
-
 public:
-	Header();
-	enum state{
-		ENABLE 	= 1,
-		DISABLE = 0
-	};
 
+	Header();
+	Header(
+			char* motionName,
+			unsigned int position,
+			unsigned int motionFrameLenght,
+			unsigned int loopBeginFrame,
+			unsigned int loopEndFrame,
+			unsigned int loopCount,
+			unsigned int jumpSlot,
+			bool extra,
+			bool jump,
+			bool loop
+			);
+
+	char* getMotionName();
+	unsigned int getPosition();
+	unsigned int getMotionFrameLength();
+	unsigned int getLoopBeginFrame();
+	unsigned int getLoopEndFrame();
+	unsigned int getLoopCount();
+	unsigned int getJumpSlot();
+
+	bool useExtra();
+	bool useJump();
+	bool useLoop();
+
+	void setMotionName(char* motionName);
+	void setPosition(unsigned int);
+	void setMotionFrameLength(unsigned int);
+	void setLoopBeginFrame(unsigned int);
+	void setLoopEndFrame(unsigned int);
+	void setLoopCount(unsigned int);
+	void setJumpSlot(unsigned int);
+
+	void setExtra(bool extra);
+	void setJump(bool jump);
+	void setLoop(bool loop);
 
 private:
-	unsigned char slot;
-	char motionName[NAME_LENGTH];
-	unsigned char motionFrameLenght;
-
-	unsigned char useExtra;
-	unsigned char useJump ;
-	unsigned char useLoop ;
-
-	unsigned char loopBegin;
-	unsigned char loopEnd;
-
-	unsigned char loopCount;
-	unsigned char jumpSlot;
-	unsigned char stop_flags[2];
+	char* motionName;
+	unsigned int position;
+	unsigned int motionFrameLenght;
+	unsigned int loopBeginFrame;
+	unsigned int loopEndFrame;
+	unsigned int loopCount;
+	unsigned int jumpSlot;
+	bool extra;
+	bool jump;
+	bool loop;
 };
 
 #endif /* SRC_BEAN_MOTION_HEADER_H_ */

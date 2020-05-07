@@ -14,6 +14,8 @@
 class Motion {
 public:
 	Motion(Header* header, Frame* frame);
+	Header* getHeader();
+	Frame* getFrame();
 
 private:
 	Header* header;

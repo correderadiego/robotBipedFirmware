@@ -11,3 +11,9 @@ SetMotionFrameCommand::SetMotionFrameCommand() {
 	this->subCommandType = SET_MOTION_FRAME;
 }
 
+void SetMotionFrameCommand::setMotionFrame(Frame* frame){
+	this->frame = frame;
+}
+Frame* SetMotionFrameCommand::getMotionFrame(){
+	return this->frame;
+}

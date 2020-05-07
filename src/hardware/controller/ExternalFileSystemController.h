@@ -10,16 +10,12 @@
 
 #include <logic/bean/hardware/Joint.h>
 #include <logic/bean/Plen.h>
+#include "Configuration.h"
 #include "FS.h"
 
-#define FILE_MODE_READ_WRITE			"r+"
-#define FILE_MODE_READ_APPEND	"a+"
-#define FILE_MODE_WRITE			"w+"
-
-#define EEPROM_CHUNK_SIZE		32
-#define SLOT_SIZE				30
-#define SLOT_BEGIN				0
-#define SLOT_END				0x200000L/EEPROM_CHUNK_SIZE
+#define FILE_MODE_READ_WRITE		"r+"
+#define FILE_MODE_READ_APPEND		"a+"
+#define FILE_MODE_WRITE				"w+"
 
 #define INIT_FLAG_ADDRESS     	0
 #define	INIT_FLAG_VALUE  		2
@@ -35,7 +31,6 @@ public:
 	  UNKNOWN_FILE_FORMAT,
 	  SEEK_ERROR,
 	  SLOT_SIZE_ERROR,
-	  SLOT_END_ERROR,
 	  WRITE_SIZE_ERROR ,
 	  FILE_DOESNT_EXIST_ERROR
 	};

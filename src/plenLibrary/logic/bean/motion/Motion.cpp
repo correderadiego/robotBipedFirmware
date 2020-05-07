@@ -12,3 +12,9 @@ Motion::Motion(Header* header, Frame* frame){
 	this->frame  = frame;
 }
 
+Header* Motion::getHeader(){
+	return header;
+}
+Frame* Motion::getFrame(){
+	return frame;
+}
