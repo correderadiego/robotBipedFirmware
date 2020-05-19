@@ -61,18 +61,16 @@ void PlenFactory::createFilesIfDontExist(ExternalFileSystemController* externalF
 
 	if (!SPIFFS.exists(JOINT_CONFIG_FILE)){
 			externalFsController->createAndResetFile(
-							file, JOINT_CONFIG_FILE, CONFIG_FILE_SIZE, buf, BUF_SIZE );
+							file, JOINT_CONFIG_FILE, CONFIG_FILE_SIZE, buf, BUF_SIZE);
 	}
 
 	if (!SPIFFS.exists(SYS_FILE)){
 				externalFsController->createAndResetFile(
-								file, SYS_FILE, SYS_FILE_SIZE, buf, BUF_SIZE );
+								file, SYS_FILE, SYS_FILE_SIZE, buf, BUF_SIZE);
 	}
 
 	if (!SPIFFS.exists(MOTION_FILE)){
-		externalFsController->createFile(
+		externalFsController->createAndResetFile(
 						file, MOTION_FILE, MOTION_FILE_SIZE, buf, BUF_SIZE);
 	}
 }
-
-

@@ -7,12 +7,13 @@
 
 #include "ProcessController.h"
 
-ProcessController::ProcessController(JointController* jointController) {
+ProcessController::ProcessController(JointController* jointController, MotionController* motionController) {
 		this->jointController = jointController;
+		this->motionController = motionController;
 		commandController[0] = new ProcessControllerControllerCommand();
 		commandController[1] = new ProcessControllerInterpreterCommand();
-		commandController[2] = new ProcessControllerSetterCommand(jointController);
-		commandController[3] = new ProcessControllerGetterCommand(jointController);
+		commandController[2] = new ProcessControllerSetterCommand(jointController, motionController);
+		commandController[3] = new ProcessControllerGetterCommand(jointController, motionController);
 }
 
 ProcessControllerInterface::CommandControllerErrors ProcessController::process(Plen* plen, CommandInterface* command){

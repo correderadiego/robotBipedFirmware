@@ -8,7 +8,7 @@
 #include <logic/bean/commands/getterCommands/DumpMotionCommand.h>
 
 DumpMotionCommand::DumpMotionCommand() {
-	this->subCommandType = DUMP_A_MOTION;
+	this->subCommandType = DUMP_MOTION;
 	this->slot = 0;
 }
 

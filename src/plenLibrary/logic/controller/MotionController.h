@@ -12,6 +12,7 @@
 #include "logic/bean/motion/Frame.h"
 #include "Configuration.h"
 #include <hardware/controller/ExternalFileSystemController.h>
+#include "utils/Logger.h"
 
 #define sizeInSlots(object) sizeof(object)/EEPROM_SLOT_SIZE_BYTES + sizeof(object)%EEPROM_SLOT_SIZE_BYTES
 #define SIZE_HEADER_IN_SLOTS sizeInSlots(Header)
@@ -22,22 +23,24 @@ class MotionController {
 public:
 	enum MotionControllerErrors{
 	  NO_ERROR,
-	  FRAME_SIZE_ERROR,
-	  SLOT_SIZE_ERROR,
+	  HEADER_POSITION_ERROR,
+	  HEADER_FRAME_SIZE_ERROR,
 	  WRITE_ERROR,
 	  READ_ERROR
 	};
 	MotionController(ExternalFileSystemController* externalFileSystemController);
-	MotionControllerErrors set(Header* header, File* file);
-	MotionControllerErrors get(Header* header, File* file);
-	MotionControllerErrors set(Frame* frame, File* file);
-	MotionControllerErrors get(Frame* frame, File* file);
+	MotionControllerErrors set(Plen* plen, Header* header);
+	MotionControllerErrors get(Plen* plen, Header* header);
+	MotionControllerErrors set(Plen* plen, Frame* frame);
+	MotionControllerErrors get(Plen* plen, Frame* frame);
+	MotionController::MotionControllerErrors dumpHeader(Plen* plen, int position);
 
 private:
 	ExternalFileSystemController* externalFileSystemController;
 	int getBytesToWriteRead(int index, int maxIndex, int objectSize);
 	int getReadWriteFrameSlotPosition(Frame* frame, int readWriteFragment);
 	int getReadWriteHeaderPositionInSlots(Header* header, int readWriteFragment);
+
 };
 
 #endif /* SRC_CONTROLLER_MOTIONCONTROLLER_H_ */

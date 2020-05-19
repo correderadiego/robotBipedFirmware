@@ -11,9 +11,14 @@ SetMotionHeaderCommand::SetMotionHeaderCommand() {
 	this->subCommandType = SET_MOTION_HEADER;
 }
 
-void SetMotionHeaderCommand::setHeader(Header* header){
+void SetMotionHeaderCommand::setMotionHeader(Header* header){
 	this->header = header;
 }
-Header* SetMotionHeaderCommand::getHeader(){
+Header* SetMotionHeaderCommand::getMotionHeader(){
 	return header;
+}
+
+SetMotionHeaderCommand::~SetMotionHeaderCommand(){
+	header = nullptr;
+	delete header;
 }

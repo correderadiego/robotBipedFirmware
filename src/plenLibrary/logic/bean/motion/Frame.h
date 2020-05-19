@@ -14,29 +14,30 @@ class Frame {
 public:
 	Frame();
 	Frame(
-			unsigned int slot,
+			unsigned int headerPosition,
 			unsigned int frameIndex,
-			unsigned int transitionTimems,
-			int*         jointAngle,
-			int 		 numberOfJoints
+			unsigned int transitionTime
 			);
+	struct FrameMemory{
+			unsigned int headerPosition;
+			unsigned int frameIndex;
+			unsigned int transitionTime;
+			int         jointAngle[NUMBER_OF_JOINTS] = {};
+			int 		numberOfJoints  = NUMBER_OF_JOINTS;
+	};
 
-	unsigned int getSlot();
+	FrameMemory* getFrameMemory();
+	unsigned int getHeaderPosition();
 	unsigned int getFrameIndex();
 	unsigned int getTransitionTime();
 	int* getJointAngle();
 
-	void setSlot(unsigned int slot);
+	void setHeaderPosition(unsigned int headerPosition);
 	void setFrameIndex(unsigned int frameIndex);
 	void setTransitionTime(unsigned int transitionTime);
-	void setJointAngle(int* jointAngle);
 
 private:
-	unsigned int slot;
-	unsigned int frameIndex;
-	unsigned int transitionTime;
-	int*         jointAngle;
-	int 		 numberOfJoints;
+	FrameMemory* frameMemory = new FrameMemory();
 };
 
 #endif /* SRC_BEAN_MOTION_FRAME_H_ */

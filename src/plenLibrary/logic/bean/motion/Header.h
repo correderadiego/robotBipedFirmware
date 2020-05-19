@@ -8,8 +8,24 @@
 #ifndef SRC_BEAN_MOTION_HEADER_H_
 #define SRC_BEAN_MOTION_HEADER_H_
 
+#include "string.h"
+
+#define HEADER_MOTION_NAME_SIZE 20
+
 class Header {
 public:
+	struct HeaderMemory{
+		unsigned int position;
+		unsigned int motionFrameLenght;
+		unsigned int loopBeginFrame;
+		unsigned int loopEndFrame;
+		unsigned int loopCount;
+		unsigned int jumpSlot;
+		bool extra;
+		bool jump;
+		bool loop;
+		char motionName[HEADER_MOTION_NAME_SIZE+1];
+	};
 
 	Header();
 	Header(
@@ -25,6 +41,7 @@ public:
 			bool loop
 			);
 
+	HeaderMemory* getHeaderMemory();
 	char* getMotionName();
 	unsigned int getPosition();
 	unsigned int getMotionFrameLength();
@@ -50,16 +67,7 @@ public:
 	void setLoop(bool loop);
 
 private:
-	char* motionName;
-	unsigned int position;
-	unsigned int motionFrameLenght;
-	unsigned int loopBeginFrame;
-	unsigned int loopEndFrame;
-	unsigned int loopCount;
-	unsigned int jumpSlot;
-	bool extra;
-	bool jump;
-	bool loop;
+	HeaderMemory* headerMemory = new HeaderMemory();
 };
 
 #endif /* SRC_BEAN_MOTION_HEADER_H_ */

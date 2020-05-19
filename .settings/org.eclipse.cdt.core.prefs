@@ -1124,7 +1124,7 @@ environment/project/io.sloeber.core.toolChain.release.1369960914/A.BUILD.FLASH_F
 environment/project/io.sloeber.core.toolChain.release.1369960914/A.BUILD.FLASH_FREQ/value=40
 environment/project/io.sloeber.core.toolChain.release.1369960914/A.BUILD.FLASH_LD/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1369960914/A.BUILD.FLASH_LD/operation=replace
-environment/project/io.sloeber.core.toolChain.release.1369960914/A.BUILD.FLASH_LD/value=eagle.flash.4m1m.ld
+environment/project/io.sloeber.core.toolChain.release.1369960914/A.BUILD.FLASH_LD/value=eagle.flash.4m.ld
 environment/project/io.sloeber.core.toolChain.release.1369960914/A.BUILD.FLASH_MODE/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1369960914/A.BUILD.FLASH_MODE/operation=replace
 environment/project/io.sloeber.core.toolChain.release.1369960914/A.BUILD.FLASH_MODE/value=dio
@@ -1178,7 +1178,7 @@ environment/project/io.sloeber.core.toolChain.release.1369960914/A.BUILD.SPIFFS_
 environment/project/io.sloeber.core.toolChain.release.1369960914/A.BUILD.SPIFFS_PAGESIZE/value=256
 environment/project/io.sloeber.core.toolChain.release.1369960914/A.BUILD.SPIFFS_START/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1369960914/A.BUILD.SPIFFS_START/operation=replace
-environment/project/io.sloeber.core.toolChain.release.1369960914/A.BUILD.SPIFFS_START/value=0x300000
+environment/project/io.sloeber.core.toolChain.release.1369960914/A.BUILD.SPIFFS_START/value=0x100000
 environment/project/io.sloeber.core.toolChain.release.1369960914/A.BUILD.SYSTEM.PATH/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1369960914/A.BUILD.SYSTEM.PATH/operation=replace
 environment/project/io.sloeber.core.toolChain.release.1369960914/A.BUILD.SYSTEM.PATH/value=${A.RUNTIME.PLATFORM.PATH}/system
@@ -1607,7 +1607,7 @@ environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.COM_PORT
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.COM_PORT/value=/dev/ttyUSB0
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.ECLIPSE_LOCATION/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.ECLIPSE_LOCATION/operation=replace
-environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.ECLIPSE_LOCATION/value=${eclipse_home}//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.ECLIPSE_LOCATION/value=${eclipse_home}/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.EXTRA.ALL/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.EXTRA.ALL/operation=replace
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.EXTRA.ALL/value=
@@ -1631,7 +1631,7 @@ environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.EXTRA.LI
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.EXTRA.LINK/value=
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.MENU/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.MENU/operation=replace
-environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.MENU/value=baud\=115200\nCpuFrequency\=160\nCrystalFreq\=40\ndbg\=Disabled\nDebug\=Disabled\nDebugLevel\=None____\neesz\=4M1M\nESPModule\=ESP12\nexception\=enabled\nFlashErase\=all\nFlashFreq\=80\nFlashMode\=dio\nFlashSize\=4M1M\nip\=src\nled\=2\nlvl\=CORE\nLwIPVariant\=v2mss536\nResetMethod\=none\nUploadSpeed\=115200\nvt\=flash\nVTable\=flash\nwipe\=all\nxtal\=160
+environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.MENU/value=baud\=115200\nCpuFrequency\=160\nCrystalFreq\=40\ndbg\=Disabled\nDebug\=Disabled\nDebugLevel\=None____\neesz\=4M1M\nESPModule\=ESP12\nexception\=enabled\nFlashErase\=all\nFlashFreq\=80\nFlashMode\=dio\nFlashSize\=4M3M\nip\=src\nled\=2\nlvl\=CORE\nLwIPVariant\=v2mss536\nResetMethod\=none\nUploadSpeed\=115200\nvt\=flash\nVTable\=flash\nwipe\=all\nxtal\=160
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.OBJCOPY/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.OBJCOPY/operation=replace
 environment/project/io.sloeber.core.toolChain.release.1369960914/JANTJE.OBJCOPY/value=${A.RECIPE.OBJCOPY.HEX.PATTERN}

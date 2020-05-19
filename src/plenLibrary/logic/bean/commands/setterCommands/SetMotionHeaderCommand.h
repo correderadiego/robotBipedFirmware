@@ -14,8 +14,9 @@
 class SetMotionHeaderCommand : public SetterCommand {
 public:
 	SetMotionHeaderCommand();
-	void setHeader(Header* header);
-	Header* getHeader();
+	void setMotionHeader(Header* header);
+	Header* getMotionHeader();
+	~SetMotionHeaderCommand();
 private:
 	Header* header = new Header();
 };

@@ -122,9 +122,11 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMotionFrameC
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
 
+	(**command).setMotionFrame(new Frame());
+
 	char slot[SLOT_LENGTH+1] = {'\0'};
 	strncpy ( slot, &buffer->getData()[SLOT_POSITION],  SLOT_LENGTH);
-	(**command).getMotionFrame()->setSlot(ParserUtils::hexbytes2int(slot, SLOT_LENGTH));
+	(**command).getMotionFrame()->setHeaderPosition(ParserUtils::hexbytes2int(slot, SLOT_LENGTH));
 
 	char frameIndexPosition[FRAME_INDEX_LENGTH+1] = {'\0'};
 	strncpy ( frameIndexPosition, &buffer->getData()[FRAME_INDEX_POSITION],  FRAME_INDEX_LENGTH);
@@ -137,10 +139,9 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMotionFrameC
 	int value[NUMBER_OF_JOINTS] = {};
 	char valueChar[JOINT_VALUE_LENGTH+1] = {'\0'};
 	for(int i = 0; i < NUMBER_OF_JOINTS; i++){
-		strncpy ( valueChar, &buffer->getData()[VALUE_POSITION+JOINT_VALUE_LENGTH*i], JOINT_VALUE_LENGTH);
-		value[i] = ParserUtils::hexbytes2int(valueChar, TRANSITION_TIME_LENGTH);
+		strncpy ( valueChar, &buffer->getData()[JOINT_VALUE_POSITION+JOINT_VALUE_LENGTH*i], JOINT_VALUE_LENGTH);
+		(**command).getMotionFrame()->getJointAngle()[i] =  ParserUtils::hexbytes2int(valueChar, JOINT_VALUE_LENGTH);
 	}
-	(**command).getMotionFrame()->setJointAngle(value);
 
 	return NO_ERROR;
 }
@@ -152,45 +153,47 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMotionHeader
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
 
+	(**command).setMotionHeader(new Header());
+
 	char slot[SLOT_LENGTH+1] = {'\0'};
 	strncpy ( slot, &buffer->getData()[SLOT_POSITION],  SLOT_LENGTH);
-	(**command).getHeader()->setPosition(ParserUtils::hexbytes2int(slot, SLOT_LENGTH));
+	(**command).getMotionHeader()->setPosition(ParserUtils::hexbytes2int(slot, SLOT_LENGTH));
 
 	char name[NAME_LENGTH+1] = {'\0'};
-	strncpy ( slot, &buffer->getData()[NAME_POSITION],  NAME_LENGTH);
-	(**command).getHeader()->setMotionName(name);
+	strncpy ( name, &buffer->getData()[NAME_POSITION],  NAME_LENGTH);
+	(**command).getMotionHeader()->setMotionName(name);
 
 	char useLoop[USE_LOOP_LENGTH+1] = {'\0'};
 	strncpy ( useLoop, &buffer->getData()[USE_LOOP_POSITION],  USE_LOOP_LENGTH);
-	(**command).getHeader()->setLoop((boolean)ParserUtils::hexbytes2int(useLoop, USE_LOOP_LENGTH));
+	(**command).getMotionHeader()->setLoop((bool)ParserUtils::hexbytes2int(useLoop, USE_LOOP_LENGTH));
 
 	char loopBegin[LOOP_BEGIN_LENGTH+1] = {'\0'};
 	strncpy ( loopBegin, &buffer->getData()[LOOP_BEGIN_POSITION],  LOOP_BEGIN_LENGTH);
-	(**command).getHeader()->setLoopBeginFrame(ParserUtils::hexbytes2int(loopBegin, LOOP_BEGIN_LENGTH));
+	(**command).getMotionHeader()->setLoopBeginFrame(ParserUtils::hexbytes2int(loopBegin, LOOP_BEGIN_LENGTH));
 
 	char loopEnd[LOOP_END_LENGTH+1] = {'\0'};
 	strncpy ( loopEnd, &buffer->getData()[LOOP_END_POSITION],  LOOP_END_LENGTH);
-	(**command).getHeader()->setLoopEndFrame(ParserUtils::hexbytes2int(loopEnd, LOOP_END_LENGTH));
+	(**command).getMotionHeader()->setLoopEndFrame(ParserUtils::hexbytes2int(loopEnd, LOOP_END_LENGTH));
 
 	char loopCount[LOOP_COUNT_LENGTH+1] = {'\0'};
 	strncpy ( loopCount, &buffer->getData()[LOOP_COUNT_POSITION],  LOOP_COUNT_LENGTH);
-	(**command).getHeader()->setLoopCount(ParserUtils::hexbytes2int(loopCount, LOOP_COUNT_LENGTH));
+	(**command).getMotionHeader()->setLoopCount(ParserUtils::hexbytes2int(loopCount, LOOP_COUNT_LENGTH));
 
 	char useJump[USE_JUMP_LENGTH+1] = {'\0'};
 	strncpy ( useJump, &buffer->getData()[USE_JUMP_POSITION],  USE_JUMP_LENGTH);
-	(**command).getHeader()->setJump((boolean)ParserUtils::hexbytes2int(useJump, USE_JUMP_LENGTH));
+	(**command).getMotionHeader()->setJump((bool)ParserUtils::hexbytes2int(useJump, USE_JUMP_LENGTH));
 
 	char jumpSlot[JUMP_SLOT_LENGTH+1] = {'\0'};
 	strncpy ( jumpSlot, &buffer->getData()[JUMP_SLOT_POSITION],  JUMP_SLOT_LENGTH);
-	(**command).getHeader()->setJumpSlot(ParserUtils::hexbytes2int(jumpSlot, JUMP_SLOT_LENGTH));
+	(**command).getMotionHeader()->setJumpSlot(ParserUtils::hexbytes2int(jumpSlot, JUMP_SLOT_LENGTH));
 
 	char useExtra[USE_EXTRA_LENGTH+1] = {'\0'};
 	strncpy ( useExtra, &buffer->getData()[USE_EXTRA_POSITION],  USE_EXTRA_LENGTH);
-	(**command).getHeader()->setExtra((boolean)ParserUtils::hexbytes2int(useExtra, USE_EXTRA_LENGTH));
+	(**command).getMotionHeader()->setExtra((bool)ParserUtils::hexbytes2int(useExtra, USE_EXTRA_LENGTH));
 
 	char frameLength[FRAME_LENGTH_LENGTH+1] = {'\0'};
 	strncpy ( frameLength, &buffer->getData()[FRAME_LENGTH_POSITION],  FRAME_LENGTH_LENGTH);
-	(**command).getHeader()->setMotionFrameLength(ParserUtils::hexbytes2int(frameLength, FRAME_LENGTH_LENGTH));
+	(**command).getMotionHeader()->setMotionFrameLength(ParserUtils::hexbytes2int(frameLength, FRAME_LENGTH_LENGTH));
 
 	return NO_ERROR;
 }

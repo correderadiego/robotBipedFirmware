@@ -14,6 +14,7 @@ SetMotionFrameCommand::SetMotionFrameCommand() {
 void SetMotionFrameCommand::setMotionFrame(Frame* frame){
 	this->frame = frame;
 }
+
 Frame* SetMotionFrameCommand::getMotionFrame(){
 	return this->frame;
 }

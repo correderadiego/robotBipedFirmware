@@ -28,7 +28,7 @@ ExternalFileSystemController::FileSystemErrors JointController::storeJoint(Plen*
 	unsigned int sizeWrite = 0;
 	unsigned char* filler  = reinterpret_cast<unsigned char*>(joint->getJointMemory());
 
-	return (this->externalFileSystemController)->write(
+	return  this->externalFileSystemController->write(
 			SETTINGS_HEAD_ADDRESS + jointIndex*sizeof(*joint->getJointMemory()),
 			sizeof(*joint->getJointMemory()),
 			filler,
@@ -40,7 +40,7 @@ ExternalFileSystemController::FileSystemErrors JointController::loadJoint(Plen* 
 	int sizeRead = 0;
 	unsigned char* filler = reinterpret_cast<unsigned char*>(joint->getJointMemory());
 
-	return  (this->externalFileSystemController)->read(
+	return  this->externalFileSystemController->read(
 			SETTINGS_HEAD_ADDRESS + jointIndex*sizeof(*joint->getJointMemory()),
 			sizeof(*joint->getJointMemory()),
 			filler,

@@ -8,54 +8,49 @@
 #include <logic/bean/motion/Frame.h>
 
 Frame::Frame(
-		unsigned int slot,
+		unsigned int headerPosition,
 		unsigned int frameIndex,
-		unsigned int transitionTime,
-		int*         jointAngle,
-		int 		 numberOfJoints) {
-	this->slot				 = slot;
-	this->frameIndex	 	 = frameIndex;
-	this->transitionTime	 = transitionTime;
-	this->jointAngle	     = jointAngle;
-	this->numberOfJoints	 = numberOfJoints;
+		unsigned int transitionTime
+		) {
+	this->frameMemory->headerPosition	 = headerPosition;
+	this->frameMemory->frameIndex	 	 = frameIndex;
+	this->frameMemory->transitionTime	 = transitionTime;
 }
 
 Frame::Frame() {
-	this->slot				 = 0;
-	this->frameIndex	 	 = 0;
-	this->transitionTime	 = 0;
-	this->jointAngle	     = nullptr;
-	this->numberOfJoints	 = NUMBER_OF_JOINTS;
+	this->frameMemory->headerPosition	 = 0;
+	this->frameMemory->frameIndex	 	 = 0;
+	this->frameMemory->transitionTime	 = 0;
 }
 
-unsigned int Frame::getSlot(){
-	return this->slot;
+Frame::FrameMemory* Frame::getFrameMemory(){
+	return this->frameMemory;
+}
+
+unsigned int Frame::getHeaderPosition(){
+	return this->frameMemory->headerPosition;
 }
 
 unsigned int Frame::getFrameIndex(){
-	return this->frameIndex;
+	return this->frameMemory->frameIndex;
 }
 
 unsigned int Frame::getTransitionTime(){
-	return this->transitionTime;
+	return this->frameMemory->transitionTime;
 }
 
 int* Frame::getJointAngle(){
-	return this->jointAngle;
+	return this->frameMemory->jointAngle;
 }
 
-void Frame::setSlot(unsigned int slot){
-	this->slot = slot;
+void Frame::setHeaderPosition(unsigned int slot){
+	this->frameMemory->headerPosition = slot;
 }
 
 void Frame::setFrameIndex(unsigned int frameIndex){
-	this->frameIndex = frameIndex;
+	this->frameMemory->frameIndex = frameIndex;
 }
 
 void Frame::setTransitionTime(unsigned int transitionTime){
-	this->transitionTime = transitionTime;
-}
-
-void Frame::setJointAngle(int* jointAngle){
-	this->jointAngle = jointAngle;
+	this->frameMemory->transitionTime = transitionTime;
 }

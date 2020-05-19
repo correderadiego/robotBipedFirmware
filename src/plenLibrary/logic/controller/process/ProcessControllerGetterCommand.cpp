@@ -7,8 +7,11 @@
 
 #include <logic/controller/process/ProcessControllerGetterCommand.h>
 
-ProcessControllerGetterCommand::ProcessControllerGetterCommand(JointController* jointController) {
-	this->jointController = jointController;
+ProcessControllerGetterCommand::ProcessControllerGetterCommand(
+		JointController* jointController,
+		MotionController* motionController) {
+	this->jointController 	= jointController;
+	this->motionController 	= motionController;
 }
 
 bool ProcessControllerGetterCommand::match(CommandInterface* command){
@@ -29,28 +32,30 @@ ProcessControllerInterface::CommandControllerErrors
 		}
 		Logger::getInstance()->log(Logger::INFO, S("]"));
 		Logger::getInstance()->log(Logger::INFO, S("\r\n"));
-		delete command;
+		delete getterCommand;
 		return NO_ERROR;
 	}
 
-	if(getterCommand->getSubCommandType() == GetterCommand::DUMP_A_MOTION){
-		delete command;
+	if(getterCommand->getSubCommandType() == GetterCommand::DUMP_MOTION){
+		DumpMotionCommand* dumpMotionCommand = (DumpMotionCommand*) getterCommand;
+		motionController->dumpHeader(plen, dumpMotionCommand->getSlot());
+		delete dumpMotionCommand;
 		return NO_ERROR;
 	}
 
 	if(getterCommand->getSubCommandType() == GetterCommand::DUMP_VERSION_INFORMATION){
 		processDumpVersionInformation();
-		delete command;
+		delete getterCommand;
 		return NO_ERROR;
 	}
 
 	if(getterCommand->getSubCommandType() == GetterCommand::DUMP_NETWORK_INFORMATION){
 		processDumpNetworkInformation(plen);
-		delete command;
+		delete getterCommand;
 		return NO_ERROR;
 	}
 
-	delete command;
+	delete getterCommand;
 	return UNKNOWN_COMMAND;
 }
 

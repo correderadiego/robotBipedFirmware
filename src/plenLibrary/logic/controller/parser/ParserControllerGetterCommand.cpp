@@ -55,7 +55,7 @@ ParserInterface::ParseErrors ParserControllerGetterCommand::parseDumpJointSettin
 
 ParserInterface::ParseErrors ParserControllerGetterCommand::parseDumpMotionCommand(
 	Buffer* buffer, DumpMotionCommand** command){
-	(**command).setSubCommandType(GetterCommand::DUMP_A_MOTION);
+	(**command).setSubCommandType(GetterCommand::DUMP_MOTION);
 	if(buffer->getLenght() != DUMP_MOTION_COMMAND_LENGHT){
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}

@@ -7,8 +7,10 @@
 
 #include <logic/controller/process/ProcessControllerSetterCommand.h>
 
-ProcessControllerSetterCommand::ProcessControllerSetterCommand(JointController* jointController) {
-	this->jointController = jointController;
+ProcessControllerSetterCommand::ProcessControllerSetterCommand(
+		JointController* jointController, MotionController* motionController) {
+	this->jointController  = jointController;
+	this->motionController = motionController;
 }
 
 bool ProcessControllerSetterCommand::match(CommandInterface* command){
@@ -20,26 +22,36 @@ bool ProcessControllerSetterCommand::match(CommandInterface* command){
 
 ProcessControllerInterface::CommandControllerErrors
 		ProcessControllerSetterCommand::process(Plen* plen, CommandInterface* command){
-	SetterCommand* controllerCommand = (SetterCommand*) command;
+	SetterCommand* setterCommand = (SetterCommand*) command;
 
-	if(controllerCommand->getSubCommandType() == SetterCommand::SET_MOTION_HEADER){
-		delete command;
+	if(setterCommand->getSubCommandType() == SetterCommand::SET_MOTION_HEADER){
+		SetMotionHeaderCommand* setMotionHeaderCommand = (SetMotionHeaderCommand *)setterCommand;
+		motionController->set(
+								plen,
+								setMotionHeaderCommand->getMotionHeader()
+							);
+		delete setMotionHeaderCommand;
 		return NO_ERROR;
 	}
-	if(controllerCommand->getSubCommandType() == SetterCommand::SET_MOTION_FRAME){
-		delete command;
+	if(setterCommand->getSubCommandType() == SetterCommand::SET_MOTION_FRAME){
+		SetMotionFrameCommand* setMotionFrameCommand = (SetMotionFrameCommand *)setterCommand;
+		motionController->set(
+								plen,
+								setMotionFrameCommand->getMotionFrame()
+							);
+		delete setMotionFrameCommand;
 		return NO_ERROR;
 	}
-	if(controllerCommand->getSubCommandType() == SetterCommand::RESET_JOINT_SETTINGS){
+	if(setterCommand->getSubCommandType() == SetterCommand::RESET_JOINT_SETTINGS){
 		for (int i = 0; i < plen->getJointSize(); i++) {
 			jointController->resetJoint((plen->getJointVector()[i]));
 			jointController->storeJoint( plen, plen->getJointVector()[i], i);
 		}
-		delete command;
+		delete setterCommand;
 		return NO_ERROR;
 	}
-	if(controllerCommand->getSubCommandType() == SetterCommand::SET_ANGLE_HOME_VALUE){
-		SetAngleHomeValueCommand* setHomeValueCommand = (SetAngleHomeValueCommand*)controllerCommand;
+	if(setterCommand->getSubCommandType() == SetterCommand::SET_ANGLE_HOME_VALUE){
+		SetAngleHomeValueCommand* setHomeValueCommand = (SetAngleHomeValueCommand*)setterCommand;
 		plen->getJointVector()[setHomeValueCommand->getDeviceId()]->
 				setAngleHome(setHomeValueCommand->getValue());
 		jointController->storeJoint(
@@ -50,8 +62,8 @@ ProcessControllerInterface::CommandControllerErrors
 		delete setHomeValueCommand;
 		return NO_ERROR;
 	}
-	if(controllerCommand->getSubCommandType() == SetterCommand::SET_ANGLE_MAX_VALUE){
-		SetAngleMaxValueCommand* setAngleMaxValueCommand = (SetAngleMaxValueCommand*)controllerCommand;
+	if(setterCommand->getSubCommandType() == SetterCommand::SET_ANGLE_MAX_VALUE){
+		SetAngleMaxValueCommand* setAngleMaxValueCommand = (SetAngleMaxValueCommand*)setterCommand;
 		plen->getJointVector()[setAngleMaxValueCommand->getDeviceId()]->
 				setAngleMax(setAngleMaxValueCommand->getValue());
 		jointController->storeJoint(
@@ -62,8 +74,8 @@ ProcessControllerInterface::CommandControllerErrors
 		delete setAngleMaxValueCommand;
 		return NO_ERROR;
 	}
-	if(controllerCommand->getSubCommandType() == SetterCommand::SET_ANGLE_MIN_VALUE){
-		SetMinValueCommand* setMinValueCommand = (SetMinValueCommand*)controllerCommand;
+	if(setterCommand->getSubCommandType() == SetterCommand::SET_ANGLE_MIN_VALUE){
+		SetMinValueCommand* setMinValueCommand = (SetMinValueCommand*)setterCommand;
 		plen->getJointVector()[setMinValueCommand->getDeviceId()]->
 				setAngleMin(setMinValueCommand->getValue());
 		jointController->storeJoint(
@@ -75,6 +87,6 @@ ProcessControllerInterface::CommandControllerErrors
 		return NO_ERROR;
 	}
 
-	delete command;
+	delete setterCommand;
 	return UNKNOWN_COMMAND;
 }

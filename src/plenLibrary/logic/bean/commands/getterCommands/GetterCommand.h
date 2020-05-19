@@ -20,7 +20,7 @@ class GetterCommand  : public CommandInterface  {
 	enum SubCommandType	{
 						UNKNOWN_SUB_COMMAND_TYPE,
 						DUMP_JOINT_SETTINGS,
-						DUMP_A_MOTION,
+						DUMP_MOTION,
 						DUMP_VERSION_INFORMATION,
 						DUMP_NETWORK_INFORMATION
 					};

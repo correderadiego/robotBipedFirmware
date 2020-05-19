@@ -26,19 +26,25 @@ void ExternalFileSystemController::createAndResetFile(
 								int bufferSize){
 	unsigned int i;
 	unsigned int startAddress;
+	float percentaje = 0;
 
 	*file = SPIFFS.open(filePath, FILE_MODE_WRITE);
 	unsigned int sizeWrite = 0;
 	for (i = 0, startAddress = 0; i < (unsigned int)(fileSize / bufferSize); i++, startAddress += bufferSize){
-		if(write(startAddress, bufferSize, buf, &sizeWrite, file) != NO_ERROR){
-			Logger::getInstance()->log(Logger::DEBUG, S(" *** Error creating file : "));
-			Logger::getInstance()->logln(Logger::DEBUG, filePath);
+		FileSystemErrors filesystemErrors = write(startAddress, bufferSize, buf, &sizeWrite, file);
+		percentaje = ((float)startAddress / (float)fileSize)*100;
+		Logger::getInstance()->log(Logger::INFO, static_cast<float>(percentaje));
+		Logger::getInstance()->logln(Logger::INFO, S("%"));
+
+		if(filesystemErrors != NO_ERROR){
+			Logger::getInstance()->log(Logger::ERROR, S(" *** Error creating file : "));
+			Logger::getInstance()->logln(Logger::ERROR, filePath);
 			return;
 		}
 	}
 	file->close();
-	Logger::getInstance()->log(Logger::DEBUG, S(" *** Created file : "));
-	Logger::getInstance()->logln(Logger::DEBUG, filePath);
+	Logger::getInstance()->log(Logger::INFO, S(" *** Created file : "));
+	Logger::getInstance()->logln(Logger::INFO, filePath);
 }
 
 void ExternalFileSystemController::createFile(
