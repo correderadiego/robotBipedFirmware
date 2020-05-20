@@ -13,13 +13,13 @@ Frame::Frame(
 		unsigned int transitionTime
 		) {
 	this->frameMemory->headerPosition	 = headerPosition;
-	this->frameMemory->frameIndex	 	 = frameIndex;
+	this->frameMemory->framePosition	 	 = frameIndex;
 	this->frameMemory->transitionTime	 = transitionTime;
 }
 
 Frame::Frame() {
 	this->frameMemory->headerPosition	 = 0;
-	this->frameMemory->frameIndex	 	 = 0;
+	this->frameMemory->framePosition	 	 = 0;
 	this->frameMemory->transitionTime	 = 0;
 }
 
@@ -31,8 +31,8 @@ unsigned int Frame::getHeaderPosition(){
 	return this->frameMemory->headerPosition;
 }
 
-unsigned int Frame::getFrameIndex(){
-	return this->frameMemory->frameIndex;
+unsigned int Frame::getFramePosition(){
+	return this->frameMemory->framePosition;
 }
 
 unsigned int Frame::getTransitionTime(){
@@ -47,8 +47,8 @@ void Frame::setHeaderPosition(unsigned int slot){
 	this->frameMemory->headerPosition = slot;
 }
 
-void Frame::setFrameIndex(unsigned int frameIndex){
-	this->frameMemory->frameIndex = frameIndex;
+void Frame::setFramePosition(unsigned int framePosition){
+	this->frameMemory->framePosition = framePosition;
 }
 
 void Frame::setTransitionTime(unsigned int transitionTime){

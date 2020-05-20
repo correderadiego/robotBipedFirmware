@@ -44,5 +44,12 @@ void Logger::logln(LogLevel logLevel, const char * message){
 	SerialCommunication::getInstance()->println(message);
 }
 
+void Logger::logln(LogLevel logLevel, int message){
+	if(this->logLevel < logLevel){
+		return;
+	}
+	SerialCommunication::getInstance()->println(message);
+}
+
 Logger::~Logger() {}
 

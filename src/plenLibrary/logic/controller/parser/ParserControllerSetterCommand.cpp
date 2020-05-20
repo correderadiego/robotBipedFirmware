@@ -130,7 +130,7 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMotionFrameC
 
 	char frameIndexPosition[FRAME_INDEX_LENGTH+1] = {'\0'};
 	strncpy ( frameIndexPosition, &buffer->getData()[FRAME_INDEX_POSITION],  FRAME_INDEX_LENGTH);
-	(**command).getMotionFrame()->setFrameIndex(ParserUtils::hexbytes2int(frameIndexPosition, FRAME_INDEX_LENGTH));
+	(**command).getMotionFrame()->setFramePosition(ParserUtils::hexbytes2int(frameIndexPosition, FRAME_INDEX_LENGTH));
 
 	char transitionTime[TRANSITION_TIME_LENGTH+1] = {'\0'};
 	strncpy ( transitionTime, &buffer->getData()[TRANSITION_TIME_POSITION],  TRANSITION_TIME_LENGTH);

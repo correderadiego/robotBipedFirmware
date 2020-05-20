@@ -14,28 +14,16 @@ MotionController::MotionController(ExternalFileSystemController* externalFileSys
 MotionController::MotionControllerErrors MotionController::set(Plen* plen, Header* header){
 	if 	((header->getMotionFrameLength() < FRAME_NUMBER_MIN) ||
 		 (header->getMotionFrameLength() > FRAME_NUMBER_MAX)){
+		Logger::getInstance()->logln(Logger::ERROR, S("Header frame size error"));
 		return HEADER_FRAME_SIZE_ERROR;
 	}
 
 	if (header->getPosition() >= MOVEMENT_NUMBER_MAX){
-		 return HEADER_POSITION_ERROR;
+		Logger::getInstance()->logln(Logger::ERROR, S("Header position error"));
+		return HEADER_POSITION_ERROR;
 	}
 
-	unsigned char* filler = reinterpret_cast<unsigned char*>(header->getHeaderMemory());
-
-	unsigned int sizeWrite = 0;
-	int motionSize = sizeof(*((new Header())->getHeaderMemory())) + FRAME_NUMBER_MAX*sizeof(*((new Frame())->getFrameMemory()));
-	int position = motionSize*(header->getPosition());
-
-	ExternalFileSystemController:: FileSystemErrors fileSystemError =
-			this->externalFileSystemController->write(
-														position,
-														sizeof(*header->getHeaderMemory()),
-														filler,
-														&sizeWrite,
-														plen->getFileMotion()
-													);
-	if( fileSystemError != ExternalFileSystemController::NO_ERROR){
+	if (writeHeader(plen, header) != ExternalFileSystemController::NO_ERROR){
 		return WRITE_ERROR;
 	}
 
@@ -44,24 +32,11 @@ MotionController::MotionControllerErrors MotionController::set(Plen* plen, Heade
 
 MotionController::MotionControllerErrors MotionController::get(Plen* plen, Header* header){
 	if (header->getPosition() >= MOVEMENT_NUMBER_MAX){
-		 return HEADER_POSITION_ERROR;
+		Logger::getInstance()->logln(Logger::ERROR, S("Header position error"));
+		return HEADER_POSITION_ERROR;
 	}
 
-	int sizeRead = 0;
-	unsigned char* filler = reinterpret_cast<unsigned char*>(header->getHeaderMemory());
-
-	int motionSize = sizeof(*((new Header())->getHeaderMemory())) + FRAME_NUMBER_MAX*sizeof(*((new Frame())->getFrameMemory()));
-	unsigned int position = motionSize*(header->getPosition());
-
-	ExternalFileSystemController:: FileSystemErrors fileSystemError =
-		this->externalFileSystemController->read(
-													position,
-													sizeof(*header->getHeaderMemory()),
-													filler,
-													&sizeRead,
-													plen->getFileMotion()
-												);
-	if( fileSystemError != ExternalFileSystemController::NO_ERROR){
+	if (readHeader(plen, header) != ExternalFileSystemController::NO_ERROR){
 		return WRITE_ERROR;
 	}
 
@@ -69,101 +44,77 @@ MotionController::MotionControllerErrors MotionController::get(Plen* plen, Heade
 }
 
 MotionController::MotionControllerErrors MotionController::set(Plen* plen, Frame* frame){
-	if (frame->getHeaderPosition() >= FILE_SLOT_NUMBERS){
-		 return HEADER_POSITION_ERROR;
+	if (frame->getHeaderPosition() >= MOVEMENT_NUMBER_MAX){
+		Logger::getInstance()->logln(Logger::ERROR, S("Header position error"));
+		return HEADER_POSITION_ERROR;
 	}
 
-	if (frame->getFrameIndex() >= FRAME_NUMBER_MAX)
-	{
+	if (frame->getFramePosition() >= FRAME_NUMBER_MAX){
+		Logger::getInstance()->logln(Logger::ERROR, S("Frame position error"));
 		return HEADER_FRAME_SIZE_ERROR;
 	}
 
-	//const unsigned char* filler = reinterpret_cast<const unsigned char*>(frame->getFrameMemory());
-
-//	for (int i = 0; i < SIZE_FRAME_IN_SLOTS; i++){
-//		ExternalFileSystemController:: FileSystemErrors fileSystemError =
-//				this->externalFileSystemController->writeSlot(
-//				getReadWriteFrameSlotPosition(frame, i),
-//				(unsigned char*)(filler + i * SLOT_SIZE_BYTES),
-//				getBytesToWriteRead(i, SIZE_FRAME_IN_SLOTS, sizeof(Frame)),
-//				plen->getFileMotion()
-//				);
-//		if( fileSystemError != ExternalFileSystemController::NO_ERROR){
-//				return READ_ERROR;
-//		}
-//	}
-
-	unsigned int sizeWrite = 0;
-	unsigned char* filler = reinterpret_cast<unsigned char*>(frame->getFrameMemory());
-
-	int position = sizeof(*((new Header())->getHeaderMemory()))*frame->getHeaderPosition() +
-				   sizeof(*((new Frame())->getFrameMemory()))*frame->getFrameIndex();
-	ExternalFileSystemController:: FileSystemErrors fileSystemError =
-			this->externalFileSystemController->write(
-														position,
-														sizeof(*frame->getFrameMemory()),
-														filler,
-														&sizeWrite,
-														plen->getFileMotion()
-													);
-	if( fileSystemError != ExternalFileSystemController::NO_ERROR){
+	if (writeFrame(plen, frame) != ExternalFileSystemController::NO_ERROR){
 		return WRITE_ERROR;
 	}
 	return NO_ERROR;
 }
 
 MotionController::MotionControllerErrors MotionController::get(Plen* plen, Frame* frame){
-	if (frame->getHeaderPosition() >= FILE_SLOT_NUMBERS){
-		 return HEADER_POSITION_ERROR;
+	if (frame->getHeaderPosition() >= MOVEMENT_NUMBER_MAX){
+		Logger::getInstance()->logln(Logger::ERROR, S("Header position error"));
+		return HEADER_POSITION_ERROR;
 	}
 
-	if (frame->getFrameIndex() >= FRAME_NUMBER_MAX)
-	{
+	if (frame->getFramePosition() >= FRAME_NUMBER_MAX){
+		Logger::getInstance()->logln(Logger::ERROR, S("Frame position error"));
 		return HEADER_FRAME_SIZE_ERROR;
 	}
-//
-//	const unsigned char* filler = reinterpret_cast<const unsigned char*>(frame);
-//
-//	for (int i = 0; i < SIZE_FRAME_IN_SLOTS; i++){
-//		ExternalFileSystemController:: FileSystemErrors fileSystemError =
-//				this->externalFileSystemController->readSlot(
-//				getReadWriteFrameSlotPosition(frame, i),
-//				(unsigned char*)(filler + i * SLOT_SIZE_BYTES),
-//				getBytesToWriteRead(i, SIZE_FRAME_IN_SLOTS, sizeof(Frame)),
-//				plen->getFileMotion()
-//				);
-//		if( fileSystemError != ExternalFileSystemController::NO_ERROR){
-//				return READ_ERROR;
-//		}
-//	}
-	int sizeRead = 0;
-	unsigned char* filler = reinterpret_cast<unsigned char*>(frame->getFrameMemory());
 
-	int position = sizeof(*((new Header())->getHeaderMemory()))*frame->getHeaderPosition() +
-				   sizeof(*((new Frame())->getFrameMemory()))*frame->getFrameIndex();
-	ExternalFileSystemController:: FileSystemErrors fileSystemError =
-			this->externalFileSystemController->read(
-														position,
-														sizeof(*frame->getFrameMemory()),
-														filler,
-														&sizeRead,
-														plen->getFileMotion()
-													);
-	if( fileSystemError != ExternalFileSystemController::NO_ERROR){
+	if (readFrame(plen, frame) != ExternalFileSystemController::NO_ERROR){
 		return WRITE_ERROR;
 	}
 	return NO_ERROR;
 }
 
-MotionController::MotionControllerErrors MotionController::dumpHeader(Plen* plen, int position){
-	if(position>MOVEMENT_NUMBER_MAX){
-		return HEADER_POSITION_ERROR;
-	}
+MotionController::MotionControllerErrors MotionController::dumpMotion(
+		Plen* plen, int headerPosition){
 
 	Header* header = new Header();
-	header->setPosition(position);
+	header->setPosition(headerPosition);
 	this->get(plen, header);
+	dumpHeader(header);
 
+	Frame* frame = new Frame();
+	frame->setHeaderPosition(headerPosition);
+
+	Logger::getInstance()->logln(Logger::INFO, S("\t\"frames\": ["));
+
+	for(unsigned int framePosition = 0; framePosition < header->getMotionFrameLength(); framePosition++){
+		if (framePosition >= FRAME_NUMBER_MAX){
+			delete header;
+			delete frame;
+			return HEADER_FRAME_SIZE_ERROR;
+		}
+		frame->setFramePosition(framePosition);
+		this->get(plen, frame);
+		dumpFrame(frame);
+
+		if((framePosition+1) == header->getMotionFrameLength()){
+			Logger::getInstance()->logln(Logger::INFO, "");
+		}else{
+			Logger::getInstance()->logln(Logger::INFO, S(","));
+		}
+	}
+
+	Logger::getInstance()->logln(Logger::INFO, S("\t]"));
+	Logger::getInstance()->logln(Logger::INFO, S("}"));
+	delete header;
+	delete frame;
+	return NO_ERROR;
+}
+
+void MotionController::dumpHeader(Header* header){
 	Logger::getInstance()->logln(Logger::INFO, S("{"));
 	Logger::getInstance()->log(Logger::INFO, S("\t\"slot\": "));
 	Logger::getInstance()->log(Logger::INFO, static_cast<int>(header->getPosition()));
@@ -209,26 +160,94 @@ MotionController::MotionControllerErrors MotionController::dumpHeader(Plen* plen
 	}
 
 	Logger::getInstance()->logln(Logger::INFO, S("\t],"));
-	delete header;
-	return NO_ERROR;
 }
 
-int MotionController::getReadWriteHeaderPositionInSlots(Header* header, int readWriteFragment){
-	return
-			static_cast<int>(header->getPosition()) * SIZE_MOTION_IN_SLOTS + readWriteFragment;
-}
+void MotionController::dumpFrame(Frame* frame){
+	Logger::getInstance()->log(Logger::INFO, S("\t\t{"));
+	Logger::getInstance()->log(Logger::INFO, S("\t\t\"transition_time_ms\": "));
+	Logger::getInstance()->log(Logger::INFO, static_cast<int>(frame->getTransitionTime()));
+	Logger::getInstance()->logln(Logger::INFO, S(","));
+	Logger::getInstance()->logln(Logger::INFO, S("\t\t\t\"outputs\": ["));
 
-int MotionController::getReadWriteFrameSlotPosition(Frame* frame, int readWriteFragment){
-	return
-			static_cast<int>(frame->getHeaderPosition()) * SIZE_MOTION_IN_SLOTS +
-				SIZE_HEADER_IN_SLOTS +
-				frame->getFrameIndex() * SIZE_FRAME_IN_SLOTS +
-				readWriteFragment;
-}
+	for (int jointIndex = 0; jointIndex < NUMBER_OF_JOINTS; jointIndex++){
+		Logger::getInstance()->logln(Logger::INFO, S("\t\t\t\t{"));
+		Logger::getInstance()->log(Logger::INFO, S("\t\t\t\t\t\"device\": "));
+		Logger::getInstance()->log(Logger::INFO, static_cast<int>(jointIndex));
+		Logger::getInstance()->logln(Logger::INFO, S(","));
 
-int MotionController::getBytesToWriteRead(int index, int maxIndex, int objectSize){
-	if(index == maxIndex - 1){
-		return objectSize % SLOT_SIZE_BYTES;
+		Logger::getInstance()->log(Logger::INFO, S("\t\t\t\t\t\"value\": "));
+		Logger::getInstance()->logln(Logger::INFO, static_cast<int>(frame->getJointAngle()[jointIndex]));
+		Logger::getInstance()->log(Logger::INFO, S("\t\t\t\t}"));
+
+		if ((jointIndex + 1) != NUMBER_OF_JOINTS){
+			Logger::getInstance()->logln(Logger::INFO, S(","));
+		}
 	}
-	return SLOT_SIZE_BYTES;
+
+	Logger::getInstance()->logln(Logger::INFO, S("\t\t\t]"));
+	Logger::getInstance()->log(Logger::INFO, S("\t\t}"));
+}
+
+ExternalFileSystemController::FileSystemErrors MotionController::writeHeader(Plen* plen, Header* header){
+	unsigned char* filler = reinterpret_cast<unsigned char*>(header->getHeaderMemory());
+	unsigned int sizeWrite = 0;
+
+	return	this->externalFileSystemController->write(
+													getMotionPosition(header->getPosition()),
+													sizeof(*header->getHeaderMemory()),
+													filler,
+													&sizeWrite,
+													plen->getFileMotion()
+												);
+}
+
+ExternalFileSystemController::FileSystemErrors MotionController::readHeader(Plen* plen, Header* header){
+	int sizeRead = 0;
+	unsigned char* filler = reinterpret_cast<unsigned char*>(header->getHeaderMemory());
+
+	return	this->externalFileSystemController->read(
+													getMotionPosition(header->getPosition()),
+													sizeof(*header->getHeaderMemory()),
+													filler,
+													&sizeRead,
+													plen->getFileMotion()
+												);
+}
+
+ExternalFileSystemController::FileSystemErrors MotionController::writeFrame(Plen* plen, Frame* frame){
+	unsigned int sizeWrite = 0;
+	unsigned char* filler = reinterpret_cast<unsigned char*>(frame->getFrameMemory());
+
+	return this->externalFileSystemController->write(
+														getFramePosition(frame->getHeaderPosition(), frame->getFramePosition()),
+														sizeof(*frame->getFrameMemory()),
+														filler,
+														&sizeWrite,
+														plen->getFileMotion()
+													);
+}
+
+ExternalFileSystemController::FileSystemErrors MotionController::readFrame(Plen* plen, Frame* frame){
+	int sizeRead = 0;
+	unsigned char* filler = reinterpret_cast<unsigned char*>(frame->getFrameMemory());
+
+	return this->externalFileSystemController->read(
+														getFramePosition(frame->getHeaderPosition(), frame->getFramePosition()),
+														sizeof(*frame->getFrameMemory()),
+														filler,
+														&sizeRead,
+														plen->getFileMotion()
+													);
+}
+
+int MotionController::getMotionPosition(int headerPosition){
+	int motionSize = sizeof(*((new Header())->getHeaderMemory())) + FRAME_NUMBER_MAX*sizeof(*((new Frame())->getFrameMemory()));
+	return motionSize*(headerPosition);
+}
+
+int MotionController::getFramePosition(int headerPosition, int framePosition){
+	int motionPosition = getMotionPosition(headerPosition);
+	int headerSize	   = sizeof(*((new Header())->getHeaderMemory()));
+	return  motionPosition + headerSize +
+					   sizeof(*((new Frame())->getFrameMemory()))*framePosition;
 }

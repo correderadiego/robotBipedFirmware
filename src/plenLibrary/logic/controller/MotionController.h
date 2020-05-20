@@ -33,14 +33,18 @@ public:
 	MotionControllerErrors get(Plen* plen, Header* header);
 	MotionControllerErrors set(Plen* plen, Frame* frame);
 	MotionControllerErrors get(Plen* plen, Frame* frame);
-	MotionController::MotionControllerErrors dumpHeader(Plen* plen, int position);
+	MotionControllerErrors dumpMotion(Plen* plen, int headerPosition);
 
 private:
 	ExternalFileSystemController* externalFileSystemController;
-	int getBytesToWriteRead(int index, int maxIndex, int objectSize);
-	int getReadWriteFrameSlotPosition(Frame* frame, int readWriteFragment);
-	int getReadWriteHeaderPositionInSlots(Header* header, int readWriteFragment);
-
+	ExternalFileSystemController::FileSystemErrors readHeader(Plen* plen, Header* header);
+	ExternalFileSystemController::FileSystemErrors writeHeader(Plen* plen, Header* header);
+	ExternalFileSystemController::FileSystemErrors readFrame(Plen* plen, Frame* frame);
+	ExternalFileSystemController::FileSystemErrors writeFrame(Plen* plen, Frame* frame);
+	int getFramePosition(int headerPosition, int framePosition);
+	int getMotionPosition(int headerPosition);
+	void dumpHeader(Header* header);
+	void dumpFrame (Frame* frame);
 };
 
 #endif /* SRC_CONTROLLER_MOTIONCONTROLLER_H_ */

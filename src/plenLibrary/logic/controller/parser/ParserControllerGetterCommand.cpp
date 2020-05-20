@@ -62,7 +62,7 @@ ParserInterface::ParseErrors ParserControllerGetterCommand::parseDumpMotionComma
 
 	char slot[SLOT_LENGTH+1] = {'\0'};
 	strncpy ( slot, &buffer->getData()[SLOT_POSITION],  SLOT_LENGTH);
-	(**command).setSlot(ParserUtils::hexbytes2int(slot, SLOT_LENGTH));
+	(**command).setPosition(ParserUtils::hexbytes2int(slot, SLOT_LENGTH));
 
 	return NO_ERROR;
 }

@@ -20,7 +20,7 @@ public:
 			);
 	struct FrameMemory{
 			unsigned int headerPosition;
-			unsigned int frameIndex;
+			unsigned int framePosition;
 			unsigned int transitionTime;
 			int         jointAngle[NUMBER_OF_JOINTS] = {};
 			int 		numberOfJoints  = NUMBER_OF_JOINTS;
@@ -28,12 +28,12 @@ public:
 
 	FrameMemory* getFrameMemory();
 	unsigned int getHeaderPosition();
-	unsigned int getFrameIndex();
+	unsigned int getFramePosition();
 	unsigned int getTransitionTime();
 	int* getJointAngle();
 
 	void setHeaderPosition(unsigned int headerPosition);
-	void setFrameIndex(unsigned int frameIndex);
+	void setFramePosition(unsigned int frameIndex);
 	void setTransitionTime(unsigned int transitionTime);
 
 private:

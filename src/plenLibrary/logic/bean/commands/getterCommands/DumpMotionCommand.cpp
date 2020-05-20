@@ -9,14 +9,14 @@
 
 DumpMotionCommand::DumpMotionCommand() {
 	this->subCommandType = DUMP_MOTION;
-	this->slot = 0;
+	this->position = 0;
 }
 
-int DumpMotionCommand::getSlot(){
-	return this->slot;
+int DumpMotionCommand::getPosition(){
+	return this->position;
 }
 
-void DumpMotionCommand::setSlot(int slot){
-	this->slot = slot;
+void DumpMotionCommand::setPosition(int position){
+	this->position = position;
 }
 

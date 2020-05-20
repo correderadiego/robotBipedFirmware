@@ -43,6 +43,7 @@ void WifiController::initFileSystem(Plen* plen, Network* network){
 void WifiController::connect(Plen* plen, Network* network){
 	if(network->getWifiMode() == Network::ACCESS_POINT_MODE){
 		plen->setAccessPointMode(S("Access point mode"));
+		plen->setAccessPointPassword(network->getPassword());
 		Logger::getInstance()->logln(Logger::INFO, S(" +++ Access point mode +++ "));
 		startAccessPoint(network, plen);
 		return;

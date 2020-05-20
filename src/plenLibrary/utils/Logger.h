@@ -25,6 +25,7 @@ public:
 	void log(LogLevel logLevel, const char * message);
 	void log(LogLevel logLevel, int message);
 	void logln(LogLevel logLevel, const char * message);
+	void logln(LogLevel logLevel, int message);
 	virtual ~Logger();
 	void setLogLevel(LogLevel loglevel);
 

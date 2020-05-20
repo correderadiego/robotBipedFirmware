@@ -38,7 +38,7 @@ ProcessControllerInterface::CommandControllerErrors
 
 	if(getterCommand->getSubCommandType() == GetterCommand::DUMP_MOTION){
 		DumpMotionCommand* dumpMotionCommand = (DumpMotionCommand*) getterCommand;
-		motionController->dumpHeader(plen, dumpMotionCommand->getSlot());
+		motionController->dumpMotion(plen, dumpMotionCommand->getPosition());
 		delete dumpMotionCommand;
 		return NO_ERROR;
 	}
@@ -62,7 +62,7 @@ ProcessControllerInterface::CommandControllerErrors
 void ProcessControllerGetterCommand::processDumpVersionInformation(){
 	Logger::getInstance()->log(Logger::INFO, S("{"));
 
-	Logger::getInstance()->log(Logger::INFO, S("\t\"device\": \""));
+	Logger::getInstance()->log(Logger::INFO, S("device\": \""));
 	Logger::getInstance()->log(Logger::INFO, S(DEVICE_NAME));
 	Logger::getInstance()->log(Logger::INFO, S("\","));
 
@@ -79,12 +79,16 @@ void ProcessControllerGetterCommand::processDumpVersionInformation(){
 void ProcessControllerGetterCommand::processDumpNetworkInformation(Plen* plen){
 	Logger::getInstance()->log(Logger::INFO, S("{"));
 
-	Logger::getInstance()->log(Logger::INFO, S("\t\"Connection mode \": \""));
+	Logger::getInstance()->log(Logger::INFO, S("Connection mode \": \""));
 	Logger::getInstance()->log(Logger::INFO, plen->getAccessPointMode());
 	Logger::getInstance()->log(Logger::INFO, S("\","));
 
 	Logger::getInstance()->log(Logger::INFO, S("\t\"Access point name\": \""));
 	Logger::getInstance()->log(Logger::INFO, plen->getAccessPointName());
+	Logger::getInstance()->log(Logger::INFO, S("\","));
+
+	Logger::getInstance()->log(Logger::INFO, S("\t\"Password\": \""));
+	Logger::getInstance()->log(Logger::INFO, plen->getAccessPointPassword());
 	Logger::getInstance()->log(Logger::INFO, S("\","));
 
 	Logger::getInstance()->log(Logger::INFO, S("\t\"Ip\": \""));

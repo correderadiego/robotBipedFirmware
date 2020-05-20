@@ -32,6 +32,10 @@ void SerialCommunication::print(int number){
 	Serial.print(number);
 }
 
+void SerialCommunication::println(int number){
+	Serial.println(number);
+}
+
 bool SerialCommunication::available(){
 	return Serial.available();
 }

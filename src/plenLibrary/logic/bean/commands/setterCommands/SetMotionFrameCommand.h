@@ -16,6 +16,7 @@ public:
 	SetMotionFrameCommand();
 	void setMotionFrame(Frame* frame);
 	Frame* getMotionFrame();
+	~SetMotionFrameCommand();
 private:
 	Frame* frame = new Frame();
 };

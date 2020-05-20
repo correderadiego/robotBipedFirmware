@@ -18,3 +18,8 @@ void SetMotionFrameCommand::setMotionFrame(Frame* frame){
 Frame* SetMotionFrameCommand::getMotionFrame(){
 	return this->frame;
 }
+
+SetMotionFrameCommand::~SetMotionFrameCommand(){
+	frame = nullptr;
+	delete frame;
+}
