@@ -85,12 +85,13 @@ MotionController::MotionControllerErrors MotionController::dumpMotion(
 	this->get(plen, header);
 	dumpHeader(header);
 
-	Frame* frame = new Frame();
-	frame->setHeaderPosition(headerPosition);
+
 
 	Logger::getInstance()->logln(Logger::INFO, S("\t\"frames\": ["));
 
 	for(unsigned int framePosition = 0; framePosition < header->getMotionFrameLength(); framePosition++){
+		Frame* frame = new Frame();
+		frame->setHeaderPosition(headerPosition);
 		if (framePosition >= FRAME_NUMBER_MAX){
 			delete header;
 			delete frame;
@@ -105,12 +106,12 @@ MotionController::MotionControllerErrors MotionController::dumpMotion(
 		}else{
 			Logger::getInstance()->logln(Logger::INFO, S(","));
 		}
+		delete frame;
 	}
 
 	Logger::getInstance()->logln(Logger::INFO, S("\t]"));
 	Logger::getInstance()->logln(Logger::INFO, S("}"));
 	delete header;
-	delete frame;
 	return NO_ERROR;
 }
 
@@ -230,7 +231,8 @@ ExternalFileSystemController::FileSystemErrors MotionController::writeFrame(Plen
 ExternalFileSystemController::FileSystemErrors MotionController::readFrame(Plen* plen, Frame* frame){
 	int sizeRead = 0;
 	unsigned char* filler = reinterpret_cast<unsigned char*>(frame->getFrameMemory());
-
+	Serial.println("read frame");
+	Serial.println(frame->getFramePosition());
 	return this->externalFileSystemController->read(
 														getFramePosition(frame->getHeaderPosition(), frame->getFramePosition()),
 														sizeof(*frame->getFrameMemory()),
