@@ -231,8 +231,6 @@ ExternalFileSystemController::FileSystemErrors MotionController::writeFrame(Plen
 ExternalFileSystemController::FileSystemErrors MotionController::readFrame(Plen* plen, Frame* frame){
 	int sizeRead = 0;
 	unsigned char* filler = reinterpret_cast<unsigned char*>(frame->getFrameMemory());
-	Serial.println("read frame");
-	Serial.println(frame->getFramePosition());
 	return this->externalFileSystemController->read(
 														getFramePosition(frame->getHeaderPosition(), frame->getFramePosition()),
 														sizeof(*frame->getFrameMemory()),
