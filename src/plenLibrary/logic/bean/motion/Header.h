@@ -20,7 +20,7 @@ public:
 		unsigned int loopBeginFrame;
 		unsigned int loopEndFrame;
 		unsigned int loopCount;
-		unsigned int jumpSlot;
+		unsigned int jumpPosition;
 		bool extra;
 		bool jump;
 		bool loop;
@@ -35,7 +35,7 @@ public:
 			unsigned int loopBeginFrame,
 			unsigned int loopEndFrame,
 			unsigned int loopCount,
-			unsigned int jumpSlot,
+			unsigned int jumpPosition,
 			bool extra,
 			bool jump,
 			bool loop
@@ -48,7 +48,7 @@ public:
 	unsigned int getLoopBeginFrame();
 	unsigned int getLoopEndFrame();
 	unsigned int getLoopCount();
-	unsigned int getJumpSlot();
+	unsigned int getJumpPosition();
 
 	bool useExtra();
 	bool useJump();

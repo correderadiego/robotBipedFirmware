@@ -9,12 +9,14 @@
 
 PlenController* PlenControllerFactory::getPlenController(
 		ExternalFileSystemController* externalFileSystemController){
-	MotionController* motionController 		= new MotionController(externalFileSystemController);
+	FrameController* frameController		= new FrameController(externalFileSystemController);
+	HeaderController* headerController		= new HeaderController(externalFileSystemController);
 	Interpreter* interpreter 				= new Interpreter();
 	LedController* ledController			= new LedController();
 	EyeController* eyeController			= new EyeController(ledController);
 	ParserController* parserController 		= new ParserController();
 	JointController* jointController 		= new JointController(new PCA9685PwmController(), externalFileSystemController);
+	MotionController* motionController 		= new MotionController(headerController, frameController, externalFileSystemController, jointController);
 	ProcessController* processController	= new ProcessController(jointController, motionController);
 
 	return new PlenController(

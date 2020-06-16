@@ -15,7 +15,7 @@ Header::Header() {
 	this->headerMemory->loopBeginFrame 		= 0;
 	this->headerMemory->loopEndFrame 		= 0;
 	this->headerMemory->loopCount 			= 0;
-	this->headerMemory->jumpSlot 			= 0;
+	this->headerMemory->jumpPosition 			= 0;
 	this->headerMemory->extra 				= false;
 	this->headerMemory->jump 				= false;
 	this->headerMemory->loop 				= false;
@@ -39,7 +39,7 @@ Header::Header(
 	this->headerMemory->loopBeginFrame 		= loopBeginFrame;
 	this->headerMemory->loopEndFrame 		= loopEndFrame;
 	this->headerMemory->loopCount 			= loopCount;
-	this->headerMemory->jumpSlot 			= jumpSlot;
+	this->headerMemory->jumpPosition 		= jumpSlot;
 	this->headerMemory->extra 				= extra;
 	this->headerMemory->jump 				= jump;
 	this->headerMemory->loop 				= loop;
@@ -73,8 +73,8 @@ unsigned int Header::getLoopCount(){
 	return this->headerMemory->loopCount;
 }
 
-unsigned int Header::getJumpSlot(){
-	return this->headerMemory->jumpSlot;
+unsigned int Header::getJumpPosition(){
+	return this->headerMemory->jumpPosition;
 }
 
 bool Header::useExtra(){
@@ -113,7 +113,7 @@ void Header::setLoopCount(unsigned int loopCount){
 }
 
 void Header::setJumpSlot(unsigned int jumpSlot){
-	this->headerMemory->jumpSlot = jumpSlot;
+	this->headerMemory->jumpPosition = jumpSlot;
 }
 
 void Header::setExtra(bool extra){

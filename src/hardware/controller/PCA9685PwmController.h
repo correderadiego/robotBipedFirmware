@@ -13,9 +13,8 @@
 #include <PinDefinition.h>
 #include "plenLibrary/interfaces/PCA9685PwmControllerInterface.h"
 
-#define PWM_CONTROLLER_ID 0x44
-#define MAX_PWM_VALUE	4095
-#define PWM_FREQUENCY	60
+#define PWM_CONTROLLER_ID 	0x40
+#define PWM_FREQUENCY		320
 
 #define PWM_CONTROLLER_RESET_TIME 200
 
@@ -24,6 +23,7 @@ public:
 	PCA9685PwmController();
 	void resetPWMController();
 	void setAngle(uint8_t num, uint16_t duty);
+	void disableServo(uint8_t num);
 
 private:
 	GPIOPin* gpioPinEnable;

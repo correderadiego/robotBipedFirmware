@@ -7,7 +7,9 @@
 
 #include <logic/controller/process/ProcessControllerControllerCommand.h>
 
-ProcessControllerControllerCommand::ProcessControllerControllerCommand() {}
+ProcessControllerControllerCommand::ProcessControllerControllerCommand(MotionController* motionController) {
+	this->motionController = motionController;
+}
 
 bool ProcessControllerControllerCommand::match(CommandInterface* command){
 	if(command->getCommandType() == CommandInterface::CONTROLLER_COMMAND){
@@ -34,8 +36,8 @@ ProcessControllerInterface::CommandControllerErrors
 		return NO_ERROR;
 	}
 	if(controllerCommand->getSubCommandType() == ControllerCommand::PLAY_A_MOTION){
-		//TODO play a motion
 		PlayAMotionCommand* playAMotionCommand = (PlayAMotionCommand*)command;
+		motionController->getMotion(plen->getFileMotion(), playAMotionCommand->getPosition(), plen->getMotion());
 		delete playAMotionCommand;
 		return NO_ERROR;
 	}

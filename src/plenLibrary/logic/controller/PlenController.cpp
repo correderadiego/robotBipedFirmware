@@ -26,6 +26,7 @@ PlenController::PlenController(
 
 void PlenController::initPlenController(Plen* plen){
 	loadFileConfiguration(plen);
+	jointController->updateJointPosition(plen->getJointVector(), plen->getJointSize());
 }
 
 void PlenController::loadFileConfiguration(Plen* plen){
@@ -39,7 +40,7 @@ void PlenController::loadFileConfiguration(Plen* plen){
 void PlenController::executeThreadTasks(Plen* plen){
 	processBuffer(plen, plen->getSerialBuffer());
 	processBuffer(plen, plen->getSocketBuffer());
-//	this->jointController->executeThreadTasks(plen);
+	this->motionController->executeThreadTasks(plen);
 //	this->eyeController->executeThreadTasks(plen);
 }
 

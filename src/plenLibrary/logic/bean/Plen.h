@@ -11,6 +11,7 @@
 #include <logic/bean/hardware/Buffer.h>
 #include <logic/bean/hardware/Eyes.h>
 #include <logic/bean/hardware/Joint.h>
+#include "logic/bean/motion/Motion.h"
 #include "ArduinoIncludes.h"
 
 #define EMPTY_VALUE 				"empty"
@@ -34,6 +35,7 @@ public:
 
 	uint8_t getJointSize();
 	Joint**  getJointVector();
+	void  setJointVector(Joint** jointVector);
 	Eyes* 	getEyes();
 
 	File*	getFileConfiguration();
@@ -41,6 +43,9 @@ public:
 	File*	getFileSystem();
 	Buffer* getSerialBuffer();
 	Buffer* getSocketBuffer();
+
+	Motion* getMotion();
+	void setMotion(Motion* motion);
 
 	void  setAccessPointMode(const char* accessPointMode);
 	const char* getAccessPointMode();
@@ -52,7 +57,7 @@ public:
 	const char* getIp();
 
 private:
-	Joint** joint;
+	Joint** jointVector;
 	int jointSize;
 	Eyes* eyes;
 	File* fileMotion;
@@ -60,6 +65,7 @@ private:
 	File* fileSystem;
 	Buffer* serialBuffer;
 	Buffer* socketBuffer;
+	Motion* motion = nullptr;
 
 	const char* accessPointMode 	= EMPTY_VALUE;
 	const char* accessPointName 	= EMPTY_VALUE;

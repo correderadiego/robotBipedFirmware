@@ -8,7 +8,7 @@
 #include <logic/controller/LedController.h>
 
 LedController::LedController(int executionDelayMilliSeconds) {
-	this->executionDelayMilliSeconds = executionDelayMilliSeconds;
+	this->setExecutionDelayMilliSeconds(executionDelayMilliSeconds);
 }
 
 void LedController::executeThreadTasks(Led* led){

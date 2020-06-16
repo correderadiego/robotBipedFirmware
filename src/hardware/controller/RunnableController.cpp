@@ -7,10 +7,15 @@
 
 #include <hardware/controller/RunnableController.h>
 
-RunnableController::RunnableController() {}
-
+RunnableController::RunnableController() {
+	this->currentMillis   = 0;
+	this->previousMillis  = 0;
+	this->executionDelayMilliSeconds = DEFAULT_EXECUTION_DELAY;
+}
 
 RunnableController::RunnableController(int executionDelayMilliSeconds) {
+	this->currentMillis   = 0;
+	this->previousMillis  = 0;
 	this->executionDelayMilliSeconds = executionDelayMilliSeconds;
 }
 
@@ -23,3 +28,6 @@ bool RunnableController::executeTask(){
 	return true;
 }
 
+void RunnableController::setExecutionDelayMilliSeconds(int executionDelayMilliSeconds){
+	this->executionDelayMilliSeconds = executionDelayMilliSeconds;
+}

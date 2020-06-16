@@ -16,12 +16,15 @@
 #include <logic/bean/commands/CommandInterface.h>
 #include <logic/bean/Plen.h>
 #include <logic/controller/process/ProcessControllerInterface.h>
+#include "logic/controller/MotionController.h"
 
 class ProcessControllerControllerCommand : public ProcessControllerInterface {
 public:
-	ProcessControllerControllerCommand();
+	ProcessControllerControllerCommand(MotionController* motionController);
 	bool match(CommandInterface* command);
 	CommandControllerErrors process(Plen* plen, CommandInterface* command);
+private:
+	MotionController* motionController;
 };
 
 #endif /* SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERCONTROLLERCOMMAND_H_ */

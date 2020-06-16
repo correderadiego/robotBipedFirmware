@@ -38,7 +38,7 @@ ProcessControllerInterface::CommandControllerErrors
 
 	if(getterCommand->getSubCommandType() == GetterCommand::DUMP_MOTION){
 		DumpMotionCommand* dumpMotionCommand = (DumpMotionCommand*) getterCommand;
-		motionController->dumpMotion(plen, dumpMotionCommand->getPosition());
+		motionController->dumpMotion(plen->getFileMotion(), dumpMotionCommand->getPosition());
 		delete dumpMotionCommand;
 		return NO_ERROR;
 	}

@@ -14,9 +14,9 @@ JointController::JointController(
 	this->externalFileSystemController  = externalFileSystemController;
 }
 
-void JointController::executeThreadTasks(Plen* plen){
-	for (int i = 0; i < plen->getJointSize(); i++){
-		moveJoint(plen->getJointVector()[i]);
+void JointController::updateJointPosition(Joint** jointVector, int jointSize){
+	for (int i = 0; i < jointSize; i++){
+		moveJoint(jointVector[i]);
 	}
 }
 
@@ -49,6 +49,10 @@ ExternalFileSystemController::FileSystemErrors JointController::loadJoint(Plen* 
 }
 
 void JointController::moveJoint(Joint* joint){
+	if(joint->getPwmPin() == NULL) {
+		return;
+	}
+
 	if(joint->getPwmPin()->getPwmPinType() == PwmPinInterface::PAC9685_PWM_PIN){
 		pca9685PwmControllerInterface->setAngle(joint->getPwmPin()->getPinNumber(), joint->getAngle());
 		return;

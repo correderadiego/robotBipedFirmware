@@ -21,9 +21,7 @@ Network* 			  network;
 SerialController*	  serialController;
 ExternalFileSystemController* externalFileSystemController;
 
-void setup(){
-	Logger::getInstance()->setLogLevel(Logger::DEBUG);
-
+void createControllers(){
 	externalFileSystemController = new ExternalFileSystemController();
 	externalFileSystemController->initExternalFileSystemController();
 
@@ -36,6 +34,11 @@ void setup(){
 	networkController->configureNetworkController(plen, network);
 
 	serialController = new SerialController();
+}
+
+void setup(){
+	Logger::getInstance()->setLogLevel(Logger::DEBUG);
+	createControllers();
 	serialController->printBootMessage();
 }
 

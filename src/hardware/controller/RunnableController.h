@@ -15,12 +15,14 @@ class RunnableController{
 public:
 	RunnableController();
 	RunnableController(int executionDelayMilliSeconds);
-	bool executeTask();
+
 private:
-	unsigned long currentMillis;
-	unsigned long previousMillis;
-protected:
+	unsigned long currentMillis   = 0;
+	unsigned long previousMillis  = 0;
 	int executionDelayMilliSeconds = DEFAULT_EXECUTION_DELAY;
+protected:
+	void setExecutionDelayMilliSeconds(int executionDelayMilliSeconds);
+	bool executeTask();
 };
 
 #endif /* SRC_HARDWARE_CONTROLLER_RUNNABLECONTROLLER_H_ */

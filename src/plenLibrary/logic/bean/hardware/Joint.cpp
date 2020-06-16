@@ -36,8 +36,7 @@ void Joint::setAngleMax(int angleMax){
 }
 
 void Joint::setAngle(int angle){
-	//int temporalAngle = constrain(angle, angleMin, angleMax);
-	int temporalAngle = angle;
+	int temporalAngle = constrain(angle, this->jointMemory.angleMin, this->jointMemory.angleMax);
 	if(this->rotationMode == Joint::counterClockWise){
 		temporalAngle = 90 - angle / 10;
 	}

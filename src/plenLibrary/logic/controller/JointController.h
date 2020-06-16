@@ -13,6 +13,8 @@
 #include <logic/bean/hardware/Joint.h>
 #include <logic/bean/Plen.h>
 #include "interfaces/PwmPinInterface.h"
+#include "stddef.h"
+
 
 class JointController {
 public:
@@ -31,7 +33,7 @@ public:
 	ExternalFileSystemController::FileSystemErrors loadJoint(Plen* plen, Joint* joint, int jointIndex);
 	void dump(Joint* joint);
 	void resetJoint(Joint* joint);
-	void executeThreadTasks(Plen* plen);
+	void updateJointPosition(Joint** jointVector, int jointSize);
 private:
 	PCA9685PwmControllerInterface* pca9685PwmControllerInterface;
 	ExternalFileSystemController* externalFileSystemController;

@@ -26,8 +26,8 @@ ProcessControllerInterface::CommandControllerErrors
 
 	if(setterCommand->getSubCommandType() == SetterCommand::SET_MOTION_HEADER){
 		SetMotionHeaderCommand* setMotionHeaderCommand = (SetMotionHeaderCommand *)setterCommand;
-		motionController->set(
-								plen,
+		motionController->setHeader(
+								plen->getFileMotion(),
 								setMotionHeaderCommand->getMotionHeader()
 							);
 		delete setMotionHeaderCommand;
@@ -35,8 +35,8 @@ ProcessControllerInterface::CommandControllerErrors
 	}
 	if(setterCommand->getSubCommandType() == SetterCommand::SET_MOTION_FRAME){
 		SetMotionFrameCommand* setMotionFrameCommand = (SetMotionFrameCommand *)setterCommand;
-		motionController->set(
-								plen,
+		motionController->setFrame(
+								plen->getFileMotion(),
 								setMotionFrameCommand->getMotionFrame()
 							);
 		delete setMotionFrameCommand;

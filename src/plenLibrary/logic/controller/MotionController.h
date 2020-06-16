@@ -12,39 +12,48 @@
 #include "logic/bean/motion/Frame.h"
 #include "Configuration.h"
 #include <hardware/controller/ExternalFileSystemController.h>
+#include "logic/controller/JointController.h"
 #include "utils/Logger.h"
+#include "hardware/controller/RunnableController.h"
+#include "HeaderController.h"
+#include "FrameController.h"
 
-#define sizeInSlots(object) sizeof(object)/EEPROM_SLOT_SIZE_BYTES + sizeof(object)%EEPROM_SLOT_SIZE_BYTES
-#define SIZE_HEADER_IN_SLOTS sizeInSlots(Header)
-#define	SIZE_FRAME_IN_SLOTS  sizeInSlots(Frame)
-#define SIZE_MOTION_IN_SLOTS SIZE_HEADER_IN_SLOTS + SIZE_FRAME_IN_SLOTS*FRAME_NUMBER_MAX
+#define MOTION_CONTROLLER_DEFAULT_EXECUTION_DELAY	1
 
-class MotionController {
+class MotionController  : public RunnableController {
 public:
 	enum MotionControllerErrors{
 	  NO_ERROR,
 	  HEADER_POSITION_ERROR,
 	  HEADER_FRAME_SIZE_ERROR,
 	  WRITE_ERROR,
-	  READ_ERROR
+	  READ_HEADER_ERROR,
+	  READ_ERROR,
+	  LOAD_MOTION_ERROR
 	};
-	MotionController(ExternalFileSystemController* externalFileSystemController);
-	MotionControllerErrors set(Plen* plen, Header* header);
-	MotionControllerErrors get(Plen* plen, Header* header);
-	MotionControllerErrors set(Plen* plen, Frame* frame);
-	MotionControllerErrors get(Plen* plen, Frame* frame);
-	MotionControllerErrors dumpMotion(Plen* plen, int headerPosition);
+	MotionController(
+			HeaderController* headerController,
+			FrameController* frameController,
+			ExternalFileSystemController* externalFileSystemController,
+			JointController* jointController);
+	void executeThreadTasks(Plen* plen);
+
+	MotionControllerErrors dumpMotion(File* fileMotion, int headerPosition);
+	MotionControllerErrors getMotion(File* fileMotion, unsigned int motionPosition, Motion* motion);
+	HeaderController::HeaderControllerErrors setHeader(File* fileMotion, Header* header);
+	FrameController::FrameControllerErrors setFrame(File* fileMotion, Frame* frame);
 
 private:
 	ExternalFileSystemController* externalFileSystemController;
-	ExternalFileSystemController::FileSystemErrors readHeader(Plen* plen, Header* header);
-	ExternalFileSystemController::FileSystemErrors writeHeader(Plen* plen, Header* header);
-	ExternalFileSystemController::FileSystemErrors readFrame(Plen* plen, Frame* frame);
-	ExternalFileSystemController::FileSystemErrors writeFrame(Plen* plen, Frame* frame);
-	int getFramePosition(int headerPosition, int framePosition);
-	int getMotionPosition(int headerPosition);
-	void dumpHeader(Header* header);
-	void dumpFrame (Frame* frame);
+	JointController* jointController;
+	HeaderController* headerController;
+	FrameController* frameController;
+
+	void executeMotion(Motion* motion, Joint** jointVector, int jointSize, File* fileMotion);
+	bool framesToExecute(Motion* motion);
+	void updateFrameExecutingPosition(Motion* motion);
+	void updateLoopFrameExecutingPosition(Motion* motion);
+	void updatePlenJoint(Motion* motion, Joint** jointVector, int jointSize);
 };
 
 #endif /* SRC_CONTROLLER_MOTIONCONTROLLER_H_ */

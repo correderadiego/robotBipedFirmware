@@ -17,6 +17,7 @@ void PCA9685PwmController::resetPWMController(){
 	gpioPinEnable->setPinValue(HIGH);
 	delay(PWM_CONTROLLER_RESET_TIME);
 	gpioPinEnable->setPinValue(LOW);
+	delay(PWM_CONTROLLER_RESET_TIME);
 }
 
 void PCA9685PwmController::configurePWM(){
@@ -26,5 +27,10 @@ void PCA9685PwmController::configurePWM(){
 }
 
 void PCA9685PwmController::setAngle(uint8_t num, uint16_t duty){
-	this->pwmServoDriver.setPWM(num, duty, MAX_PWM_VALUE);
+	this->pwmServoDriver.setPWM(num, 0, duty);
 }
+
+void PCA9685PwmController::disableServo(uint8_t num){
+	this->pwmServoDriver.setPWM(num, 4096, 0);
+}
+

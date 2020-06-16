@@ -9,13 +9,13 @@
 
 PlayAMotionCommand::PlayAMotionCommand() {
 	this->subCommandType 	= PLAY_A_MOTION;
-	this->slot 				= 0;
+	this->position 				= 0;
 }
 
-int PlayAMotionCommand::getSlot(){
-	return slot;
+int PlayAMotionCommand::getPosition(){
+	return position;
 }
 
-void PlayAMotionCommand::setSlot(int slot){
-	this->slot = slot;
+void PlayAMotionCommand::setPosition(int slot){
+	this->position = slot;
 }

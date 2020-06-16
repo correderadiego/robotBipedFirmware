@@ -1,4 +1,4 @@
-/*
+	/*
  * Motion.h
  *
  *  Created on: 5 abr. 2020
@@ -13,13 +13,23 @@
 
 class Motion {
 public:
-	Motion(Header* header, Frame* frame);
+	Motion(Header* header, Frame** frame);
+	~Motion();
+
+	void setHeader(Header* header);
 	Header* getHeader();
-	Frame* getFrame();
-	void setFrame(Frame* frame);
+	void setFrameVector(Frame** frameVector);
+	Frame** getFrameVector();
+	void setFrameExecutingPosition(unsigned int frameExecutingPosition);
+	unsigned int getFrameExecutingPosition();
+	void setLoopExecutingPosition(unsigned int loopExecutingPosition);
+	unsigned int getLoopExecutingPosition();
+
 private:
+	unsigned int frameExecutingPosition;
+	unsigned int loopExecutingPosition;
 	Header* header;
-	Frame frame[FRAME_NUMBER_MAX]={};
+	Frame** frameVector;
 };
 
 #endif /* SRC_BEAN_MOTION_MOTION_H_ */

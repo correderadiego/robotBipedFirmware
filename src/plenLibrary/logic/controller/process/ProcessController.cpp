@@ -10,7 +10,7 @@
 ProcessController::ProcessController(JointController* jointController, MotionController* motionController) {
 		this->jointController = jointController;
 		this->motionController = motionController;
-		commandController[0] = new ProcessControllerControllerCommand();
+		commandController[0] = new ProcessControllerControllerCommand(motionController);
 		commandController[1] = new ProcessControllerInterpreterCommand();
 		commandController[2] = new ProcessControllerSetterCommand(jointController, motionController);
 		commandController[3] = new ProcessControllerGetterCommand(jointController, motionController);

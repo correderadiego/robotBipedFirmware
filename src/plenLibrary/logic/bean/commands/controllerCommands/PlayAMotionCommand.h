@@ -13,10 +13,10 @@
 class PlayAMotionCommand  : public ControllerCommand{
 public:
 	PlayAMotionCommand();
-	int getSlot();
-	void setSlot(int slot);
+	int getPosition();
+	void setPosition(int position);
 private:
-	int slot;
+	int position;
 };
 
 #endif /* SRC_BEAN_COMMANDS_CONTROLLERCOMMANDS_PLAYAMOTIONCOMMAND_H_ */
