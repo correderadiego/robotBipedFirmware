@@ -16,6 +16,8 @@ This project is based on this projects :
  - Learn about the biped movement.
  - Create a cheap and expandable robot biped platform
 
+The project is being developed using eclipse with sloeber plugin. You should be able to compile it using this platform. If you are interested in the tests please check this repository https://github.com/correderadiego/robotBipedFirmwareTest
+
  I have included a folder with the stls that I have used. I made a mixture from the three previous projects. They are included only for reference. Please check the oficial resources from :
 
   - https://github.com/plenprojectcompany/PLEN2/tree/master/stl
