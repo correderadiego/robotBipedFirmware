@@ -23,7 +23,7 @@ This project is based on this projects :
   - https://www.thingiverse.com/thing:2138930
 
 This project is not 100% complete. This is compatible with vivi board. This includes :
-	-	Low level hardware controll of all the servos. 
-	-	Control over serial using the plen2 communication commands.
-	-	Basic Network factory interface.  
-	-   Modular code.
+  - Low level hardware controll of all the servos. 
+  - Control over serial using the plen2 communication commands.
+  - Basic Network factory interface.  
+  - Modular code.
