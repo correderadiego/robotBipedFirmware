@@ -2,7 +2,7 @@
  * LedController.cpp
  *
  *  Created on: 29 dic. 2019
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/controller/LedController.h>

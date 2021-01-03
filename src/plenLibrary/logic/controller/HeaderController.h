@@ -2,7 +2,7 @@
  * HeaderController.h
  *
  *  Created on: 5 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_CONTROLLER_HEADERCONTROLLER_H_
@@ -23,9 +23,10 @@ public:
 	};
 
 	HeaderController(ExternalFileSystemController* externalFileSystemController);
-	HeaderControllerErrors set(File* fileMotion, Header* header);
-	HeaderControllerErrors get(File* fileMotion, Header* header);
-	void dumpHeader(Header* header);
+	virtual HeaderControllerErrors set(File* fileMotion, Header* header);
+	virtual HeaderControllerErrors get(File* fileMotion, Header* header);
+	virtual void dumpHeader(Header* header);
+	virtual ~HeaderController() {};
 
 private:
 	ExternalFileSystemController::FileSystemErrors read(File* fileMotion, Header* header);

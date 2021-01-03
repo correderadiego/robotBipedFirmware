@@ -2,7 +2,7 @@
  * SetHeaderFrameCommand.h
  *
  *  Created on: 3 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_COMMANDS_SETTERCOMMANDS_SETHEADERFRAMECOMMAND_H_
@@ -16,9 +16,9 @@ public:
 	SetMotionHeaderCommand();
 	void setMotionHeader(Header* header);
 	Header* getMotionHeader();
-	~SetMotionHeaderCommand();
+	virtual ~SetMotionHeaderCommand();
 private:
-	Header* header = new Header();
+	Header* header;
 };
 
 #endif /* SRC_BEAN_COMMANDS_SETTERCOMMANDS_SETHEADERFRAMECOMMAND_H_ */

@@ -2,7 +2,7 @@
  * SetHomeValueCommand.h
  *
  *  Created on: 29 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_COMMANDS_SETTERCOMMANDS_SETHOMEVALUECOMMAND_H_
@@ -13,7 +13,6 @@
 class SetAngleHomeValueCommand : public SetterCommand{
 public:
 	SetAngleHomeValueCommand();
-	SetAngleHomeValueCommand(SetterCommand setterCommand);
 
 	int getDeviceId();
 	void setDeviceId(int deviceId);

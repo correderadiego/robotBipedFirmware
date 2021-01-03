@@ -2,7 +2,7 @@
  * EyeController.h
  *
  *  Created on: 16 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_CONTROLLER_EYECONTROLLER_H_

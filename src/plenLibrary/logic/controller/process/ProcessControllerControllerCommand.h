@@ -2,13 +2,14 @@
  * ProcessControllerControllerCommand.h
  *
  *  Created on: 1 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERCONTROLLERCOMMAND_H_
 #define SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERCONTROLLERCOMMAND_H_
 
 #include <logic/bean/commands/controllerCommands/ApplyDiffValueCommand.h>
+#include <logic/bean/commands/controllerCommands/ApplyJointPositionCommand.h>
 #include <logic/bean/commands/controllerCommands/ApplyNativeValueCommand.h>
 #include <logic/bean/commands/controllerCommands/PlayAMotionCommand.h>
 #include <logic/bean/commands/controllerCommands/StopAMotionCommand.h>
@@ -20,11 +21,13 @@
 
 class ProcessControllerControllerCommand : public ProcessControllerInterface {
 public:
-	ProcessControllerControllerCommand(MotionController* motionController);
+	ProcessControllerControllerCommand(JointController* jointController, MotionController* motionController);
+	~ProcessControllerControllerCommand();
 	bool match(CommandInterface* command);
 	CommandControllerErrors process(Plen* plen, CommandInterface* command);
 private:
 	MotionController* motionController;
+	JointController* jointController;
 };
 
 #endif /* SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERCONTROLLERCOMMAND_H_ */

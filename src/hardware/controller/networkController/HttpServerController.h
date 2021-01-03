@@ -2,7 +2,7 @@
  * httpServerController.h
  *
  *  Created on: 21 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_HTTPSERVERCONTROLLER_H_

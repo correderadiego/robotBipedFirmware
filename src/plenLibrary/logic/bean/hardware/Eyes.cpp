@@ -2,7 +2,7 @@
  * Eyes.cpp
  *
  *  Created on: 16 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/bean/hardware/Eyes.h>

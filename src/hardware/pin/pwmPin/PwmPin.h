@@ -14,8 +14,9 @@
 class PwmPin : public ArduinoPin, public PwmPinInterface{
 public:
 	PwmPin();
+	~PwmPin();
 	PwmPin(uint8_t pinNumber, PwmPinType pwmPinType = EMBEDDED_PWM_PIN);
-	void setValue(uint8_t duty);
+	void setValue(int rotationMode, uint8_t duty);
 	PwmPinType getPwmPinType();
 	uint8_t getPinNumber();
 

@@ -2,7 +2,7 @@
  * EyeController.cpp
  *
  *  Created on: 16 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/controller/EyeController.h>

@@ -2,17 +2,20 @@
  * Configuration.h
  *
  *  Created on: 15 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_PLENLIBRARY_CONFIGURATION_H_
 #define SRC_PLENLIBRARY_CONFIGURATION_H_
 
+#include <utils/Logger.h>
+
 #define DEVICE_NAME "MiniPlen2"
 #define CODE_NAME   "Conguito"
-#define VERSION     "1.0"
+#define VERSION     "1.1.1"
 
 #define NUMBER_OF_JOINTS 24
+#define LOG_LEVEL Logger::DEBUG
 
 #define MOTION_FILE  		"/motion.bin"
 #define MOTION_FILE_SIZE 	0x200000L
@@ -56,5 +59,16 @@
 #define HOME_POSITION_RIGHT_KNEE_PITCH		-510
 #define HOME_POSITION_RIGHT_FOOT_PITCH		-305
 #define HOME_POSITION_RIGHT_FOOT_ROLL		60
+
+
+#define PWM_CONTROLLER_ID 	0x40
+#define PWM_FREQUENCY		320
+
+#define ANGLE_MIN      -800
+#define	ANGLE_MAX       800
+#define ANGLE_NEUTRAL     0
+
+#define PWM_MIN			1100
+#define PWM_MAX			2700
 
 #endif /* SRC_PLENLIBRARY_CONFIGURATION_H_ */

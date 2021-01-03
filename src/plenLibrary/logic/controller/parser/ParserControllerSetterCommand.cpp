@@ -2,7 +2,7 @@
  * ParserControllerSetterCommand.cpp
  *
  *  Created on: 25 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/controller/parser/ParserControllerSetterCommand.h>
@@ -21,29 +21,34 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parse(
 
 	char commandSequence[HEADER_LENGTH+1] = {'\0'};
 	strncpy ( commandSequence, &buffer->getData()[HEADER_INDEX_POSITION], HEADER_LENGTH);
-	*command = new SetterCommand();
 
 	if( strcmp(commandSequence, SET_MOTION_HEADER_CHAR) == 0){
+		*command = new SetMotionHeaderCommand();
 		return parseSetMotionHeaderCommand(buffer, (SetMotionHeaderCommand**)command);
 	}
 
 	if( strcmp(commandSequence, SET_MOTION_FRAME_CHAR) == 0){
+		*command = new SetMotionFrameCommand();
 		return parseSetMotionFrameCommand(buffer, (SetMotionFrameCommand**)command);
 	}
 
 	if( strcmp(commandSequence, RESET_JOINT_SETTINGS_CHAR) == 0){
+		*command = new ResetJointSettingsCommand();
 		return parseResetJointSettingsCommand(buffer, (ResetJointSettingsCommand**)command);
 	}
 
 	if( strcmp(commandSequence, SET_HOME_VALUE_CHAR) == 0){
+		*command = new SetAngleHomeValueCommand();
 		return parseSetHomeValueCommand(buffer, (SetAngleHomeValueCommand**)command);
 	}
 
 	if( strcmp(commandSequence, SET_MAX_VALUE_CHAR) == 0){
+		*command = new SetAngleMaxValueCommand();
 		return parseSetMaxValueCommand(buffer, (SetAngleMaxValueCommand**)command);
 	}
 
 	if( strcmp(commandSequence, SET_MIN_VALUE_CHAR) == 0){
+		*command = new SetMinValueCommand();
 		return parseSetMinValueCommand(buffer, (SetMinValueCommand**)command);
 	}
 
@@ -122,7 +127,8 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMotionFrameC
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
 
-	(**command).setMotionFrame(new Frame());
+	// Todo Necessary?
+	//(**command).setMotionFrame(new Frame());
 
 	char slot[SLOT_LENGTH+1] = {'\0'};
 	strncpy ( slot, &buffer->getData()[SLOT_POSITION],  SLOT_LENGTH);
@@ -136,7 +142,6 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMotionFrameC
 	strncpy ( transitionTime, &buffer->getData()[TRANSITION_TIME_POSITION],  TRANSITION_TIME_LENGTH);
 	(**command).getMotionFrame()->setTransitionTime(ParserUtils::hexbytes2int(transitionTime, TRANSITION_TIME_LENGTH));
 
-	int value[NUMBER_OF_JOINTS] = {};
 	char valueChar[JOINT_VALUE_LENGTH+1] = {'\0'};
 	for(int i = 0; i < NUMBER_OF_JOINTS; i++){
 		strncpy ( valueChar, &buffer->getData()[JOINT_VALUE_POSITION+JOINT_VALUE_LENGTH*i], JOINT_VALUE_LENGTH);
@@ -153,7 +158,8 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMotionHeader
 		return WRONG_LENGHT_COMMAND_ERROR;
 	}
 
-	(**command).setMotionHeader(new Header());
+	// Todo Necessary?
+	//(**command).setMotionHeader(new Header());
 
 	char slot[SLOT_LENGTH+1] = {'\0'};
 	strncpy ( slot, &buffer->getData()[SLOT_POSITION],  SLOT_LENGTH);
@@ -176,7 +182,7 @@ ParserInterface::ParseErrors ParserControllerSetterCommand::parseSetMotionHeader
 	(**command).getMotionHeader()->setLoopEndFrame(ParserUtils::hexbytes2int(loopEnd, LOOP_END_LENGTH));
 
 	char loopCount[LOOP_COUNT_LENGTH+1] = {'\0'};
-	strncpy ( loopCount, &buffer->getData()[LOOP_COUNT_POSITION],  LOOP_COUNT_LENGTH);
+	strncpy ( loopCount, &buffer->getData()[LOOP_COUNT_POSITION_SETTER_COMMAND],  LOOP_COUNT_LENGTH);
 	(**command).getMotionHeader()->setLoopCount(ParserUtils::hexbytes2int(loopCount, LOOP_COUNT_LENGTH));
 
 	char useJump[USE_JUMP_LENGTH+1] = {'\0'};

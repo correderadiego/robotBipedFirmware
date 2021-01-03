@@ -2,7 +2,7 @@
  * Joint.h
  *
  *  Created on: 16 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_JOINT_H_
@@ -11,15 +11,12 @@
 #include <ArduinoIncludes.h>
 #include "interfaces/PwmPinInterface.h"
 #include <utils/Logger.h>
-
-#define ANGLE_MIN      -800
-#define	ANGLE_MAX       800
-#define ANGLE_NEUTRAL     0
+#include "../../../Configuration.h"
 
 class Joint {
 public:
 	enum RotationMode{
-		clokWise,
+		clockWise,
 		counterClockWise
 	};
 
@@ -32,7 +29,8 @@ public:
 	Joint(
 			PwmPinInterface* pwmPinInterface = nullptr,
 			int homePosition = ANGLE_NEUTRAL,
-			Joint::RotationMode rotationMode = RotationMode::clokWise
+			Joint::RotationMode rotationMode = RotationMode::clockWise,
+			bool enabled = true
 		  );
 
 	JointMemory* getJointMemory();
@@ -47,6 +45,8 @@ public:
 	int getAngleMax();
 	RotationMode getRotationMode();
 	PwmPinInterface* getPwmPin();
+	bool isEnabled();
+	void setEnabled(bool enabled);
 
 private:
 	enum RotationMode rotationMode;
@@ -54,6 +54,7 @@ private:
 	int defaultHome;
 	JointMemory jointMemory;
 	PwmPinInterface* pwmPinInterface;
+	bool enabled;
 };
 
 #endif /* SRC_BEAN_JOINT_H_ */

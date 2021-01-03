@@ -2,7 +2,7 @@
  * PlenBean.h
  *
  *  Created on: 16 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  Wifi*/
 
 #ifndef SRC_PLEN_H_
@@ -32,6 +32,8 @@ public:
 			File* fileConfiguration,
 			File* fileSystem
 			);
+
+	~Plen();
 
 	uint8_t getJointSize();
 	Joint**  getJointVector();
@@ -65,7 +67,7 @@ private:
 	File* fileSystem;
 	Buffer* serialBuffer;
 	Buffer* socketBuffer;
-	Motion* motion = nullptr;
+	Motion* motion;
 
 	const char* accessPointMode 	= EMPTY_VALUE;
 	const char* accessPointName 	= EMPTY_VALUE;

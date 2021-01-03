@@ -2,7 +2,7 @@
  * HeaderController.cpp
  *
  *  Created on: 5 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/controller/HeaderController.h>

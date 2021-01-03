@@ -2,7 +2,7 @@
  * DumJointSettingsCommand.cpp
  *
  *  Created on: 29 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/bean/commands/getterCommands/DumpJointSettingsCommand.h>

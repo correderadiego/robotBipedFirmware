@@ -2,7 +2,7 @@
  * CommandInterface.h
  *
  *  Created on: 25 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_COMMANDS_COMMANDINTERFACE_H_
@@ -18,6 +18,7 @@ class CommandInterface {
 						  GETTER_COMMAND
 						};
 	CommandInterface(CommandTypeEnum commandType = UNKNOWN_COMMAND_TYPE);
+	virtual ~CommandInterface();
 	void setCommandType		(CommandTypeEnum commandType);
 	CommandInterface::CommandTypeEnum getCommandType();
 	int getCommandLength	();

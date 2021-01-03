@@ -2,7 +2,7 @@
  * PinDefinition.h
  *
  *  Created on: 17 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_PLENLIBRARY_PINDEFINITION_H_
@@ -23,7 +23,7 @@
 #define PIN_RIGHT_SHOULDER_PITCH 	10
 #define PIN_RIGHT_THIGH_YAW			11
 #define PIN_RIGHT_SHOULDER_ROLL		12
-#define PIN_RIGHT_ELBOW_ROLL		13
+#define PIN_RIGHT_ELBOW_ROLL		14
 #define PIN_RIGHT_THIGH_ROLL		14
 #define PIN_RIGHT_THIGH_PITCH		15
 #define PIN_RIGHT_KNEE_PITCH		16

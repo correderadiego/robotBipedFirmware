@@ -2,7 +2,7 @@
  * Interpreter.cpp
  *
  *  Created on: 26 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/controller/Interpreter.h>

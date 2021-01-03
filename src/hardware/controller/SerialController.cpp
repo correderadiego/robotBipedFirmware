@@ -2,7 +2,7 @@
  * SerialController.cpp
  *
  *  Created on: 12 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <hardware/controller/SerialController.h>

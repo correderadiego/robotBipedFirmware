@@ -2,7 +2,7 @@
  * ParserControllerGetterCommand.cpp
  *
  *  Created on: 25 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/controller/parser/ParserControllerGetterCommand.h>
@@ -21,21 +21,24 @@ ParserInterface::ParseErrors ParserControllerGetterCommand::parse(
 
 	char commandSequence[HEADER_LENGTH+1] = {'\0'};
 	strncpy ( commandSequence, &buffer->getData()[HEADER_INDEX_POSITION], HEADER_LENGTH);
-	*command = new GetterCommand();
 
 	if( strcmp(commandSequence, DUMP_JOINT_SETTINGS_CHAR) == 0){
+		*command = new DumpJointSettingsCommand();
 		return parseDumpJointSettingsCommand(buffer, (DumpJointSettingsCommand**)command);
 	}
 
 	if( strcmp(commandSequence, DUMP_A_MOTION_CHAR) == 0){
+		*command = new DumpMotionCommand();
 		return parseDumpMotionCommand(buffer, (DumpMotionCommand**)command);
 	}
 
 	if( strcmp(commandSequence, DUMP_VERSION_INFORMATION_CHAR) == 0){
+		*command = new DumpVersionInformationCommand();
 		return parseDumpVersionInformationCommand(buffer, (DumpVersionInformationCommand**)command);
 	}
 
 	if( strcmp(commandSequence, DUMP_NETWORK_INFORMATION_CHAR) == 0){
+		*command = new DumpNetworkInformationCommand();
 		return parseDumpNetworkInformationCommand(buffer, (DumpNetworkInformationCommand**)command);
 	}
 

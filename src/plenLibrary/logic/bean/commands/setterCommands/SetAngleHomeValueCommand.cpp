@@ -2,7 +2,7 @@
  * SetHomeValueCommand.cpp
  *
  *  Created on: 29 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/bean/commands/setterCommands/SetAngleHomeValueCommand.h>
@@ -11,10 +11,6 @@ SetAngleHomeValueCommand::SetAngleHomeValueCommand() {
 	this->subCommandType = SET_ANGLE_HOME_VALUE;
 	this->deviceId 		= 0;
 	this->value 		= 0;
-}
-
-SetAngleHomeValueCommand::SetAngleHomeValueCommand(SetterCommand setterCommand){
-
 }
 
 int SetAngleHomeValueCommand::getDeviceId(){

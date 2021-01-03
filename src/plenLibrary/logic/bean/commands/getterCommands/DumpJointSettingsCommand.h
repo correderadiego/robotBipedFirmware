@@ -2,7 +2,7 @@
  * DumJointSettingsCommand.h
  *
  *  Created on: 29 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_COMMANDS_GETTERCOMMANDS_DUMPJOINTSETTINGSCOMMAND_H_

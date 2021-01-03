@@ -2,16 +2,10 @@
  * InterpreterCommand.cpp
  *
  *  Created on: 24 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/bean/commands/interpreterCommands/InterpreterCommand.h>
-
-InterpreterCommand::InterpreterCommand(CommandInterface command) {
-	this->commandType 	 = INTERPRETER_COMMAND;
-	this->commandLength  = command.getCommandLength();
-	this->subCommandType = UNKNOWN_SUB_COMMAND_TYPE;
-}
 
 InterpreterCommand::InterpreterCommand() {
 	this->commandType  	 = INTERPRETER_COMMAND;

@@ -2,7 +2,7 @@
  * Wifi.h
  *
  *  Created on: 20 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_NETWORK_H_

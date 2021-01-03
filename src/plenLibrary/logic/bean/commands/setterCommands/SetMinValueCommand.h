@@ -2,7 +2,7 @@
  * SetMinValueCommand.h
  *
  *  Created on: 29 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_COMMANDS_SETTERCOMMANDS_SETMINVALUECOMMAND_H_
@@ -13,7 +13,6 @@
 class SetMinValueCommand : public SetterCommand {
 public:
 	SetMinValueCommand();
-	SetMinValueCommand(SetterCommand setterCommand);
 	int getDeviceId();
 	void setDeviceId(int deviceId);
 	int getValue();

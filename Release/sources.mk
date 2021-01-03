@@ -47,9 +47,7 @@ libraries/ESP8266WiFi/src \
 libraries/ESP8266mDNS \
 libraries/SPI \
 libraries/Servo/src \
-libraries/Ticker \
 libraries/Wire \
-libraries/gdb \
 src \
 src/hardware/bean \
 src/hardware/controller \

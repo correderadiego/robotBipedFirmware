@@ -2,7 +2,7 @@
  * ApplyNativeValueCommand.h
  *
  *  Created on: 29 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_COMMANDS_CONTROLLERCOMMANDS_APPLYNATIVEVALUECOMMAND_H_
@@ -12,9 +12,7 @@
 
 class ApplyNativeValueCommand : public ControllerCommand{
 public:
-	ApplyNativeValueCommand(CommandInterface commandInterfaces);
 	ApplyNativeValueCommand();
-	ApplyNativeValueCommand(ControllerCommand controllerCommand);
 	int getDeviceId();
 	void setDeviceId(int deviceId);
 	int getValue();

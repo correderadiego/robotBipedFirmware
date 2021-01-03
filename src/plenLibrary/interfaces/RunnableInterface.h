@@ -2,7 +2,7 @@
  * RunnableInterface.h
  *
  *  Created on: 17 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_PLENLIBRARY_INTERFACES_RUNNABLEINTERFACE_H_

@@ -2,14 +2,14 @@
  * PlenFactory.cpp
  *
  *  Created on: 16 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <PlenFactory.h>
 
 Plen* PlenFactory::getPlen(ExternalFileSystemController* externalFsController) {
 	joint[0] =	new Joint(new PCA9685PwmPin(PIN_LEFT_SHOULDER_PITCH),	HOME_POSITION_LEFT_SHOULDER_PITCH, Joint::counterClockWise);
-	joint[1] =	new Joint(new PCA9685PwmPin(PIN_LEFT_THIGH_YAW),		HOME_POSITION_LEFT_THIGH_YAW);
+	joint[1] =	new Joint(new PCA9685PwmPin(PIN_LEFT_THIGH_YAW),		HOME_POSITION_LEFT_THIGH_YAW, Joint::clockWise);
 	joint[2] =  new Joint(new PCA9685PwmPin(PIN_LEFT_SHOULDER_ROLL),	HOME_POSITION_LEFT_SHOULDER_ROLL);
 	joint[3] =	new Joint(new PCA9685PwmPin(PIN_LEFT_ELBOW_ROLL),		HOME_POSITION_LEFT_ELBOW_ROLL);
 	joint[4] =	new Joint(new PCA9685PwmPin(PIN_LEFT_THIGH_ROLL),		HOME_POSITION_LEFT_THIGH_ROLL);

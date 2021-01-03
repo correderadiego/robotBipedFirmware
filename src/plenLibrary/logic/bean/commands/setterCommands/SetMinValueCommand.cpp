@@ -2,7 +2,7 @@
  * SetMinValueCommand.cpp
  *
  *  Created on: 29 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/bean/commands/setterCommands/SetMinValueCommand.h>
@@ -11,10 +11,6 @@ SetMinValueCommand::SetMinValueCommand() {
 	this->subCommandType = SET_ANGLE_MIN_VALUE;
 	this->deviceId 		= 0;
 	this->value 		= 0;
-}
-
-SetMinValueCommand::SetMinValueCommand(SetterCommand setterCommand){
-
 }
 
 int SetMinValueCommand::getDeviceId(){

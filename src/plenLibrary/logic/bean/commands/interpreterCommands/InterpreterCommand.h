@@ -2,7 +2,7 @@
  * InterpreterCommand.h
  *
  *  Created on: 24 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_COMMANDS_INTERPRETERCOMMAND_H_
@@ -22,7 +22,6 @@ public:
 							POP_A_FUNCTION,
 							RESET_INTERPRETER
 						};
-	InterpreterCommand(CommandInterface command);
 	InterpreterCommand();
 	void setSubCommandType	(SubCommandType subCommandType);
 	SubCommandType getSubCommandType();

@@ -2,7 +2,7 @@
  * PlenControllerFactory.cpp
  *
  *  Created on: 19 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <PlenControllerFactory.h>
@@ -15,7 +15,7 @@ PlenController* PlenControllerFactory::getPlenController(
 	LedController* ledController			= new LedController();
 	EyeController* eyeController			= new EyeController(ledController);
 	ParserController* parserController 		= new ParserController();
-	JointController* jointController 		= new JointController(new PCA9685PwmController(), externalFileSystemController);
+	JointController* jointController 		= new JointController( new PCA9685PwmController(), externalFileSystemController);
 	MotionController* motionController 		= new MotionController(headerController, frameController, externalFileSystemController, jointController);
 	ProcessController* processController	= new ProcessController(jointController, motionController);
 

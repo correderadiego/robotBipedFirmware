@@ -2,7 +2,7 @@
  * Frame.cpp
  *
  *  Created on: 5 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/bean/motion/Frame.h>
@@ -12,15 +12,22 @@ Frame::Frame(
 		unsigned int frameIndex,
 		unsigned int transitionTime
 		) {
+	this->frameMemory = new FrameMemory();
 	this->frameMemory->headerPosition	 = headerPosition;
 	this->frameMemory->framePosition	 	 = frameIndex;
 	this->frameMemory->transitionTime	 = transitionTime;
 }
 
 Frame::Frame() {
+	this->frameMemory = new FrameMemory();
 	this->frameMemory->headerPosition	 = 0;
-	this->frameMemory->framePosition	 	 = 0;
+	this->frameMemory->framePosition	 = 0;
 	this->frameMemory->transitionTime	 = 0;
+}
+
+Frame::~Frame() {
+	delete this->frameMemory;
+	this->frameMemory = nullptr;
 }
 
 Frame::FrameMemory* Frame::getFrameMemory(){

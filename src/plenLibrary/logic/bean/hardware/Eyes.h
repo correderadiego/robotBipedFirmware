@@ -2,7 +2,7 @@
  * Eyes.h
  *
  *  Created on: 16 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_EYES_H_

@@ -2,7 +2,7 @@
  * ArduinoIncludes.h
  *
  *  Created on: 10 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_ARDUINOINCLUDES_H_

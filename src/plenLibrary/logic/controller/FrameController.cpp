@@ -2,7 +2,7 @@
  * FrameController.cpp
  *
  *  Created on: 5 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/controller/FrameController.h>
@@ -100,6 +100,7 @@ FrameController::FrameControllerErrors FrameController::set(File* fileMotion, Fr
 	if (write(fileMotion, frame) != ExternalFileSystemController::NO_ERROR){
 		return WRITE_ERROR;
 	}
+
 	return NO_ERROR;
 }
 

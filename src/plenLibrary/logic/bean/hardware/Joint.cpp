@@ -2,17 +2,19 @@
  * Joint.cpp
  *
  *  Created on: 16 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/bean/hardware/Joint.h>
+#include "ArduinoIncludes.h"
 
-Joint::Joint(PwmPinInterface* pwmPinInterface, int angleHome,  RotationMode rotationMode) {
+Joint::Joint(PwmPinInterface* pwmPinInterface, int angleHome, RotationMode rotationMode, bool enabled) {
 	this->jointMemory 		     = {ANGLE_MIN, ANGLE_MAX, angleHome};
 	this->defaultHome			 = angleHome;
 	this->pwmPinInterface		 = pwmPinInterface;
 	this->angle					 = angleHome;
 	this->rotationMode  		 = rotationMode;
+	this->enabled				 = enabled;
 }
 
 Joint::JointMemory* Joint::getJointMemory(){
@@ -36,11 +38,7 @@ void Joint::setAngleMax(int angleMax){
 }
 
 void Joint::setAngle(int angle){
-	int temporalAngle = constrain(angle, this->jointMemory.angleMin, this->jointMemory.angleMax);
-	if(this->rotationMode == Joint::counterClockWise){
-		temporalAngle = 90 - angle / 10;
-	}
-	this->angle = temporalAngle;
+	this->angle = constrain(angle, this->jointMemory.angleMin, this->jointMemory.angleMax);
 }
 
 int Joint::getAngleHome(){
@@ -65,4 +63,12 @@ PwmPinInterface* Joint::getPwmPin(){
 
 Joint::RotationMode Joint::getRotationMode(){
 	return this->rotationMode;
+}
+
+bool Joint::isEnabled(){
+	return this->enabled;
+}
+
+void Joint::setEnabled(bool enabled){
+	this->enabled = enabled;
 }

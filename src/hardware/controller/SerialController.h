@@ -2,7 +2,7 @@
  * SerialController.h
  *
  *  Created on: 12 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_HARDWARE_CONTROLLER_SERIALCONTROLLER_H_

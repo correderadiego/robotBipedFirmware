@@ -2,7 +2,7 @@
  * NumberParser.h
  *
  *  Created on: 22 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_PLENLIBRARY_UTILS_PARSERUTILS_H_

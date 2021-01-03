@@ -2,16 +2,10 @@
  * Controller.cpp
  *
  *  Created on: 24 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/bean/commands/controllerCommands/ControllerCommand.h>
-
-ControllerCommand::ControllerCommand(CommandInterface* command) {
-	this->commandType 	= CONTROLLER_COMMAND;
-	this->commandLength = command->getCommandLength();
-	this->subCommandType = UNKNOWN_SUB_COMMAND_TYPE;
-}
 
 ControllerCommand::ControllerCommand() {
 	this->commandType  	= CONTROLLER_COMMAND;

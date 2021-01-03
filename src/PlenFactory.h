@@ -2,7 +2,7 @@
  * PlenFactory.h
  *
  *  Created on: 16 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_PLENFACTORY_H_

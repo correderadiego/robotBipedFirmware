@@ -11,6 +11,7 @@ public:
 	ArduinoPin();
 	ArduinoPin(uint8_t pin);
 	int getPinNumber();
+	virtual ~ArduinoPin();
 protected:
 	uint8_t pinNumber;
 };

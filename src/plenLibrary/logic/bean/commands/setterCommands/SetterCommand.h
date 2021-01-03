@@ -2,7 +2,7 @@
  * SetterCommand.h
  *
  *  Created on: 24 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_COMMANDS_SETTERCOMMAND_H_
@@ -10,7 +10,7 @@
 
 #include <logic/bean/commands/CommandInterface.h>
 
-class SetterCommand  : public CommandInterface  {
+class SetterCommand : public CommandInterface  {
 public:
 	#define SET_MOTION_HEADER_CHAR		"MH"
 	#define SET_MOTION_FRAME_CHAR		"MF"
@@ -28,10 +28,10 @@ public:
 							SET_ANGLE_MAX_VALUE,
 							SET_ANGLE_MIN_VALUE
 						};
-	SetterCommand(CommandInterface command);
 	SetterCommand();
-	void setSubCommandType	(SubCommandType subCommandType);
-	SubCommandType getSubCommandType ();
+	virtual ~SetterCommand();
+	void setSubCommandType(SubCommandType subCommandType);
+	SubCommandType getSubCommandType();
 
 protected:
 	SubCommandType subCommandType;

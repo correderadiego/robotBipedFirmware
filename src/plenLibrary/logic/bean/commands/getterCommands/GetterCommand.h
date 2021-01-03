@@ -2,7 +2,7 @@
  * GetterCommand.h
  *
  *  Created on: 24 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_COMMANDS_GETTERCOMMAND_H_
@@ -24,7 +24,6 @@ class GetterCommand  : public CommandInterface  {
 						DUMP_VERSION_INFORMATION,
 						DUMP_NETWORK_INFORMATION
 					};
-	GetterCommand(CommandInterface command);
 	GetterCommand();
 	void setSubCommandType	(SubCommandType subCommandType);
 	SubCommandType getSubCommandType();

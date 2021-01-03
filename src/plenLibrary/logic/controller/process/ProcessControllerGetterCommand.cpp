@@ -2,7 +2,7 @@
  * ProccessControllerGetterCommand.cpp
  *
  *  Created on: 1 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/controller/process/ProcessControllerGetterCommand.h>

@@ -2,20 +2,20 @@
  * JointController2.cpp
  *
  *  Created on: 16 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/controller/JointController.h>
 
 JointController::JointController(
-		PCA9685PwmControllerInterface* pca9685PwmControllerInterface,
+		PwmControllerInterface* pca9685PwmController,
 		ExternalFileSystemController* externalFileSystemController) {
-	this->pca9685PwmControllerInterface = pca9685PwmControllerInterface;
+	this->pca9685PwmController 			= pca9685PwmController;
 	this->externalFileSystemController  = externalFileSystemController;
 }
 
 void JointController::updateJointPosition(Joint** jointVector, int jointSize){
-	for (int i = 0; i < jointSize; i++){
+	for (int i = 0; i < jointSize - 1; i++){
 		moveJoint(jointVector[i]);
 	}
 }
@@ -53,11 +53,21 @@ void JointController::moveJoint(Joint* joint){
 		return;
 	}
 
-	if(joint->getPwmPin()->getPwmPinType() == PwmPinInterface::PAC9685_PWM_PIN){
-		pca9685PwmControllerInterface->setAngle(joint->getPwmPin()->getPinNumber(), joint->getAngle());
+	if(!joint->isEnabled()){
+		Logger::getInstance()->logln(Logger::DEBUG, S("Joint disabled"));
 		return;
 	}
-	joint->getPwmPin()->setValue(joint->getAngle());
+
+	if(joint->getPwmPin()->getPwmPinType() == PwmPinInterface::PAC9685_PWM_PIN){
+		this->pca9685PwmController->setValue(
+				joint->getRotationMode(),
+				joint->getPwmPin()->getPinNumber(),
+				joint->getAngle()
+				);
+		return;
+	}
+
+	joint->getPwmPin()->setValue(joint->getRotationMode(), joint->getAngle());
 }
 
 void JointController::resetJoint(Joint* joint){

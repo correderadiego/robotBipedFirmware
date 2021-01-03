@@ -2,7 +2,7 @@
  * SetMaxValueCommand.h
  *
  *  Created on: 29 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_COMMANDS_SETTERCOMMANDS_SETMAXVALUECOMMAND_H_
@@ -13,7 +13,6 @@
 class SetAngleMaxValueCommand : public SetterCommand{
 public:
 	SetAngleMaxValueCommand();
-	SetAngleMaxValueCommand(SetterCommand setterCommand);
 	int getDeviceId();
 	void setDeviceId(int deviceId);
 	int getValue();

@@ -2,7 +2,7 @@
  * ExternalFsController.h
  *
  *  Created on: 17 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_CONTROLLER_EXTERNALFILESYSTEMCONTROLLER_H_

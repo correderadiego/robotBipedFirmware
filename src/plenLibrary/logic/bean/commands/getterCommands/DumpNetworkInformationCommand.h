@@ -2,7 +2,7 @@
  * DumpNetworkInformationCommand.h
  *
  *  Created on: 15 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_PLENLIBRARY_LOGIC_BEAN_COMMANDS_GETTERCOMMANDS_DUMPNETWORKINFORMATIONCOMMAND_H_

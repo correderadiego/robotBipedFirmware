@@ -2,7 +2,7 @@
  * ParserInterface.h
  *
  *  Created on: 25 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_CONTROLLER_PARSER_PARSERINTERFACE_H_
@@ -25,8 +25,9 @@ class ParserInterface{
 
 	virtual bool match(Buffer* buffer) = 0;
     virtual ParserInterface::ParseErrors parse(Buffer* buffer, CommandInterface** command) = 0;
+    virtual ~ParserInterface() = 0;
 };
 
-
+inline ParserInterface::~ParserInterface() {}
 
 #endif /* SRC_CONTROLLER_PARSER_PARSERINTERFACE_H_ */

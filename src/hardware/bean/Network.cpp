@@ -2,7 +2,7 @@
  * Wifi.cpp
  *
  *  Created on: 20 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include "Network.h"

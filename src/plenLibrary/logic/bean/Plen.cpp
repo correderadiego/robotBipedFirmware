@@ -2,7 +2,7 @@
  * PlenBean.cpp
  *
  *  Created on: 16 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/bean/Plen.h>
@@ -25,11 +25,17 @@ Plen::Plen(
 	this->fileMotion				= fileMotion;
 	this->fileConfiguration			= fileConfiguration;
 	this->fileSystem				= fileSystem;
+	this->motion					= new Motion(nullptr, nullptr);
+}
+
+Plen::~Plen() {
+	delete this->motion;
 }
 
 Motion* Plen::getMotion(){
 	return this->motion;
 }
+
 void Plen::setMotion(Motion* motion){
 	this->motion = motion;
 }

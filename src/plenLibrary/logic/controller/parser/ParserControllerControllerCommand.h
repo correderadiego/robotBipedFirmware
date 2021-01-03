@@ -2,7 +2,7 @@
  * ParserControllerCommand.h
  *
  *  Created on: 25 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_CONTROLLER_PARSER_PARSERCONTROLLERCONTROLLERCOMMAND_H_
@@ -11,6 +11,7 @@
 #include <ArduinoIncludes.h>
 #include <logic/bean/commands/controllerCommands/ApplyDiffValueCommand.h>
 #include <logic/bean/commands/controllerCommands/ApplyHomePositionCommand.h>
+#include <logic/bean/commands/controllerCommands/ApplyJointPositionCommand.h>
 #include <logic/bean/commands/controllerCommands/ApplyNativeValueCommand.h>
 #include <logic/bean/commands/controllerCommands/ControllerCommand.h>
 #include <logic/bean/commands/controllerCommands/PlayAMotionCommand.h>
@@ -25,6 +26,7 @@
 #define PLAY_MOTION_COMMAND_LENGTH				5
 #define APPLY_HOME_POSITION_COMMAND_LENGTH 		3
 #define STOP_MOTION_COMMAND_LENGTH 				3
+#define APPLY_JOINT_POSITION_COMMAND_LENGTH 	3
 
 #define HEADER_LENGTH			2
 #define HEADER_INDEX_POSITION	1
@@ -54,6 +56,8 @@ public:
 			Buffer* buffer, StopAMotionCommand** command);
 	ParserInterface::ParseErrors parseApplyHomePositionCommand(
 			Buffer* buffer, ApplyHomePositionCommand** command);
+	ParserInterface::ParseErrors parseApplyJointPositionCommand(
+			Buffer* buffer, ApplyJointPositionCommand** command);
 };
 
 #endif /* SRC_CONTROLLER_PARSER_PARSERCONTROLLERCONTROLLERCOMMAND_H_ */

@@ -2,7 +2,7 @@
  * LedController.h
  *
  *  Created on: 29 dic. 2019
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_CONTROLLER_HARDWARECONTROLLER_LEDCONTROLLER_H_

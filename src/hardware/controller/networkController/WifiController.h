@@ -2,7 +2,7 @@
  * WifiController.h
  *
  *  Created on: 20 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_CONTROLLER_WIFICONTROLLER_H_

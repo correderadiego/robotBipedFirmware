@@ -2,7 +2,7 @@
  * ParserControllerInterpreterCommand.h
  *
  *  Created on: 25 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_CONTROLLER_PARSER_PARSERCONTROLLERINTERPRETERCOMMAND_H_
@@ -30,8 +30,8 @@
 #define SLOT_LENGTH				2
 #define SLOT_POSITION			HEADER_INDEX_POSITION + HEADER_LENGTH
 
-#define LOOP_COUNT_LENGTH		2
-#define LOOP_COUNT_POSITION		SLOT_POSITION + SLOT_LENGTH
+#define LOOP_COUNT_LENGTH							2
+#define LOOP_COUNT_POSITION_INTERPRETER_COMMAND		SLOT_POSITION + SLOT_LENGTH
 
 class ParserControllerInterpreterCommand : public ParserInterface {
 public:

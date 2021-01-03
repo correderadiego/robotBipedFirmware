@@ -2,7 +2,7 @@
  * Motion.cpp
  *
  *  Created on: 5 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/bean/motion/Motion.h>
@@ -10,7 +10,9 @@
 Motion::Motion(Header* header, Frame** frameVector){
 	this->frameVector 				= frameVector;
 	this->header 					= header;
-	this->frameExecutingPosition 	= header->getLoopBeginFrame();
+	if (header != nullptr) {
+		this->frameExecutingPosition 	= header->getLoopBeginFrame();
+	}
 	this->loopExecutingPosition 	= 0;
 }
 
@@ -45,5 +47,4 @@ unsigned int Motion::getLoopExecutingPosition(){
 
 Motion::~Motion(){
 	delete header;
-	delete frameVector;
 }

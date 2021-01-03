@@ -2,7 +2,7 @@
  * RunnableController.cpp
  *
  *  Created on: 17 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <hardware/controller/RunnableController.h>

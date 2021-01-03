@@ -2,7 +2,7 @@
  * Header.h
  *
  *  Created on: 5 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_MOTION_HEADER_H_
@@ -24,7 +24,7 @@ public:
 		bool extra;
 		bool jump;
 		bool loop;
-		char motionName[HEADER_MOTION_NAME_SIZE+1];
+		char motionName[HEADER_MOTION_NAME_SIZE + 1];
 	};
 
 	Header();
@@ -40,6 +40,7 @@ public:
 			bool jump,
 			bool loop
 			);
+	~Header();
 
 	HeaderMemory* getHeaderMemory();
 	char* getMotionName();
@@ -67,7 +68,7 @@ public:
 	void setLoop(bool loop);
 
 private:
-	HeaderMemory* headerMemory = new HeaderMemory();
+	HeaderMemory* headerMemory;
 };
 
 #endif /* SRC_BEAN_MOTION_HEADER_H_ */

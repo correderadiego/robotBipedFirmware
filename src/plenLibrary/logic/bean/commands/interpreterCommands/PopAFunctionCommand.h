@@ -2,7 +2,7 @@
  * PopAFunction.h
  *
  *  Created on: 29 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_COMMANDS_INTERPRETERCOMMANDS_POPAFUNCTIONCOMMAND_H_

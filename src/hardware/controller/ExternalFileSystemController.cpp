@@ -2,7 +2,7 @@
  * ExternalFsController.cpp
  *
  *  Created on: 17 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <hardware/controller/ExternalFileSystemController.h>

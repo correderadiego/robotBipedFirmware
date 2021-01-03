@@ -2,7 +2,7 @@
  * CommandController.h
  *
  *  Created on: 28 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_CONTROLLER_PROCESS_PROCESSCONTROLLER_H_
@@ -20,6 +20,7 @@
 class ProcessController {
 	public:
 		ProcessController(JointController* jointController, MotionController* motionController);
+		~ProcessController();
 		ProcessControllerInterface::CommandControllerErrors process(Plen* plen, CommandInterface* command);
 
 		ProcessControllerInterface* commandController[COMMAND_CONTROLLER_VECTOR_SIZE];

@@ -2,7 +2,7 @@
  * SetMotionFrame.h
  *
  *  Created on: 3 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_COMMANDS_SETTERCOMMANDS_SETMOTIONFRAMECOMMAND_H_
@@ -18,7 +18,7 @@ public:
 	Frame* getMotionFrame();
 	~SetMotionFrameCommand();
 private:
-	Frame* frame = new Frame();
+	Frame* frame;
 };
 
 #endif /* SRC_BEAN_COMMANDS_SETTERCOMMANDS_SETMOTIONFRAMECOMMAND_H_ */

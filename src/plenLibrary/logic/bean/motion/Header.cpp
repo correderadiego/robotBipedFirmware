@@ -2,20 +2,21 @@
  * Header.cpp
  *
  *  Created on: 5 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/bean/motion/Header.h>
 
 Header::Header() {
+	this->headerMemory = new HeaderMemory();
 	this->headerMemory->motionName[0]		= '\0';
-	this->headerMemory->motionName[HEADER_MOTION_NAME_SIZE +1]		= '\0';
+	this->headerMemory->motionName[HEADER_MOTION_NAME_SIZE]	= '\0';
 	this->headerMemory->position 			= 0;
 	this->headerMemory->motionFrameLenght 	= 0;
 	this->headerMemory->loopBeginFrame 		= 0;
 	this->headerMemory->loopEndFrame 		= 0;
 	this->headerMemory->loopCount 			= 0;
-	this->headerMemory->jumpPosition 			= 0;
+	this->headerMemory->jumpPosition 		= 0;
 	this->headerMemory->extra 				= false;
 	this->headerMemory->jump 				= false;
 	this->headerMemory->loop 				= false;
@@ -32,8 +33,9 @@ Header::Header(
 		bool extra,
 		bool jump,
 		bool loop) {
+	this->headerMemory = new HeaderMemory();
 	strcpy(this->headerMemory->motionName, motionName);
-	this->headerMemory->motionName[HEADER_MOTION_NAME_SIZE +1]		= '\0';
+	this->headerMemory->motionName[HEADER_MOTION_NAME_SIZE]	= '\0';
 	this->headerMemory->position 			= position;
 	this->headerMemory->motionFrameLenght 	= motionFrameLength;
 	this->headerMemory->loopBeginFrame 		= loopBeginFrame;
@@ -43,6 +45,10 @@ Header::Header(
 	this->headerMemory->extra 				= extra;
 	this->headerMemory->jump 				= jump;
 	this->headerMemory->loop 				= loop;
+}
+
+Header::~Header() {
+	delete this->headerMemory;
 }
 
 Header::HeaderMemory* Header::getHeaderMemory(){

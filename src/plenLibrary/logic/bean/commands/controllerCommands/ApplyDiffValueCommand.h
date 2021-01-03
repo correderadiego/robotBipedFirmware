@@ -2,7 +2,7 @@
  * ApplyDiffValueCommand.h
  *
  *  Created on: 29 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_COMMANDS_CONTROLLERCOMMANDS_APPLYDIFFVALUECOMMAND_H_
@@ -13,7 +13,6 @@
 class ApplyDiffValueCommand : public ControllerCommand {
 public:
 	ApplyDiffValueCommand();
-	ApplyDiffValueCommand(ControllerCommand controllerCommand);
 	int getDeviceId();
 	void setDeviceId(int deviceId);
 	int getValue();

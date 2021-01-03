@@ -2,7 +2,7 @@
  * ProcessControllerSetterCommand.h
  *
  *  Created on: 1 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_CONTROLLER_PROCESS_PROCESSCONTROLLERSETTERCOMMAND_H_

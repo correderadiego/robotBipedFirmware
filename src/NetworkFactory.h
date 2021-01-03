@@ -2,7 +2,7 @@
  * WifiFactory.h
  *
  *  Created on: 12 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_WIFIFACTORY_H_

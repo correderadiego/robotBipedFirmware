@@ -2,7 +2,7 @@
  * httpServerController.cpp
  *
  *  Created on: 21 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <hardware/controller/networkController/HttpServerController.h>

@@ -2,7 +2,7 @@
  * MotionController.h
  *
  *  Created on: 26 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_CONTROLLER_MOTIONCONTROLLER_H_
@@ -42,6 +42,7 @@ public:
 	MotionControllerErrors getMotion(File* fileMotion, unsigned int motionPosition, Motion* motion);
 	HeaderController::HeaderControllerErrors setHeader(File* fileMotion, Header* header);
 	FrameController::FrameControllerErrors setFrame(File* fileMotion, Frame* frame);
+	void updateLoopFrameExecutingPosition(Motion* motion);
 
 private:
 	ExternalFileSystemController* externalFileSystemController;
@@ -52,7 +53,6 @@ private:
 	void executeMotion(Motion* motion, Joint** jointVector, int jointSize, File* fileMotion);
 	bool framesToExecute(Motion* motion);
 	void updateFrameExecutingPosition(Motion* motion);
-	void updateLoopFrameExecutingPosition(Motion* motion);
 	void updatePlenJoint(Motion* motion, Joint** jointVector, int jointSize);
 };
 

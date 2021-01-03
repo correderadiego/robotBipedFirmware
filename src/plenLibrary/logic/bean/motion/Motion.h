@@ -2,7 +2,7 @@
  * Motion.h
  *
  *  Created on: 5 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_MOTION_MOTION_H_

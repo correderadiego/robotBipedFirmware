@@ -2,7 +2,7 @@
  * SetMaxValueCommand.cpp
  *
  *  Created on: 29 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/bean/commands/setterCommands/SetAngleMaxValueCommand.h>
@@ -11,10 +11,6 @@ SetAngleMaxValueCommand::SetAngleMaxValueCommand() {
 	this->subCommandType = SET_ANGLE_MAX_VALUE;
 	this->deviceId 		= 0;
 	this->value 		= 0;
-}
-
-SetAngleMaxValueCommand::SetAngleMaxValueCommand(SetterCommand setterCommand){
-
 }
 
 int SetAngleMaxValueCommand::getDeviceId(){

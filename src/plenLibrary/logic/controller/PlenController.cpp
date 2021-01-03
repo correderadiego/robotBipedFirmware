@@ -2,7 +2,7 @@
  * Plen.cpp
  *
  *  Created on: 15 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/controller/PlenController.h>
@@ -24,6 +24,10 @@ PlenController::PlenController(
 		this->processController				= processController;
 }
 
+PlenController::~PlenController() {
+	delete this->command;
+}
+
 void PlenController::initPlenController(Plen* plen){
 	loadFileConfiguration(plen);
 	jointController->updateJointPosition(plen->getJointVector(), plen->getJointSize());
@@ -41,13 +45,14 @@ void PlenController::executeThreadTasks(Plen* plen){
 	processBuffer(plen, plen->getSerialBuffer());
 	processBuffer(plen, plen->getSocketBuffer());
 	this->motionController->executeThreadTasks(plen);
-//	this->eyeController->executeThreadTasks(plen);
+	this->eyeController->executeThreadTasks(plen);
 }
 
 void PlenController::processBuffer(Plen* plen, Buffer* buffer){
 	ParseBufferErrors parseBufferError = parseBuffer(buffer, &command);
 	if(parseBufferError == NO_ERROR){
 		processController->process(plen, command);
+		delete command;
 	}
 }
 

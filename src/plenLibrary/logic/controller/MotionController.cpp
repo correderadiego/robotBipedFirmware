@@ -2,7 +2,7 @@
  * MotionController.cpp
  *
  *  Created on: 26 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/controller/MotionController.h>
@@ -101,7 +101,7 @@ void MotionController::updateLoopFrameExecutingPosition(Motion* motion){
 MotionController::MotionControllerErrors MotionController::getMotion(File* fileMotion, unsigned int motionPosition, Motion* motion){
 	Header* header = new Header();
 	header->setPosition(motionPosition);
-	if (headerController->get(fileMotion, header) != NO_ERROR){
+	if (headerController->get(fileMotion, header) != HeaderController::HeaderControllerErrors::NO_ERROR){
 		delete header;
 		return LOAD_MOTION_ERROR;
 	}
@@ -112,7 +112,7 @@ MotionController::MotionControllerErrors MotionController::getMotion(File* fileM
 		frame->setHeaderPosition(motionPosition);
 		frame->setFramePosition(framePosition);
 
-		if (frameController->get(fileMotion, frame) != NO_ERROR){
+		if (frameController->get(fileMotion, frame) != FrameController::FrameControllerErrors::NO_ERROR){
 			delete header;
 			delete frame;
 			return LOAD_MOTION_ERROR;

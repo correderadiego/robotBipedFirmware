@@ -2,7 +2,7 @@
  * StopAMotion.cpp
  *
  *  Created on: 29 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/bean/commands/controllerCommands/StopAMotionCommand.h>

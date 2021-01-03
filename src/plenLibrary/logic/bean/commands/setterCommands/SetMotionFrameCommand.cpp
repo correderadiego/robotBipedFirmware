@@ -2,16 +2,18 @@
  * SetMotionFrame.cpp
  *
  *  Created on: 3 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/bean/commands/setterCommands/SetMotionFrameCommand.h>
 
 SetMotionFrameCommand::SetMotionFrameCommand() {
 	this->subCommandType = SET_MOTION_FRAME;
+	this->frame = new Frame();
 }
 
 void SetMotionFrameCommand::setMotionFrame(Frame* frame){
+	delete this->frame;
 	this->frame = frame;
 }
 
@@ -20,6 +22,6 @@ Frame* SetMotionFrameCommand::getMotionFrame(){
 }
 
 SetMotionFrameCommand::~SetMotionFrameCommand(){
-	frame = nullptr;
-	delete frame;
+	delete this->frame;
+	this->frame = nullptr;
 }

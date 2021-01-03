@@ -2,7 +2,7 @@
  * ParserControllerInterpreterCommand.cpp
  *
  *  Created on: 25 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/controller/parser/ParserControllerInterpreterCommand.h>
@@ -20,17 +20,20 @@ ParserInterface::ParseErrors ParserControllerInterpreterCommand::parse(
 									Buffer* buffer, CommandInterface** command){
 	char commandSequence[3] = {'\0'};
 	strncpy ( commandSequence, &buffer->getData()[1],  2);
-	*command = new InterpreterCommand();
+
 
 	if( strcmp(commandSequence, PUSH_A_FUNCTION_CHAR) == 0){
+		*command = new PushAFunctionCommand();
 		return parsePushAFunctionCommand(buffer, (PushAFunctionCommand**)command);
 	}
 
 	if( strcmp(commandSequence, POP_A_FUNCTION_CHAR) == 0){
+		*command = new PopAFunctionCommand();
 		return parsePopAFunctionCommand(buffer, (PopAFunctionCommand**)command);
 	}
 
 	if( strcmp(commandSequence, RESET_INTERPRETER_CHAR) == 0){
+		*command = new ResetInterpreterCommand();
 		return parseResetInterpreterCommand(buffer, (ResetInterpreterCommand**)command);
 	}
 
@@ -59,7 +62,7 @@ ParserInterface::ParseErrors ParserControllerInterpreterCommand::parsePushAFunct
 	(**command).setSlot(ParserUtils::hexbytes2int(slot, SLOT_LENGTH));
 
 	char loopCount[LOOP_COUNT_LENGTH+1] = {'\0'};
-	strncpy ( loopCount, &buffer->getData()[LOOP_COUNT_POSITION],  LOOP_COUNT_LENGTH);
+	strncpy ( loopCount, &buffer->getData()[LOOP_COUNT_POSITION_INTERPRETER_COMMAND],  LOOP_COUNT_LENGTH);
 	(**command).setLoopCount(ParserUtils::hexbytes2int(loopCount, LOOP_COUNT_LENGTH));
 
 	return NO_ERROR;

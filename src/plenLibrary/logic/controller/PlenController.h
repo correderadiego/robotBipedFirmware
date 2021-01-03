@@ -2,7 +2,7 @@
  * Plen.h
  *
  *  Created on: 15 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_PLENCONTROLLER_H_
@@ -42,6 +42,7 @@ public:
 			ExternalFileSystemController* 	externalFileSystemController,
 			ParserController*				parserController,
 			ProcessController* 				processController);
+	~PlenController();
 	void executeThreadTasks(Plen* plen);
 	void initPlenController(Plen* plen);
 

@@ -2,7 +2,7 @@
  * Buffer.cpp
  *
  *  Created on: 23 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/bean/hardware/Buffer.h>
@@ -29,7 +29,7 @@ char* Buffer::getData(){
 }
 
 Buffer::BufferErrors Buffer::addChar(char character){
-	if(position >= BUFFER_SIZE - 1){
+	if(this->position >= BUFFER_SIZE - 1){
 		clearBuffer();
 		return BUFFER_FULL_ERROR;
 	}

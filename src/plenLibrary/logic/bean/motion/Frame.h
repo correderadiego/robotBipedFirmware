@@ -2,7 +2,7 @@
  * Frame.h
  *
  *  Created on: 5 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_MOTION_FRAME_H_
@@ -18,6 +18,7 @@ public:
 			unsigned int frameIndex,
 			unsigned int transitionTime
 			);
+	~Frame();
 	struct FrameMemory{
 			unsigned int headerPosition;
 			unsigned int framePosition;
@@ -37,7 +38,7 @@ public:
 	void setTransitionTime(unsigned int transitionTime);
 
 private:
-	FrameMemory* frameMemory = new FrameMemory();
+	FrameMemory* frameMemory;
 };
 
 #endif /* SRC_BEAN_MOTION_FRAME_H_ */

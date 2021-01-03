@@ -2,7 +2,7 @@
  * Led.cpp
  *
  *  Created on: 7 dic. 2019
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <logic/bean/hardware/Led.h>

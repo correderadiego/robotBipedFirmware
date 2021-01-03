@@ -2,7 +2,7 @@
  * FrameController.h
  *
  *  Created on: 5 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_CONTROLLER_FRAMECONTROLLER_H_
@@ -12,7 +12,6 @@
 #include "logic/bean/motion/Header.h"
 #include "utils/Logger.h"
 #include <hardware/controller/ExternalFileSystemController.h>
-
 
 class FrameController {
 public:
@@ -24,10 +23,11 @@ public:
 		WRITE_ERROR
 	};
 	FrameController(ExternalFileSystemController* externalFileSystemController);
-	int getPosition(int header, int framePosition);
-	FrameControllerErrors get(File* fileMotion, Frame* frame);
-	FrameControllerErrors set(File* fileMotion, Frame* frame);
-	void dumpFrame(Frame* frame);
+	virtual int getPosition(int header, int framePosition);
+	virtual FrameControllerErrors get(File* fileMotion, Frame* frame);
+	virtual FrameControllerErrors set(File* fileMotion, Frame* frame);
+	virtual void dumpFrame(Frame* frame);
+	virtual ~FrameController() {};
 private:
 	ExternalFileSystemController* externalFileSystemController;
 	ExternalFileSystemController::FileSystemErrors write(File* fileMotion, Frame* frame);

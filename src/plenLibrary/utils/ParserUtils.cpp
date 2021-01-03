@@ -2,7 +2,7 @@
  * NumberParser.cpp
  *
  *  Created on: 22 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #include <utils/ParserUtils.h>
@@ -12,7 +12,7 @@ unsigned int ParserUtils::hexBytesToUint(
 		unsigned char size){
 	unsigned int result = 0;
 
-	for (char index = 0; index < size; index++)
+	for (int index = 0; index < size; index++)
 	{
 		unsigned int placeholder = bytes[index];
 

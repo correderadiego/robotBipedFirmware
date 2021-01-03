@@ -24,13 +24,28 @@ void PCA9685PwmController::configurePWM(){
 	resetPWMController();
 	this->pwmServoDriver.begin();
 	this->pwmServoDriver.setPWMFreq(PWM_FREQUENCY);
+	delay(PWM_CONTROLLER_CONFIGURE_TIME);
 }
 
-void PCA9685PwmController::setAngle(uint8_t num, uint16_t duty){
-	this->pwmServoDriver.setPWM(num, 0, duty);
+void PCA9685PwmController::setValue(Joint::RotationMode rotationMode, uint8_t servoNumber, uint16_t duty){
+	this->pwmServoDriver.setPWM(servoNumber, 0, getPwmValue(rotationMode, duty));
 }
 
 void PCA9685PwmController::disableServo(uint8_t num){
 	this->pwmServoDriver.setPWM(num, 4096, 0);
 }
 
+int PCA9685PwmController::getPwmValue(Joint::RotationMode rotationMode, uint16_t duty){
+	if(rotationMode == Joint::RotationMode::clockWise){
+		return map(
+					duty,
+					ANGLE_MIN, ANGLE_MAX,
+					PWM_MIN, PWM_MAX
+				);
+	}
+	return map(
+				duty,
+				ANGLE_MIN, ANGLE_MAX,
+				PWM_MAX, PWM_MIN
+			);
+}

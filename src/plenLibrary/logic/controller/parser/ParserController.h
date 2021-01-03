@@ -2,7 +2,7 @@
  * ParserController.h
  *
  *  Created on: 24 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_CONTROLLER_PARSERCONTROLLER_H_
@@ -23,6 +23,7 @@ public:
 	#define MIN_MESSAGE_SIZE 				 3
 
 	ParserController();
+	~ParserController();
 	ParserInterface::ParseErrors parse(Buffer* buffer, CommandInterface** command);
 
 private:

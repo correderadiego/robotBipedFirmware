@@ -2,7 +2,7 @@
  * Controller.h
  *
  *  Created on: 24 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_COMMANDS_CONTROLLERCOMMAND_H_
@@ -17,6 +17,7 @@ public:
 	#define PLAY_A_MOTION_CHAR			"PM"
 	#define STOP_A_MOTION_CHAR			"SM"
 	#define APPLY_HOME_POSITION_CHAR	"HP"
+	#define SET_JOIN_POSITION_CHAR		"SP"
 
 	enum SubCommandType	{
 							UNKNOWN_SUB_COMMAND_TYPE = -1,
@@ -24,9 +25,9 @@ public:
 							APPLY_DIFF_VALUE,
 							PLAY_A_MOTION,
 							STOP_A_MOTION,
-							APPLY_HOME_POSITION
+							APPLY_HOME_POSITION,
+							APPLY_JOINT_POSITION
 						};
-	ControllerCommand(CommandInterface* command);
 	ControllerCommand();
 	void setSubCommandType	(SubCommandType subCommandType);
 	SubCommandType getSubCommandType();

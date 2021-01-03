@@ -2,7 +2,7 @@
  * Buffer.h
  *
  *  Created on: 23 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_BEAN_BUFFER_H_
@@ -33,8 +33,8 @@ public:
 
 private:
 	char data[BUFFER_SIZE];
-	int	 position;
-	bool commandComplete;
+	int	 position = 0;
+	bool commandComplete = false;
 };
 
 #endif /* SRC_BEAN_BUFFER_H_ */

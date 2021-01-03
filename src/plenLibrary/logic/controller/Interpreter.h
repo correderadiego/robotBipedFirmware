@@ -2,7 +2,7 @@
  * Interpreter.h
  *
  *  Created on: 26 mar. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_CONTROLLER_INTERPRETER_H_

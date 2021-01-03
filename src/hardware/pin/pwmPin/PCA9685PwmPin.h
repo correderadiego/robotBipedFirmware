@@ -2,7 +2,7 @@
  * PCA9685PwmPin.h
  *
  *  Created on: 2 abr. 2020
- *      Author: ziash
+ *      Author: Diego
  */
 
 #ifndef SRC_HARDWARE_PIN_PWMPIN_PCA9685PWMPIN_H_
