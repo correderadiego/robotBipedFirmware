@@ -30,7 +30,6 @@ ProcessControllerInterface::CommandControllerErrors
 								plen->getFileMotion(),
 								setMotionHeaderCommand->getMotionHeader()
 							);
-		delete setMotionHeaderCommand;
 		return NO_ERROR;
 	}
 	if(setterCommand->getSubCommandType() == SetterCommand::SET_MOTION_FRAME){
@@ -39,7 +38,6 @@ ProcessControllerInterface::CommandControllerErrors
 								plen->getFileMotion(),
 								setMotionFrameCommand->getMotionFrame()
 							);
-		delete setMotionFrameCommand;
 		return NO_ERROR;
 	}
 	if(setterCommand->getSubCommandType() == SetterCommand::RESET_JOINT_SETTINGS){
@@ -47,7 +45,6 @@ ProcessControllerInterface::CommandControllerErrors
 			jointController->resetJoint((plen->getJointVector()[i]));
 			jointController->storeJoint( plen, plen->getJointVector()[i], i);
 		}
-		delete setterCommand;
 		return NO_ERROR;
 	}
 	if(setterCommand->getSubCommandType() == SetterCommand::SET_ANGLE_HOME_VALUE){
@@ -59,7 +56,6 @@ ProcessControllerInterface::CommandControllerErrors
 									plen->getJointVector()[setHomeValueCommand->getDeviceId()],
 									setHomeValueCommand->getDeviceId()
 									);
-		delete setHomeValueCommand;
 		return NO_ERROR;
 	}
 	if(setterCommand->getSubCommandType() == SetterCommand::SET_ANGLE_MAX_VALUE){
@@ -71,7 +67,6 @@ ProcessControllerInterface::CommandControllerErrors
 									plen->getJointVector()[setAngleMaxValueCommand->getDeviceId()],
 									setAngleMaxValueCommand->getDeviceId()
 									);
-		delete setAngleMaxValueCommand;
 		return NO_ERROR;
 	}
 	if(setterCommand->getSubCommandType() == SetterCommand::SET_ANGLE_MIN_VALUE){
@@ -83,10 +78,8 @@ ProcessControllerInterface::CommandControllerErrors
 									plen->getJointVector()[setMinValueCommand->getDeviceId()],
 									setMinValueCommand->getDeviceId()
 									);
-		delete setMinValueCommand;
 		return NO_ERROR;
 	}
 
-	delete setterCommand;
 	return UNKNOWN_COMMAND;
 }

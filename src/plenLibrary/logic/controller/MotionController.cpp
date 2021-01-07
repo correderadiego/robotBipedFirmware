@@ -33,9 +33,14 @@ void MotionController::executeThreadTasks(Plen* plen){
 	}
 }
 
-void MotionController::executeMotion(Motion* motion, Joint** jointVector, int jointSize, File* fileMotion){
-	if(motion == nullptr){
-		return;
+MotionController::MotionControllerErrors MotionController::executeMotion(Motion* motion, Joint** jointVector, int jointSize, File* fileMotion){
+	if(motion == nullptr || motion->getHeader() == nullptr || motion->getFrameVector() == nullptr){
+		return NO_ERROR_NO_MOTION_TO_EXECUTE;
+	}
+
+	if(fileMotion == nullptr){
+		Logger::getInstance()->logln(Logger::ERROR, S("Wrong file motion error"));
+		return UNKNOWN_FILE_ERROR;
 	}
 
 	if(framesToExecute(motion)){
@@ -45,12 +50,14 @@ void MotionController::executeMotion(Motion* motion, Joint** jointVector, int jo
 		this->setExecutionDelayMilliSeconds(
 				motion->getFrameVector()[motion->getFrameExecutingPosition()]->getTransitionTime()
 			);
-		return;
+		return NO_ERROR;
 	}
 
 	if(motion->getHeader()->useJump()){
 		this->getMotion(fileMotion, motion->getHeader()->getJumpPosition(), motion);
 	}
+
+	return NO_ERROR;
 }
 
 bool MotionController::framesToExecute(Motion* motion){

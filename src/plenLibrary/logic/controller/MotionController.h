@@ -24,6 +24,8 @@ class MotionController  : public RunnableController {
 public:
 	enum MotionControllerErrors{
 	  NO_ERROR,
+	  NO_ERROR_NO_MOTION_TO_EXECUTE,
+	  UNKNOWN_FILE_ERROR,
 	  HEADER_POSITION_ERROR,
 	  HEADER_FRAME_SIZE_ERROR,
 	  WRITE_ERROR,
@@ -43,6 +45,7 @@ public:
 	HeaderController::HeaderControllerErrors setHeader(File* fileMotion, Header* header);
 	FrameController::FrameControllerErrors setFrame(File* fileMotion, Frame* frame);
 	void updateLoopFrameExecutingPosition(Motion* motion);
+	MotionController::MotionControllerErrors executeMotion(Motion* motion, Joint** jointVector, int jointSize, File* fileMotion);
 
 private:
 	ExternalFileSystemController* externalFileSystemController;
@@ -50,7 +53,7 @@ private:
 	HeaderController* headerController;
 	FrameController* frameController;
 
-	void executeMotion(Motion* motion, Joint** jointVector, int jointSize, File* fileMotion);
+
 	bool framesToExecute(Motion* motion);
 	void updateFrameExecutingPosition(Motion* motion);
 	void updatePlenJoint(Motion* motion, Joint** jointVector, int jointSize);

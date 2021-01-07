@@ -32,30 +32,25 @@ ProcessControllerInterface::CommandControllerErrors
 		}
 		Logger::getInstance()->log(Logger::INFO, S("]"));
 		Logger::getInstance()->log(Logger::INFO, S("\r\n"));
-		delete getterCommand;
 		return NO_ERROR;
 	}
 
 	if(getterCommand->getSubCommandType() == GetterCommand::DUMP_MOTION){
 		DumpMotionCommand* dumpMotionCommand = (DumpMotionCommand*) getterCommand;
 		motionController->dumpMotion(plen->getFileMotion(), dumpMotionCommand->getPosition());
-		delete dumpMotionCommand;
 		return NO_ERROR;
 	}
 
 	if(getterCommand->getSubCommandType() == GetterCommand::DUMP_VERSION_INFORMATION){
 		processDumpVersionInformation();
-		delete getterCommand;
 		return NO_ERROR;
 	}
 
 	if(getterCommand->getSubCommandType() == GetterCommand::DUMP_NETWORK_INFORMATION){
 		processDumpNetworkInformation(plen);
-		delete getterCommand;
 		return NO_ERROR;
 	}
 
-	delete getterCommand;
 	return UNKNOWN_COMMAND;
 }
 

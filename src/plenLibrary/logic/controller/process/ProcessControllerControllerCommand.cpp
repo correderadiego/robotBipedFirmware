@@ -31,7 +31,6 @@ ProcessControllerInterface::CommandControllerErrors
 		plen->getJointVector()[applyNativeValueCommand->getDeviceId()]->setEnabled(true);
 		plen->getJointVector()[applyNativeValueCommand->getDeviceId()]->setAngle(applyNativeValueCommand->getValue());
 		jointController->updateJointPosition(plen->getJointVector(), plen->getJointSize());
-		delete applyNativeValueCommand;
 		return NO_ERROR;
 	}
 
@@ -39,21 +38,18 @@ ProcessControllerInterface::CommandControllerErrors
 		ApplyDiffValueCommand* applyDiffValueCommand = (ApplyDiffValueCommand*)command;
 		int angle = plen->getJointVector()[applyDiffValueCommand->getDeviceId()]->getAngleHome() + applyDiffValueCommand->getValue();
 		plen->getJointVector()[applyDiffValueCommand->getDeviceId()]->setAngle(angle);
-		delete applyDiffValueCommand;
 		return NO_ERROR;
 	}
 
 	if(controllerCommand->getSubCommandType() == ControllerCommand::PLAY_A_MOTION){
 		PlayAMotionCommand* playAMotionCommand = (PlayAMotionCommand*)command;
 		motionController->getMotion(plen->getFileMotion(), playAMotionCommand->getPosition(), plen->getMotion());
-		delete playAMotionCommand;
 		return NO_ERROR;
 	}
 
 	if(controllerCommand->getSubCommandType() == ControllerCommand::STOP_A_MOTION){
 		//TODO stop motion
 		StopAMotionCommand* stopAMotionCommand = (StopAMotionCommand*)command;
-		delete stopAMotionCommand;
 		return NO_ERROR;
 	}
 
@@ -62,19 +58,16 @@ ProcessControllerInterface::CommandControllerErrors
 			plen->getJointVector()[i]->setAngle(plen->getJointVector()[i]->getAngleHome());
 		}
 		return NO_ERROR;
-		delete command;
 	}
 
 	if(controllerCommand->getSubCommandType() == ControllerCommand::APPLY_JOINT_POSITION){
 		ApplyJointPositionCommand* applyJointPositionCommand = (ApplyJointPositionCommand*)command;
 
 		if (applyJointPositionCommand->getJoint() > plen->getJointSize()) {
-			delete command;
 			return INVALID_VALUE;
 		}
 
 		if (applyJointPositionCommand->getJoint() < 0 ) {
-			delete command;
 			return INVALID_VALUE;
 		}
 
@@ -82,17 +75,14 @@ ProcessControllerInterface::CommandControllerErrors
 		 * TODO check position values
 		 */
 		if (applyJointPositionCommand->getPosition() < 0 ) {
-			delete command;
 			return INVALID_VALUE;
 		}
 
 		plen->getJointVector()[applyJointPositionCommand->getJoint()]->setAngle(applyJointPositionCommand->getPosition());
 
 		return NO_ERROR;
-		delete command;
 	}
 
-	delete command;
 	return UNKNOWN_COMMAND;
 }
 

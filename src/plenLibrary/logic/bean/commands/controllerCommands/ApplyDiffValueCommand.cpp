@@ -8,7 +8,7 @@
 #include <logic/bean/commands/controllerCommands/ApplyDiffValueCommand.h>
 
 ApplyDiffValueCommand::ApplyDiffValueCommand() {
-	this->subCommandType 	= APPY_NATIVE_VALUE;
+	this->subCommandType 	= APPLY_DIFF_VALUE;
 	this->deviceId 			= 0;
 	this->value 			= 0;
 }
